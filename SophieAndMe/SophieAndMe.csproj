@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
       <PackageReference Include="font-awesome" Version="4.7.0" />
       <PackageReference Include="Font.Awesome" Version="5.15.4" />
       <PackageReference Include="FontAwesome" Version="4.7.0" />

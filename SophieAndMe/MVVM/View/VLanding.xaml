@@ -9,6 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <wv2:WebView2 x:Name="WebViewAll" Source="file:///C:/Users/Bastien/source/repos/Sophieandme/Sophieandme/Math.html" />
+        <wv2:WebView2 x:Name="WebViewAll" />
     </Grid>
 </UserControl>

@@ -181,7 +181,6 @@
                         x:Name="webviewquizz"
                         MinHeight="30"
                         DockPanel.Dock="Top"
-                        Source="file:///HTML_Const/Quizz/quizz.html"
                         Visibility="Visible" />
                 </DockPanel>
                 <!--</Grid>-->

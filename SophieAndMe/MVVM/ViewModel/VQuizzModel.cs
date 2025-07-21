@@ -30,9 +30,7 @@ namespace SophieAndMe.MVVM.ViewModel;
                 new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica},
                 new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers},
                 new SubjectItem {Name = "All", IconVal = IconChar.Landmark},
-                    
             };
-            
             
             foreach (var subject in Subjects)
             {

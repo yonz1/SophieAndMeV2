@@ -45,6 +45,6 @@
         </Button>
         <Label Content="{Binding Message}" Grid.Row="0" Foreground="{StaticResource Textcolor}"
                FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <wv2:WebView2 x:Name="WebViewAll" Grid.Row="1" Source="file:///C:/Users/Bastien/source/repos/Sophieandme/Sophieandme/Math.html" />
+        <wv2:WebView2 x:Name="WebViewAll" Grid.Row="1"  />
     </Grid>
 </UserControl>

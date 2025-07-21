@@ -85,6 +85,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
                 {
                     SetSilent();
                 };
+                Console.WriteLine("Fin de logique");
             }
 
         }

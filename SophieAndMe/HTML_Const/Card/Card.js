@@ -1,10 +1,12 @@
+console.log("Charger");
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
+    console.log("Fonction lancer");
     const divmain = document.getElementById("main")
     divmain.innerHTML = "";
 
 
     questarr.forEach((question, index) => {
-
+        
         let img1 = "";
         let img2 = ""
         const answer = reparr[index];

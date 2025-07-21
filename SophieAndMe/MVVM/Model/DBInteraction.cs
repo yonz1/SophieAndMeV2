@@ -39,7 +39,8 @@ namespace SophieAndMe.MVVM.Model
                         string rep = "\"" + repnse + "\",";
                         string questionImg = "\"" + urlQuestion + "\",";
                         string reponseImg = "\"" + urlRep + "\"";
-                        query = "INSERT INTO Marked (Matier,question,reponse,question_img,reponse_img) VALUES (" + mat + quest + rep + questionImg + reponseImg + ")";
+                        query = "INSERT INTO Marked (Matier,question,reponse,image_question_url,image_answer_url) VALUES (" + mat + quest + rep + questionImg + reponseImg + ")";
+                        Console.WriteLine(query);
                         using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
                         {
                             insertCmd.ExecuteNonQuery();
@@ -54,7 +55,7 @@ namespace SophieAndMe.MVVM.Model
             using (SQLiteConnection c = new SQLiteConnection(ConSource))
             {
                 c.Open();
-                string query = "DELETE FROM Marked WHERE question = \"" + question +"\"";
+                string query = "DELETE FROM Marked WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + question + "\", ' ', '')";
                 Console.WriteLine(query);
                 using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                 {

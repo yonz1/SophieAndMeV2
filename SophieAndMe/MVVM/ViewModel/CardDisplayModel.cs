@@ -28,7 +28,17 @@ public class CardDisplayModel
         var ur = QuizzUtilities.Miseneformelist(urlReponse) ?? new List<string>();
         Console.WriteLine("Mise en forme : ");
         ShowCard(q, r, uq, ur);
-        Back_quizz_Click = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
+        Back_quizz_Click = new RelayCommand(o =>
+        {
+            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            {
+                NavigationService.Instance.Navigate(new VMarked());    
+            }
+            else
+            {
+                NavigationService.Instance.Navigate(new VQuizz());
+            }
+        });
     }
 
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)

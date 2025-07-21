@@ -2,6 +2,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
@@ -9,20 +12,20 @@ using SophieAndMe.MVVM.View;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
-public class VMarkedModel : INotifyPropertyChanged
+public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
 {
     
     List<string>? _question; 
     List<string>? _repnse; 
     List<string>? _urlQuestion; 
     private List<string>? _urlRep;
-    private readonly Func<string, Task> _invokejs ;
-    private string _jscall;
     public ObservableCollection<string> Noms { get; set; } = new();
     public ObservableCollection<SubjectItem> Subjects { get; set; }
     public RelayCommand ChoisirNomCommand { get; }
 
     private bool _isview;
+    private string _jscall;
+
     public bool  IsView
     {
         get => _isview;
@@ -31,9 +34,17 @@ public class VMarkedModel : INotifyPropertyChanged
         }
     }
     
-    public VMarkedModel(Func<string, Task> invokeJs)
+    public VMarkedModel()
     {
-        _invokejs = invokeJs;
+        IsActive = true;
+        WeakReferenceMessenger.Default.Register<JsToAppMessage>(this, (r, m) =>
+        {
+            var (action, id) = m.Value;
+            id = id.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            DBInteraction.UnMark(id);
+        });
+        
+        
         Subjects = new ObservableCollection<SubjectItem>
         {   
             new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
@@ -85,8 +96,6 @@ public class VMarkedModel : INotifyPropertyChanged
         });
     }
 
-
-
     public async void LoadMark(string mat)
     {
         (_question, _repnse, _urlQuestion, _urlRep) = DBInteraction.GetMarked(mat);
@@ -98,7 +107,7 @@ public class VMarkedModel : INotifyPropertyChanged
         try
         {
             _jscall = WebviewInteraction.send_data_Card_Marked(q, r, uq, ur);
-            await _invokejs(_jscall);
+            WeakReferenceMessenger.Default.Send(new JsCallMessage(_jscall));
         }
         catch (Exception e)
         {
@@ -109,4 +118,14 @@ public class VMarkedModel : INotifyPropertyChanged
     public event PropertyChangedEventHandler? PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string name = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+    public class JsCallMessage : ValueChangedMessage<string>
+    {
+        public JsCallMessage(string value) : base(value) { }
+    }
+
+    public class JsToAppMessage : ValueChangedMessage<(string Action, string Id)>
+    {
+        public JsToAppMessage(string action, string id) : base((action, id)) { }
+    }
 }

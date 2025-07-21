@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Web.WebView2.Core;
 using SophieAndMe.MVVM.ViewModel;
 
 namespace SophieAndMe.MVVM.View
@@ -29,18 +20,49 @@ namespace SophieAndMe.MVVM.View
             urif = urif.Replace("\\", "/");
             System.Uri uri1 = new System.Uri(urif);
             webviewall.Source = uri1 as System.Uri;
-            Setup();
-        }
-        private async void Setup()
-        {           
-            await webviewall.EnsureCoreWebView2Async();
-            webviewall.CoreWebView2.Settings.IsStatusBarEnabled = false;
-            webviewall.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
-            webviewall.CoreWebView2.NavigationCompleted += (sender, args) =>
+            Loaded += async (s, e) =>
             {
-                var vm = new VMarkedModel(js => webviewall.ExecuteScriptAsync(js));
-                this.DataContext = vm;
+                await webviewall.EnsureCoreWebView2Async();
+
+                webviewall.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+                DataContext = new VMarkedModel();
+                
+                // webviewall.CoreWebView2.OpenDevToolsWindow();
+                
+                webviewall.CoreWebView2.NavigationCompleted += (sender, args) =>
+                {
+                    webviewall.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne')");
+                    WeakReferenceMessenger.Default.Register<VMarkedModel.JsCallMessage>(this, (r, m) =>
+                    {
+                        Console.WriteLine(m.Value);
+                        webviewall.CoreWebView2.ExecuteScriptAsync(m.Value);
+                    });
+                };
             };
         }
+
+        private void OnWebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            try
+            {
+                var msg = JsonSerializer.Deserialize<WebJsMessage>(e.WebMessageAsJson);
+                if (msg != null)
+                {
+                    WeakReferenceMessenger.Default.Send(new VMarkedModel.JsToAppMessage(msg.action, msg.id));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur JS: " + ex.Message);
+            }
+        }
+        
+        public class WebJsMessage
+        {
+            public string action { get; set; } = string.Empty;
+            public string id { get; set; } = string.Empty;
+        }
+        
+        
     }
 }
