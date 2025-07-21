@@ -1,0 +1,36 @@
+body {
+    background: #161717;
+}
+
+p{
+    margin-left: 20px;
+}
+
+.reponse {
+    color: #F5F5F5;
+    padding: 1cm;
+    float: left;
+}
+
+.question {
+    color: #F5F5F5;
+    padding: 1cm;
+    float: left;
+}
+
+.container_q {
+    display: inline-flex;
+    width: 90vw;
+}
+
+.container_r {
+    background: #242424;
+    display: inline-flex;
+    width: 90vw;
+}
+
+img {
+    max-width: 350px;
+    max-height: 230px;
+    float: left;
+}

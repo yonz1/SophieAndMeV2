@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <link rel="stylesheet" href="Style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <title>Custom Test</title>
+</head>
+<body>
+
+
+
+    <div class="container">
+        <h2 id="Title">Informations</h2>
+        <form autocomplete="off">
+            <div class="autocomplete">
+                <div class="wave-group">
+                    <input required="" type="text" class="input" id="Matier">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">M</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">t</span>
+                        <span class="label-char" style="--index: 3">i</span>
+                        <span class="label-char" style="--index: 4">é</span>
+                        <span class="label-char" style="--index: 5">r</span>
+                        <span class="label-char" style="--index: 6">e</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <form autocomplete="off">
+            <div class="autocomplete" style="width:300px;">
+                <div class="wave-group">
+                    <input required="" type="text" class="input" id="Name">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">N</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">m</span>
+                        <span class="label-char" style="--index: 3">e</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="Rectangle"></div>
+        <h2 id="Title">New Quizz</h2>
+
+
+
+        <!-- #####################################################################################  Seconde partie -->
+
+
+
+
+        <div id="div_question">
+            <div class="input-group">
+                <textarea required="" type="text" name="text" autocomplete="off" class="input_nq" id="inputText"></textarea>
+                <label class="user-label">Question</label>
+            </div>
+            <input type="file" style="display: none;" id="fileInput" />
+            <button class="Btn" id="searchImage_quest">
+                <svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg>
+                <span class="icon2"></span>
+                <span class="tooltip">Upload</span>
+            </button>
+        </div>
+
+        <div class="Show_data">
+            <img id="ques_img">
+            <p id="OutputText" style="white-space: pre-wrap;"></p>
+        </div>
+
+
+
+
+        <!-- ###################################### Partie réponse  -->
+
+
+        <div id="div_question">
+            <div class="input-group">
+                <textarea required="" type="text" name="text" autocomplete="off" class="input_nq" id="input_rep"></textarea>
+                <label class="user-label">Réponse</label>
+            </div>
+            <input type="file" style="display: none;" id="fileInpu_rept" />
+            <button class="Btn" id="searchImage_rep">
+                <svg class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg>
+                <span class="icon2"></span>
+                <span class="tooltip">Upload</span>
+            </button>
+        </div>
+
+        <div class="Show_data">
+            <img id="rep_img">
+            <p id="Output_rep" style="white-space: pre-wrap;"></p>
+        </div>
+
+
+
+
+
+        <!-- #####################################################################################  Partie actions -->
+
+        <div id="button_div" class="button_div">
+
+        </div>
+    </div>
+    <script src="betterarea.js"></script>
+    <script src="Value.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+﻿<UserControl
+    x:Class="SophieAndMe.MVVM.View.QuizzLogic"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+    xmlns:local="clr-namespace:SophieAndMe.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/Style/Dark_theme.xaml" />
+                <ResourceDictionary Source="/Style/General.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="Question">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Panel.ZIndex="2">
+
+
+            <DockPanel
+                Grid.Row="0"
+                Height="100"
+                VerticalAlignment="Top"
+                Panel.ZIndex="1">
+                <Button
+                    x:Name="Back_quizz"
+                    Width="120"
+                    Height="50"
+                    Margin="30,0,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding Back_quizz_Click}"
+                    Foreground="Gainsboro"
+                    Style="{StaticResource MaterialDesignFlatButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <fs:IconImage
+                            Width="20"
+                            Height="20"
+                            Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}"
+                            Icon="ArrowLeft" />
+                        <TextBlock
+                            Margin="15,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            Text="Matières" />
+                    </StackPanel>
+                </Button>
+
+
+
+                <Border
+                    x:Name="toolbar"
+                    Height="50"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    Background="{StaticResource  Elementbackground}"
+                    CornerRadius="20"
+                    DockPanel.Dock="Right">
+                    <DockPanel>
+                        <ToggleButton
+                            x:Name="Resppaper"
+                            Width="40"
+                            Height="40"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding Respaper}"
+                            DockPanel.Dock="Right"
+                            Foreground="{StaticResource Top_iconc_color}"
+                            Style="{StaticResource TopButtonrad}"
+                            Tag="{StaticResource Glass}">
+                            <fs:IconImage
+                                Width="30"
+                                Height="30"
+                                Icon="ArrowAltCircleDown"
+                                IconFont="Regular"
+                                Style="{StaticResource TopButtonIconrad}" />
+                        </ToggleButton>
+
+                        <ToggleButton
+                            x:Name="Marked_tgbutton"
+                            Width="40"
+                            Height="40"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            IsChecked="{Binding MarkedValue, Mode=TwoWay}"
+                            DockPanel.Dock="Right"
+                            Foreground="{StaticResource Top_iconc_color}"
+                            Style="{StaticResource TopButtonrad}"
+                            Tag="{StaticResource Glass}">
+                            <fs:IconImage
+                                x:Name="Icon_Mark"
+                                Width="30"
+                                Height="30"
+                                Icon="Bookmark"
+                                IconFont="{Binding CurrentIcon}"
+                                Style="{StaticResource TopButtonIconrad}" />
+                        </ToggleButton>
+                        <Button
+                            x:Name="Direct_rep"
+                            Width="40"
+                            Height="40"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding DirectResp}"
+                            DockPanel.Dock="Right"
+                            Foreground="{StaticResource Top_iconc_color}"
+                            Style="{StaticResource TopButton}"
+                            Tag="{StaticResource Glass}">
+                            <fs:IconImage
+                                Width="30"
+                                Height="30"
+                                Icon="Book"
+                                Style="{StaticResource TopButtonIcon}" />
+                        </Button>
+                        <ToggleButton
+                            x:Name="Timer"
+                            Width="40"
+                            Height="40"
+                            Margin="0,0,20,0"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            IsChecked="{Binding TimerValue}"
+                            DockPanel.Dock="Right"
+                            Foreground="{StaticResource Top_iconc_color}"
+                            Style="{StaticResource TopButtonrad}"
+                            Tag="{StaticResource Glass}">
+                            <fs:IconImage
+                                Width="30"
+                                Height="30"
+                                Icon="Hourglass"
+                                Style="{StaticResource TopButtonIconrad}" />
+                        </ToggleButton>
+                        <TextBlock
+                            DockPanel.Dock="Right"
+                            Height="20"
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="17"
+                            Foreground="{StaticResource Textcolor}"
+                            Text="{Binding Message}"
+                            TextAlignment="Right"
+                            Visibility="Visible" />
+                    </DockPanel>
+                </Border>
+            </DockPanel>
+        </Grid>
+        <ScrollViewer
+            Grid.Row="1"
+            CanContentScroll="True"
+            VerticalScrollBarVisibility="Hidden">
+            <Grid>
+                <DockPanel
+                    x:Name="Panelquizz"
+                    Margin="100,40,100,20"
+                    Panel.ZIndex="0"
+                    LastChildFill="True">
+                    <wv2:WebView2
+                        x:Name="webviewquizz"
+                        MinHeight="30"
+                        DockPanel.Dock="Top"
+                        Source="file:///HTML_Const/Quizz/quizz.html"
+                        Visibility="Visible" />
+                </DockPanel>
+                <!--</Grid>-->
+            </Grid>
+
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+
+
+            <DockPanel
+                Grid.Row="2"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Panel.ZIndex="1">
+                <ToggleButton
+                    Width="200"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Top"
+                    IsChecked="{Binding Action}"
+                    Content="{Binding ActionText}"
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource MaterialDesignOutlinedLightButton}"
+                    ></ToggleButton>
+                
+                <TextBlock
+                    Width="120"
+                    Height="50"
+                    Margin="10,-13,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Left"
+                    FontSize="16"
+                    Foreground="{StaticResource Textcolor}"
+                    Text="{Binding QuestionCounter}" />
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "dgSpecHash": "pugFqXf0IZs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bastien\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\font-awesome\\4.7.0\\font-awesome.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\font.awesome\\5.15.4\\font.awesome.5.15.4.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\materialdesigncolors\\5.2.2-ci998\\materialdesigncolors.5.2.2-ci998.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\materialdesignthemes\\5.2.2-ci998\\materialdesignthemes.5.2.2-ci998.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.0-preview.6.25358.103\\microsoft.extensions.dependencyinjection.10.0.0-preview.6.25358.103.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0-preview.6.25358.103\\microsoft.extensions.dependencyinjection.abstractions.10.0.0-preview.6.25358.103.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.web.webview2\\1.0.3415-prerelease\\microsoft.web.webview2.1.0.3415-prerelease.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.data.sqlclient\\4.8.1\\system.data.sqlclient.4.8.1.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.data.sqlite\\1.0.119\\system.data.sqlite.1.0.119.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.data.sqlite.ef6\\1.0.119\\system.data.sqlite.ef6.1.0.119.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'FontAwesome.WPF 4.7.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "libraryId": "FontAwesome.WPF",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
+}

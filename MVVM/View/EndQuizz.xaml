@@ -1,0 +1,59 @@
+﻿<UserControl
+    x:Class="SophieAndMe.MVVM.View.EndQuizz"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/Style/Dark_theme.xaml" />
+                <ResourceDictionary Source="/Style/General.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid
+        x:Name="Endquizz"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <DockPanel>
+            <Button
+                x:Name="ViewResp"
+                Width="250"
+                Height="40"
+                VerticalAlignment="Center"
+                Command="{Binding ViewResponse}"
+                Content="Afficher les réponses"
+                DockPanel.Dock="Left"
+                Foreground="{StaticResource Textcolor}"
+                Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+            <Button
+                x:Name="Restart"
+                Width="250"
+                Height="40"
+                Margin="40,0,0,0"
+                VerticalAlignment="Center"
+                Command="{Binding RestartQuizz}"
+                Content="Recommencer"
+                DockPanel.Dock="Left"
+                Foreground="{StaticResource Textcolor}"
+                Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+            <Button
+                x:Name="Return"
+                Width="250"
+                Height="40"
+                Margin="40,0,0,0"
+                VerticalAlignment="Center"
+                Command="{Binding ReturnSelection}"
+                Content="Retour au matiéres"
+                DockPanel.Dock="Left"
+                Foreground="{StaticResource Textcolor}"
+                Style="{StaticResource MaterialDesignOutlinedLightButton}" />
+        </DockPanel>
+    </Grid>
+</UserControl>
