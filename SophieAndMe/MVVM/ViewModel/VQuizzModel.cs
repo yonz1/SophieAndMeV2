@@ -8,75 +8,30 @@ using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.Model;
 
 
-namespace SophieAndMe.MVVM.ViewModel
-{
+namespace SophieAndMe.MVVM.ViewModel;
     
     
-    public class VQuizzModel 
+    public class VQuizzModel : INotifyPropertyChanged
     {
 
         public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
         public ObservableCollection<SubjectItem> Subjects { get; set; }
-        public RelayCommand SelectSubjectCommand { get; }
-        
-        // public List<string> LabelName = ["LMathématiques", "LPhysique", "LSI", "LAnglais", "LFrançais", "LErreurs", "LAll"];
-        
-        
-        
-        //############################################################ Text 
-        
-            
-        // private string _lmaths = null!;
-        // public string Lmaths
-        // {
-        //     get => _lmaths;set{        _lmaths = value;        OnPropertyChanged();    } }
-        //
-        // private string _lphysique = null!;
-        // public string LPhysique
-        // {
-        //     get => _lphysique;set{        _lphysique = value;        OnPropertyChanged();    } }
-        //
-        // private string _lsi = null!;
-        // public string LSI
-        // {
-        //     get => _lsi;set{        _lsi = value;        OnPropertyChanged();    } }
-        //
-        // private string _langlais = null!;
-        // public string LAnglais
-        // {
-        //     get => _langlais;set{        _langlais = value;        OnPropertyChanged();    } }
-        //
-        // private string _lfrançais = null!;
-        // public string LFrançais
-        // {
-        //     get => _lfrançais;set{        _lfrançais = value;        OnPropertyChanged();    } }
-        //
-        // private string _lerreurs = null!;
-        // public string LErreurs
-        // {
-        //     get => _lerreurs;set{        _lerreurs = value;        OnPropertyChanged();    } }
-        //
-        // private string _lAll = null!;
-        // public string LAll
-        // {
-        //     get => _lAll;set{        _lAll = value;        OnPropertyChanged();    } }
         
         public VQuizzModel() 
         {
             
             Subjects = new ObservableCollection<SubjectItem>
             {   
-                new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript, IsSelected = true},
-                new SubjectItem {Name = "Physique", IconVal = IconChar.Atom, IsSelected = false},
-                new SubjectItem {Name = "Si", IconVal = IconChar.Gears, IsSelected = false},
-                new SubjectItem {Name = "Français", IconVal = IconChar.Book, IsSelected = false},
-                new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica, IsSelected = false},
-                new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers, IsSelected = false},
-                new SubjectItem {Name = "All", IconVal = IconChar.Landmark, IsSelected = false},
+                new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
+                new SubjectItem {Name = "Physique", IconVal = IconChar.Atom},
+                new SubjectItem {Name = "Si", IconVal = IconChar.Gears},
+                new SubjectItem {Name = "Français", IconVal = IconChar.Book},
+                new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica},
+                new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers},
+                new SubjectItem {Name = "All", IconVal = IconChar.Landmark},
                     
             };
-            
             
             
             foreach (var subject in Subjects)
@@ -93,6 +48,7 @@ namespace SophieAndMe.MVVM.ViewModel
                     foreach (var value in name) { Noms.Add(value);}
                     App.Current.Properties["matier"]  = localSubject.Name.ToString();
                     Console.WriteLine(localSubject.Name);
+
                 });
             }
             
@@ -103,11 +59,12 @@ namespace SophieAndMe.MVVM.ViewModel
                 NavigationService.Instance.Navigate(new QuizzLogic());
             });
         }
-        
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
-}

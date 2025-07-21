@@ -72,5 +72,6 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VLanding.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VMarked.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VQuizz.baml
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay.g.cs
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\SophieAndMe.sourcelink.json
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayResp.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayResp.g.cs

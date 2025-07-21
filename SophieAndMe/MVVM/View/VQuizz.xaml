@@ -21,7 +21,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
 
         <!--  ########################################################## Panel d'affichage des matiére disponible  -->
 
@@ -81,8 +80,7 @@
                                         Margin="0,0,1.5,0"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        Background="Red"
-                                        Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}" 
                                         Content="{Binding Name}"
                                         FontSize="16"
                                         FontWeight="Bold"
@@ -91,233 +89,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-
-                    <!-- Icon="Superscript" -->
-                    <!-- <Button -->
-                    <!--     x:Name="Physique" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="Physique" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="Physique"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="Atom" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="Physique_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LPhysique}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- <Button -->
-                    <!--     x:Name="SI" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="SI" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="SI"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="Gears" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="SI_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LSI}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- -->
-                    <!-- <Button -->
-                    <!--     x:Name="Français" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="Français" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="Français"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="Book" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="Français_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LFrançais}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
-                    <!-- <Button -->
-                    <!--     x:Name="Anglais" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="Anglais" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="Anglais"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="EarthAmericas" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="Anglais_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LAnglais}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
-                    <!-- <Button -->
-                    <!--     x:Name="Erreur" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="Erreurs" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="Erreurs"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="Superpowers" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="Erreurs_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LErreus}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
-                    <!-- <Button -->
-                    <!--     x:Name="All" -->
-                    <!--     Width="55" -->
-                    <!--     Height="40" -->
-                    <!--     Margin="2.5,0,0,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
-                    <!--     Command="{Binding SelectSubjectCommand}" -->
-                    <!--     CommandParameter="All" -->
-                    <!--     DockPanel.Dock="Left" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--     Style="{StaticResource topquizzmat}" -->
-                    <!--     Tag="All"> -->
-                    <!--     <StackPanel -->
-                    <!--         HorizontalAlignment="Center" -->
-                    <!--         VerticalAlignment="Center" -->
-                    <!--         Orientation="Horizontal"> -->
-                    <!--         <fs:IconImage -->
-                    <!--             HorizontalAlignment="Center" -->
-                    <!--             VerticalAlignment="Center" -->
-                    <!--             Foreground="{StaticResource Iconcolor}" -->
-                    <!--             Icon="Landmark" -->
-                    <!--             Style="{StaticResource NewMButtonIcon}" /> -->
-                    <!--     </StackPanel> -->
-                    <!-- </Button> -->
-                    <!-- <Label -->
-                    <!--     x:Name="All_label" -->
-                    <!--     Margin="0,0,1.5,0" -->
-                    <!--     HorizontalAlignment="Center" -->
-                    <!--     VerticalAlignment="Center" -->
-                    <!--     Content="{Binding LAll}" -->
-                    <!--     FontSize="16" -->
-                    <!--     FontWeight="Bold" -->
-                    <!--     Foreground="{StaticResource Textcolor}" -->
-                    <!--      /> -->
                 </DockPanel>
             </Border>
 
@@ -348,6 +119,5 @@
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
-    </Grid>
 
 </UserControl>

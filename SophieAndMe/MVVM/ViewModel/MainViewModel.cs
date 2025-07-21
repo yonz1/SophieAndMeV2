@@ -22,14 +22,14 @@ namespace SophieAndMe.MVVM.ViewModel ;
         public ICommand ExitCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
-        public ICommand ShowMaths { get; }
 
         public MainViewModel()
         {
             NavigationService.Instance.NavigateAction = view => CurrentView = view;
             NavigationService.Instance.Navigate(new VLanding());
-            ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz(new VQuizzModel())));
+            ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
             ShowMarkedCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VMarked()));
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

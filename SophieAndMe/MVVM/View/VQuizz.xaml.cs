@@ -21,10 +21,10 @@ namespace SophieAndMe.MVVM.View
     /// </summary>
     public partial class VQuizz : UserControl
     {
-        public VQuizz(VQuizzModel vm)
+        public VQuizz()
         {
             InitializeComponent();
-            DataContext = vm;
+            this.DataContext = new VQuizzModel();
         }
     }
 }

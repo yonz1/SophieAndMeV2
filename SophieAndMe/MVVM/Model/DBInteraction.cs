@@ -117,7 +117,11 @@ namespace SophieAndMe.MVVM.Model
                 App.Current.Properties["matier"] = nameindex;
                 Console.WriteLine(query);
             }
-            else
+            else if (nameindex.Contains("Marked"))
+            {
+                query = "SELECT id,question,reponse,image_question_url,image_answer_url,difficulty FROM Marked Where Matier = \"" + App.Current.Properties["matier"].ToString() + "\"" ;
+            }
+            else 
             {
                 query = "SELECT id,question,reponse,image_question_url,image_answer_url,difficulty  FROM " + App.Current.Properties["matier"].ToString() + " WHERE name = \"" + nameindex + "\"";
             }
@@ -185,6 +189,36 @@ namespace SophieAndMe.MVVM.Model
                 }
             }
             return (question,rep,urlQuestion,urlRep);
+        }
+        
+        public static List<string> GetMarkedForQUizz(string mat)
+        {
+            List<string> question = new List<string>();
+            string valtoreq = "question";
+            string query = "";
+            if (mat == "All")
+            {
+                query = "SELECT " + valtoreq + " FROM Marked where Matier = \"" + App.Current.Properties["nameindex"].ToString() + "\"" ;
+                Console.WriteLine("ALL query : " + query);
+            }
+            else
+            {
+                query = "SELECT " + valtoreq + " FROM Marked where Matier = \"" + mat  + "\"" ;
+            }
+            
+            using (var db = new SQLiteConnection(ConSource))
+            {
+                db.Open();
+                using (var cmd = new SQLiteCommand(query, db)) 
+                using(var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        question.Add(reader.GetString(0));
+                    }
+                }
+            }
+            return question;
         }
     }
 }

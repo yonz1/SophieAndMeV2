@@ -22,6 +22,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     private readonly List<string> _urlQuestion;
     private readonly List<string> _urlRep;
     private readonly List<string> _difficulty;
+    public List<string> MarkedQuestion;
     public ICommand Back_quizz_Click { get; }
     public ICommand Respaper { get; } = null!;
     public ICommand DirectResp { get; }
@@ -81,6 +82,10 @@ public class QuizzLogicModel  : INotifyPropertyChanged
 
                 ActionText = "Reponse";
                 UnSetSilent();
+                if (MarkedQuestion.Contains(_question[_i]))
+                {
+                    SetSilent();
+                };
             }
 
         }
@@ -129,7 +134,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     //###################################################### Function primaire
     public QuizzLogicModel(Func<string, Task> invokeJs)
     {
-        Console.WriteLine("Quizz Logic Loaded");
+        MarkedQuestion = DBInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += OnTimerElapse;
@@ -141,8 +146,8 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         ActionText = "Response";
         QuestionCounter = (_i + 1).ToString() + "/" + _id.Count; 
         ShowQuestion();
-        Back_quizz_Click = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz(new VQuizzModel())));
-        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplay(_question,_repnse,_urlQuestion,_urlRep)));
+        Back_quizz_Click = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
+        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep)));
     }
     
     
@@ -154,6 +159,13 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _markedvalue = false;
         OnPropertyChanged(nameof(MarkedValue));
         CurrentIcon = IconFont.Regular;
+    }
+
+    private void SetSilent()
+    {
+        _markedvalue = true;
+        OnPropertyChanged(nameof(MarkedValue));
+        CurrentIcon = IconFont.Solid;
     }
     
     private void OnMarkedValueChanged(bool value)

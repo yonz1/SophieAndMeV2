@@ -269,10 +269,7 @@
                                          Text="Custom" />
                                  </StackPanel>
                              </RadioButton>
-
-
-
-
+                             
                              <Button
                                  x:Name="Settings"
                                  Height="50"
