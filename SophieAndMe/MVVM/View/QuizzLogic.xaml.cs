@@ -13,7 +13,6 @@ namespace SophieAndMe.MVVM.View
         {
             InitializeComponent();
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\..\\..\\..\\HTML_Const\\Quizz\\quizz.html";
-            Console.WriteLine(urif);
             urif = urif.Replace("\\", "/");
             System.Uri uri1 = new System.Uri(urif);
             webviewquizz.Source = uri1 as System.Uri;

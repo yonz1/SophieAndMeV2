@@ -25,7 +25,7 @@ namespace SophieAndMe.MVVM.ViewModel;
             {   
                 new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
                 new SubjectItem {Name = "Physique", IconVal = IconChar.Atom},
-                new SubjectItem {Name = "Si", IconVal = IconChar.Gears},
+                new SubjectItem {Name = "SI", IconVal = IconChar.Gears},
                 new SubjectItem {Name = "Français", IconVal = IconChar.Book},
                 new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica},
                 new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers},

@@ -6,27 +6,23 @@ namespace SophieAndMe.MVVM.Model;
 public class QuizzUtilities
 {
     // ################################################### Initialisations 
-
-    private static readonly List<string> Id = new List<string>();
+    
     private static readonly List<string> Question = new List<string>();
     static readonly List<string> Repnse = new List<string>();
     private static readonly List<string> UrlQuestion = new List<string>();
     private static readonly List<string> UrlRep = new List<string>();
-    private static readonly List<string> Difficulty = new List<string>();
     
     // ################################################### Fonctions
     
-    public static (List<string> Id,List<string> Question,List<string> Response,List<string> Url_QUestion, List<string> Url_Response, List<string> Difficulty) Shuffle(List<string> aid, List<string>  aquestion, List<string>  arepnse, List<string>  aurlQuestion, List<string> aurlRep, List<string> adifficulty)
+    public static (List<string> Question,List<string> Response,List<string> Url_QUestion, List<string> Url_Response) Shuffle( List<string>  aquestion, List<string>  arepnse, List<string>  aurlQuestion, List<string> aurlRep)
     {
-        Id.Clear();
         Question.Clear();
         Repnse.Clear();
         UrlQuestion.Clear();
         UrlRep.Clear();
-        Difficulty.Clear();
         var random = new Random();
         var indices = new List<int>();
-        for (int i = 0 ; i < aid.Count ; i++)
+        for (int i = 0 ; i < aquestion.Count ; i++)
         {
             indices.Add(i);
         }
@@ -38,14 +34,12 @@ public class QuizzUtilities
         foreach (int i in indices)
         {
             System.Diagnostics.Debug.WriteLine("################################################ Premiére serie d'ajout : ", i.ToString());
-            Id.Add(aid[i]);
             Question.Add(aquestion[i]);
             Repnse.Add(arepnse[i]);
             UrlQuestion.Add(aurlQuestion[i]);
             UrlRep.Add(aurlRep[i]);
-            Difficulty.Add(adifficulty[i]);
         }
-        return (Id,Question,Repnse,UrlQuestion,UrlRep,Difficulty);
+        return (Question,Repnse,UrlQuestion,UrlRep);
     }
     
     public static string Miseneformetext(string text)

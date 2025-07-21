@@ -42,7 +42,7 @@ public class VMarkedModel : INotifyPropertyChanged
             new SubjectItem {Name = "Français", IconVal = IconChar.Book},
             new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica},
             new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers},
-            new SubjectItem {Name = "all", IconVal = IconChar.Landmark},
+            new SubjectItem {Name = "All", IconVal = IconChar.Landmark},
             new SubjectItem {Name = "Quizz", IconVal = IconChar.FilePen},
         };
         

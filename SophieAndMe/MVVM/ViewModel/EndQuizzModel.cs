@@ -16,6 +16,17 @@ public class EndQuizzModel
         ViewResponse = new RelayCommand(o =>
             NavigationService.Instance.Navigate(new CardDisplayResp(question, repnse, urlQuestion, urlRep)));
         RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate(new QuizzLogic()));
-        ReturnSelection = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
+        ReturnSelection = new RelayCommand(o =>
+        {
+            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            {
+                NavigationService.Instance.Navigate(new VMarked());    
+            }
+            else
+            {
+                NavigationService.Instance.Navigate(new VQuizz());
+            }
+            
+        });
     }
 }

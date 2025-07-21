@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Timers;
+using System.Windows.Forms;
 using System.Windows.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
@@ -16,12 +17,10 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     private readonly Stopwatch _stopwatch;
     private readonly System.Timers.Timer _timer;
     // ########################################### Initialisation
-    private readonly List<string> _id;
     private readonly List<string> _question;
     private readonly List<string> _repnse;
     private readonly List<string> _urlQuestion;
     private readonly List<string> _urlRep;
-    private readonly List<string> _difficulty;
     public List<string> MarkedQuestion;
     public ICommand Back_quizz_Click { get; }
     public ICommand Respaper { get; } = null!;
@@ -70,14 +69,14 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             else
             {
                 _i++;
-                if (_i > _id.Count - 1)
+                if (_i > _question.Count - 1)
                 {
                     FinDeQuizz();
                 }
                 else
                 {
                     ShowQuestion();
-                    QuestionCounter = $"{_i + 1}/{_id.Count}";
+                    QuestionCounter = $"{_i + 1}/{_question.Count}";
                 }
 
                 ActionText = "Reponse";
@@ -134,6 +133,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     //###################################################### Function primaire
     public QuizzLogicModel(Func<string, Task> invokeJs)
     {
+        
         MarkedQuestion = DBInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
@@ -141,12 +141,28 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        (_id,_question,_repnse,_urlQuestion,_urlRep,_difficulty) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString());
-        (_id, _question, _repnse, _urlQuestion, _urlRep, _difficulty) = QuizzUtilities.Shuffle(_id, _question, _repnse, _urlQuestion, _urlRep, _difficulty);
+        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString());
+
+        ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         ActionText = "Response";
-        QuestionCounter = (_i + 1).ToString() + "/" + _id.Count; 
+        QuestionCounter = (_i + 1).ToString() + "/" + _question.Count; 
+        if (MarkedQuestion.Contains(_question[_i]))
+        {
+            SetSilent();
+        };
         ShowQuestion();
-        Back_quizz_Click = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
+        Back_quizz_Click = new RelayCommand(o =>
+        {
+            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            {
+                NavigationService.Instance.Navigate(new VMarked());    
+            }
+            else
+            {
+                NavigationService.Instance.Navigate(new VQuizz());
+            }
+            
+        });
         DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep)));
     }
     
