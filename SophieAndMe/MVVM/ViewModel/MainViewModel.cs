@@ -29,6 +29,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             NavigationService.Instance.Navigate(new VLanding());
             ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
             ShowMarkedCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VMarked()));
+            ShowCustomCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VCustom()));
             
         }
 

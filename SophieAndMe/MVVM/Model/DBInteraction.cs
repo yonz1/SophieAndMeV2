@@ -16,6 +16,8 @@ namespace SophieAndMe.MVVM.Model
         private static readonly List<string> Arepnse = new List<string>();
         private static readonly List<string> AurlQuestion = new List<string>();
         private static readonly List<string> AurlRep = new List<string>();
+        private static readonly List<string> Name = new List<string>();
+        private static readonly List<string> ListMat = ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
 
         // ################################################### Fonctions
@@ -40,7 +42,6 @@ namespace SophieAndMe.MVVM.Model
                         string questionImg = "\"" + urlQuestion + "\",";
                         string reponseImg = "\"" + urlRep + "\"";
                         query = "INSERT INTO Marked (Matier,question,reponse,image_question_url,image_answer_url) VALUES (" + mat + quest + rep + questionImg + reponseImg + ")";
-                        Console.WriteLine(query);
                         using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
                         {
                             insertCmd.ExecuteNonQuery();
@@ -101,16 +102,21 @@ namespace SophieAndMe.MVVM.Model
             }
             else
             {
-                result = ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
+                result = ListMat;
             }
             return result;
         }
         
-        public static (List<string>,List<string>,List<string>,List<string>) Retrievequizz(string? nameindex)
+        public static (List<string>,List<string>,List<string>,List<string>) Retrievequizz(string? nameindex,string ID)
         {
             var connection = new SQLiteConnection(ConSource);
             string query = "";
-            if ((string)App.Current.Properties["matier"] == "All")
+            
+            if (ID == "Created")
+            {
+                query = "SELECT question,reponse,image_question_url,image_answer_url  FROM " + App.Current.Properties["matier"].ToString() + " WHERE name = \"" + nameindex + "\" AND ID = \"100\"";
+            }
+            else if ((string)App.Current.Properties["matier"] == "All")
             {
                 query = "SELECT question,reponse,image_question_url,image_answer_url FROM " + nameindex;
                 App.Current.Properties["matier"] = nameindex;
@@ -206,7 +212,6 @@ namespace SophieAndMe.MVVM.Model
             if (mat == "All")
             {
                 query = "SELECT " + valtoreq + " FROM Marked where Matier = \"" + App.Current.Properties["nameindex"].ToString() + "\"" ;
-                Console.WriteLine("All query : " + query);
             }
             else
             {
@@ -227,5 +232,175 @@ namespace SophieAndMe.MVVM.Model
             }
             return question;
         }
+
+
+        public static List<string> GetAllName()
+        {
+            Name.Clear();
+            var query = "Select name FROM " + ListMat[0];
+            for (int i = 1; i < ListMat.Count; i++)
+            {
+                query += " UNION Select name FROM " + ListMat[i];
+            }
+            using (var db = new SQLiteConnection(ConSource))
+            {
+                db.Open();
+                using (var cmd = new SQLiteCommand(query, db)) 
+                using(var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var value =  reader.GetString(0);
+                        if (!Name.Contains(value))
+                        {
+                            Name.Add(value);
+                        }
+                    }
+                }
+            }
+            return Name;
+        }
+        
+        public static List<string> GetNameCreated(string? nom)
+        {
+            Name.Clear();
+            var query = "SELECT name FROM " + nom + " WHERE ID = \"100\"";
+            using var db = new SQLiteConnection(ConSource);
+            db.Open();
+            using var cmd = new SQLiteCommand(query, db);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var value =  reader.GetString(0);
+                if (!Name.Contains(value))
+                {
+                    Name.Add(value);
+                }
+            }
+
+            return Name;
+        }
+
+
+
+        public static void SaveQuizz(string matier, string name, string question, string imgQuestion, string rep, string imgRep)
+        {
+            string query = "";
+            matier = "\"" + matier + "\"";
+            name = "\"" + name + "\"";
+            question = "\"" + question + "\"";
+            imgQuestion = "\"" + imgQuestion + "\"";
+            rep = "\"" + rep + "\"";
+            imgRep = "\"" + imgRep + "\"";
+            try
+            {
+                using (SQLiteConnection c = new SQLiteConnection(ConSource))
+                {
+                    c.Open();
+                    query = "SELECT COUNT(*) FROM " + matier + " WHERE  name = " + name + " AND question = " + question;
+                    System.Diagnostics.Debug.WriteLine(query);
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                    {
+                        long count = (long)cmd.ExecuteScalar();
+                        System.Diagnostics.Debug.WriteLine(count);
+
+                        if (count == 0)
+                        {
+                            query = "INSERT INTO " + matier + " (id,difficulty ,name,question,reponse,image_question_url,image_answer_url,Marked) VALUES (100,1," + name + "," + question + "," + rep + "," + imgQuestion + "," + imgRep + ",0)";
+                            using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
+                            {
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(query);
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("An error occured while saving your quizz");
+            }
+        }
+        public static void DeleteCreated(string question)
+        {
+            using (SQLiteConnection c = new SQLiteConnection(ConSource))
+            {
+                c.Open();
+                string query = "DELETE FROM " + App.Current.Properties["matier"].ToString() + " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + question + "\", ' ', '') AND ID = \"100\"";
+                Console.WriteLine(query);
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static (string,string,string,string,string,string) SearchQuizzCreated(string question)
+        {
+            string matier = null;
+            string name = null;
+            string reponse = null;
+            string imageQuestion = null;
+            string imageRep = null;
+            var connection = new SQLiteConnection(ConSource);
+            string valtoreq = "question,reponse,image_question_url,image_answer_url";
+            string query = "";
+            query = "SELECT name,reponse,image_question_url,image_answer_url FROM " +
+                    App.Current.Properties["matier"].ToString() +
+                    " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question + "\", ' ', '') AND name = \""+ App.Current.Properties["nameindex"].ToString() + "\"" ;
+            Console.WriteLine(query);
+            
+            using (var db = new SQLiteConnection(ConSource))
+            {
+                db.Open();
+                using (var cmd = new SQLiteCommand(query, db)) 
+                using(var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        matier = App.Current.Properties["matier"].ToString();
+                        name = reader.GetString(0);
+                        question = question;
+                        reponse = reader.GetString(1);
+                        imageQuestion = reader.GetString(2) ;
+                        imageRep = reader.GetString(3);
+                    }
+                }
+            }
+            return (matier,name,question,reponse,imageQuestion,imageRep);
+        }
+
+
+        public static void ReplaceQuizz(string matier, string name, string question, string imageQuestion, string reponse,
+            string imageRep)
+        {
+            string query = "";
+            name = "\"" + name + "\"";
+            question = "\"" + question + "\"";
+            imageQuestion = "\"" + imageQuestion + "\"";
+            reponse = "\"" + reponse + "\"";
+            imageRep = "\"" + imageRep + "\"";
+            try
+            {
+                using (SQLiteConnection c = new SQLiteConnection(ConSource))
+                {
+                    c.Open();
+                    query = "UPDATE " + matier + " SET name = " + name +  ", question = " + question + ",reponse = "+ reponse  + ", image_question_url = " + imageQuestion + ", image_answer_url = " + imageRep +" WHERE ID = \"100\" AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" + App.Current.Properties["old_quest"].ToString() + "\", ' ', '')";
+                    Console.WriteLine(query);
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(query);
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("An error occured while saving your quizz");
+            }
+        }
+        
     }
 }

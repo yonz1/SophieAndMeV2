@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm.Messaging.Messages;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
@@ -37,11 +36,13 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public VMarkedModel()
     {
         IsActive = true;
-        WeakReferenceMessenger.Default.Register<JsToAppMessage>(this, (r, m) =>
+        WeakReferenceMessenger.Default.Register<MediatorMarked.JsToAppMessage>(this, (r, m) =>
         {
-            var (action, id) = m.Value;
-            id = id.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
-            DBInteraction.UnMark(id);
+            var (action,question) = m.Value;
+            question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            Console.WriteLine("trigger");
+            Console.WriteLine(question);
+            DBInteraction.UnMark(question);
         });
         
         
@@ -90,7 +91,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         
         ChoisirNomCommand = new RelayCommand(nom =>
         {
-            App.Current.Properties["nameindex"] = "Marked" + nom;
+            App.Current.Properties["nameindex"] = "Marked-" + nom;
             App.Current.Properties["matier"] = nom;
             NavigationService.Instance.Navigate(new QuizzLogic());
         });
@@ -107,7 +108,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         try
         {
             _jscall = WebviewInteraction.send_data_Card_Marked(q, r, uq, ur);
-            WeakReferenceMessenger.Default.Send(new JsCallMessage(_jscall));
+            WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(_jscall));
         }
         catch (Exception e)
         {
@@ -119,13 +120,5 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     protected void OnPropertyChanged([CallerMemberName] string name = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-    public class JsCallMessage : ValueChangedMessage<string>
-    {
-        public JsCallMessage(string value) : base(value) { }
-    }
 
-    public class JsToAppMessage : ValueChangedMessage<(string Action, string Id)>
-    {
-        public JsToAppMessage(string action, string id) : base((action, id)) { }
-    }
 }

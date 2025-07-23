@@ -13,8 +13,7 @@ public class EndQuizzModel
 
     public EndQuizzModel(List<string> question, List<string> repnse, List<string> urlQuestion, List<string> urlRep)
     {
-        ViewResponse = new RelayCommand(o =>
-            NavigationService.Instance.Navigate(new CardDisplayResp(question, repnse, urlQuestion, urlRep)));
+        ViewResponse = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(question, repnse, urlQuestion, urlRep)));
         RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate(new QuizzLogic()));
         ReturnSelection = new RelayCommand(o =>
         {

@@ -1,7 +1,6 @@
-console.log("Custom");
 img_question = "";
 img_rep = "";
-ancien = "";
+button_fill("Add");
 
 const wordReplacements = {
     "somme": "\\sum_{k}^{n}",
@@ -39,58 +38,6 @@ const keymap = {
     '$': { value: '$$', pos: 1 }
 };
 
-
-function button_fill(action) {
-    const buttonTag = document.getElementById("button_div");
-
-    let val = action;
-    console.log(val);
-    buttonTag.innerHTML = ''; // vide d'abord la div
-
-    const btnClear = document.createElement("button");
-    btnClear.textContent = "Clear";
-    btnClear.className = "animated-button";
-    btnClear.id = "btnclear";
-    btnClear.addEventListener("click", clear);
-
-    const btnAction = document.createElement("button");
-    btnAction.className = "animated-button";
-    if (val === "Add") {
-        btnAction.id = "btnSave";
-        btnAction.textContent = "Add";
-        btnAction.addEventListener("click", save);
-        if (ancien === "Replace") {
-            clear();
-            console.log("clear-fait")
-        }
-        ancien = "Add";
-        console.log("Add-fait");
-        console.log(ancien)
-
-    } else {
-        btnAction.id = "btnReplace";
-        btnAction.textContent = "Replace";
-        btnAction.addEventListener("click", Replace);
-        ancien = "Replace";
-        console.log("else-fait");
-    }
-    buttonTag.appendChild(btnClear);
-    buttonTag.appendChild(btnAction);
-}
-
-function Replace() {
-    const action = "Replace";
-    const matier = document.getElementById("Matier").value;
-    const name = document.getElementById("Name").value;
-    const question = document.getElementById("inputText").value;
-    const rep = document.getElementById("input_rep").value;
-
-
-    const data = { action, matier, name, question, img_question, rep, img_rep };
-    console.log(data);
-    clear();
-    window.chrome.webview.postMessage(data);
-}
 
 
 function setupInputBehavior(editing) {
@@ -153,16 +100,18 @@ textarea_rep.addEventListener('input', () => {
 });
 
 
-document.getElementById('searchImage_quest').addEventListener('click', function () {
+document.getElementById('searchImage_quest').addEventListener('click', function()
+{
     document.getElementById('fileInput').click();
 });
 
-document.getElementById('searchImage_rep').addEventListener('click', function () {
+document.getElementById('searchImage_rep').addEventListener('click', function()
+{
     document.getElementById('fileInpu_rept').click();
 });
 
 
-function save() {
+function save(){
     const action = "save";
     const matier = document.getElementById("Matier").value;
     const name = document.getElementById("Name").value;
@@ -177,14 +126,13 @@ function save() {
 }
 
 
-function clear() {
-    Matier.value = "";
-    Name.value = "";
-    inputText.innerHTML = "";
-    input_rep.innerHTML = "";
-    Output_rep.innerHTML = "";
-    output.innerHTML = "";
-
+function clear()
+{
+    document.querySelectorAll('input,textarea').forEach(el => el.value = "");
+    const textarea = document.getElementById('inputText')
+    const output = document.getElementById('OutputText')
+    Output_rep.innerHTML = textarea_rep.value;
+    output.innerHTML = textarea.value;
 }
 
 
@@ -236,16 +184,4 @@ document.getElementById('fileInput').addEventListener('change', function (event)
 // console.log(document.getElementById("input").files[0]);
 
 
-function fill_edit(arr) {
-    clear();
-    console.log(arr)
-    Matier.value = arr[0];
-    Name.value = arr[1];
-    inputText.innerHTML = arr[2];
-    input_rep.innerHTML = arr[3];
-    output.innerHTML = textarea.value;
-    MathJax.typesetPromise([output]);
-    Output_rep.innerHTML = textarea_rep.value;
-    MathJax.typesetPromise([Output_rep]);
-    console.log("fill-fait");
-}
+

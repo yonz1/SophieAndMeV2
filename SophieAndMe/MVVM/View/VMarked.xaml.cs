@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Web.WebView2.Core;
+using SophieAndMe.Core;
 using SophieAndMe.MVVM.ViewModel;
 
 namespace SophieAndMe.MVVM.View
@@ -32,9 +33,8 @@ namespace SophieAndMe.MVVM.View
                 webviewall.CoreWebView2.NavigationCompleted += (sender, args) =>
                 {
                     webviewall.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne')");
-                    WeakReferenceMessenger.Default.Register<VMarkedModel.JsCallMessage>(this, (r, m) =>
+                    WeakReferenceMessenger.Default.Register<MediatorMarked.JsCallMessage>(this, (r, m) =>
                     {
-                        Console.WriteLine(m.Value);
                         webviewall.CoreWebView2.ExecuteScriptAsync(m.Value);
                     });
                 };
@@ -45,10 +45,10 @@ namespace SophieAndMe.MVVM.View
         {
             try
             {
-                var msg = JsonSerializer.Deserialize<WebJsMessage>(e.WebMessageAsJson);
+                var msg = JsonSerializer.Deserialize<MediatorMarked.WebJsMessage>(e.WebMessageAsJson);
                 if (msg != null)
                 {
-                    WeakReferenceMessenger.Default.Send(new VMarkedModel.JsToAppMessage(msg.action, msg.id));
+                    WeakReferenceMessenger.Default.Send(new MediatorMarked.JsToAppMessage(msg.action, msg.question));
                 }
             }
             catch (Exception ex)
@@ -57,11 +57,6 @@ namespace SophieAndMe.MVVM.View
             }
         }
         
-        public class WebJsMessage
-        {
-            public string action { get; set; } = string.Empty;
-            public string id { get; set; } = string.Empty;
-        }
         
         
     }

@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Windows.Controls;
-using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.ViewModel;
 
 namespace SophieAndMe.MVVM.View;

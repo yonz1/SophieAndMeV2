@@ -45,7 +45,6 @@ namespace SophieAndMe.MVVM.ViewModel;
                     var name = DBInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}
                     App.Current.Properties["matier"]  = localSubject.Name.ToString();
-                    Console.WriteLine(localSubject.Name);
 
                 });
             }
@@ -53,7 +52,6 @@ namespace SophieAndMe.MVVM.ViewModel;
             ChoisirNomCommand = new RelayCommand(nom =>
             {
                 App.Current.Properties["nameindex"] = nom;
-                Console.WriteLine(nom);
                 NavigationService.Instance.Navigate(new QuizzLogic());
             });
         }

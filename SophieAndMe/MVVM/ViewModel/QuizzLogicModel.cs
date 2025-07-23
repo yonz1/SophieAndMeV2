@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Timers;
-using System.Windows.Forms;
 using System.Windows.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
@@ -85,7 +84,6 @@ public class QuizzLogicModel  : INotifyPropertyChanged
                 {
                     SetSilent();
                 };
-                Console.WriteLine("Fin de logique");
             }
 
         }
@@ -110,9 +108,6 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     {
         get => _message;set{        _message = value;        OnPropertyChanged();    }
     }
-    
-    
-    
     
     
     //####################################################### Icon
@@ -142,7 +137,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString());
+        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"");
 
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         ActionText = "Response";
@@ -191,13 +186,11 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         {
             CurrentIcon = IconFont.Solid;
             DBInteraction.MarkData(_question[_i],_repnse[_i],_urlQuestion[_i],_urlRep[_i]);
-            Console.WriteLine("Marque");
         }
         else
         {
             CurrentIcon = IconFont.Regular;
             DBInteraction.UnMark(_question[_i]);
-            Console.WriteLine("Supprime");
         }
     }
     
