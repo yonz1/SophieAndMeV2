@@ -138,8 +138,11 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _timer.Start();
         _invokejs = invokeJs;
         (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"");
-
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
+        foreach (var VARIABLE in _urlRep)
+        {
+            Console.WriteLine(VARIABLE);
+        }
         ActionText = "Response";
         QuestionCounter = (_i + 1).ToString() + "/" + _question.Count; 
         if (MarkedQuestion.Contains(_question[_i]))

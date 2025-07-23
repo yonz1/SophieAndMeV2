@@ -19,10 +19,10 @@ namespace SophieAndMe.MVVM.View
             System.Uri uri1 = new System.Uri(urif);
             WebViewAll.Source = uri1 as System.Uri;
             var vm = new VLandingModel(js => WebViewAll.ExecuteScriptAsync(js));
-            Setup();
+            Start();
             this.DataContext = vm;
         }
-        private async void Setup()
+        private async void Start()
         {           
             await WebViewAll.EnsureCoreWebView2Async();
             WebViewAll.CoreWebView2.Settings.IsStatusBarEnabled = false;

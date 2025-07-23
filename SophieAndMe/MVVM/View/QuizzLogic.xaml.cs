@@ -24,6 +24,7 @@ namespace SophieAndMe.MVVM.View
             await webviewquizz.EnsureCoreWebView2Async();
             webviewquizz.CoreWebView2.Settings.IsStatusBarEnabled = false;
             webviewquizz.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            webviewquizz.CoreWebView2.OpenDevToolsWindow();
             webviewquizz.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
                 webviewquizz.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");

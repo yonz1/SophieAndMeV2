@@ -196,8 +196,9 @@ namespace SophieAndMe.MVVM.Model
                     {
                          question.Add(reader.GetString(0));
                          rep.Add(reader.GetString(1));
-                         urlRep.Add(reader.GetString(2));
-                         urlQuestion.Add(reader.GetString(3));
+                         urlQuestion.Add(reader.GetString(2));
+                         urlRep.Add(reader.GetString(3));
+                         
                     }
                 }
             }
