@@ -1,5 +1,5 @@
-img_question = "";
-img_rep = "";
+imgQuestion = "";
+imgRep = "";
 button_fill("Add");
 
 const wordReplacements = {
@@ -120,7 +120,8 @@ function save(){
 
 
 
-    const data = { action, matier, name, question, img_question, rep, img_rep };
+    const data = { action, matier, name, question, imgQuestion, rep, imgRep };
+    console.log(data);
     clear();
     window.chrome.webview.postMessage(data);
 }
@@ -145,7 +146,7 @@ document.getElementById('fileInpu_rept').addEventListener('change', function (ev
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            img_rep = e.target.result;
+            imgRep = e.target.result;
             // banner.src = e.target.result;
             // banner.style.maxWidth = "10cm"; 
             // banner.style.height = "auto";   
@@ -169,7 +170,7 @@ document.getElementById('fileInput').addEventListener('change', function (event)
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            img_question = e.target.result;
+            imgQuestion = e.target.result;
             // banner.src = e.target.result;
             // banner.style.maxWidth = "10cm"; 
             // banner.style.height = "auto";   

@@ -93,6 +93,7 @@
             Grid.Row="1"
             Margin="30"
             Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}}" />
+        
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
             <ItemsControl ItemsSource="{Binding Noms}">
                 <ItemsControl.ItemsPanel>

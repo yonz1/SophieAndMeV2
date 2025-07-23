@@ -55,8 +55,10 @@ public abstract class WebviewInteraction
         string json = JsonSerializer.Serialize(matier);
         string json2 = JsonSerializer.Serialize(name);
         string json3 = JsonSerializer.Serialize(question);
-        string json4 = JsonSerializer.Serialize(rep);
-        string jscode = $"fill_edit({json},{json2},{json3},{json4})";
+        string json4 = JsonSerializer.Serialize(imgQuestion);
+        string json5 = JsonSerializer.Serialize(rep);
+        string json6 = JsonSerializer.Serialize(imgRep);
+        string jscode = $"fill_edit({json},{json2},{json3},{json4},{json5},{json6})";
         return jscode;
     }
     

@@ -1,5 +1,6 @@
 let nom = [];
-
+imgQuestion = "";
+imgRep = "";
 
 
 function autocomplete(inp, arr) {
@@ -148,11 +149,13 @@ function button_fill(val)
 }
 
 
-function fill_edit(matier,name,question,rep) {
+function fill_edit(matier,name,question,ImgQuestion,rep,ImgRep) {
     Matier.value = matier;
     Name.value = name;
     inputText.value = question;
     input_rep.value = rep;
+    imgQuestion = ImgQuestion;
+    imgRep = ImgRep;
     button_fill("");
     
     const textarea = document.getElementById('inputText')
@@ -181,9 +184,48 @@ function Replace(){
     const rep = document.getElementById("input_rep").value;
 
 
-    const data = { action, matier, name, question, img_question, rep, img_rep };
+    const data = { action, matier, name, question, imgQuestion, rep, imgRep };
     console.log(data);
     clear();
     window.chrome.webview.postMessage(data);
     button_fill("Add");
 }
+
+
+
+document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const banner = document.getElementById('rep_img');
+
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imgRep = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert("Veuillez sélectionner une image.");
+    }
+});
+
+
+
+
+document.getElementById('fileInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const banner = document.getElementById('ques_img');
+
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            imgQuestion = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert("Veuillez sélectionner une image.");
+    }
+});

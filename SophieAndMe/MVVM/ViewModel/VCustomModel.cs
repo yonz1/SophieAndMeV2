@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -52,6 +51,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
+            Console.WriteLine(m.Value);
             question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             switch (action)
@@ -115,6 +115,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
                 App.Current.Properties["nameindex"] = matier;
                 (_question, _repnse, _urlQuestion,_urlRep) = DBInteraction.Retrievequizz(matier.ToString(),"Created");
                 var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
+                Console.WriteLine(jscode);
                 WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
                 (IsView,IsViewCard) = (false,true);
             }

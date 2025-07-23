@@ -121,7 +121,7 @@ namespace SophieAndMe.MVVM.Model
                 query = "SELECT question,reponse,image_question_url,image_answer_url FROM " + nameindex;
                 App.Current.Properties["matier"] = nameindex;
             }
-            else if (nameindex.Contains("Marked"))
+            else if (nameindex != null && nameindex.Contains("Marked"))
             {
                 query = "SELECT question,reponse,image_question_url,image_answer_url FROM Marked Where Matier = \"" + App.Current.Properties["matier"].ToString() + "\"" ;
             }
@@ -336,15 +336,14 @@ namespace SophieAndMe.MVVM.Model
             }
         }
 
-        public static (string,string,string,string,string,string) SearchQuizzCreated(string question)
+        public static (string? matier, string? name, string question, string? reponse, string? imageQuestion, string? imageRep) SearchQuizzCreated(string question)
         {
-            string matier = null;
-            string name = null;
-            string reponse = null;
-            string imageQuestion = null;
-            string imageRep = null;
+            string? matier = null;
+            string? name = null;
+            string? reponse = null;
+            string? imageQuestion = null;
+            string? imageRep = null;
             var connection = new SQLiteConnection(ConSource);
-            string valtoreq = "question,reponse,image_question_url,image_answer_url";
             string query = "";
             query = "SELECT name,reponse,image_question_url,image_answer_url FROM " +
                     App.Current.Properties["matier"].ToString() +
