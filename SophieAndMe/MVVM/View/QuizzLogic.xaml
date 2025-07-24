@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-    xmlns:local="clr-namespace:SophieAndMe.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     d:DesignHeight="450"
@@ -94,20 +93,16 @@
                         </ToggleButton>
 
                         <ToggleButton
-                            x:Name="Marked_tgbutton"
                             Width="40"
                             Height="40"
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
-                            Background="Transparent"
                             BorderThickness="0"
                             IsChecked="{Binding MarkedValue, Mode=TwoWay}"
                             DockPanel.Dock="Right"
-                            Foreground="{StaticResource Top_iconc_color}"
                             Style="{StaticResource TopButtonrad}"
                             Tag="{StaticResource Glass}">
                             <fs:IconImage
-                                x:Name="Icon_Mark"
                                 Width="30"
                                 Height="30"
                                 Icon="Bookmark"
@@ -115,23 +110,21 @@
                                 Style="{StaticResource TopButtonIconrad}" />
                         </ToggleButton>
                         <Button
-                            x:Name="Direct_rep"
                             Width="40"
                             Height="40"
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
-                            Background="Transparent"
                             BorderThickness="0"
                             Command="{Binding DirectResp}"
                             DockPanel.Dock="Right"
-                            Foreground="{StaticResource Top_iconc_color}"
                             Style="{StaticResource TopButton}"
                             Tag="{StaticResource Glass}">
                             <fs:IconImage
+                                Foreground="{StaticResource Textcolor}"
                                 Width="30"
                                 Height="30"
                                 Icon="Book"
-                                Style="{StaticResource TopButtonIcon}" />
+                                Style="{StaticResource TopButtonIconrad}" />
                         </Button>
                         <ToggleButton
                             x:Name="Timer"

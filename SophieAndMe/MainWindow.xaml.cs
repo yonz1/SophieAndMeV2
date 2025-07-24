@@ -41,8 +41,8 @@ public partial class MainWindow : Window
         {
             App.Current.Properties["button_color"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0x24, 0x24, 0x24));
             App.Current.Properties["button_color_text"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0xF5, 0xF5, 0xF5));
-            
-         InitializeComponent();
+
+            InitializeComponent();
 
             App.Current.Properties["html_back"] = "161717";
             App.Current.Properties["html_back_rep"] = "242424";
@@ -85,15 +85,6 @@ public partial class MainWindow : Window
             {
                 System.Windows.Forms.MessageBox.Show("An error occured while saving your quizz");
             }
-
-            // DirectoryInfo d = new DirectoryInfo(@"../../../HTML");
-            // FileInfo[] Files = d.GetFiles();
-            // string str = "";
-            // foreach ( FileInfo f in Files )
-            //     File.Delete(f.FullName);
-            //
-            //
-            // System.Threading.Thread.Sleep(300);
             Application.Current.Shutdown();
         }
 
@@ -115,16 +106,18 @@ public partial class MainWindow : Window
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Userbtncontent.Text = App.Current.Properties["username"] as string;
-            // if (App.Current.Properties["photo"].ToString() == ".\\images\\Ryan-Gosling_0.jpg")
-            // {
-            //     App.Current.Properties["photo"] = "";
-            //     ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
-            // }
-            // else
-            // {
-            //     ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
-            // }
+            //Userbtncontent.Text = App.Current.Properties["username"] as string;
+            Userbtncontent.Text = "Admin";
+            App.Current.Properties["photo"] = "";
+            if (App.Current.Properties["photo"].ToString() == "")
+            {
+                App.Current.Properties["photo"] = "../../../images/Ryan-Gosling_0.jpg";
+                ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
+            }
+            else
+            {
+                ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
+            }
             var hwnd = new WindowInteropHelper(this).Handle;
             var margins = new Margins()
             {

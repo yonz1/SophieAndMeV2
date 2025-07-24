@@ -22,11 +22,16 @@ namespace SophieAndMe.MVVM.ViewModel ;
         public ICommand ExitCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
-
+        private List<string> val = ["Maths", "Physique", "Si"];
+        private List<string> Test;
         public MainViewModel()
         {
             NavigationService.Instance.NavigateAction = view => CurrentView = view;
             NavigationService.Instance.Navigate(new VLanding());
+            // foreach (var i in val)
+            // {
+            //     Test.Add(i);          
+            // }
             ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
             ShowMarkedCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VMarked()));
             ShowCustomCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VCustom()));

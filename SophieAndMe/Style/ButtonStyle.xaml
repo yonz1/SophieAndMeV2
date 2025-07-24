@@ -54,7 +54,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
                             <Border
-                                Background="#30555555"
+                                Background="{StaticResource pageBackground}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="10">
                                 <!--<Border.Background>
@@ -75,7 +75,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
                             <Border
-                                Background="#30555555"
+                                Background="{StaticResource pageBackground}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="10">
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -619,12 +619,13 @@
     <Style x:Key="TopButton" TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Width" Value="25" />
+        <Setter Property="Foreground" Value="{StaticResource Top_iconc_color}" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{Binding Path=Foreground}" />
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="20">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -633,7 +634,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -661,9 +662,14 @@
     </Style>
 
     <Style x:Key="TopButtonIcon" TargetType="fs:IconImage">
-        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-        <Setter Property="Width" Value="20" />
-        <Setter Property="Height" Value="20" />
+        <Setter Property="Foreground" Value="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=Button}}" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="TopButtonIconrad" TargetType="fs:IconImage">
@@ -738,7 +744,7 @@
         <Setter Property="Height" Value="50" />
         <Setter Property="Margin" Value="-5,0,0,5" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#242424" />
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
@@ -1077,9 +1083,6 @@
         <Setter Property="Height" Value="80" />
 
     </Style>
-
-
-
-
+    
 
 </ResourceDictionary>

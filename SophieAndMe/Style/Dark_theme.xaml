@@ -15,6 +15,11 @@
         <GradientStop Offset="1" Color="#04F5ED" />
         <GradientStop Offset="0.1" Color="#00F7A7" />
     </GradientStopCollection>
+    
+    <!-- <GradientStopCollection x:Key="SimpleGradient"> -->
+    <!--     <GradientStop Offset="1" Color="#161717" /> -->
+    <!--     <GradientStop Offset="0.1" Color="MediumSlateBlue" /> -->
+    <!-- </GradientStopCollection> -->
 
     <SolidColorBrush x:Key="pageBackground" Color="#161717" />
     <SolidColorBrush x:Key="main_back_wind" Color="#161717" />
