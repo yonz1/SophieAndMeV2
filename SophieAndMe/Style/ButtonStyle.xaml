@@ -7,10 +7,10 @@
 
 
     <Style x:Key="NewMButtton" TargetType="RadioButton">
-        <Setter Property="Height" Value="40" />
-        <Setter Property="Margin" Value="20,0,0,20" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="80" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#242424" />
+        <Setter Property="Foreground" Value="{StaticResource Top_iconc_unused}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
@@ -18,9 +18,9 @@
                     <Border
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="5,0,0,0"
+                        BorderThickness="0,0,0,0"
                         CornerRadius="10">
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -28,8 +28,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Margin" Value="15,0,0,5" />
-                <Setter Property="Foreground" Value="Gainsboro" />
+                <Setter Property="Foreground" Value="{StaticResource Top_iconc_color}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -41,7 +40,7 @@
                                 <!--<Border.Background>
                                     <LinearGradientBrush GradientStops="{StaticResource Sombre_purple}" />
                                 </Border.Background>-->
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -49,8 +48,7 @@
             </Trigger>
 
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Margin" Value="15,0,0,5" />
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="{StaticResource Top_iconc_color}" />
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Template">
                     <Setter.Value>
@@ -59,7 +57,7 @@
                                 Background="#30555555"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="10">
-                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -71,10 +69,15 @@
     </Style>
 
     <Style x:Key="NewMButtonIcon" TargetType="fs:IconImage">
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+        <Setter Property="Width" Value="28" />
+        <Setter Property="Height" Value="28" />
+    </Style>
+
+    <Style x:Key="NewMButtonIconSelected" TargetType="fs:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
         <Setter Property="Width" Value="22" />
         <Setter Property="Height" Value="22" />
-        <Setter Property="Margin" Value="18,0,20,0" />
     </Style>
 
     <Style x:Key="NewMButtonText" TargetType="TextBlock">

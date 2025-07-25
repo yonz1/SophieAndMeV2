@@ -39,172 +39,105 @@
 
         <Border Background="{StaticResource pageBackground}" CornerRadius="10">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
 
 
                 <Border
                     x:Name="Border_top"
-                    Grid.Row="0"
+                    Grid.Column="2"
                     Background="Transparent"
                     CornerRadius="10"
                     MouseDown="Grid_MouseDown">
                     <Grid
                         x:Name="Grid_top"
-                        Grid.Row="0"
                         Margin="0,0,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         MouseDown="Grid_MouseDown"
                         Visibility="Visible">
-                        <DockPanel Grid.Row="0">
-                            <Button
-                                Width="15"
-                                Height="15"
-                                Margin="10,17,0,0"
-                                HorizontalAlignment="Center"
+                        <DockPanel>
+                            <TextBlock
+                                Margin="15,35,0,0"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Background="#fc6065"
-                                BorderThickness="0"
-                                Click="Exit_Click"
-                                Command="{Binding ExitCommand}"
                                 DockPanel.Dock="Left"
-                                Style="{StaticResource TopButton}"
-                                Tag="{StaticResource Exit}">
-                                <fs:IconImage Icon="Xmark" Style="{StaticResource TopButtonIcon}" />
-                            </Button>
-                            <Button
-                                Width="15"
-                                Height="15"
-                                Margin="10,17,0,0"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Background="#fedf43"
-                                BorderThickness="0"
-                                Click="Minimize_Click"
-                                Command="{Binding MinimizeCommand}"
-                                DockPanel.Dock="Left"
-                                Style="{StaticResource TopButton}"
-                                Tag="{StaticResource Minimize}">
-                                <fs:IconImage Icon="Minus" Style="{StaticResource TopButtonIcon}" />
-                            </Button>
-                            <Button
-                                Width="15"
-                                Height="15"
-                                Margin="10,17,0,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                Background="#4ad969"
-                                BorderThickness="0"
-                                Click="Maximize_Click"
-                                Command="{Binding MaximizeCommand}"
-                                DockPanel.Dock="Left"
-                                Style="{StaticResource TopButton}"
-                                Tag="{StaticResource Maximize}">
-                                <fs:IconImage
-                                    Width="12"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Icon="Expand"
-                                    Style="{StaticResource TopButtonIcon}" />
-                            </Button>
-
+                                FontFamily="Segoe UI Variable Text"
+                                FontSize="30"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource Textcolor}"
+                                Text="Quizz" />
 
 
 
                             <Button
-                                Width="24"
-                                Height="24"
-                                Margin="15,15,0,0"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                BorderThickness="0"
-                                Command="{Binding DirectResp}"
-                                DockPanel.Dock="Left"
-                                Style="{StaticResource TopButton}"
-                                Tag="{StaticResource Textcolor}">
-                                <fs:IconImage
-                                    Width="24"
-                                    Height="24"
-                                    Foreground="{StaticResource Textcolor}"
-                                    Icon="EyeSlash"
-                                    Style="{StaticResource TopButtonIconrad}" />
-                            </Button>
-
-
-
-                            <Button
-                                x:Name="Settings"
-                                Height="40"
-                                Margin="0,5,5,0"
-                                HorizontalAlignment="Right"
+                                Grid.Column="2"
+                                Width="50"
+                                Height="50"
+                                Margin="0,15,15,0"
                                 VerticalAlignment="Top"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding ShowSettingCommand}"
                                 DockPanel.Dock="Right"
-                                Style="{StaticResource MaterialDesignFlatDarkBgButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse
-                                        Width="32"
-                                        Height="32"
-                                        Margin="0,0,15,0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        DockPanel.Dock="Right">
-                                        <Ellipse.Fill>
-                                            <ImageBrush x:Name="ProfilePict" />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock
-                                        x:Name="Userbtncontent"
-                                        Margin="0,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="15"
-                                        Foreground="{StaticResource Textcolor}"
-                                        Text="Username" />
-                                </StackPanel>
+                                Style="{StaticResource TopButton}">
+                                <Ellipse
+                                    Width="40"
+                                    Height="40"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <Ellipse.Fill>
+                                        <ImageBrush x:Name="ProfilePict" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+
                             </Button>
                             <Button
-                                Width="24"
-                                Height="24"
-                                Margin="10,15,10,0"
+                                Grid.Column="2"
+                                Width="40"
+                                Height="40"
+                                Margin="10,20,15,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
+                                Background="{StaticResource Elementbackground}"
                                 BorderThickness="0"
                                 Command="{Binding DirectResp}"
                                 DockPanel.Dock="Right"
                                 Style="{StaticResource TopButton}"
                                 Tag="{StaticResource Textcolor}">
                                 <fs:IconImage
-                                    Width="24"
-                                    Height="24"
+                                    Width="32"
+                                    Height="32"
                                     Foreground="{StaticResource Textcolor}"
                                     Icon="QuestionCircle"
                                     Style="{StaticResource TopButtonIconrad}" />
                             </Button>
                             <Border
-                                Height="30"
-                                Margin="20,12,20,0"
+                                Grid.Column="2"
+                                Width="400"
+                                Height="50"
+                                Margin="20,15,20,0"
+                                HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Background="{StaticResource Elementbackground}"
-                                CornerRadius="10">
+                                CornerRadius="25">
                                 <DockPanel>
                                     <fs:IconImage
-                                        Width="20"
-                                        Height="20"
+                                        Width="22"
+                                        Height="22"
                                         Margin="10,0,0,0"
                                         Foreground="Gainsboro"
                                         Icon="Search"
                                         Style="{StaticResource TopButtonIcon}" />
                                     <materialDesign:AutoSuggestBox
-                                        Margin="10,0,0,0"
+                                        Margin="10,0,16,0"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
-                                        FontSize="13"
+                                        FontSize="16"
                                         Foreground="{StaticResource Textcolor}"
                                         Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
                                 </DockPanel>
@@ -215,22 +148,69 @@
 
 
 
-                <Grid Grid.Row="1">
-
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="100*" />
-                        <ColumnDefinition Width="9*" />
-                    </Grid.ColumnDefinitions>
-                    <Border Background="{StaticResource pageBackground}" CornerRadius="10 10 10 10">
+                <Grid Grid.Column="0">
+                    <DockPanel>
+                        <Button
+                            Width="15"
+                            Height="15"
+                            Margin="10,10,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="#fc6065"
+                            BorderThickness="0"
+                            Click="Exit_Click"
+                            Command="{Binding ExitCommand}"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource TopButton}"
+                            Tag="{StaticResource Exit}">
+                            <fs:IconImage Icon="Xmark" Style="{StaticResource TopButtonIcon}" />
+                        </Button>
+                        <Button
+                            Width="15"
+                            Height="15"
+                            Margin="10,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="#fedf43"
+                            BorderThickness="0"
+                            Click="Minimize_Click"
+                            Command="{Binding MinimizeCommand}"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource TopButton}"
+                            Tag="{StaticResource Minimize}">
+                            <fs:IconImage Icon="Minus" Style="{StaticResource TopButtonIcon}" />
+                        </Button>
+                        <Button
+                            Width="15"
+                            Height="15"
+                            Margin="10,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="#4ad969"
+                            BorderThickness="0"
+                            Click="Maximize_Click"
+                            Command="{Binding MaximizeCommand}"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource TopButton}"
+                            Tag="{StaticResource Maximize}">
+                            <fs:IconImage
+                                Width="12"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Icon="Expand"
+                                Style="{StaticResource TopButtonIcon}" />
+                        </Button>
+                    </DockPanel>
+                    <Border
+                        Margin="10,40,0,10"
+                        Background="{StaticResource Elementbackground}"
+                        CornerRadius="17">
                         <Grid Grid.Column="0">
                             <DockPanel>
                                 <Rectangle
-                                    Width="90"
-                                    Height="90"
-                                    Margin="0,10,0,0"
+                                    Width="50"
+                                    Height="50"
+                                    Margin="0,15,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
                                     DockPanel.Dock="top">
@@ -239,29 +219,17 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
 
-                                <ItemsControl ItemsSource="{Binding Subjects}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate />
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
                                 <RadioButton
-                                    Margin="0,40,0,0"
-                                    VerticalAlignment="Top"
+                                    Margin="0,30,0,0"
                                     Command="{Binding ShowQuizzCommand}"
                                     DockPanel.Dock="Top"
-                                    Foreground="Gainsboro"
                                     Style="{StaticResource NewMButtton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Rectangle
                                             x:Name="Rect1"
-                                            Width="5"
+                                            Width="0"
                                             Height="20"
-                                            Margin="5,0,0,0"
+                                            Margin="0,0,0,0"
                                             Fill="MediumSlateBlue"
                                             RadiusX="5"
                                             RadiusY="5"
@@ -276,15 +244,15 @@
                                             </Rectangle.Effect>
                                         </Rectangle>
                                         <fs:IconImage
-                                            Margin="25,0,0,0"
-                                            Foreground="{StaticResource Iconcolor}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
                                             Icon="UserGraduate"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <TextBlock
+                                        <!--<TextBlock
                                             Margin="20,0,0,0"
                                             Foreground="{StaticResource Textcolor}"
                                             Style="{StaticResource NewMButtonText}"
-                                            Text="Quizz" />
+                                            Text="Quizz" />-->
                                     </StackPanel>
                                 </RadioButton>
                                 <RadioButton
@@ -297,9 +265,9 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Rectangle
                                             x:Name="Rect2"
-                                            Width="5"
+                                            Width="0"
                                             Height="20"
-                                            Margin="5,0,0,0"
+                                            Margin="0,0,0,0"
                                             Fill="MediumSlateBlue"
                                             RadiusX="5"
                                             RadiusY="5"
@@ -314,15 +282,15 @@
                                             </Rectangle.Effect>
                                         </Rectangle>
                                         <fs:IconImage
-                                            Margin="25,0,0,0"
-                                            Foreground="{StaticResource Iconcolor}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
                                             Icon="BookBookmark"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <TextBlock
+                                        <!--<TextBlock
                                             Margin="20,0,0,0"
                                             Foreground="{StaticResource Textcolor}"
                                             Style="{StaticResource NewMButtonText}"
-                                            Text="Marked" />
+                                            Text="Marked" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -333,14 +301,13 @@
                                     VerticalAlignment="Top"
                                     Command="{Binding ShowCustomCommand}"
                                     DockPanel.Dock="Top"
-                                    Foreground="Gainsboro"
                                     Style="{StaticResource NewMButtton}">
                                     <StackPanel Orientation="Horizontal">
                                         <Rectangle
                                             x:Name="Rect3"
-                                            Width="5"
+                                            Width="0"
                                             Height="20"
-                                            Margin="5,0,0,0"
+                                            Margin="0,0,0,0"
                                             Fill="MediumSlateBlue"
                                             RadiusX="5"
                                             RadiusY="5"
@@ -355,15 +322,131 @@
                                             </Rectangle.Effect>
                                         </Rectangle>
                                         <fs:IconImage
-                                            Margin="25,0,0,0"
-                                            Foreground="{StaticResource Iconcolor}"
-                                            Icon="PenToSquare"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Icon="UserPen"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <TextBlock
+                                        <!--<TextBlock
                                             Margin="20,0,0,0"
                                             Foreground="{StaticResource Textcolor}"
                                             Style="{StaticResource NewMButtonText}"
-                                            Text="Custom" />
+                                            Text="Custom" />-->
+                                    </StackPanel>
+                                </RadioButton>
+
+                                <RadioButton
+                                    Margin="0,10,0,0"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding ShowCalendarCommand}"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource NewMButtton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            x:Name="Rect4"
+                                            Width="0"
+                                            Height="20"
+                                            Margin="0,0,0,0"
+                                            Fill="MediumSlateBlue"
+                                            RadiusX="5"
+                                            RadiusY="5"
+                                            Visibility="Hidden">
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect
+                                                    BlurRadius="20"
+                                                    Direction="270"
+                                                    Opacity="0.3"
+                                                    ShadowDepth="0"
+                                                    Color="White" />
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                        <fs:IconImage
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Icon="Calendar"
+                                            Style="{StaticResource NewMButtonIcon}" />
+                                        <!--<TextBlock
+                                            Margin="20,0,0,0"
+                                            Foreground="{StaticResource Textcolor}"
+                                            Style="{StaticResource NewMButtonText}"
+                                            Text="Custom" />-->
+                                    </StackPanel>
+                                </RadioButton>
+
+                                <RadioButton
+                                    Margin="0,10,0,0"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding ShowCalendarCommand}"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource NewMButtton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            x:Name="Rect5"
+                                            Width="0"
+                                            Height="20"
+                                            Margin="0,0,0,0"
+                                            Fill="MediumSlateBlue"
+                                            RadiusX="5"
+                                            RadiusY="5"
+                                            Visibility="Hidden">
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect
+                                                    BlurRadius="20"
+                                                    Direction="270"
+                                                    Opacity="0.3"
+                                                    ShadowDepth="0"
+                                                    Color="White" />
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                        <fs:IconImage
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Icon="Edit"
+                                            Style="{StaticResource NewMButtonIcon}" />
+                                        <!--<TextBlock
+                                            Margin="20,0,0,0"
+                                            Foreground="{StaticResource Textcolor}"
+                                            Style="{StaticResource NewMButtonText}"
+                                            Text="Custom" />-->
+                                    </StackPanel>
+                                </RadioButton>
+
+                                <RadioButton
+                                    Margin="0,10,0,0"
+                                    VerticalAlignment="Bottom"
+                                    Command="{Binding ShowCalendarCommand}"
+                                    DockPanel.Dock="Bottom"
+                                    Style="{StaticResource NewMButtton}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle
+                                            x:Name="Rect6"
+                                            Width="0"
+                                            Height="20"
+                                            Margin="0,0,0,0"
+                                            Fill="MediumSlateBlue"
+                                            RadiusX="5"
+                                            RadiusY="5"
+                                            Visibility="Hidden">
+                                            <Rectangle.Effect>
+                                                <DropShadowEffect
+                                                    BlurRadius="20"
+                                                    Direction="270"
+                                                    Opacity="0.3"
+                                                    ShadowDepth="0"
+                                                    Color="White" />
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                        <fs:IconImage
+                                            Width="32"
+                                            Height="32"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Icon="UserGear"
+                                            Style="{StaticResource NewMButtonIcon}" />
+                                        <!--<TextBlock
+                                            Margin="20,0,0,0"
+                                            Foreground="{StaticResource Textcolor}"
+                                            Style="{StaticResource NewMButtonText}"
+                                            Text="Custom" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -371,25 +454,24 @@
                             </DockPanel>
                         </Grid>
                     </Border>
+                </Grid>
+                <Grid
+                    Grid.Column="2"
+                    Margin="10,80,10,10"
+                    Background="Transparent"
+                    Opacity="100">
+                    <Grid.RowDefinitions>
 
-                    <Grid Grid.Column="1" Background="{StaticResource pageBackground}" />
-                    <Grid
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        Background="Transparent"
-                        Opacity="100">
-                        <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                            <RowDefinition Height="10" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Border Grid.Row="2" CornerRadius="10">
-                            <ContentControl Content="{Binding CurrentView}" />
-                        </Border>
+                    <Border Grid.Row="2" CornerRadius="10">
+                        <ContentControl Content="{Binding CurrentView}" />
+                    </Border>
 
 
-                    </Grid>
+
 
                 </Grid>
             </Grid>

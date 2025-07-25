@@ -9,7 +9,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    
+
 
     <Grid x:Name="Question">
         <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
                     x:Name="Back_quizz"
                     Width="120"
                     Height="50"
-                    Margin="30,0,0,0"
+                    Margin="0,0,0,0"
                     HorizontalAlignment="Left"
                     Command="{Binding Back_quizz_Click}"
                     Foreground="Gainsboro"
@@ -55,7 +55,7 @@
                     Height="50"
                     Margin="0,0,20,0"
                     HorizontalAlignment="Right"
-                    Background="{StaticResource  Elementbackground}"
+                    Background="{StaticResource Elementbackground}"
                     CornerRadius="20"
                     DockPanel.Dock="Right">
                     <DockPanel>
@@ -84,8 +84,8 @@
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
                             BorderThickness="0"
-                            IsChecked="{Binding MarkedValue, Mode=TwoWay}"
                             DockPanel.Dock="Right"
+                            IsChecked="{Binding MarkedValue, Mode=TwoWay}"
                             Style="{StaticResource TopButtonrad}"
                             Tag="{StaticResource Textcolor}">
                             <fs:IconImage
@@ -106,9 +106,9 @@
                             Style="{StaticResource TopButton}"
                             Tag="{StaticResource Textcolor}">
                             <fs:IconImage
-                                Foreground="{StaticResource Textcolor}"
                                 Width="30"
                                 Height="30"
+                                Foreground="{StaticResource Textcolor}"
                                 Icon="Book"
                                 Style="{StaticResource TopButtonIconrad}" />
                         </Button>
@@ -118,8 +118,8 @@
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
                             BorderThickness="0"
-                            IsChecked="{Binding TimerValue}"
                             DockPanel.Dock="Right"
+                            IsChecked="{Binding TimerValue}"
                             Style="{StaticResource TopButtonrad}"
                             Tag="{StaticResource Textcolor}">
                             <fs:IconImage
@@ -129,11 +129,11 @@
                                 Style="{StaticResource TopButtonIconrad}" />
                         </ToggleButton>
                         <TextBlock
-                            DockPanel.Dock="Right"
                             Height="20"
                             Margin="10,0,10,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             FontSize="17"
                             Foreground="{StaticResource Textcolor}"
                             Text="{Binding Message}"
@@ -176,13 +176,12 @@
                     Height="50"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    DockPanel.Dock="Top"
-                    IsChecked="{Binding Action}"
                     Content="{Binding ActionText}"
+                    DockPanel.Dock="Top"
                     Foreground="{StaticResource Textcolor}"
-                    Style="{StaticResource MaterialDesignOutlinedLightButton}"
-                    ></ToggleButton>
-                
+                    IsChecked="{Binding Action}"
+                    Style="{StaticResource MaterialDesignOutlinedLightButton}" />
+
                 <TextBlock
                     Width="120"
                     Height="50"

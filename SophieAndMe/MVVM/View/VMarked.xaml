@@ -70,7 +70,7 @@
                                                 VerticalAlignment="Center"
                                                 Foreground="{StaticResource Iconcolor}"
                                                 Icon="{Binding IconVal}"
-                                                Style="{StaticResource NewMButtonIcon}" />
+                                                Style="{StaticResource NewMButtonIconSelected}" />
                                         </StackPanel>
                                     </Button>
                                     <Label

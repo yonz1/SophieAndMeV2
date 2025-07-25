@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="Iconcolor" Color="Gainsboro" />
     <SolidColorBrush x:Key="Textcolor" Color="Gainsboro" />
     <SolidColorBrush x:Key="Top_iconc_color" Color="Gainsboro" />
+    <SolidColorBrush x:Key="Top_iconc_unused" Color="#7c7c80" />
     <SolidColorBrush x:Key="main_background" Color="#242424" />
     <SolidColorBrush x:Key="Button_panel_color" Color="#161717" />
     <SolidColorBrush x:Key="Elementbackground" Color="#242424" />
@@ -15,7 +16,7 @@
         <GradientStop Offset="1" Color="#04F5ED" />
         <GradientStop Offset="0.1" Color="#00F7A7" />
     </GradientStopCollection>
-    
+
     <GradientStopCollection x:Key="SimpleGradient">
         <GradientStop Offset="0.9" Color="#161717" />
         <GradientStop Offset="1" Color="MediumSlateBlue" />

@@ -107,7 +107,7 @@ public partial class MainWindow : Window
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Userbtncontent.Text = App.Current.Properties["username"] as string;
-            Userbtncontent.Text = "Admin";
+            //Userbtncontent.Text = "Admin";
             App.Current.Properties["photo"] = "";
             if (App.Current.Properties["photo"].ToString() == "")
             {

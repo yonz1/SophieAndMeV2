@@ -20,7 +20,7 @@
             Grid.Row="0"
             Width="120"
             Height="50"
-            Margin="30,0,0,0"
+            Margin="0,0,0,0"
             HorizontalAlignment="Left"
             Command="{Binding Back_quizz_Click}"
             Foreground="Gainsboro"
