@@ -9,18 +9,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <BooleanToVisibilityConverter x:Key="BoolToVis" />
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Style/ButtonStyle.xaml" />
-                <ResourceDictionary Source="/Style/Dark_theme.xaml" />
-                <ResourceDictionary Source="/Style/General.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
+    
 
     <Grid x:Name="Question">
         <Grid.RowDefinitions>
@@ -63,7 +52,6 @@
 
 
                 <Border
-                    x:Name="toolbar"
                     Height="50"
                     Margin="0,0,20,0"
                     HorizontalAlignment="Right"
@@ -77,13 +65,11 @@
                             Height="40"
                             Margin="0,0,10,0"
                             HorizontalAlignment="Right"
-                            Background="Transparent"
                             BorderThickness="0"
                             Command="{Binding Respaper}"
                             DockPanel.Dock="Right"
-                            Foreground="{StaticResource Top_iconc_color}"
                             Style="{StaticResource TopButtonrad}"
-                            Tag="{StaticResource Glass}">
+                            Tag="{StaticResource Textcolor}">
                             <fs:IconImage
                                 Width="30"
                                 Height="30"
@@ -101,7 +87,7 @@
                             IsChecked="{Binding MarkedValue, Mode=TwoWay}"
                             DockPanel.Dock="Right"
                             Style="{StaticResource TopButtonrad}"
-                            Tag="{StaticResource Glass}">
+                            Tag="{StaticResource Textcolor}">
                             <fs:IconImage
                                 Width="30"
                                 Height="30"
@@ -118,7 +104,7 @@
                             Command="{Binding DirectResp}"
                             DockPanel.Dock="Right"
                             Style="{StaticResource TopButton}"
-                            Tag="{StaticResource Glass}">
+                            Tag="{StaticResource Textcolor}">
                             <fs:IconImage
                                 Foreground="{StaticResource Textcolor}"
                                 Width="30"
@@ -127,18 +113,15 @@
                                 Style="{StaticResource TopButtonIconrad}" />
                         </Button>
                         <ToggleButton
-                            x:Name="Timer"
                             Width="40"
                             Height="40"
                             Margin="0,0,20,0"
                             HorizontalAlignment="Right"
-                            Background="Transparent"
                             BorderThickness="0"
                             IsChecked="{Binding TimerValue}"
                             DockPanel.Dock="Right"
-                            Foreground="{StaticResource Top_iconc_color}"
                             Style="{StaticResource TopButtonrad}"
-                            Tag="{StaticResource Glass}">
+                            Tag="{StaticResource Textcolor}">
                             <fs:IconImage
                                 Width="30"
                                 Height="30"

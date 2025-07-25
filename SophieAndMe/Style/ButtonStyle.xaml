@@ -5,25 +5,6 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Style/General.xaml" />
-        <ResourceDictionary Source="/Style/Dark_theme.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
-
-    <Storyboard x:Key="Clicked_btn_new">
-        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Visibility)">
-            <DiscreteObjectKeyFrame KeyTime="00:00:00.0" Value="{x:Static Visibility.Visible}" />
-        </ObjectAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1.016" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0.406" />
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="39.634" />
-            <EasingDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
-        </DoubleAnimationUsingKeyFrames>
-    </Storyboard>
 
     <Style x:Key="NewMButtton" TargetType="RadioButton">
         <Setter Property="Height" Value="40" />
@@ -54,7 +35,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
                             <Border
-                                Background="{StaticResource pageBackground}"
+                                Background="#30555555"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="10">
                                 <!--<Border.Background>
@@ -75,7 +56,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
                             <Border
-                                Background="{StaticResource pageBackground}"
+                                Background="#30555555"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="10">
                                 <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -618,10 +599,12 @@
 
     <Style x:Key="TopButton" TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Width" Value="25" />
+        <Setter Property="Width" Value="15" />
+        <Setter Property="Height" Value="15" />
         <Setter Property="Foreground" Value="{StaticResource Top_iconc_color}" />
         <Setter Property="Background" Value="Transparent" />
-        
+
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -634,7 +617,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="Black" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -643,7 +626,7 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Width" Value="25" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource Top_iconc_color}" />
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -653,12 +636,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="TopButtonIcon" TargetType="fs:IconImage">
@@ -673,7 +650,7 @@
     </Style>
 
     <Style x:Key="TopButtonIconrad" TargetType="fs:IconImage">
-        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=ToggleButton}}" />
+        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=ToggleButton}}" />
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
     </Style>
@@ -1083,6 +1060,6 @@
         <Setter Property="Height" Value="80" />
 
     </Style>
-    
+
 
 </ResourceDictionary>

@@ -29,9 +29,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style/ButtonStyle.xaml" />
-                <ResourceDictionary Source="Style/Dark_theme.xaml" />
-                <ResourceDictionary Source="Style/General.xaml" /> 
+                <ResourceDictionary Source="Style/Theme.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -65,7 +63,7 @@
                             <Button
                                 Width="15"
                                 Height="15"
-                                Margin="10,15,0,0"
+                                Margin="10,17,0,0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 Background="#fc6065"
@@ -75,15 +73,12 @@
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource TopButton}"
                                 Tag="{StaticResource Exit}">
-                                <fs:IconImage
-                                    Width="20"
-                                    Icon="Xmark"
-                                    Style="{StaticResource TopButtonIcon}" />
+                                <fs:IconImage Icon="Xmark" Style="{StaticResource TopButtonIcon}" />
                             </Button>
                             <Button
                                 Width="15"
                                 Height="15"
-                                Margin="10,15,0,0"
+                                Margin="10,17,0,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Background="#fedf43"
@@ -98,7 +93,7 @@
                             <Button
                                 Width="15"
                                 Height="15"
-                                Margin="10,15,0,0"
+                                Margin="10,17,0,0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
                                 Background="#4ad969"
@@ -109,51 +104,94 @@
                                 Style="{StaticResource TopButton}"
                                 Tag="{StaticResource Maximize}">
                                 <fs:IconImage
-                                    Width="20"
+                                    Width="12"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Icon="Expand"
                                     Style="{StaticResource TopButtonIcon}" />
                             </Button>
-                                <Button
-                                    x:Name="Settings"
-                                    Height="39"
-                                    Margin="0,5,5,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Command="{Binding ShowSettingCommand}"
-                                    DockPanel.Dock="Right"
-                                    Style="{StaticResource MaterialDesignFlatDarkBgButton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Ellipse
-                                            Width="32"
-                                            Height="32"
-                                            Margin="0,0,15,0"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            DockPanel.Dock="Right">
-                                            <Ellipse.Fill>
-                                                <ImageBrush x:Name="ProfilePict" />
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                        <TextBlock
-                                            x:Name="Userbtncontent"
-                                            Margin="0,0,0,0"
-                                            VerticalAlignment="Center"
-                                            FontSize="15"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Text="Username" />
-                                    </StackPanel>
-                                </Button>
+
+
+
+
+                            <Button
+                                Width="24"
+                                Height="24"
+                                Margin="15,15,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                BorderThickness="0"
+                                Command="{Binding DirectResp}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource TopButton}"
+                                Tag="{StaticResource Textcolor}">
+                                <fs:IconImage
+                                    Width="24"
+                                    Height="24"
+                                    Foreground="{StaticResource Textcolor}"
+                                    Icon="EyeSlash"
+                                    Style="{StaticResource TopButtonIconrad}" />
+                            </Button>
+
+
+
+                            <Button
+                                x:Name="Settings"
+                                Height="40"
+                                Margin="0,5,5,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Command="{Binding ShowSettingCommand}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource MaterialDesignFlatDarkBgButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse
+                                        Width="32"
+                                        Height="32"
+                                        Margin="0,0,15,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        DockPanel.Dock="Right">
+                                        <Ellipse.Fill>
+                                            <ImageBrush x:Name="ProfilePict" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock
+                                        x:Name="Userbtncontent"
+                                        Margin="0,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"
+                                        Foreground="{StaticResource Textcolor}"
+                                        Text="Username" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Width="24"
+                                Height="24"
+                                Margin="10,15,10,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                BorderThickness="0"
+                                Command="{Binding DirectResp}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource TopButton}"
+                                Tag="{StaticResource Textcolor}">
+                                <fs:IconImage
+                                    Width="24"
+                                    Height="24"
+                                    Foreground="{StaticResource Textcolor}"
+                                    Icon="QuestionCircle"
+                                    Style="{StaticResource TopButtonIconrad}" />
+                            </Button>
                             <Border
                                 Height="30"
-                                Margin="30,10,20,0"
+                                Margin="20,12,20,0"
                                 VerticalAlignment="Top"
                                 Background="{StaticResource Elementbackground}"
                                 CornerRadius="10">
-                                <DockPanel >
+                                <DockPanel>
                                     <fs:IconImage
                                         Width="20"
                                         Height="20"
@@ -168,9 +206,7 @@
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
                                         FontSize="13"
                                         Foreground="{StaticResource Textcolor}"
-                                        Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" >
-                                        
-                                    </materialDesign:AutoSuggestBox>
+                                        Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
                                 </DockPanel>
                             </Border>
                         </DockPanel>
@@ -185,25 +221,35 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180" />
                         <ColumnDefinition Width="10" />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="9*" />
                     </Grid.ColumnDefinitions>
-                    <Border Background="{StaticResource Button_panel_color}" CornerRadius="10 10 10 10">
+                    <Border Background="{StaticResource pageBackground}" CornerRadius="10 10 10 10">
                         <Grid Grid.Column="0">
                             <DockPanel>
                                 <Rectangle
                                     Width="90"
                                     Height="90"
+                                    Margin="0,10,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
-                                    Margin="0 10  0, 0"
                                     DockPanel.Dock="top">
                                     <Rectangle.Fill>
                                         <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
                                     </Rectangle.Fill>
                                 </Rectangle>
 
+                                <ItemsControl ItemsSource="{Binding Subjects}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate />
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                                 <RadioButton
-                                    Name="Quizz"
                                     Margin="0,40,0,0"
                                     VerticalAlignment="Top"
                                     Command="{Binding ShowQuizzCommand}"
@@ -329,6 +375,7 @@
                     <Grid Grid.Column="1" Background="{StaticResource pageBackground}" />
                     <Grid
                         Grid.Column="2"
+                        Grid.ColumnSpan="2"
                         Background="Transparent"
                         Opacity="100">
                         <Grid.RowDefinitions>

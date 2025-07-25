@@ -68,23 +68,23 @@ public partial class MainWindow : Window
             string query = "";
             string Sourceuser = "Data Source=..\\..\\..\\Database\\user_value.db";
             System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
-            try
-            {
-                using (SQLiteConnection c = new SQLiteConnection(Sourceuser))
-                {
-                    c.Open();
-                    query = "UPDATE DASH SET Time = " + App.Current.Properties["Timer"] + " where Date =  \"" + DateTime.Now.ToString("yyyy-MM-dd") + "\"";
-                    System.Diagnostics.Debug.WriteLine(query);
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("An error occured while saving your quizz");
-            }
+            //try
+            //{
+            //    using (SQLiteConnection c = new SQLiteConnection(Sourceuser))
+            //    {
+            //        c.Open();
+            //        query = "UPDATE DASH SET Time = " + App.Current.Properties["Timer"] + " where Date =  \"" + DateTime.Now.ToString("yyyy-MM-dd") + "\"";
+            //        System.Diagnostics.Debug.WriteLine(query);
+            //        using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+            //        {
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    System.Windows.Forms.MessageBox.Show("An error occured while saving your quizz");
+            //}
             Application.Current.Shutdown();
         }
 

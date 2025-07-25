@@ -22,9 +22,8 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public ObservableCollection<SubjectItem> Subjects { get; set; }
     public RelayCommand ChoisirNomCommand { get; }
 
-    private bool _isview;
     private string _jscall;
-
+    private bool _isview;
     public bool  IsView
     {
         get => _isview;

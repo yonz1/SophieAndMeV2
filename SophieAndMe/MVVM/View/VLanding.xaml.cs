@@ -23,14 +23,22 @@ namespace SophieAndMe.MVVM.View
             this.DataContext = vm;
         }
         private async void Start()
-        {           
-            await WebViewAll.EnsureCoreWebView2Async();
-            WebViewAll.CoreWebView2.Settings.IsStatusBarEnabled = false;
-            WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
-            WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) =>
+        {
+           try
             {
-                WebViewAll.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");
-            };
+                await WebViewAll.EnsureCoreWebView2Async();
+                WebViewAll.CoreWebView2.Settings.IsStatusBarEnabled = false;
+                WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+                WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) =>
+                {
+                    WebViewAll.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
         }
     }
 }

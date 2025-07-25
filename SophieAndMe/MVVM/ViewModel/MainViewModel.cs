@@ -1,12 +1,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.Core;
 
 namespace SophieAndMe.MVVM.ViewModel ;
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ObservableRecipient, INotifyPropertyChanged
     {
         private object _currentView;
         public object CurrentView
@@ -22,16 +23,19 @@ namespace SophieAndMe.MVVM.ViewModel ;
         public ICommand ExitCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
-        private List<string> val = ["Maths", "Physique", "Si"];
-        private List<string> Test;
+        private bool _isview;
+        public bool  IsView
+        {
+            get => _isview;
+            set { _isview = value;
+                OnPropertyChanged();
+            }
+        }
         public MainViewModel()
         {
+
             NavigationService.Instance.NavigateAction = view => CurrentView = view;
             NavigationService.Instance.Navigate(new VLanding());
-            // foreach (var i in val)
-            // {
-            //     Test.Add(i);          
-            // }
             ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
             ShowMarkedCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VMarked()));
             ShowCustomCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VCustom()));
