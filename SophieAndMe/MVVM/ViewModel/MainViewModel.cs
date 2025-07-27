@@ -31,14 +31,34 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 OnPropertyChanged();
             }
         }
+        
+        private string _currentmessage = null!;
+        public string CurrentMessage
+        {
+            get => _currentmessage;set{        _currentmessage = value;        OnPropertyChanged();    }
+        }
+        
         public MainViewModel()
         {
 
             NavigationService.Instance.NavigateAction = view => CurrentView = view;
+            CurrentMessage = "Acceuil";
             NavigationService.Instance.Navigate(new VLanding());
-            ShowQuizzCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VQuizz()));
-            ShowMarkedCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VMarked()));
-            ShowCustomCommand = new RelayCommand(o => NavigationService.Instance.Navigate(new VCustom()));
+            ShowQuizzCommand = new RelayCommand(o =>
+            {
+                    NavigationService.Instance.Navigate(new VQuizz());
+                    CurrentMessage = "Quizzs";
+            });
+            ShowMarkedCommand = new RelayCommand(o =>
+            {
+                NavigationService.Instance.Navigate(new VMarked());
+                CurrentMessage = "Marquer";
+            });
+            ShowCustomCommand = new RelayCommand(o =>
+            {
+                NavigationService.Instance.Navigate(new VCustom());
+                CurrentMessage = "Personnaliser";
+            });
             
         }
 

@@ -69,7 +69,7 @@
                                 FontSize="30"
                                 FontWeight="Bold"
                                 Foreground="{StaticResource Textcolor}"
-                                Text="Quizz" />
+                                Text="{Binding CurrentMessage}" />
 
 
 
@@ -134,6 +134,7 @@
                                         Style="{StaticResource TopButtonIcon}" />
                                     <materialDesign:AutoSuggestBox
                                         Margin="10,0,16,0"
+                                        Height="51"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
@@ -248,11 +249,6 @@
                                             VerticalAlignment="Center"
                                             Icon="UserGraduate"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Quizz" />-->
                                     </StackPanel>
                                 </RadioButton>
                                 <RadioButton
@@ -286,11 +282,6 @@
                                             VerticalAlignment="Center"
                                             Icon="BookBookmark"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Marked" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -326,11 +317,6 @@
                                             VerticalAlignment="Center"
                                             Icon="UserPen"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Custom" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -364,11 +350,6 @@
                                             VerticalAlignment="Center"
                                             Icon="Calendar"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Custom" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -402,11 +383,6 @@
                                             VerticalAlignment="Center"
                                             Icon="Edit"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Custom" />-->
                                     </StackPanel>
                                 </RadioButton>
 
@@ -442,11 +418,6 @@
                                             VerticalAlignment="Center"
                                             Icon="UserGear"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                        <!--<TextBlock
-                                            Margin="20,0,0,0"
-                                            Foreground="{StaticResource Textcolor}"
-                                            Style="{StaticResource NewMButtonText}"
-                                            Text="Custom" />-->
                                     </StackPanel>
                                 </RadioButton>
 
