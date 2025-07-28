@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
@@ -13,14 +14,15 @@ namespace SophieAndMe.MVVM.ViewModel;
     
     public class VQuizzModel : INotifyPropertyChanged
     {
-
+        private readonly MainViewModel _mainViewModel;
         public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
         public ObservableCollection<SubjectItem> Subjects { get; set; }
         
-        public VQuizzModel() 
+        public VQuizzModel(MainViewModel mainVm) 
         {
-            
+            _mainViewModel = mainVm;
+            _mainViewModel.CurrentMessage = "Quizzs";
             Subjects = new ObservableCollection<SubjectItem>
             {   
                 new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
@@ -51,8 +53,9 @@ namespace SophieAndMe.MVVM.ViewModel;
             
             ChoisirNomCommand = new RelayCommand(nom =>
             {
-                App.Current.Properties["nameindex"] = nom;
-                NavigationService.Instance.Navigate(new QuizzLogic());
+                Application.Current.Properties["nameindex"] = nom;
+                _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
+                NavigationService.Instance.Navigate(new QuizzLogic(mainVm));
             });
         }
 

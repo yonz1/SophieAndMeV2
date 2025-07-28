@@ -17,6 +17,7 @@
       <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
       <PackageReference Include="MaterialDesignColors" Version="5.2.2-ci998" />
       <PackageReference Include="MaterialDesignThemes" Version="5.2.2-ci998" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.14.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.6.25358.103" />
       <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3415-prerelease" />
       <PackageReference Include="SQLite" Version="3.13.0" />

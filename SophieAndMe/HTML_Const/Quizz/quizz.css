@@ -31,7 +31,12 @@ p {
 }
 
 img {
-    max-width: 350px;
-    max-height: 230px;
+    width: 100%;             /* S'adapte au conteneur */
+    max-width: 350px; /* Taille maximale (tu choisis selon ton design) */
+    max-height: 350px;
+    height: auto;            /* Garde les proportions */
+    image-rendering: auto;   /* ou 'crisp-edges' si image pixel art */
+    display: block; /* Centre l'image */
+    object-fit: contain;     /* Assure que l’image ne soit jamais déformée */
     float: left;
 }

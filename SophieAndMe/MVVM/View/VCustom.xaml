@@ -25,70 +25,90 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border
+        <DockPanel
             Height="50"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Background="{StaticResource main_background}"
-            BorderThickness="2"
-            CornerRadius="20">
-            <DockPanel
+            >
+           
+            <DockPanel  Visibility="{Binding IsViewReturn, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}">
+            <Button
+                Width="30"
+                Height="30"
+                Margin="0,0,20,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                BorderThickness="0"
+                Command="{Binding Return}"
+                DockPanel.Dock="Left"
+                Style="{StaticResource TopButton}"
+                Tag="{StaticResource Textcolor}">
+                <fs:IconImage
+                    Width="24"
+                    Height="24"
+                    Foreground="{StaticResource Textcolor}"
+                    Icon="ChevronLeft"
+                    Style="{StaticResource TopButtonIconrad}" />
+            </Button>
+            <Button
+                Width="30"
+                Height="30"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                BorderThickness="0"
+                Command="{Binding Advance}"
+                DockPanel.Dock="Left"
+                Style="{StaticResource TopButton}"
+                Tag="{StaticResource Textcolor}">
+                <fs:IconImage
+                    Width="24"
+                    Height="24"
+                    Foreground="{StaticResource Textcolor}"
+                    Icon="ChevronRight"
+                    Style="{StaticResource TopButtonIconrad}" />
+            </Button>
+            </DockPanel>
+            <Border
                 Height="60"
+                Margin="20,0,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="Transparent">
-                <Button
-                    Width="120"
-                    Height="40"
-                    Margin="5,0,5,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    materialDesign:ButtonAssist.CornerRadius="20"
-                    Command="{Binding Create}"
-                    Content="Create"
-                    DockPanel.Dock="Left"
-                    Foreground="{StaticResource Textcolor}"
-                    Style="{StaticResource topquizzmat}"
-                    Tag="Mathématiques" />
-                <Button
-                    Width="120"
-                    Height="40"
-                    Margin="5,0,5,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    materialDesign:ButtonAssist.CornerRadius="20"
-                    Background="Transparent"
-                    Command="{Binding Created}"
-                    Content="Created"
-                    DockPanel.Dock="Left"
-                    Foreground="{StaticResource Textcolor}"
-                    Style="{StaticResource topquizzmat}"
-                    Tag="Physique" />
-            </DockPanel>
-        </Border>
+                Background="{StaticResource main_background}"
+                BorderThickness="2"
+                CornerRadius="30">
+                <DockPanel>
+                    <Button
+                        Width="120"
+                        Height="40"
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        Command="{Binding Create}"
+                        Content="Create"
+                        DockPanel.Dock="Left"
+                        Foreground="{StaticResource Textcolor}"
+                        Style="{StaticResource topquizzmat}"
+                        Tag="Mathématiques" />
+                    <Button
+                        Width="120"
+                        Height="40"
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        Background="Transparent"
+                        Command="{Binding Created}"
+                        Content="Created"
+                        DockPanel.Dock="Left"
+                        Foreground="{StaticResource Textcolor}"
+                        Style="{StaticResource topquizzmat}"
+                        Tag="Physique" />
+                </DockPanel>
+            </Border>
+        </DockPanel>
 
-        <Button
-            Grid.Row="0"
-            Width="120"
-            Height="50"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            Command="{Binding Back_quizz_Click}"
-            Foreground="Gainsboro"
-            Style="{StaticResource MaterialDesignFlatButton}">
-            <StackPanel Orientation="Horizontal">
-                <fs:IconImage
-                    Width="20"
-                    Height="20"
-                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}"
-                    Icon="ArrowLeft" />
-                <TextBlock
-                    Margin="15,0,0,0"
-                    VerticalAlignment="Center"
-                    FontSize="13"
-                    Text="Matières" />
-            </StackPanel>
-        </Button>
+
         <wv2:WebView2
             x:Name="WebViewCustom"
             Grid.Row="1"

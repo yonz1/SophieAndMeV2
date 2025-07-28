@@ -6,6 +6,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 
 
 namespace SophieAndMe.MVVM.ViewModel;
@@ -14,12 +16,14 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
 {
     public ICommand Create { get; }
     public ICommand Created { get; }
-    public ICommand Back_quizz_Click { get; }
     public RelayCommand ChoisirMatierCommand { get; }
-    public RelayCommand ChoisirNomCommand { get;  }
-    private List<string> _mat = ["Physique", "Mathématiques", "Français", "Anglais", "Erreurs", "SI"];
-    public ObservableCollection<string> Noms { get; set; } = new();
-    public ObservableCollection<string> Matier { get; set; } = new();
+    public RelayCommand Return { get; }
+    public RelayCommand Advance { get; }
+    
+    private readonly List<string> _mat = ["Physique", "Mathématiques", "Français", "Anglais", "Erreurs", "SI"];
+    public ObservableCollection<string> Noms { get; set; } = [];
+    private readonly MainViewModel _mainViewModel;
+    public ObservableCollection<string> Matier { get; set; } = new ();
     private List<string> _question;
     private List<string> _repnse;
     private List<string> _urlQuestion;
@@ -32,7 +36,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
     private bool _isviewcard;
     public bool  IsViewCard
     {
@@ -42,12 +45,20 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         }
     }
     
-    
-    public VCustomModel()
+    private bool _isviewreturn;
+    public bool IsViewReturn
     {
+        get => _isviewreturn;
+        set { _isviewreturn = value; OnPropertyChanged(); }
+    }
+    
+    
+    
+    public VCustomModel(MainViewModel mainVm)
+    {
+        
         IsActive = true;
-        IsView = false;
-        IsViewCard = false;
+        _mainViewModel = mainVm;
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
@@ -67,7 +78,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
                     (matier, name, question, rep, imgQuestion, imgRep) = DBInteraction.SearchQuizzCreated(question);
                     var jscode = WebviewInteraction.EdtiQuizz(matier,name,question,imgQuestion,rep,imgRep);
                     WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-                    (IsView,IsViewCard) = (true,false);
+                    ClearLogic(true,false,false);
                     break;
                 case "Replace":
                     DBInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
@@ -77,58 +88,88 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
                     break;
             }
         });
-        
-        Back_quizz_Click = new RelayCommand(o =>
+
+        Return = new RelayCommand(o =>
         {
-            (IsView,IsViewCard) = (false,false);
-            ClearLogic();
-            var name = DBInteraction.GetName("All");
-            foreach (var value in name) { Matier.Add(value);}
+            switch (App.Current.Properties["old"])
+            {
+                case "FirstLayer":
+                    App.Current.Properties["old"] = "CreatedLogic";
+                    FirstLayer(App.Current.Properties["matier"]);
+                    break;
+                case "CreatedLogic":
+                    CreatedLogic();
+                    break;
+            }
         });
         Create = new RelayCommand(o =>
         {
-            (IsView,IsViewCard) = (true,false);
-            ClearLogic();
+            ClearLogic(true,false,false);
             var data = DBInteraction.GetAllName();
             var jscode = WebviewInteraction.Initcustom(data, "Add");
+            Console.WriteLine(jscode);
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         });
         Created = new RelayCommand(o =>
         {
-            (IsView,IsViewCard) = (false,false);
-            ClearLogic();
-            var name = DBInteraction.GetName("All");
-            foreach (var value in name) { Matier.Add(value);}
+            CreatedLogic();
         });
         
         ChoisirMatierCommand = new RelayCommand(matier =>
         {
-            ClearLogic();
+            ClearLogic(false,false,true);
             Console.WriteLine(matier);
             if (_mat.Contains(matier))
             {
-                App.Current.Properties["matier"] = matier;
-                var name = DBInteraction.GetNameCreated(matier.ToString());
-                foreach (var value in name) { Matier.Add(value);} }
+                App.Current.Properties["old"] = "CreatedLogic";
+                FirstLayer(matier);
+            }
+
             else
             {
-                App.Current.Properties["nameindex"] = matier;
-                (_question, _repnse, _urlQuestion,_urlRep) = DBInteraction.Retrievequizz(matier.ToString(),"Created");
-                var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
-                Console.WriteLine(jscode);
-                WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-                (IsView,IsViewCard) = (false,true);
+                App.Current.Properties["old"] = "FirstLayer";
+                SecondeLayer(matier);
             }
         });
     }
+    
 
-    public void ClearLogic()
+
+    public  void FirstLayer(object matier)
+    {
+        ClearLogic(false,false,true);
+        App.Current.Properties["matier"] = matier;
+        var name = DBInteraction.GetNameCreated(matier.ToString());
+        foreach (var value in name) { Matier.Add(value);} 
+    }
+
+    public void SecondeLayer(object matier)
+    {
+        App.Current.Properties["nameindex"] = matier;
+        (_question, _repnse, _urlQuestion,_urlRep) = DBInteraction.Retrievequizz(matier.ToString(),"Created",_mainViewModel);
+        var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
+        Console.WriteLine(jscode);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        ClearLogic(false,true,true);
+    }
+    public void CreatedLogic()
+    {
+        ClearLogic(false,false,false);
+        var name = DBInteraction.GetName("All");
+        foreach (var value in name) { Matier.Add(value);}
+    }
+    private void ClearLogic(bool b1, bool b2, bool b3)
     {
         Matier.Clear();
         Noms.Clear();
+        (IsView,IsViewCard,IsViewReturn) = (b1,b2,b3);
     }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string name = null) =>
+    private async void  ExecuteString(string data)
+    {
+        Console.WriteLine(data);
+        await CSharpScript.EvaluateAsync(data);
+    }
+    public new event PropertyChangedEventHandler? PropertyChanged;
+    protected new void OnPropertyChanged([CallerMemberName] string? name = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 }

@@ -21,6 +21,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     private readonly List<string> _urlQuestion;
     private readonly List<string> _urlRep;
     public List<string> MarkedQuestion;
+    private readonly MainViewModel _mainViewModel;
     public ICommand Back_quizz_Click { get; }
     public ICommand Respaper { get; } = null!;
     public ICommand DirectResp { get; }
@@ -127,9 +128,9 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     }
     
     //###################################################### Function primaire
-    public QuizzLogicModel(Func<string, Task> invokeJs)
+    public QuizzLogicModel(Func<string, Task> invokeJs,MainViewModel mainVm)
     {
-        
+        _mainViewModel = mainVm;
         MarkedQuestion = DBInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
@@ -137,7 +138,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"");
+        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         foreach (var VARIABLE in _urlRep)
         {
@@ -154,15 +155,15 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         {
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
-                NavigationService.Instance.Navigate(new VMarked());    
+                NavigationService.Instance.Navigate(new VMarked(mainVm));    
             }
             else
             {
-                NavigationService.Instance.Navigate(new VQuizz());
+                NavigationService.Instance.Navigate(new VQuizz(mainVm));
             }
             
         });
-        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep)));
+        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep,mainVm)));
     }
     
     
@@ -248,7 +249,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     
     private void FinDeQuizz()
     {
-        NavigationService.Instance.Navigate(new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep)));
+        NavigationService.Instance.Navigate(new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     
 }

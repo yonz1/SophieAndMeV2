@@ -38,15 +38,7 @@
                     Text="Retour" />
             </StackPanel>
         </Button>
-        <TextBlock
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontFamily="Microsoft Sans Serif"
-            FontSize="15"
-            Foreground="{StaticResource Textcolor}"
-            Text="{Binding Message}"
-            TextDecorations="Underline" />
+
         <wv2:WebView2 x:Name="WebViewAll" Grid.Row="1" />
     </Grid>
 </UserControl>

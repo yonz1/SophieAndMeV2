@@ -4,7 +4,9 @@ img{
   max-height: 7cm;
   margin-top: 0.4cm;
   border-radius: 3%;
-} .card {
+} 
+
+.card {
     margin-top: 0.2cm;
      margin-left: 0.2cm;  
  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

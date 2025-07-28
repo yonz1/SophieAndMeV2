@@ -10,10 +10,19 @@ function updatequizz(action,question,reponse,quest_img,rep_img)
 {
     let img1 = "";
     let img2 = "";
+
     question = question.replace(/\n/g, "<br>");
     reponse = reponse.replace(/\n/g, "<br>");
-    quest_img = quest_img.replaceAll("//", "/");
-    rep_img = rep_img.replaceAll("//", "/");
+    if (quest_img.includes("data:") || rep_img.includes("data:")) {
+        quest_img = quest_img.replace("\\/", "/");
+        rep_img = rep_img.replace("\\/", "/");
+    }
+    else
+    {
+        quest_img = quest_img.replaceAll("//", "/")
+        rep_img = rep_img.replaceAll("//", "/");
+    }
+
     const main = document.getElementById("main");
 
     if (quest_img !== "")

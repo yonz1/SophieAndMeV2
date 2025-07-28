@@ -11,7 +11,7 @@ namespace SophieAndMe.MVVM.View;
 
 public partial class VCustom : UserControl
 {
-    public VCustom()
+    public VCustom(MainViewModel mainVm)
     {
         InitializeComponent();
         string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Custom\\Custom.html";
@@ -28,10 +28,9 @@ public partial class VCustom : UserControl
             await WebViewCard.EnsureCoreWebView2Async();
             WebViewCustom.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             WebViewCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
-            //WebViewCustom.CoreWebView2.OpenDevToolsWindow();
             WebViewCustom.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
-                this.DataContext = new VCustomModel();
+                this.DataContext = new VCustomModel(mainVm);
                 WeakReferenceMessenger.Default.Register<MediatorCustom.JsCallMessage>(this, (r, m) =>
                 {
                     if (m.Value.Contains("Card"))

@@ -14,7 +14,7 @@ namespace SophieAndMe.MVVM.View
     /// </summary>
     public partial class VMarked : UserControl
     {
-        public VMarked()
+        public VMarked(MainViewModel mainVm)
         {
             InitializeComponent();
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
@@ -26,7 +26,7 @@ namespace SophieAndMe.MVVM.View
                 await webviewall.EnsureCoreWebView2Async();
 
                 webviewall.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
-                DataContext = new VMarkedModel();
+                DataContext = new VMarkedModel(mainVm);
                 
                 // webviewall.CoreWebView2.OpenDevToolsWindow();
                 

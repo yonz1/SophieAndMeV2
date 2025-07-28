@@ -7,20 +7,9 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-    xmlns:core="clr-namespace:SophieAndMe.Core"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <!-- <UserControl.Resources> -->
-    <!--     <ResourceDictionary> -->
-    <!--         <core:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/> -->
-    <!--         <ResourceDictionary.MergedDictionaries> -->
-    <!--             <ResourceDictionary Source="/Style/ButtonStyle.xaml" /> -->
-    <!--             <ResourceDictionary Source="/Style/Dark_theme.xaml" /> -->
-    <!--             <ResourceDictionary Source="/Style/General.xaml" /> -->
-    <!--         </ResourceDictionary.MergedDictionaries> -->
-    <!--     </ResourceDictionary> -->
-    <!-- </UserControl.Resources> -->
     
 
     <Grid>

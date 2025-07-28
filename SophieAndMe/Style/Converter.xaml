@@ -4,5 +4,6 @@
     
     <core:BoolToVisibilityConverterMain x:Key="BoolToVisibilityConverterMain"/>
     <core:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <core:EqualityConverter x:Key="EqualityConverter"/>
     
 </ResourceDictionary>

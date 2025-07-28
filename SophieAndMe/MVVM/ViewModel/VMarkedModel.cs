@@ -18,6 +18,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     List<string>? _repnse; 
     List<string>? _urlQuestion; 
     private List<string>? _urlRep;
+    private readonly MainViewModel _mainViewModel;
     public ObservableCollection<string> Noms { get; set; } = new();
     public ObservableCollection<SubjectItem> Subjects { get; set; }
     public RelayCommand ChoisirNomCommand { get; }
@@ -32,8 +33,9 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         }
     }
     
-    public VMarkedModel()
+    public VMarkedModel(MainViewModel mainVm)
     {
+        _mainViewModel = mainVm;
         IsActive = true;
         WeakReferenceMessenger.Default.Register<MediatorMarked.JsToAppMessage>(this, (r, m) =>
         {
@@ -92,7 +94,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         {
             App.Current.Properties["nameindex"] = "Marked-" + nom;
             App.Current.Properties["matier"] = nom;
-            NavigationService.Instance.Navigate(new QuizzLogic());
+            NavigationService.Instance.Navigate(new QuizzLogic(mainVm));
         });
     }
 

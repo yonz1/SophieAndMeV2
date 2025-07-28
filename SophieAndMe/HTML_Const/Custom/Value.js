@@ -2,6 +2,11 @@ let nom = [];
 imgQuestion = "";
 imgRep = "";
 
+const QuestionBox = document.getElementById('QuestionCheck');
+const ReponseBox =  document.getElementById('ReponseCheck');
+const bannerQuestion = document.getElementById('ques_img');
+const bannerResponse = document.getElementById('rep_img');
+
 
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -146,6 +151,7 @@ function button_fill(val)
 
     buttonTag.appendChild(btnClear);
     buttonTag.appendChild(btnAction);
+
 }
 
 
@@ -156,26 +162,37 @@ function fill_edit(matier,name,question,ImgQuestion,rep,ImgRep) {
     input_rep.value = rep;
     imgQuestion = ImgQuestion;
     imgRep = ImgRep;
+    bannerResponse.src = imgRep;
+    bannerQuestion.src = ImgQuestion;
+    NullImg(bannerQuestion);
+    NullImg(bannerResponse);
     button_fill("");
     
     const textarea = document.getElementById('inputText')
     const output = document.getElementById('OutputText')
-
-    textarea.addEventListener('input', () => {
-        output.innerHTML = textarea.value;
-        MathJax.typesetPromise([output]);
-    });
+    output.innerHTML = textarea.value;
+    MathJax.typesetPromise([output]);
 
     const textarea_rep = document.getElementById('input_rep')
     const Output_rep = document.getElementById('Output_rep')
-
-    textarea_rep.addEventListener('input', () => {
-        Output_rep.innerHTML = textarea_rep.value;
-        MathJax.typesetPromise([Output_rep]);
-    });
+    Output_rep.innerHTML = textarea_rep.value;
+    MathJax.typesetPromise([Output_rep]);
 }
 
+function save(){
+    const action = "save";
+    const matier = document.getElementById("Matier").value;
+    const name = document.getElementById("Name").value;
+    const question = document.getElementById("inputText").value;
+    const rep = document.getElementById("input_rep").value;
 
+
+
+    const data = { action, matier, name, question, imgQuestion, rep, imgRep };
+    console.log(data);
+    clear();
+    window.chrome.webview.postMessage(data);
+}
 function Replace(){
     const action = "Replace";
     const matier = document.getElementById("Matier").value;
@@ -191,17 +208,31 @@ function Replace(){
     button_fill("Add");
 }
 
-
-
+function clear()
+{
+    document.querySelectorAll('input,textarea').forEach(el => el.value = "");
+    const textarea = document.getElementById('inputText')
+    const output = document.getElementById('OutputText')
+    Output_rep.innerHTML = textarea_rep.value;
+    output.innerHTML = textarea.value;
+    QuestionBox.checked = true;
+    ReponseBox.checked = true;
+    imgRep = "";
+    imgQuestion = "";
+    bannerResponse.src = "";
+    bannerQuestion.src = "";
+}
 document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
     const file = event.target.files[0];
-    const banner = document.getElementById('rep_img');
 
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
             imgRep = e.target.result;
+            bannerResponse.src = e.target.result;
+            bannerResponse.width = "0px"
+            bannerResponse.height = "0px"
         };
 
         reader.readAsDataURL(file);
@@ -215,13 +246,16 @@ document.getElementById('fileInpu_rept').addEventListener('change', function (ev
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
-    const banner = document.getElementById('ques_img');
+    
 
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
             imgQuestion = e.target.result;
+            bannerQuestion.src = e.target.result;
+            bannerQuestion.width = "0px"
+            bannerQuestion.height = "0px"
         };
 
         reader.readAsDataURL(file);
@@ -229,3 +263,58 @@ document.getElementById('fileInput').addEventListener('change', function (event)
         alert("Veuillez sélectionner une image.");
     }
 });
+
+
+
+QuestionBox.addEventListener("change", () =>
+    QuestionBox.checked ? UnShowImages(QuestionBox) : ShowImage(QuestionBox)
+);
+
+ReponseBox.addEventListener("change", () =>
+    ReponseBox.checked ? UnShowImages(ReponseBox) : ShowImage(ReponseBox)
+);
+function ShowImage(Box)
+{
+   switch (Box){
+       case ReponseBox:
+            Show(bannerResponse);
+           break;
+       case QuestionBox:
+           Show(bannerQuestion);
+           // bannerQuestion.style.width = "200px";
+           // bannerQuestion.style.height = "200px";
+           break;
+   }
+}
+
+
+function Show(Banner)
+{
+    Banner.style.width =  "100%";             /* S'adapte au conteneur */
+    Banner.style.maxWidth =  "500px";        /* Taille maximale (tu choisis selon ton design) */
+    Banner.style.height =  "auto";            /* Garde les proportions */
+    Banner.style.imageRendering =  "auto";   /* ou 'crisp-edges' si image pixel art */
+    Banner.style.display =  "block";
+    Banner.style.margin =  "0 auto";          /* Centre l'image */
+    Banner.style.objectFit =  "contain";     /* Assure que l’image ne soit jamais déformée */
+    Banner.marginTop = "300px"
+    Banner.marginBottom = "30px"
+}
+
+function UnShowImages(Box)
+{
+    switch (Box){
+        case ReponseBox:
+            NullImg(bannerResponse)
+            break;
+        case QuestionBox:
+            NullImg(bannerQuestion);
+            break;
+    }
+}
+
+function NullImg (box)
+{
+    box.style.width = "0px";
+    box.style.height = "0px";
+}

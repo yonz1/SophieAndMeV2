@@ -111,78 +111,59 @@ document.getElementById('searchImage_rep').addEventListener('click', function()
 });
 
 
-function save(){
-    const action = "save";
-    const matier = document.getElementById("Matier").value;
-    const name = document.getElementById("Name").value;
-    const question = document.getElementById("inputText").value;
-    const rep = document.getElementById("input_rep").value;
-
-
-
-    const data = { action, matier, name, question, imgQuestion, rep, imgRep };
-    console.log(data);
-    clear();
-    window.chrome.webview.postMessage(data);
-}
-
-
-function clear()
-{
-    document.querySelectorAll('input,textarea').forEach(el => el.value = "");
-    const textarea = document.getElementById('inputText')
-    const output = document.getElementById('OutputText')
-    Output_rep.innerHTML = textarea_rep.value;
-    output.innerHTML = textarea.value;
-}
-
-
-
-document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    const banner = document.getElementById('rep_img');
-
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            imgRep = e.target.result;
-            // banner.src = e.target.result;
-            // banner.style.maxWidth = "10cm"; 
-            // banner.style.height = "auto";   
-            // banner.style.maxHeight = "10cm"; 
-        };
-
-        reader.readAsDataURL(file);
-    } else {
-        alert("Veuillez sélectionner une image.");
-    }
-});
 
 
 
 
-document.getElementById('fileInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    const banner = document.getElementById('ques_img');
 
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
 
-        reader.onload = function (e) {
-            imgQuestion = e.target.result;
-            // banner.src = e.target.result;
-            // banner.style.maxWidth = "10cm"; 
-            // banner.style.height = "auto";   
-            // banner.style.maxHeight = "10cm"; 
-        };
+// document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
+//     const file = event.target.files[0];
+//     const banner = document.getElementById('rep_img');
+//
+//     if (file && file.type.startsWith('image/')) {
+//         const reader = new FileReader();
+//
+//         reader.onload = function (e) {
+//             imgRep = e.target.result;
+//             // banner.src = e.target.result;
+//             // banner.style.maxWidth = "10cm"; 
+//             // banner.style.height = "auto";   
+//             // banner.style.maxHeight = "10cm"; 
+//         };
+//
+//         reader.readAsDataURL(file);
+//     } else {
+//         alert("Veuillez sélectionner une image.");
+//     }
+// });
+//
+//
+//
+//
+// document.getElementById('fileInput').addEventListener('change', function (event) {
+//     const file = event.target.files[0];
+//     const banner = document.getElementById('ques_img');
+//
+//     if (file && file.type.startsWith('image/')) {
+//         const reader = new FileReader();
+//
+//         reader.onload = function (e) {
+//             imgQuestion = e.target.result;
+//             console.log(imgQuestion);
+//             // banner.src = e.target.result;
+//             // banner.style.maxWidth = "10cm"; 
+//             // banner.style.height = "auto";   
+//             // banner.style.maxHeight = "10cm"; 
+//         };
+//
+//         reader.readAsDataURL(file);
+//     } else {
+//         alert("Veuillez sélectionner une image.");
+//     }
+// });
 
-        reader.readAsDataURL(file);
-    } else {
-        alert("Veuillez sélectionner une image.");
-    }
-});
-// console.log(document.getElementById("input").files[0]);
+
 
 
 

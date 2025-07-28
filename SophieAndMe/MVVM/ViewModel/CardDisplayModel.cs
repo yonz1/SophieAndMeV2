@@ -11,6 +11,7 @@ public class CardDisplayModel
 {
     private readonly Func<string, Task> _invokejs;
     private string _jscall = null!;
+    private readonly MainViewModel _mainViewModel;
     public ICommand Back_quizz_Click { get; }
     private string _message = null!;
     public string Message
@@ -18,8 +19,9 @@ public class CardDisplayModel
         get => _message;set{        _message = value;        OnPropertyChanged();    }
     }
 
-    public CardDisplayModel(Func<string, Task> invokeJs,List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    public CardDisplayModel(Func<string, Task> invokeJs,List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse,MainViewModel mainVm)
     {
+        _mainViewModel = mainVm;
         Message = App.Current.Properties["nameindex"].ToString();
         _invokejs = invokeJs;
         var q = QuizzUtilities.Miseneformelist(question) ?? new List<string>();
@@ -32,11 +34,11 @@ public class CardDisplayModel
         {
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
-                NavigationService.Instance.Navigate(new VMarked());    
+                NavigationService.Instance.Navigate(new VMarked(mainVm));    
             }
             else
             {
-                NavigationService.Instance.Navigate(new VQuizz());
+                NavigationService.Instance.Navigate(new VQuizz(mainVm));
             }
         });
     }

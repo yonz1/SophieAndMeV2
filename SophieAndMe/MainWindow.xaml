@@ -81,7 +81,7 @@
                                 VerticalAlignment="Top"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Command="{Binding ShowSettingCommand}"
+                                Command="{Binding ShowProfileContent}"
                                 DockPanel.Dock="Right"
                                 Style="{StaticResource TopButton}">
                                 <Ellipse
@@ -219,123 +219,32 @@
                                         <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
                                     </Rectangle.Fill>
                                 </Rectangle>
-
-                                <RadioButton
-                                    Margin="0,30,0,0"
-                                    Command="{Binding ShowQuizzCommand}"
-                                    DockPanel.Dock="Top"
-                                    Style="{StaticResource NewMButtton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Rectangle
-                                            x:Name="Rect1"
-                                            Width="0"
-                                            Height="20"
-                                            Margin="0,0,0,0"
-                                            Fill="MediumSlateBlue"
-                                            RadiusX="5"
-                                            RadiusY="5"
-                                            Visibility="Hidden">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect
-                                                    BlurRadius="20"
-                                                    Direction="270"
-                                                    Opacity="0.3"
-                                                    ShadowDepth="0"
-                                                    Color="White" />
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <fs:IconImage
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Icon="UserGraduate"
-                                            Style="{StaticResource NewMButtonIcon}" />
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton
-                                    Name="Markedval"
-                                    Margin="0,10,0,0"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding ShowMarkedCommand}"
-                                    DockPanel.Dock="Top"
-                                    Style="{StaticResource NewMButtton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Rectangle
-                                            x:Name="Rect2"
-                                            Width="0"
-                                            Height="20"
-                                            Margin="0,0,0,0"
-                                            Fill="MediumSlateBlue"
-                                            RadiusX="5"
-                                            RadiusY="5"
-                                            Visibility="Hidden">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect
-                                                    BlurRadius="20"
-                                                    Direction="270"
-                                                    Opacity="0.3"
-                                                    ShadowDepth="0"
-                                                    Color="White" />
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <fs:IconImage
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Icon="BookBookmark"
-                                            Style="{StaticResource NewMButtonIcon}" />
-                                    </StackPanel>
-                                </RadioButton>
-
-
-                                <RadioButton
-                                    Name="Custom"
-                                    Margin="0,10,0,0"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding ShowCustomCommand}"
-                                    DockPanel.Dock="Top"
-                                    Style="{StaticResource NewMButtton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Rectangle
-                                            x:Name="Rect3"
-                                            Width="0"
-                                            Height="20"
-                                            Margin="0,0,0,0"
-                                            Fill="MediumSlateBlue"
-                                            RadiusX="5"
-                                            RadiusY="5"
-                                            Visibility="Hidden">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect
-                                                    BlurRadius="20"
-                                                    Direction="270"
-                                                    Opacity="0.3"
-                                                    ShadowDepth="0"
-                                                    Color="White" />
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <fs:IconImage
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Icon="UserPen"
-                                            Style="{StaticResource NewMButtonIcon}" />
-                                    </StackPanel>
-                                </RadioButton>
-
+                                
+                                <ItemsControl ItemsSource="{Binding Pages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,30,0,0" DockPanel.Dock="Top" Orientation="Vertical"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
                                 <RadioButton
                                     Margin="0,10,0,0"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding ShowCalendarCommand}"
+                                    Command="{Binding SelectCommand}"
+                                    GroupName="MyRadioGroup"
                                     DockPanel.Dock="Top"
                                     Style="{StaticResource NewMButtton}">
-                                    <StackPanel Orientation="Horizontal">
+                                    <DockPanel >
                                         <Rectangle
-                                            x:Name="Rect4"
-                                            Width="0"
-                                            Height="20"
-                                            Margin="0,0,0,0"
-                                            Fill="MediumSlateBlue"
+                                            Width="5"
+                                            Height="25"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            DockPanel.Dock="Left"
+                                            Fill="{StaticResource Textcolor}"
                                             RadiusX="5"
                                             RadiusY="5"
-                                            Visibility="Hidden">
+                                            Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}" >
                                             <Rectangle.Effect>
                                                 <DropShadowEffect
                                                     BlurRadius="20"
@@ -346,50 +255,189 @@
                                             </Rectangle.Effect>
                                         </Rectangle>
                                         <fs:IconImage
+                                            DockPanel.Dock="Left"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
-                                            Icon="Calendar"
+                                            Icon="{Binding IconVal}"
                                             Style="{StaticResource NewMButtonIcon}" />
-                                    </StackPanel>
+                                    </DockPanel>
                                 </RadioButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-                                <RadioButton
-                                    Margin="0,10,0,0"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding ShowCalendarCommand}"
-                                    DockPanel.Dock="Top"
-                                    Style="{StaticResource NewMButtton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Rectangle
-                                            x:Name="Rect5"
-                                            Width="0"
-                                            Height="20"
-                                            Margin="0,0,0,0"
-                                            Fill="MediumSlateBlue"
-                                            RadiusX="5"
-                                            RadiusY="5"
-                                            Visibility="Hidden">
-                                            <Rectangle.Effect>
-                                                <DropShadowEffect
-                                                    BlurRadius="20"
-                                                    Direction="270"
-                                                    Opacity="0.3"
-                                                    ShadowDepth="0"
-                                                    Color="White" />
-                                            </Rectangle.Effect>
-                                        </Rectangle>
-                                        <fs:IconImage
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Icon="Edit"
-                                            Style="{StaticResource NewMButtonIcon}" />
-                                    </StackPanel>
-                                </RadioButton>
-
+                                <!-- <RadioButton -->
+                                <!--     Margin="0,30,0,0" -->
+                                <!--     Command="{Binding ShowQuizzCommand}" -->
+                                <!--     DockPanel.Dock="Top" -->
+                                <!--     Style="{StaticResource NewMButtton}"> -->
+                                <!--     <StackPanel Orientation="Horizontal"> -->
+                                <!--         <Rectangle -->
+                                <!--             x:Name="Rect1" -->
+                                <!--             Width="0" -->
+                                <!--             Height="20" -->
+                                <!--             Margin="0,0,0,0" -->
+                                <!--             Fill="MediumSlateBlue" -->
+                                <!--             RadiusX="5" -->
+                                <!--             RadiusY="5" -->
+                                <!--             Visibility="Hidden"> -->
+                                <!--             <Rectangle.Effect> -->
+                                <!--                 <DropShadowEffect -->
+                                <!--                     BlurRadius="20" -->
+                                <!--                     Direction="270" -->
+                                <!--                     Opacity="0.3" -->
+                                <!--                     ShadowDepth="0" -->
+                                <!--                     Color="White" /> -->
+                                <!--             </Rectangle.Effect> -->
+                                <!--         </Rectangle> -->
+                                <!--         <fs:IconImage -->
+                                <!--             HorizontalAlignment="Center" -->
+                                <!--             VerticalAlignment="Center" -->
+                                <!--             Icon="UserGraduate" -->
+                                <!--             Style="{StaticResource NewMButtonIcon}" /> -->
+                                <!--     </StackPanel> -->
+                                <!-- </RadioButton> -->
+                                <!-- <RadioButton -->
+                                <!--     Name="Markedval" -->
+                                <!--     Margin="0,10,0,0" -->
+                                <!--     VerticalAlignment="Top" -->
+                                <!--     Command="{Binding ShowMarkedCommand}" -->
+                                <!--     DockPanel.Dock="Top" -->
+                                <!--     Style="{StaticResource NewMButtton}"> -->
+                                <!--     <StackPanel Orientation="Horizontal"> -->
+                                <!--         <Rectangle -->
+                                <!--             x:Name="Rect2" -->
+                                <!--             Width="0" -->
+                                <!--             Height="20" -->
+                                <!--             Margin="0,0,0,0" -->
+                                <!--             Fill="MediumSlateBlue" -->
+                                <!--             RadiusX="5" -->
+                                <!--             RadiusY="5" -->
+                                <!--             Visibility="Hidden"> -->
+                                <!--             <Rectangle.Effect> -->
+                                <!--                 <DropShadowEffect -->
+                                <!--                     BlurRadius="20" -->
+                                <!--                     Direction="270" -->
+                                <!--                     Opacity="0.3" -->
+                                <!--                     ShadowDepth="0" -->
+                                <!--                     Color="White" /> -->
+                                <!--             </Rectangle.Effect> -->
+                                <!--         </Rectangle> -->
+                                <!--         <fs:IconImage -->
+                                <!--             HorizontalAlignment="Center" -->
+                                <!--             VerticalAlignment="Center" -->
+                                <!--             Icon="BookBookmark" -->
+                                <!--             Style="{StaticResource NewMButtonIcon}" /> -->
+                                <!--     </StackPanel> -->
+                                <!-- </RadioButton> -->
+                                <!-- -->
+                                <!-- -->
+                                <!-- <RadioButton -->
+                                <!--     Name="Custom" -->
+                                <!--     Margin="0,10,0,0" -->
+                                <!--     VerticalAlignment="Top" -->
+                                <!--     Command="{Binding ShowCustomCommand}" -->
+                                <!--     DockPanel.Dock="Top" -->
+                                <!--     Style="{StaticResource NewMButtton}"> -->
+                                <!--     <StackPanel Orientation="Horizontal"> -->
+                                <!--         <Rectangle -->
+                                <!--             x:Name="Rect3" -->
+                                <!--             Width="0" -->
+                                <!--             Height="20" -->
+                                <!--             Margin="0,0,0,0" -->
+                                <!--             Fill="MediumSlateBlue" -->
+                                <!--             RadiusX="5" -->
+                                <!--             RadiusY="5" -->
+                                <!--             Visibility="Hidden"> -->
+                                <!--             <Rectangle.Effect> -->
+                                <!--                 <DropShadowEffect -->
+                                <!--                     BlurRadius="20" -->
+                                <!--                     Direction="270" -->
+                                <!--                     Opacity="0.3" -->
+                                <!--                     ShadowDepth="0" -->
+                                <!--                     Color="White" /> -->
+                                <!--             </Rectangle.Effect> -->
+                                <!--         </Rectangle> -->
+                                <!--         <fs:IconImage -->
+                                <!--             HorizontalAlignment="Center" -->
+                                <!--             VerticalAlignment="Center" -->
+                                <!--             Icon="UserPen" -->
+                                <!--             Style="{StaticResource NewMButtonIcon}" /> -->
+                                <!--     </StackPanel> -->
+                                <!-- </RadioButton> -->
+                                <!-- -->
+                                <!-- <RadioButton -->
+                                <!--     Margin="0,10,0,0" -->
+                                <!--     VerticalAlignment="Top" -->
+                                <!--     Command="{Binding ShowCalendarCommand}" -->
+                                <!--     DockPanel.Dock="Top" -->
+                                <!--     Style="{StaticResource NewMButtton}"> -->
+                                <!--     <StackPanel Orientation="Horizontal"> -->
+                                <!--         <Rectangle -->
+                                <!--             x:Name="Rect4" -->
+                                <!--             Width="0" -->
+                                <!--             Height="20" -->
+                                <!--             Margin="0,0,0,0" -->
+                                <!--             Fill="MediumSlateBlue" -->
+                                <!--             RadiusX="5" -->
+                                <!--             RadiusY="5" -->
+                                <!--             Visibility="Hidden"> -->
+                                <!--             <Rectangle.Effect> -->
+                                <!--                 <DropShadowEffect -->
+                                <!--                     BlurRadius="20" -->
+                                <!--                     Direction="270" -->
+                                <!--                     Opacity="0.3" -->
+                                <!--                     ShadowDepth="0" -->
+                                <!--                     Color="White" /> -->
+                                <!--             </Rectangle.Effect> -->
+                                <!--         </Rectangle> -->
+                                <!--         <fs:IconImage -->
+                                <!--             HorizontalAlignment="Center" -->
+                                <!--             VerticalAlignment="Center" -->
+                                <!--             Icon="Calendar" -->
+                                <!--             Style="{StaticResource NewMButtonIcon}" /> -->
+                                <!--     </StackPanel> -->
+                                <!-- </RadioButton> -->
+                                <!-- -->
+                                <!-- <RadioButton -->
+                                <!--     Margin="0,10,0,0" -->
+                                <!--     VerticalAlignment="Top" -->
+                                <!--     Command="{Binding ShowCalendarCommand}" -->
+                                <!--     DockPanel.Dock="Top" -->
+                                <!--     Style="{StaticResource NewMButtton}"> -->
+                                <!--     <StackPanel Orientation="Horizontal"> -->
+                                <!--         <Rectangle -->
+                                <!--             x:Name="Rect5" -->
+                                <!--             Width="0" -->
+                                <!--             Height="20" -->
+                                <!--             Margin="0,0,0,0" -->
+                                <!--             Fill="MediumSlateBlue" -->
+                                <!--             RadiusX="5" -->
+                                <!--             RadiusY="5" -->
+                                <!--             Visibility="Hidden"> -->
+                                <!--             <Rectangle.Effect> -->
+                                <!--                 <DropShadowEffect -->
+                                <!--                     BlurRadius="20" -->
+                                <!--                     Direction="270" -->
+                                <!--                     Opacity="0.3" -->
+                                <!--                     ShadowDepth="0" -->
+                                <!--                     Color="White" /> -->
+                                <!--             </Rectangle.Effect> -->
+                                <!--         </Rectangle> -->
+                                <!--         <fs:IconImage -->
+                                <!--             HorizontalAlignment="Center" -->
+                                <!--             VerticalAlignment="Center" -->
+                                <!--             Icon="Edit" -->
+                                <!--             Style="{StaticResource NewMButtonIcon}" /> -->
+                                <!--     </StackPanel> -->
+                                <!-- </RadioButton> -->
+                                <!-- -->
+                                
+                                
                                 <RadioButton
                                     Margin="0,10,0,0"
                                     VerticalAlignment="Bottom"
-                                    Command="{Binding ShowCalendarCommand}"
+                                    Command="{Binding ShowSettingCommand}"
                                     DockPanel.Dock="Bottom"
                                     Style="{StaticResource NewMButtton}">
                                     <StackPanel Orientation="Horizontal">

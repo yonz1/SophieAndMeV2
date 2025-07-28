@@ -3,6 +3,7 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
+using SophieAndMe.MVVM.ViewModel;
 
 
 namespace SophieAndMe.MVVM.Model
@@ -107,7 +108,7 @@ namespace SophieAndMe.MVVM.Model
             return result;
         }
         
-        public static (List<string>,List<string>,List<string>,List<string>) Retrievequizz(string? nameindex,string ID)
+        public static (List<string>,List<string>,List<string>,List<string>) Retrievequizz(string? nameindex,string ID,MainViewModel mainVm)
         {
             var connection = new SQLiteConnection(ConSource);
             string query = "";
@@ -157,11 +158,11 @@ namespace SophieAndMe.MVVM.Model
                 MessageBox.Show("Ce quizz ne posséde aucune questions");
                 if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
                 {
-                    NavigationService.Instance.Navigate(new VMarked());    
+                    NavigationService.Instance.Navigate(new VMarked(mainVm));    
                 }
                 else
                 {
-                    NavigationService.Instance.Navigate(new VQuizz());
+                    NavigationService.Instance.Navigate(new VQuizz(mainVm));
                 }
             }
             
