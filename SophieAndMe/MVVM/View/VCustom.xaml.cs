@@ -35,13 +35,15 @@ public partial class VCustom : UserControl
                 {
                     if (m.Value.Contains("Card"))
                     {
-                        Console.WriteLine("Card Webview Triggered");
                         WebViewCard.CoreWebView2.ExecuteScriptAsync(m.Value);
                         
                     }
+                    else if (m.Value.Contains("{\"level\":"))
+                    {
+                        WebViewCard.CoreWebView2.PostWebMessageAsJson(m.Value);
+                    }
                     else
                     {
-                        Console.WriteLine("Custom Webview Triggered");
                         WebViewCustom.CoreWebView2.ExecuteScriptAsync(m.Value);
                     }
                 });

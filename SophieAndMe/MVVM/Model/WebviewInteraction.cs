@@ -61,6 +61,21 @@ public abstract class WebviewInteraction
         string jscode = $"fill_edit({json},{json2},{json3},{json4},{json5},{json6})";
         return jscode;
     }
+
+    public static string send_data_Card_Import(List<string> level, List<string> course, List<string> question, List<string> imgQuestion,
+        List<string> rep, List<string> imgRep, List<string> difficulty)
+    {
+        string json = JsonSerializer.Serialize(level);
+        string json2 = JsonSerializer.Serialize(course);
+        string json3 = JsonSerializer.Serialize(question);
+        string json4 = JsonSerializer.Serialize(imgQuestion);
+        string json5 = JsonSerializer.Serialize(rep);
+        string json6 = JsonSerializer.Serialize(imgRep);
+        string json7 = JsonSerializer.Serialize(difficulty);
+        string jscode = $"CreateCardResp({json3},{json5},{json4},{json6})";
+        return jscode;
+    }
+    
     
 
 }

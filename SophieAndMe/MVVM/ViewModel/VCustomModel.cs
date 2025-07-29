@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,6 +17,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
 {
     public ICommand Create { get; }
     public ICommand Created { get; }
+    public ICommand Import { get; }
     public RelayCommand ChoisirMatierCommand { get; }
     public RelayCommand Return { get; }
     public RelayCommand Advance { get; }
@@ -24,10 +26,14 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public ObservableCollection<string> Noms { get; set; } = [];
     private readonly MainViewModel _mainViewModel;
     public ObservableCollection<string> Matier { get; set; } = new ();
+    private List<string> _level;
+    private List<string> _course;
     private List<string> _question;
     private List<string> _repnse;
     private List<string> _urlQuestion;
     private List<string> _urlRep;
+    private List<string> _difficulty;
+    public List<Dictionary<string, string>> _all;
     private bool _isview;
     public bool  IsView
     {
@@ -114,6 +120,11 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         {
             CreatedLogic();
         });
+
+        Import = new RelayCommand(o =>
+        {
+            ShowLogic();
+        });
         
         ChoisirMatierCommand = new RelayCommand(matier =>
         {
@@ -132,9 +143,33 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             }
         });
     }
+
+
+    public void ShowLogic()
+    {
+        
+        (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DBInteraction.GetAllPublic();
+        // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("ClearCard()"));
+        Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < _level.Count; i++)
+        {
+            dico["level"] = _level[i];
+            dico["course"] = _course[i];
+            dico["question"] = _question[i];
+            dico["repnse"] = _repnse[i];
+            dico["urlQuestion"] = _urlQuestion[i];
+            dico["urlRep"] = _urlRep[i];
+            dico["difficulty"] = _difficulty[i];
+            string jscode = JsonSerializer.Serialize(dico);
+            Console.WriteLine(jscode);
+            WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        }
+
+        // WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        ClearLogic(false,true,true);
+    }
     
-
-
     public  void FirstLayer(object matier)
     {
         ClearLogic(false,false,true);
@@ -148,7 +183,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         App.Current.Properties["nameindex"] = matier;
         (_question, _repnse, _urlQuestion,_urlRep) = DBInteraction.Retrievequizz(matier.ToString(),"Created",_mainViewModel);
         var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
-        Console.WriteLine(jscode);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         ClearLogic(false,true,true);
     }
@@ -166,7 +200,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     }
     private async void  ExecuteString(string data)
     {
-        Console.WriteLine(data);
         await CSharpScript.EvaluateAsync(data);
     }
     public new event PropertyChangedEventHandler? PropertyChanged;

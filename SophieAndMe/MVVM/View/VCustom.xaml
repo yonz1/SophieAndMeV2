@@ -35,7 +35,7 @@
             <Button
                 Width="30"
                 Height="30"
-                Margin="0,0,20,0"
+                Margin="0,0,30,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 BorderThickness="0"
@@ -48,23 +48,6 @@
                     Height="24"
                     Foreground="{StaticResource Textcolor}"
                     Icon="ChevronLeft"
-                    Style="{StaticResource TopButtonIconrad}" />
-            </Button>
-            <Button
-                Width="30"
-                Height="30"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                BorderThickness="0"
-                Command="{Binding Advance}"
-                DockPanel.Dock="Left"
-                Style="{StaticResource TopButton}"
-                Tag="{StaticResource Textcolor}">
-                <fs:IconImage
-                    Width="24"
-                    Height="24"
-                    Foreground="{StaticResource Textcolor}"
-                    Icon="ChevronRight"
                     Style="{StaticResource TopButtonIconrad}" />
             </Button>
             </DockPanel>
@@ -100,6 +83,20 @@
                         Background="Transparent"
                         Command="{Binding Created}"
                         Content="Created"
+                        DockPanel.Dock="Left"
+                        Foreground="{StaticResource Textcolor}"
+                        Style="{StaticResource topquizzmat}"
+                        Tag="Physique" />
+                    <Button
+                        Width="120"
+                        Height="40"
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        Background="Transparent"
+                        Command="{Binding Import}"
+                        Content="Importer"
                         DockPanel.Dock="Left"
                         Foreground="{StaticResource Textcolor}"
                         Style="{StaticResource topquizzmat}"

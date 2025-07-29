@@ -1,3 +1,9 @@
+const divmain = document.getElementById("main");
+i = 0;
+y = 0;
+const ArrayMain = [];
+let batch = [];
+
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -8,12 +14,46 @@ window.MathJax = {
         renderActions: {
             addMenu: [] // désactive le menu contextuel MathJax
         }
-    }
+    },
+    // svg: {
+    //     linebreaks: { automatic: true },
+    // },
+    // chtml: {
+    //     linebreaks: { automatic: true },
+    // }
 };
 
+const observerTrigger = document.createElement("div");
+observerTrigger.id = "scroll-trigger";
+divmain.appendChild(observerTrigger);
 
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;  
+    console.log(dico.question);
+    ArrayMain.push(dico)
+    if (y < 7)
+    {
+        CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+    }
+    else{i = y}
+});
+
+const oberserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting)
+    {
+        console.log(ArrayMain[i].question)
+        CreateCardImport(ArrayMain[i].question,ArrayMain[i].repnse,ArrayMain[i].urlQuestion,ArrayMain[i].urlRep);
+        i++;
+    }
+},{threshold:0});
+
+oberserver.observe(observerTrigger);
+
+function ClearCard()
+{
+    divmain.innerHTML = "";
+}
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
-    const divmain = document.getElementById("main")
     divmain.innerHTML = "";
 
 
@@ -21,11 +61,14 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
 
         let img1 = "";
         let img2 = ""
-        const answer = reparr[index];
+        let val = "\"" + question + "\"";
         const quest_img = Qimg[index].replace("\\/", "/");
         const rep_img = Rimg[index].replace("\\/", "/");
-        let val = "\"" + question + "\"";
+        question = question.replace(/\n/g, "<br>");
+        answer = reparr[index].replace(/\n/g, "<br>");
         console.log(val);
+        console.log(question);
+        console.log(answer);
         
         if (quest_img !== "") {
             img1 = `<img src= ${quest_img} >`;
@@ -55,11 +98,15 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
       </svg>
     </button>
     <div class="container">
+    <div class="DivInline">
         ${img1}
       <p>${question}</p>
+      </div>
       <hr>
+      <div class="DivInline">
       ${img2}
       <p>${answer}</p>
+    </div>
     </div>
   `;
 
@@ -79,12 +126,11 @@ function CreateCardResp(questarr, reparr, Qimg, Rimg){
 
         let img1 = "";
         let img2 = ""
-        const answer = reparr[index];
         const quest_img = Qimg[index].replace("\\/", "/");
         const rep_img = Rimg[index].replace("\\/", "/");
-        console.log(question)
-        console.log(answer)
         const val = "\"" + question + "\"";
+        question = question.replace(/\n/g, "<br>");
+        answer = reparr[index].replace(/\n/g, "<br>");
 
         if (quest_img !== "") {
             img1 = `<img src= ${quest_img} >`;
@@ -102,11 +148,15 @@ function CreateCardResp(questarr, reparr, Qimg, Rimg){
 
         card.innerHTML = `
     <div class="container">
+        <div class="DivInline">
         ${img1}
       <p>${question}</p>
+      </div>
       <hr>
+          <div class="DivInline">
       ${img2}
       <p>${answer}</p>
+      </div>
     </div>
   `;
 
@@ -128,12 +178,11 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
 
         let img1 = "";
         let img2 = ""
-        const answer = reparr[index];
         const quest_img = Qimg[index].replace("\\/", "/");
         const rep_img = Rimg[index].replace("\\/", "/");
-        console.log(question)
-        console.log(answer)
         const val = "\"" + question + "\"";
+        question = question.replace(/\n/g, "<br>");
+        answer = reparr[index].replace(/\n/g, "<br>");
 
         if (quest_img !== "") {
             img1 = `<img src= ${quest_img} >`;
@@ -174,11 +223,15 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
 </button>
     
     <div class="container">
+        <div class="DivInline">
         ${img1}
       <p>${question}</p>
+      </div>
       <hr>
+          <div class="DivInline">
       ${img2}
       <p>${answer}</p>
+      </div>
     </div>
   `;
 
@@ -187,6 +240,47 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
     if (window.MathJax) {
         MathJax.typeset();
     }
+}
+
+
+function CreateCardImport(quest, rep, Qimg, Rimg){
+    let card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+    <div class="container">
+        <div class="DivInline">
+            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+    </div>`;
+    batch.push(card);
+    if (batch.length >= 5) {
+        renderCardsSmoothly(batch);
+        batch = [];
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+}
+
+function renderCardsSmoothly(cards) {
+    let i = 0;
+
+    function step() {
+        if (i < cards.length) {
+            divmain.insertBefore(cards[i], document.getElementById("scroll-trigger"));
+            i++;
+            requestAnimationFrame(step); // continue d'ajouter la carte suivante
+        }
+    }
+
+    requestAnimationFrame(step); // démarre le rendu
 }
 
 function get_val(button) {
