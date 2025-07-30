@@ -1,8 +1,11 @@
 const divmain = document.getElementById("main");
 i = 0;
 y = 0;
-const ArrayMain = [];
+let ArrayMain = [];
 let batch = [];
+const observerTrigger = document.createElement("div");
+observerTrigger.id = "scroll-trigger";
+
 
 window.MathJax = {
     tex: {
@@ -23,35 +26,46 @@ window.MathJax = {
     // }
 };
 
-const observerTrigger = document.createElement("div");
-observerTrigger.id = "scroll-trigger";
-divmain.appendChild(observerTrigger);
+// CreateCardImport("Développement limité à l'ordre $2n+1$ de $\\sin x$","$$=x-\\frac {x^3}{3!}+\\frac{x^5}{5!}-\\frac{x^7}{7!}+...+(-1)^n\\, \\frac{x^{2n+1}}{(2n+1)!}+o(x^{2n+2})$$\n" +
+//     "$$=\\sum_{k=0}^n (-1)^k\\, \\frac{x^{2k+1}}{(2k+1)!}+o(x^{2n+1})$$","","");
+// CreateCardImport("Quel est le temps de réponse  d'un système de fonction de transfert d'ordre 2, de pulsation propre non amortie $\\omega_0=300$ $rad/s$ et de coefficient d'amortissement $z=0,1$",
+//     "$t_{r} \\omega_0=30$\n <br> $t_{r}=\\frac{30}{\\omega_0}=\\frac{30}{300}=0,1s$","https://s3.eu-central-1.amazonaws.com/project555-prod/user_uploads/e991ab00-3987-11e7-9ec3-b92b74a4803c","")
 
 window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;  
-    console.log(dico.question);
+    dico = event.data;
     ArrayMain.push(dico)
-    if (y < 7)
+    if (i < 10)
     {
         CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+        i++;
     }
-    else{i = y}
 });
 
 const oberserver = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting)
     {
-        console.log(ArrayMain[i].question)
-        CreateCardImport(ArrayMain[i].question,ArrayMain[i].repnse,ArrayMain[i].urlQuestion,ArrayMain[i].urlRep);
-        i++;
+        let y = 0;
+        while (y < 10 && i < ArrayMain.length) {
+            console.log("scrollTriger");
+            CreateCardImport(
+                ArrayMain[i].question,
+                ArrayMain[i].repnse,
+                ArrayMain[i].urlQuestion,
+                ArrayMain[i].urlRep
+            );
+            i++;
+            y++; 
+        }
     }
-},{threshold:0});
+},{threshold:0.1});
 
 oberserver.observe(observerTrigger);
 
 function ClearCard()
 {
     divmain.innerHTML = "";
+    ArrayMain = [];
+    divmain.appendChild(observerTrigger);
 }
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
     divmain.innerHTML = "";
@@ -109,7 +123,6 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
     </div>
     </div>
   `;
-
         divmain.appendChild(card)
     });
     if (window.MathJax) {
@@ -260,23 +273,29 @@ function CreateCardImport(quest, rep, Qimg, Rimg){
         </div>
     </div>`;
     batch.push(card);
-    if (batch.length >= 5) {
+    if (batch.length >= 10) {
+        console.log("10 Created")
         renderCardsSmoothly(batch);
+        MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
         batch = [];
-        if (window.MathJax) {
-            MathJax.typesetPromise();
-        }
     }
 }
 
 function renderCardsSmoothly(cards) {
     let i = 0;
-
     function step() {
         if (i < cards.length) {
             divmain.insertBefore(cards[i], document.getElementById("scroll-trigger"));
             i++;
             requestAnimationFrame(step); // continue d'ajouter la carte suivante
+        } else {
+            // ✅ Une fois toutes les cartes insérées, on lance MathJax
+            if (window.MathJax) {
+                requestAnimationFrame(() => {
+                    MathJax.typesetPromise([divmain])
+                        .catch(err => console.error("MathJax error:", err));
+                });
+            }
         }
     }
 

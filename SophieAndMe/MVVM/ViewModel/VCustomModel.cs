@@ -162,12 +162,9 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             dico["urlRep"] = _urlRep[i];
             dico["difficulty"] = _difficulty[i];
             string jscode = JsonSerializer.Serialize(dico);
-            Console.WriteLine(jscode);
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }
-
-        // WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-        ClearLogic(false,true,true);
+        ClearLogic(false,true,false);
     }
     
     public  void FirstLayer(object matier)

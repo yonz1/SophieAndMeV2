@@ -7,7 +7,7 @@ using NavigationService = SophieAndMe.Core.NavigationService;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
-public class CardDisplayModel 
+public class CardDisplayRespModel 
 {
     private readonly Func<string, Task> _invokejs;
     private string _jscall = null!;
@@ -19,7 +19,7 @@ public class CardDisplayModel
         get => _message;set{        _message = value;        OnPropertyChanged();    }
     }
 
-    public CardDisplayModel(Func<string, Task> invokeJs,List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse,MainViewModel mainVm)
+    public CardDisplayRespModel(Func<string, Task> invokeJs,List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse,MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
         Message = App.Current.Properties["nameindex"].ToString();

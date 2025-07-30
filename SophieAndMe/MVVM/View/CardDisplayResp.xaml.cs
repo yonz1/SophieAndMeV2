@@ -27,7 +27,7 @@ public partial class CardDisplayResp : UserControl
         WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) =>
         {
             WebViewAll.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");
-            var vm = new CardDisplayModel(js => WebViewAll.ExecuteScriptAsync(js),question,reponse,urlQuestion,urlReponse,mainVm);
+            var vm = new CardDisplayRespModel(js => WebViewAll.ExecuteScriptAsync(js),question,reponse,urlQuestion,urlReponse,mainVm);
             this.DataContext = vm;
         };
     }

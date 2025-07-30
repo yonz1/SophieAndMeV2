@@ -6,6 +6,8 @@
 /*{*/
 /*    display: inline;*/
 /*}*/
+@import url(
+"https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
 img{
   max-width: 60%;
@@ -21,8 +23,7 @@ img{
  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
     background-color: #242424;
-    min-width: 40%;
-    max-width: 60%;
+    width: 40%;
   border-radius: 5px;
   display:  inline-block;
     align-items: center;
@@ -170,4 +171,31 @@ p {
     transform: scaleX(1);
     left: 0px;
     transform-origin: right;
+}
+.Top-Function{
+    margin-bottom: 40px;
+    height: 3vw;
+    display:  inline-block  ;
+}
+
+.Top_select {
+    width: 10vw;
+    height: 2vw;
+    padding: 0 15px;
+    margin-right: 50px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 40px;
+    transition: border-color 0.3s;
+}
+
+.Top_select:focus {
+    border-color: #4CAF50;
+}
+
+
+datalist {
+    display: none;
 }
