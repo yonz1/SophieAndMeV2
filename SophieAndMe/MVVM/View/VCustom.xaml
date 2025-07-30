@@ -116,6 +116,8 @@
             x:Name="WebViewCard"
             Grid.Row="1"
             Visibility="{Binding IsViewCard, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}" />
+        
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewCard}" />
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
             <ItemsControl ItemsSource="{Binding Matier}">
                 <ItemsControl.ItemsPanel>

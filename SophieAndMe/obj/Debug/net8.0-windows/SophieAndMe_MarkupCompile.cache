@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\App.xaml
-18-1071758957
+18-853513011
 3-112487820
-35-2019377609
+36-120404930
 2271295286257
-MainWindow.xaml;MVVM\View\CardDisplayImport.xaml;MVVM\View\CardDisplayResp.xaml;MVVM\View\EndQuizz.xaml;MVVM\View\QuizzLogic.xaml;MVVM\View\VAgenda.xaml;MVVM\View\VCustom.xaml;MVVM\View\VLanding.xaml;MVVM\View\VMarked.xaml;MVVM\View\VNotes.xaml;MVVM\View\VQuizz.xaml;Style\ButtonStyle.xaml;Style\Calendar.xaml;Style\Converter.xaml;Style\Dark_theme.xaml;Style\General.xaml;Style\Light_Theme.xaml;Style\Theme.xaml;
+MainWindow.xaml;MVVM\View\CardDisplay\CardDisplayImport.xaml;MVVM\View\CardDisplay\CardDisplayResp.xaml;MVVM\View\EndQuizz.xaml;MVVM\View\QuizzLogic.xaml;MVVM\View\VAgenda.xaml;MVVM\View\VCustom.xaml;MVVM\View\VLanding.xaml;MVVM\View\VMarked.xaml;MVVM\View\VNotes.xaml;MVVM\View\VQuizz.xaml;Style\ButtonStyle.xaml;Style\Calendar.xaml;Style\Converter.xaml;Style\Dark_theme.xaml;Style\General.xaml;Style\Light_Theme.xaml;Style\Theme.xaml;
 
 False
 

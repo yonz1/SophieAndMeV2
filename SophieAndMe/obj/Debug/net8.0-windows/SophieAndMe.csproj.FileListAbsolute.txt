@@ -73,8 +73,6 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VMarked.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VQuizz.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\SophieAndMe.sourcelink.json
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayResp.baml
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayResp.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VCustom.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\VCustom.baml
@@ -142,5 +140,7 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayImport.baml
-C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplayImport.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayImport.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayResp.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayImport.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayResp.g.cs

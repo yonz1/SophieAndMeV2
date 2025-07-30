@@ -28,7 +28,6 @@ public partial class VCustom : UserControl
             await WebViewCard.EnsureCoreWebView2Async();
             WebViewCustom.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             WebViewCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
-            WebViewCard.CoreWebView2.OpenDevToolsWindow();
             WebViewCustom.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
                 this.DataContext = new VCustomModel(mainVm);

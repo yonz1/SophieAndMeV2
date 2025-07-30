@@ -8,7 +8,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
+using SophieAndMe.MVVM.View;
+using SophieAndMe.MVVM.View.CardDisplay;
 
 
 namespace SophieAndMe.MVVM.ViewModel;
@@ -21,6 +22,12 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public RelayCommand ChoisirMatierCommand { get; }
     public RelayCommand Return { get; }
     public RelayCommand Advance { get; }
+    private object _currenviewCard;
+    public object CurrentViewCard
+    {
+        get => _currenviewCard;
+        set { _currenviewCard = value; OnPropertyChanged(); } 
+    }
     
     private readonly List<string> _mat = ["Physique", "Mathématiques", "Français", "Anglais", "Erreurs", "SI"];
     public ObservableCollection<string> Noms { get; set; } = [];
@@ -65,35 +72,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         
         IsActive = true;
         _mainViewModel = mainVm;
-        WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
-        {
-            var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
-            Console.WriteLine(m.Value);
-            question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
-            rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
-            switch (action)
-            {
-                case "Delete":
-                    DBInteraction.DeleteCreated(question);
-                    break;
-                case "save":
-                    DBInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
-                    break;
-                case "edit":
-                    App.Current.Properties["old_quest"] = question;
-                    (matier, name, question, rep, imgQuestion, imgRep) = DBInteraction.SearchQuizzCreated(question);
-                    var jscode = WebviewInteraction.EdtiQuizz(matier,name,question,imgQuestion,rep,imgRep);
-                    WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-                    ClearLogic(true,false,false);
-                    break;
-                case "Replace":
-                    DBInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
-                    var data = DBInteraction.GetAllName();
-                    var jscall = WebviewInteraction.Initcustom(data, "Add");
-                    WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscall));
-                    break;
-            }
-        });
 
         Return = new RelayCommand(o =>
         {
@@ -123,7 +101,8 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
 
         Import = new RelayCommand(o =>
         {
-            ShowLogic();
+            _currenviewCard = new CardDisplayImportModel(this,"Import");
+            ClearLogic(false,true,false);
         });
         
         ChoisirMatierCommand = new RelayCommand(matier =>
@@ -139,11 +118,35 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             else
             {
                 App.Current.Properties["old"] = "FirstLayer";
-                SecondeLayer(matier);
+                App.Current.Properties["nameindex"] = matier;
+                _currenviewCard = new CardDisplayImportModel(this,"Created");
+                ClearLogic(false,true,true);
             }
         });
     }
 
+    public void ReplaceLogic(string matier,string name,string question,string rep,string imgQuestion,string imgRep)
+    {
+        DBInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
+        var data = DBInteraction.GetAllName();
+        var jscall = WebviewInteraction.Initcustom(data, "Add");
+        Console.WriteLine(jscall);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscall));
+    }
+    
+    public void EditLogic(string question)
+    {
+        App.Current.Properties["old_quest"] = question;
+        string? matier;
+        string? name;
+        string? rep;
+        string? imgQuestion;
+        string? imgRep;
+        (matier, name, question, rep, imgQuestion, imgRep) = DBInteraction.SearchQuizzCreated(question);
+        var jscode = WebviewInteraction.EdtiQuizz(matier,name,question,imgQuestion,rep,imgRep);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        ClearLogic(true,false,false);
+    }
 
     public void ShowLogic()
     {
@@ -164,7 +167,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }
-        ClearLogic(false,true,false);
     }
     
     public  void FirstLayer(object matier)
@@ -175,14 +177,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         foreach (var value in name) { Matier.Add(value);} 
     }
 
-    public void SecondeLayer(object matier)
-    {
-        App.Current.Properties["nameindex"] = matier;
-        (_question, _repnse, _urlQuestion,_urlRep) = DBInteraction.Retrievequizz(matier.ToString(),"Created",_mainViewModel);
-        var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-        ClearLogic(false,true,true);
-    }
+
     public void CreatedLogic()
     {
         ClearLogic(false,false,false);

@@ -7,6 +7,7 @@ using FontAwesome.Sharp;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.Model;
+using SophieAndMe.MVVM.View.CardDisplay;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
