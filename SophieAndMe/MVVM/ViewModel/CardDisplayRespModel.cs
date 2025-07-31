@@ -34,11 +34,11 @@ public class CardDisplayRespModel
         {
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
-                NavigationService.Instance.Navigate(new VMarked(mainVm));    
+                NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }
             else
             {
-                NavigationService.Instance.Navigate(new VQuizz(mainVm));
+                NavigationService.Instance.Navigate("MainContent",new VQuizz(mainVm));
             }
         });
     }

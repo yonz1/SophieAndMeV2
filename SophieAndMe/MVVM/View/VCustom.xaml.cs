@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Web.WebView2.Core;
-using SophieAndMe.Core;
+using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.ViewModel;
 using MessageBox = System.Windows.Forms.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;

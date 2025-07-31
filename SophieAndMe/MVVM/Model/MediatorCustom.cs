@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
-namespace SophieAndMe.Core;
+namespace SophieAndMe.MVVM.Model;
 
 public class MediatorCustom
 {

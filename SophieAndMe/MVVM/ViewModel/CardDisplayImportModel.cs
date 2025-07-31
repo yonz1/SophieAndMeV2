@@ -46,6 +46,9 @@ public class CardDisplayImportModel
                 case "Replace":
                     _vCustomModel.ReplaceLogic(matier,name,question,rep,imgQuestion,imgRep);
                     break;
+                case "Demande":
+                    SendDataImport();
+                    break;
             }
         });
         switch ( action)
@@ -61,9 +64,14 @@ public class CardDisplayImportModel
     
     public void ImportLogic()
     {
+        
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DBInteraction.GetAllPublic();
         // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("ClearCard()"));
+    }
+
+    public void SendDataImport()
+    {
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < _level.Count; i++)
         {

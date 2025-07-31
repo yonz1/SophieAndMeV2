@@ -1,3 +1,5 @@
-2025/07/30-20:12:11.990 f8b8 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/07/30-20:12:12.002 f8b8 Recovering log #3
-2025/07/30-20:12:12.008 f8b8 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000003.log 
+2025/07/31-11:27:02.574 af3c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/07/31-11:27:02.587 af3c Recovering log #4
+2025/07/31-11:27:02.589 af3c Level-0 table #6: started
+2025/07/31-11:27:02.599 af3c Level-0 table #6: 280505 bytes OK
+2025/07/31-11:27:02.610 af3c Delete type=0 #4

@@ -55,7 +55,7 @@ namespace SophieAndMe.MVVM.ViewModel;
             {
                 Application.Current.Properties["nameindex"] = nom;
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
-                NavigationService.Instance.Navigate(new QuizzLogic(mainVm));
+                NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
             });
         }
 

@@ -14,17 +14,17 @@ public class EndQuizzModel
 
     public EndQuizzModel(List<string> question, List<string> repnse, List<string> urlQuestion, List<string> urlRep,MainViewModel mainVm)
     {
-        ViewResponse = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(question, repnse, urlQuestion, urlRep,mainVm)));
-        RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate(new QuizzLogic(mainVm)));
+        ViewResponse = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new CardDisplayResp(question, repnse, urlQuestion, urlRep,mainVm)));
+        RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm)));
         ReturnSelection = new RelayCommand(o =>
         {
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
-                NavigationService.Instance.Navigate(new VMarked(mainVm));    
+                NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }
             else
             {
-                NavigationService.Instance.Navigate(new VQuizz(mainVm));
+                NavigationService.Instance.Navigate("MainContent",new VQuizz(mainVm));
             }
             
         });
