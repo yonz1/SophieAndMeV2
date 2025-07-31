@@ -89,7 +89,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         Create = new RelayCommand(o =>
         {
             ClearLogic(true,false,false);
-            var data = DBInteraction.GetAllName();
+            var data = DbInteraction.GetAllName();
             var jscode = WebviewInteraction.Initcustom(data, "Add");
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         });
@@ -126,8 +126,8 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
 
     public void ReplaceLogic(string matier,string name,string question,string rep,string imgQuestion,string imgRep)
     {
-        DBInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
-        var data = DBInteraction.GetAllName();
+        DbInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
+        var data = DbInteraction.GetAllName();
         var jscall = WebviewInteraction.Initcustom(data, "Add");
         Console.WriteLine(jscall);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscall));
@@ -141,7 +141,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         string? rep;
         string? imgQuestion;
         string? imgRep;
-        (matier, name, question, rep, imgQuestion, imgRep) = DBInteraction.SearchQuizzCreated(question);
+        (matier, name, question, rep, imgQuestion, imgRep) = DbInteraction.SearchQuizzCreated(question);
         var jscode = WebviewInteraction.EdtiQuizz(matier,name,question,imgQuestion,rep,imgRep);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         ClearLogic(true,false,false);
@@ -153,7 +153,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     {
         ClearLogic(false,false,true);
         App.Current.Properties["matier"] = matier;
-        var name = DBInteraction.GetNameCreated(matier.ToString());
+        var name = DbInteraction.GetNameCreated(matier.ToString());
         foreach (var value in name) { Matier.Add(value);} 
     }
 
@@ -161,7 +161,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public void CreatedLogic()
     {
         ClearLogic(false,false,false);
-        var name = DBInteraction.GetName("All");
+        var name = DbInteraction.GetName("All");
         foreach (var value in name) { Matier.Add(value);}
     }
     private void ClearLogic(bool b1, bool b2, bool b3)

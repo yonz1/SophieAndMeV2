@@ -43,7 +43,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
             question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             Console.WriteLine("trigger");
             Console.WriteLine(question);
-            DBInteraction.UnMark(question);
+            DbInteraction.UnMark(question);
         });
         
         
@@ -82,7 +82,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
                     IsView = false;
                     Noms.Clear();
                     LoadMark("");    
-                    var name = DBInteraction.GetName("All");
+                    var name = DbInteraction.GetName("All");
                     foreach (var value in name) { Noms.Add(value);}
                     App.Current.Properties["matier"]  = localSubject.Name.ToString();
                 }
@@ -100,7 +100,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
 
     public async void LoadMark(string mat)
     {
-        (_question, _repnse, _urlQuestion, _urlRep) = DBInteraction.GetMarked(mat);
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.GetMarked(mat);
         var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
         var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();

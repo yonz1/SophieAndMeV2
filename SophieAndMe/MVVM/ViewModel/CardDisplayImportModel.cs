@@ -35,10 +35,10 @@ public class CardDisplayImportModel
             switch (action)
             {
                 case "Delete":
-                    DBInteraction.DeleteCreated(question);
+                    DbInteraction.DeleteCreated(question);
                     break;
                 case "save":
-                    DBInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
+                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
                     break;
                 case "edit":
                     _vCustomModel.EditLogic(question);
@@ -65,7 +65,7 @@ public class CardDisplayImportModel
     public void ImportLogic()
     {
         
-        (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DBInteraction.GetAllPublic();
+        (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
         // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("ClearCard()"));
     }
@@ -89,7 +89,7 @@ public class CardDisplayImportModel
 
     public void CreatedLogic()
     {
-        (_question, _repnse, _urlQuestion, _urlRep) = DBInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
         var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
         Console.WriteLine(jscode);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));

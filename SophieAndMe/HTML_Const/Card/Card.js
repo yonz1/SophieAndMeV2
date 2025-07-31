@@ -169,7 +169,7 @@ function CreateCardResp(questarr, reparr, Qimg, Rimg){
 
 
     questarr.forEach((question, index) => {
-        if (batch.length >= 20) {
+        if (batch.length >= 30) {
             console.log("10 Created")
             renderCardsSmoothly(batch);
             MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));

@@ -18,6 +18,8 @@ namespace SophieAndMe.MVVM.ViewModel;
         public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
         public ObservableCollection<SubjectItem> Subjects { get; set; }
+        private static readonly List<string> ListMat =
+            ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
         
         public VQuizzModel(MainViewModel mainVm) 
         {
@@ -44,10 +46,9 @@ namespace SophieAndMe.MVVM.ViewModel;
 
                     localSubject.IsSelected = true;
                     Noms.Clear();
-                    var name = DBInteraction.GetName(localSubject.Name.ToString());
+                    var name = DbInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}
                     App.Current.Properties["matier"]  = localSubject.Name.ToString();
-
                 });
             }
             
@@ -55,7 +56,15 @@ namespace SophieAndMe.MVVM.ViewModel;
             {
                 Application.Current.Properties["nameindex"] = nom;
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
-                NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
+                if (ListMat.Contains(nom))
+                {
+                    NavigationService.Instance.Navigate("MainContent",new AllQuizzSelect(mainVm));    
+                }
+                else
+                {
+                    NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
+                }
+                
             });
         }
 

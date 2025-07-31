@@ -132,19 +132,15 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     public QuizzLogicModel(Func<string, Task> invokeJs,MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
-        MarkedQuestion = DBInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
+        MarkedQuestion = DbInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += OnTimerElapse;
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
+        (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
-        foreach (var VARIABLE in _urlRep)
-        {
-            Console.WriteLine(VARIABLE);
-        }
         ActionText = "Response";
         QuestionCounter = (_i + 1).ToString() + "/" + _question.Count; 
         if (MarkedQuestion.Contains(_question[_i]))
@@ -190,12 +186,12 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         if (value)
         {
             CurrentIcon = IconFont.Solid;
-            DBInteraction.MarkData(_question[_i],_repnse[_i],_urlQuestion[_i],_urlRep[_i]);
+            DbInteraction.MarkData(_question[_i],_repnse[_i],_urlQuestion[_i],_urlRep[_i]);
         }
         else
         {
             CurrentIcon = IconFont.Regular;
-            DBInteraction.UnMark(_question[_i]);
+            DbInteraction.UnMark(_question[_i]);
         }
     }
     
