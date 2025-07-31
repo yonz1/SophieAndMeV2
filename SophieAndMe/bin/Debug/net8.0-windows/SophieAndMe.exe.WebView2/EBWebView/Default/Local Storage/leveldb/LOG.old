@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-2025/07/31-12:30:56.393 16a60 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/07/31-12:30:56.407 16a60 Recovering log #8
-2025/07/31-12:30:56.412 16a60 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000008.log 
-=======
-2025/07/31-12:29:44.771 b044 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/07/31-12:29:44.786 b044 Recovering log #10
-2025/07/31-12:29:44.792 b044 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000010.log 
->>>>>>> Test
+2025/07/31-12:33:42.347 173a0 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/07/31-12:33:42.356 173a0 Recovering log #8
+2025/07/31-12:33:42.357 173a0 Recovering log #10
+2025/07/31-12:33:42.361 173a0 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000010.log 
