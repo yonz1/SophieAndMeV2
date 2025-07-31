@@ -5,6 +5,10 @@ let ArrayMain = [];
 let batch = [];
 const observerTrigger = document.createElement("div");
 observerTrigger.id = "scroll-trigger";
+console.log("Charger")
+
+
+
 
 
 window.MathJax = {
@@ -22,7 +26,8 @@ window.MathJax = {
 
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
-    ArrayMain.push(dico)
+    ArrayMain.push(dico);
+    localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
     if (i < 10)
     {
         CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
@@ -50,12 +55,42 @@ const oberserver = new IntersectionObserver(entries => {
 
 oberserver.observe(observerTrigger);
 
+
+function TestArrayMain()
+{
+    console.log("Test Demandée")
+    let saved = localStorage.getItem("Dicos2");
+    if(saved)
+    {
+        ArrayMain = JSON.parse(saved);
+        console.log("Données restaurée");
+    }
+    if (ArrayMain.length == 0)
+    {
+        const question = "";
+        const action = "Demande";
+        const data = { action, question };
+        window.chrome.webview.postMessage(data);
+    }
+    else
+    {
+        console.log("ArrayMain chargée")
+        if (i < 10)
+        {
+            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+            i++;
+        }
+    }
+}
+
 function ClearCard() 
 {
+    console.log("Nettoyer")
     divmain.innerHTML = "";
     ArrayMain = [];
     divmain.appendChild(observerTrigger);
     i = 0;
+    TestArrayMain();
 }
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
     divmain.innerHTML = "";
