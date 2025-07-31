@@ -29,6 +29,8 @@
       <Resource Include="images\Lofi_Girl_logo_2024-removebg-preview.png" />
       <None Remove="images\Ryan-Gosling_0.jpg" />
       <Resource Include="images\Ryan-Gosling_0.jpg" />
+      <None Remove="images\milad-fakurian-_S-zZyQiOr8-unsplash.jpg" />
+      <Resource Include="images\milad-fakurian-_S-zZyQiOr8-unsplash.jpg" />
     </ItemGroup>
 
     <ItemGroup>

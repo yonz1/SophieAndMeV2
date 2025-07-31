@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data.SQLite;
 using System.Text;
 using System.Windows.Forms;
 using SophieAndMe.Core;
@@ -24,6 +25,7 @@ namespace SophieAndMe.MVVM.Model
 
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
+        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
 
 
         private static readonly List<string> Level = new List<string>();
@@ -515,8 +517,98 @@ namespace SophieAndMe.MVVM.Model
             }
             return TempList;
         }
+
         
         
+        // ########################################################################################## - Interaction DB-Login
+        public static bool VerifyUser(string username, string password)
+        {
+            using (SQLiteConnection c = new SQLiteConnection(UserSource))
+            {
+                c.Open();
+                string query = "SELECT Username,Password from Users WHERE Username = \"" + username + "\"";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            string usernamerec = rdr.GetString(0);
+                            string passwordrec = rdr.GetString(1);
+                            Console.WriteLine("#################################### Utilisatuer dans la base de données : ", usernamerec);
+                            if (usernamerec == username && passwordrec == password)
+                            {
+                                return true;
+
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        
+        public static (string,string) RetrieveUserData(string username)
+        {
+            string email = "";
+            string photo = "";
+            using (SQLiteConnection c = new SQLiteConnection(UserSource))
+            {
+                c.Open();
+                string query = "SELECT Email,Photo from Users where Username like \"" + username + "\"";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    using (SQLiteDataReader rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            email = rdr.GetString(0);
+                            photo = rdr.GetString(1);
+                        }
+                    }
+                }
+            }
+            return (email, photo);
+        }
+
+        public static (int,string) VerifyKeepAlive()
+        {
+            short keepalive = 0;
+            string name = "";
+            using (SQLiteConnection c = new SQLiteConnection(UserSource))
+            {
+                c.Open();
+                string query = "SELECT Keepalive,Username FROM Users";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                             keepalive = rdr.GetInt16(0);
+                             name = rdr.GetString(1);
+                        }
+                    }
+                }
+            }
+
+            return (keepalive,name);
+        }
+
+        public static void UpdateKeepAlive(int i,string username)
+        {
+            using (SQLiteConnection c = new SQLiteConnection(UserSource))
+            {
+                c.Open();
+                string query = "UPDATE Users set Keepalive = " + i.ToString() + " WHERE Username = \"" + username + "\"";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
         
     }
 }

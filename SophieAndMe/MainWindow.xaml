@@ -23,9 +23,9 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
+    <!-- <Window.DataContext> -->
+    <!--     <vm:MainViewModel /> -->
+    <!-- </Window.DataContext> -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
