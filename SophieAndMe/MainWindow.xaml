@@ -318,7 +318,7 @@
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="2" CornerRadius="10">
-                        <ContentControl Content="{Binding CurrentView}" />
+                        <ContentControl x:Name="MainContentControl" />
                     </Border>
 
 

@@ -156,15 +156,15 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         {
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
-                NavigationService.Instance.Navigate(new VMarked(mainVm));    
+                NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }
             else
             {
-                NavigationService.Instance.Navigate(new VQuizz(mainVm));
+                NavigationService.Instance.Navigate("MainContent",new VQuizz(mainVm));
             }
             
         });
-        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate(new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep,mainVm)));
+        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep,mainVm)));
     }
     
     
@@ -250,7 +250,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     
     private void FinDeQuizz()
     {
-        NavigationService.Instance.Navigate(new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
+        NavigationService.Instance.Navigate("MainContent",new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     
 }

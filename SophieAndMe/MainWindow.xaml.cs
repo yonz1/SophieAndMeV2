@@ -1,18 +1,9 @@
-﻿using System.Text;
-using System.Windows;
-using System;
+﻿using System.Windows;
 using System.Runtime.InteropServices;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SQLite;
-using System.IO;
+using SophieAndMe.Core;
 
 namespace SophieAndMe;
 
@@ -39,14 +30,8 @@ public partial class MainWindow : Window
 
         public MainWindow()
         {
-            App.Current.Properties["button_color"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0x24, 0x24, 0x24));
-            App.Current.Properties["button_color_text"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0xF5, 0xF5, 0xF5));
-
             InitializeComponent();
-
-            App.Current.Properties["html_back"] = "161717";
-            App.Current.Properties["html_back_rep"] = "242424";
-            App.Current.Properties["html_text"] = "#F5F5F5";
+            NavigationService.Instance.Register("MainContent", view => MainContentControl.Content = view);
         }
     
 
@@ -68,23 +53,6 @@ public partial class MainWindow : Window
             string query = "";
             string Sourceuser = "Data Source=..\\..\\..\\Database\\user_value.db";
             System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
-            //try
-            //{
-            //    using (SQLiteConnection c = new SQLiteConnection(Sourceuser))
-            //    {
-            //        c.Open();
-            //        query = "UPDATE DASH SET Time = " + App.Current.Properties["Timer"] + " where Date =  \"" + DateTime.Now.ToString("yyyy-MM-dd") + "\"";
-            //        System.Diagnostics.Debug.WriteLine(query);
-            //        using (SQLiteCommand cmd = new SQLiteCommand(query, c))
-            //        {
-            //            cmd.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-            //catch
-            //{
-            //    System.Windows.Forms.MessageBox.Show("An error occured while saving your quizz");
-            //}
             Application.Current.Shutdown();
         }
 

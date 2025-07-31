@@ -21,15 +21,15 @@ public class MediatorDisplayImport
     
     // ################################################################################## Fonctions de reception des messages
     
-    public class  JstoAppMessage : ValueChangedMessage<(string Action, string Matier, string Name,string Question,string ImgQuestion,string Rep,string ImgRep)>
+    public class  JstoAppMessageImport : ValueChangedMessage<(string Action, string Matier, string Name,string Question,string ImgQuestion,string Rep,string ImgRep)>
     {
-        public JstoAppMessage(string action, string matier, string name, string question, string imgQuestion, string rep, string imgRep)  : base((action, matier, name, question, imgQuestion, rep, imgRep)) {}
+        public JstoAppMessageImport(string action, string matier, string name, string question, string imgQuestion, string rep, string imgRep)  : base((action, matier, name, question, imgQuestion, rep, imgRep)) {}
     }
     
     //################################################################################# Fonction d'apelle des messsages
     
-    public class JsCallMessage : ValueChangedMessage<string>
+    public class JsCallImportMessage : ValueChangedMessage<string>
     {
-        public JsCallMessage(string value) : base(value) { }
+        public JsCallImportMessage(string value) : base(value) { }
     }
 }

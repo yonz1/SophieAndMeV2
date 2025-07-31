@@ -94,7 +94,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         {
             App.Current.Properties["nameindex"] = "Marked-" + nom;
             App.Current.Properties["matier"] = nom;
-            NavigationService.Instance.Navigate(new QuizzLogic(mainVm));
+            NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
     }
 

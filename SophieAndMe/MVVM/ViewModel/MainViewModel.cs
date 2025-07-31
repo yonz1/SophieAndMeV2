@@ -60,9 +60,9 @@ namespace SophieAndMe.MVVM.ViewModel ;
         
         public MainViewModel()
         {
-            NavigationService.Instance.NavigateAction = view => CurrentView = view;
+            // NavigationService.Instance.NavigateAction = view => CurrentView = view;
             CurrentMessage = "Acceuil";
-            NavigationService.Instance.Navigate(new VLanding());
+            NavigationService.Instance.Navigate("MainContent",new VLanding());
             Pages = new ObservableCollection<SubjectItem>
             {
                 new SubjectItem {Name = "Quizz", IconVal = IconChar.UserGraduate, Navigation = new VQuizz(this), Value = "A"},        
@@ -84,7 +84,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
                         
 
                     localSubject.IsSelected = true;
-                    NavigationService.Instance.Navigate(subject.Navigation);
+                    NavigationService.Instance.Navigate("MainContent",subject.Navigation);
                     CurrentMessage = localSubject.Name;
 
                 });

@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Web.WebView2.Core;
 using SophieAndMe.Core;
+using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.ViewModel;
 
 namespace SophieAndMe.MVVM.View

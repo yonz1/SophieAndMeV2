@@ -1,3 +1,9 @@
-2025/07/30-20:15:14.679 12b74 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/MANIFEST-000001
-2025/07/30-20:15:14.680 12b74 Recovering log #3
-2025/07/30-20:15:14.681 12b74 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
+<<<<<<< HEAD
+2025/07/31-11:58:56.232 1555c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/MANIFEST-000001
+2025/07/31-11:58:56.233 1555c Recovering log #3
+2025/07/31-11:58:56.233 1555c Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
+=======
+2025/07/31-11:53:57.805 9690 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/MANIFEST-000001
+2025/07/31-11:53:57.806 9690 Recovering log #3
+2025/07/31-11:53:57.806 9690 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
+>>>>>>> Test
