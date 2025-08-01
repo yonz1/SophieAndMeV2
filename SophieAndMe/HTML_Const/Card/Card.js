@@ -6,11 +6,6 @@ let batch = [];
 const observerTrigger = document.createElement("div");
 observerTrigger.id = "scroll-trigger";
 console.log("Charger")
-
-
-
-
-
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -26,13 +21,29 @@ window.MathJax = {
 
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
-    ArrayMain.push(dico);
-    localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
-    if (i < 10)
+    console.log(dico.level)
+    if (dico.level !== "")
     {
-        CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-        i++;
+        
+        ArrayMain.push(dico);
+        localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
+        if (i < 10)
+        {
+            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+            i++;
+        }        
     }
+    else 
+    {
+        ArrayMain.push(dico);
+        localStorage.setItem("DicosResp", JSON.stringify(ArrayMain));
+        if (i < 10)
+        {
+            CreateCardResp(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+            i++;
+        }
+    }
+
 });
 
 const oberserver = new IntersectionObserver(entries => {
@@ -41,12 +52,24 @@ const oberserver = new IntersectionObserver(entries => {
         let y = 0;
         while (y < 10 && i < ArrayMain.length) {
             console.log("scrollTriger");
-            CreateCardImport(
-                ArrayMain[i].question,
-                ArrayMain[i].repnse,
-                ArrayMain[i].urlQuestion,
-                ArrayMain[i].urlRep
-            );
+            if (ArrayMain[i].level !== "")
+            {
+                CreateCardImport(
+                    ArrayMain[i].question,
+                    ArrayMain[i].repnse,
+                    ArrayMain[i].urlQuestion,
+                    ArrayMain[i].urlRep
+                );
+            }
+            else
+            {
+                CreateCardResp(
+                    ArrayMain[i].question,
+                    ArrayMain[i].repnse,
+                    ArrayMain[i].urlQuestion,
+                    ArrayMain[i].urlRep
+                );
+            }
             i++;
             y++; 
         }
@@ -77,20 +100,26 @@ function TestArrayMain()
         console.log("ArrayMain chargée")
         if (i < 10)
         {
+            
             CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
             i++;
         }
     }
 }
 
-function ClearCard() 
+function ClearCard(info) 
 {
     console.log("Nettoyer")
     divmain.innerHTML = "";
     ArrayMain = [];
     divmain.appendChild(observerTrigger);
-    i = 0;
-    TestArrayMain();
+    i = 0
+    console.log(info)
+    if (info === '')
+    {
+        TestArrayMain();    
+    }
+    
 }
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
     divmain.innerHTML = "";
@@ -163,64 +192,47 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
 
 }
 
-function CreateCardResp(questarr, reparr, Qimg, Rimg){
-    const divmain = document.getElementById("main")
-    divmain.innerHTML = "";
+function CreateCardImport(quest, rep, Qimg, Rimg){
+    let card = document.createElement("div");
+    card.className = "card";
 
-
-    questarr.forEach((question, index) => {
-        if (batch.length >= 30) {
-            console.log("10 Created")
-            renderCardsSmoothly(batch);
-            MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-            batch = [];
-        }
-        else {
-
-
-            let img1 = "";
-            let img2 = ""
-            const quest_img = Qimg[index].replace("\\/", "/");
-            const rep_img = Rimg[index].replace("\\/", "/");
-            const val = "\"" + question + "\"";
-            question = question.replace(/\n/g, "<br>");
-            answer = reparr[index].replace(/\n/g, "<br>");
-
-            if (quest_img !== "") {
-                img1 = `<img src= ${quest_img} >`;
-            }
-            if (rep_img !== "") {
-                img2 = `<img src= ${rep_img} >`;
-            }
-
-            console.log(img1)
-            console.log(img2)
-
-
-            let card = document.createElement("div");
-            card.className = "card";
-
-            card.innerHTML = `
+    card.innerHTML = `
     <div class="container">
         <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-          <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-      </div>
-    </div>
-  `;
+            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+    </div>`;
+    batch.push(card);
+    if (batch.length >= 10) {
+        CreatCardLogicGlobal();
+    }
+}
+function CreateCardResp(quest, rep, Qimg, Rimg){
+    let card = document.createElement("div");
+    card.className = "card";
 
-            console.log("Carte Ajouter")
-            batch.push(card);
-        }
-    });
-    renderCardsSmoothly(batch);
-    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-    batch = [];
+    card.innerHTML = `
+    <div class="container">
+        <div class="DivInline">
+            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+    </div>`;
+    batch.push(card);
+    if (batch.length >= 10) {
+        CreatCardLogicGlobal();
+    }
 
 }
 
@@ -230,8 +242,6 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
     const divmain = document.getElementById("main")
     divmain.innerHTML = "";
     console.log("CreatedTrigger")
-
-
     questarr.forEach((question, index) => {
         if (batch.length >= 10) {
             console.log("10 Created")
@@ -241,9 +251,6 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
         }
         else
         {
-            
-
-
         let img1 = "";
         let img2 = ""
         const quest_img = Qimg[index].replace("\\/", "/");
@@ -313,29 +320,14 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
 }
 
 
-function CreateCardImport(quest, rep, Qimg, Rimg){
-    let card = document.createElement("div");
-    card.className = "card";
 
-    card.innerHTML = `
-    <div class="container">
-        <div class="DivInline">
-            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
-            <p>${quest.replace(/\n/g, "<br>")}</p>
-        </div>
-        <hr>
-        <div class="DivInline">
-            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
-            <p>${rep.replace(/\n/g, "<br>")}</p>
-        </div>
-    </div>`;
-    batch.push(card);
-    if (batch.length >= 10) {
-        console.log("10 Created")
-        renderCardsSmoothly(batch);
-        MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-        batch = [];
-    }
+
+function CreatCardLogicGlobal()
+{
+    console.log("10 Created")
+    renderCardsSmoothly(batch);
+    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
+    batch = [];
 }
 
 function renderCardsSmoothly(cards) {

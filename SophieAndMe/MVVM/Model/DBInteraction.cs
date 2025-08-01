@@ -122,8 +122,7 @@ namespace SophieAndMe.MVVM.Model
         {
             _dataService = App.DataService;
             var chapter = _dataService.SharedListChapter;
-
-            // Construction dynamique en paramétrant chaque valeur
+            
             var sb = new StringBuilder();
             var parameters = new List<SQLiteParameter>();
 
@@ -133,8 +132,6 @@ namespace SophieAndMe.MVVM.Model
                 sb.Append($"SELECT question, reponse, image_question_url, image_answer_url,name FROM {nameindex} WHERE REPLACE(name, ' ', '') = REPLACE(@name{i}, ' ', '')");
                 parameters.Add(new SQLiteParameter($"@name{i}", chapter[i]));
             }
-
-            // sb.Append("ORDER BY name");
             command = new SQLiteCommand(sb.ToString(), connection);
             command.Parameters.AddRange(parameters.ToArray());
             Application.Current.Properties["matier"] = nameindex;
@@ -160,7 +157,6 @@ namespace SophieAndMe.MVVM.Model
                 resultsReponses.Add(reader.GetString(1));
                 resultsUrlQuestion.Add(reader.GetString(2));
                 resultsUrlRep.Add(reader.GetString(3));
-                resultsName.Add(reader.GetString(4));
             }
         }
     }
