@@ -2,16 +2,15 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using SophieAndMe.Core;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
-using System.Windows.Interop;
+using CommunityToolkit.Mvvm.ComponentModel;
 using SophieAndMe.MVVM.Model;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
-public class LoginWindoowViewModel : INotifyPropertyChanged
+public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
 {
     private readonly IDataService _dataService;
     private readonly IWindowService _windowService;
@@ -27,9 +26,7 @@ public class LoginWindoowViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(Username));
         }
     }
-    
     private string _password;
-
     public string Password
     {
         get => _password;
@@ -42,6 +39,7 @@ public class LoginWindoowViewModel : INotifyPropertyChanged
 
     public LoginWindoowViewModel(IWindowService windowService)
     {
+        Console.WriteLine("charger");
         _windowService = windowService;
         _dataService =  App.DataService;
         VerifyKeepAlive();
@@ -63,24 +61,22 @@ public class LoginWindoowViewModel : INotifyPropertyChanged
         {
             FinishCompletion(username);
         }
-        
     }
-
     private void VerifyKeepAlive()
     {
-        (int keepalive, string username) = DbInteraction.VerifyKeepAlive();
+        (int keepalive, string username) = DbInteraction.VerifyKeepAlive(); 
         if (keepalive == 1)
         {
             FinishCompletion(username);
         }
     }
-
     private void FinishCompletion(string username)
     {
         App.DataService.CurrentUser = new User();
         _dataService.CurrentUser.Username = username;
         (_dataService.CurrentUser.Email, _dataService.CurrentUser.photo) = DbInteraction.RetrieveUserData(username);
-        _windowService.CloseWindow<LoginWindoowViewModel>() ;
+        Console.WriteLine("charger");
+        _windowService.CloseWindow<LoginWindoowViewModel>();
         _windowService.ShowWindow<MainViewModel>();
     }
     
@@ -97,7 +93,7 @@ public class LoginWindoowViewModel : INotifyPropertyChanged
     }
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) 
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

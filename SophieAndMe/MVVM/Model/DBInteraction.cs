@@ -592,7 +592,6 @@ namespace SophieAndMe.MVVM.Model
                     }
                 }
             }
-
             return (keepalive,name);
         }
 

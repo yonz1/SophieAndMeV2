@@ -8,27 +8,27 @@ using SophieAndMe.MVVM.View;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
 
-namespace SophieAndMe.MVVM.ViewModel ;
+namespace SophieAndMe.MVVM.ViewModel;
 
     public class MainViewModel : ObservableRecipient, INotifyPropertyChanged
     {
-        private object _currentView;
+        private object _currentView = null!;
         public object CurrentView
         {
             get => _currentView;
             set { _currentView = value; OnPropertyChanged(); } 
         }
 
-        public ICommand ChoisirNomCommand {  get; }
-        
+        public ICommand ChoisirNomCommand {  get; } = null!;
+
         public ObservableCollection<SubjectItem> Pages { get; set; }
-        public ICommand ShowQuizzCommand { get; }
-        public ICommand ShowMarkedCommand { get; }
-        public ICommand ShowCustomCommand { get; }
-        public ICommand ShowSettingCommand { get; }
-        public ICommand ExitCommand { get; }
-        public ICommand MaximizeCommand { get; }
-        public ICommand MinimizeCommand { get; }
+        public ICommand ShowQuizzCommand { get; } = null!;
+        public ICommand ShowMarkedCommand { get; } = null!;
+        public ICommand ShowCustomCommand { get; } = null!;
+        public ICommand ShowSettingCommand { get; } = null!;
+        public ICommand ExitCommand { get; } = null!;
+        public ICommand MaximizeCommand { get; } = null!;
+        public ICommand MinimizeCommand { get; } = null!;
         private bool _isview;
         public bool  IsView
         {
@@ -44,7 +44,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             get => _currentmessage;set{        _currentmessage = value;        OnPropertyChanged();    }
         }
 
-        private string _selectedValue;
+        private string _selectedValue = null!;
         public string SelectedValue
         {
             get => _selectedValue;
@@ -91,7 +91,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = null!;
         private void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }

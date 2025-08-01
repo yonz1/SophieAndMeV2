@@ -25,7 +25,7 @@
         WindowStyle="None">
     <!-- <Window.DataContext> -->
     <!--     <vm:LoginWindoowViewModel /> -->
-    <!-- </Window.DataContext>    -->
+    <!-- </Window.DataContext> -->
     <Window.Resources>
            <ResourceDictionary>
            <ResourceDictionary.MergedDictionaries>

@@ -34,6 +34,7 @@ public class WindowService : IWindowService
         {
             if (win.DataContext?.GetType() == typeof(TViewModel))
             {
+                Console.WriteLine(typeof(TViewModel));
                 win.Close();
                 break;
             }
