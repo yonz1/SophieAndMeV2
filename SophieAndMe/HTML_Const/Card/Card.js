@@ -31,7 +31,13 @@ window.chrome.webview.addEventListener('message', event => {
         {
             CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
             i++;
-        }        
+        }
+        if (i === parseInt(dico.len))
+        {
+            console.log(i + 1)
+            console.log(dico.len);
+            CreatCardLogicGlobal();
+        }
     }
     else 
     {
@@ -43,7 +49,6 @@ window.chrome.webview.addEventListener('message', event => {
             i++;
         }
     }
-
 });
 
 const oberserver = new IntersectionObserver(entries => {
@@ -60,6 +65,7 @@ const oberserver = new IntersectionObserver(entries => {
                     ArrayMain[i].urlQuestion,
                     ArrayMain[i].urlRep
                 );
+                console.log("Création carte importer");
             }
             else
             {
@@ -69,11 +75,13 @@ const oberserver = new IntersectionObserver(entries => {
                     ArrayMain[i].urlQuestion,
                     ArrayMain[i].urlRep
                 );
+                console.log("Création carte reponse");
             }
             i++;
             y++; 
         }
     }
+
 },{threshold:0.1});
 
 oberserver.observe(observerTrigger);
@@ -113,7 +121,7 @@ function ClearCard(info)
     divmain.innerHTML = "";
     ArrayMain = [];
     divmain.appendChild(observerTrigger);
-    i = 0
+    i = 0;
     console.log(info)
     if (info === '')
     {
@@ -209,7 +217,7 @@ function CreateCardImport(quest, rep, Qimg, Rimg){
         </div>
     </div>`;
     batch.push(card);
-    if (batch.length >= 10) {
+    if (batch.length >= 10 || i === parseInt(ArrayMain[0].len)-1) {
         CreatCardLogicGlobal();
     }
 }
@@ -230,7 +238,9 @@ function CreateCardResp(quest, rep, Qimg, Rimg){
         </div>
     </div>`;
     batch.push(card);
-    if (batch.length >= 10) {
+    if (batch.length >= 10 || i === parseInt(ArrayMain[0].len)-1) {
+        console.log(i)
+        console.log(parseInt(ArrayMain[0].len)-1)
         CreatCardLogicGlobal();
     }
 
@@ -324,7 +334,7 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
 
 function CreatCardLogicGlobal()
 {
-    console.log("10 Created")
+    console.log("Created")
     renderCardsSmoothly(batch);
     MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
     batch = [];
@@ -349,6 +359,9 @@ function renderCardsSmoothly(cards) {
 
     requestAnimationFrame(step); // démarre le rendu
 }
+
+
+
 
 function get_val(button) {
 

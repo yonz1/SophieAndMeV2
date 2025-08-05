@@ -27,21 +27,18 @@ public partial class CardDisplayImport : UserControl
             WebViewAllCard.Source = uri1 as System.Uri;
             WebViewAllCard.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
-                _model = new CardDisplayImportModel(Vm, action);
-                this.DataContext = _model;
+                // _model = new CardDisplayImportModel(Vm, action);
+                // this.DataContext = _model;
                 Console.WriteLine(WebViewAllCard.Source);
                 WeakReferenceMessenger.Default.Register<MediatorDisplayImport.JsCallImportMessage>(this, (r, m) =>
                 {
+                    Console.WriteLine("import");
                     if (m.Value.Contains("{\"level\":"))
                     {
-                        Console.WriteLine("Bon trigger Message");
-                        Console.WriteLine(m.Value);
                         WebViewAllCard.CoreWebView2.PostWebMessageAsJson(m.Value);
                     }
                     else
                     {
-                        Console.WriteLine("Bon trigger");
-                        Console.WriteLine(m.Value);
                         WebViewAllCard.CoreWebView2.ExecuteScriptAsync(m.Value);   
                     }
                 });

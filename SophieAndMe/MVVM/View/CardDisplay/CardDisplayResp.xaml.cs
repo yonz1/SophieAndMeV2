@@ -17,30 +17,28 @@ public partial class CardDisplayResp : UserControl
         Loaded += async (s, e) =>
         {
             await WebViewAll.EnsureCoreWebView2Async();
-            // WebViewAll.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
             urif = urif.Replace("\\", "/");
             System.Uri uri1 = new System.Uri(urif);
             WebViewAll.Source = uri1 as System.Uri;
+            this.DataContext = new CardDisplayRespModel(question, reponse, urlQuestion, urlReponse, mainVm);
             WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
-                this.DataContext = new CardDisplayRespModel(question, reponse, urlQuestion, urlReponse, mainVm);
+
                 Console.WriteLine(WebViewAll.Source);
                 WeakReferenceMessenger.Default.Register<MediatorDisplayResp.JsCallMessage>(this, (r, m) =>
                 {
+                    Console.WriteLine("Resp");
                     if (m.Value.Contains("\"question\":"))
                     {
-                        Console.WriteLine("Bon trigger Message");
-                        Console.WriteLine(m.Value);
                         WebViewAll.CoreWebView2.PostWebMessageAsJson(m.Value);
                     }
                     else
                     {
-                        Console.WriteLine("Bon trigger");
-                        Console.WriteLine(m.Value);
                         WebViewAll.CoreWebView2.ExecuteScriptAsync(m.Value);   
                     }
                 });
+                this.DataContext = new CardDisplayRespModel(question, reponse, urlQuestion, urlReponse, mainVm);
 
             };
 
