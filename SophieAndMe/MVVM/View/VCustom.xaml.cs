@@ -33,6 +33,7 @@ public partial class VCustom : UserControl
                 this.DataContext = new VCustomModel(mainVm);
                 WeakReferenceMessenger.Default.Register<MediatorCustom.JsCallMessage>(this, (r, m) =>
                 {
+                    Console.WriteLine("Custom");
                     if (m.Value.Contains("Card"))
                     {
                         WebViewCard.CoreWebView2.ExecuteScriptAsync(m.Value);

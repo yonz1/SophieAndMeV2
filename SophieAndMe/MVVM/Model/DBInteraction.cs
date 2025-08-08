@@ -148,7 +148,6 @@ namespace SophieAndMe.MVVM.Model
             command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@name", nameindex);
         }
-
         using (var reader = command.ExecuteReader())
         {
             while (reader.Read())
@@ -169,7 +168,7 @@ namespace SophieAndMe.MVVM.Model
     if (resultsQuestions.Count == 0)
     {
         MessageBox.Show("Ce quizz ne possède aucune question");
-        if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+        if (Application.Current.Properties["nameindex"]!.ToString()!.Contains("Marked"))
         {
             NavigationService.Instance.Navigate("MainContent", new VMarked(mainVm));
         }
@@ -178,9 +177,8 @@ namespace SophieAndMe.MVVM.Model
             NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm));
         }
     }
-    return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep);
+    return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep); 
 }
-
         public static (List<string>, List<string>, List<string>, List<string>) RetrievequizzToCreated(string? nameindex)
         {
             var connection = new SQLiteConnection(ConSource);
@@ -250,7 +248,6 @@ namespace SophieAndMe.MVVM.Model
 
             return (question, rep, urlQuestion, urlRep);
         }
-
         public static List<string> GetMarkedForQUizz(string mat)
         {
             List<string> question = new List<string>();

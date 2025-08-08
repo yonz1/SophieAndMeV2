@@ -27,11 +27,11 @@ public class CardDisplayRespModel
     {
         get => _message;set{        _message = value;        OnPropertyChanged();    }
     }
-
     public CardDisplayRespModel(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse,MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
-        // WeakReferenceMessenger.Default.Send(new MediatorDisplayResp.JsCallMessage("ClearCard('value')"));
+        WeakReferenceMessenger.Default.Send(new MediatorDisplayResp.JsCallMessage("ClearCard('value')"));
+        Console.WriteLine("Clear appellée");
         Message = App.Current.Properties["nameindex"].ToString();
         var q = QuizzUtilities.Miseneformelist(question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(reponse) ?? new List<string>();
@@ -51,10 +51,8 @@ public class CardDisplayRespModel
             }
         });
     }
-
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
-        Console.WriteLine("Clear appelée");
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < question.Count; i++)
         {
@@ -67,7 +65,6 @@ public class CardDisplayRespModel
             dico["difficulty"] = "";
             dico["len"] = question.Count.ToString();
             string jscode = JsonSerializer.Serialize(dico);
-            Console.WriteLine("Jscode construit");
             WeakReferenceMessenger.Default.Send(new MediatorDisplayResp.JsCallMessage(jscode));
         }
     }

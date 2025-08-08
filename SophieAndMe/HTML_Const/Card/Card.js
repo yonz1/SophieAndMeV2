@@ -6,6 +6,10 @@ let batch = [];
 const observerTrigger = document.createElement("div");
 observerTrigger.id = "scroll-trigger";
 console.log("Charger")
+divmain.innerHTML = "";
+ArrayMain = [];
+divmain.appendChild(observerTrigger);
+i = 0;
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -18,6 +22,44 @@ window.MathJax = {
         }
     },
 };
+
+function ClearCard(info)
+{
+    console.log("Nettoyer")
+    divmain.innerHTML = "";
+    ArrayMain = [];
+    divmain.appendChild(observerTrigger);
+    i = 0;
+}
+
+function TestArrayMain()
+{
+    console.log("Test Demandée")
+    let saved = localStorage.getItem("Dicos2");
+    if(saved)
+    {
+        ArrayMain = JSON.parse(saved);
+        console.log("Données restaurée");
+    }
+    if (ArrayMain.length == 0)
+    {
+        const question = "";
+        const action = "Demande";
+        const data = { action, question };
+        window.chrome.webview.postMessage(data);
+    }
+    else
+    {
+        console.log("ArrayMain chargée")
+        if (i < 10)
+        {
+
+            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+            i++;
+        }
+    }
+}
+
 
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
@@ -87,48 +129,10 @@ const oberserver = new IntersectionObserver(entries => {
 oberserver.observe(observerTrigger);
 
 
-function TestArrayMain()
-{
-    console.log("Test Demandée")
-    let saved = localStorage.getItem("Dicos2");
-    if(saved)
-    {
-        ArrayMain = JSON.parse(saved);
-        console.log("Données restaurée");
-    }
-    if (ArrayMain.length == 0)
-    {
-        const question = "";
-        const action = "Demande";
-        const data = { action, question };
-        window.chrome.webview.postMessage(data);
-    }
-    else
-    {
-        console.log("ArrayMain chargée")
-        if (i < 10)
-        {
-            
-            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-            i++;
-        }
-    }
-}
 
-function ClearCard(info) 
-{
-    console.log("Nettoyer")
-    divmain.innerHTML = "";
-    ArrayMain = [];
-    divmain.appendChild(observerTrigger);
-    i = 0;
-    console.log(info)
-    if (info === '')
-    {
-        TestArrayMain();    
-    }
-    
-}
+
+// ################################################################ Fonction des différente cartes
+
 function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
     divmain.innerHTML = "";
 
@@ -141,26 +145,7 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
             batch = [];
         }
         else {
-
-            let img1 = "";
-            let img2 = ""
             let val = "\"" + question + "\"";
-            const quest_img = Qimg[index].replace("\\/", "/");
-            const rep_img = Rimg[index].replace("\\/", "/");
-            question = question.replace(/\n/g, "<br>");
-            answer = reparr[index].replace(/\n/g, "<br>");
-            console.log(val);
-            console.log(question);
-            console.log(answer);
-
-            if (quest_img !== "") {
-                img1 = `<img src= ${quest_img} >`;
-            }
-            if (rep_img !== "") {
-                img2 = `<img src= ${rep_img} >`;
-            }
-
-
             let card = document.createElement("div");
             card.className = "card";
 
@@ -180,20 +165,20 @@ function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
       </svg>
     </button>
     <div class="container">
-    <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-      <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-    </div>
-    </div>
-  `;
+        <div class="DivInline">
+            ${Qimg[index] ? `<img src="${Qimg[index]}" loading="lazy">` : ""}
+            <p>${question.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg[index] ? `<img src="${Rimg[index]}" loading="lazy">` : ""}
+            <p>${reparr[index].replace(/\n/g, "<br>")}</p>
+        </div>
+    </div>`;
             batch.push(card)
         }
     });
+    
     renderCardsSmoothly(batch);
     MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
     batch = [];
@@ -238,9 +223,10 @@ function CreateCardResp(quest, rep, Qimg, Rimg){
         </div>
     </div>`;
     batch.push(card);
+    console.log(i)
     if (batch.length >= 10 || i === parseInt(ArrayMain[0].len)-1) {
         console.log(i)
-        console.log(parseInt(ArrayMain[0].len)-1)
+        console.log(parseInt(ArrayMain[0].len)-1 )
         CreatCardLogicGlobal();
     }
 
@@ -261,29 +247,12 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
         }
         else
         {
-        let img1 = "";
-        let img2 = ""
-        const quest_img = Qimg[index].replace("\\/", "/");
-        const rep_img = Rimg[index].replace("\\/", "/");
-        const val = "\"" + question + "\"";
-        question = question.replace(/\n/g, "<br>");
-        answer = reparr[index].replace(/\n/g, "<br>");
-
-        if (quest_img !== "") {
-            img1 = `<img src= ${quest_img} >`;
-        }
-        if (rep_img !== "") {
-            img2 = `<img src= ${rep_img} >`;
-        }
-
-        console.log(img1)
-        console.log(img2)
-
-
+            
         let card = document.createElement("div");
         card.className = "card";
+            let val = "\"" + question + "\"";
 
-        card.innerHTML = `
+            card.innerHTML = `
     <button class="bin-button" value=${val} onclick="get_val(this)">
       <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
@@ -309,16 +278,15 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
     
     <div class="container">
         <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-          <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-      </div>
-    </div>
-  `;
+            ${Qimg[index] ? `<img src="${Qimg[index]}" loading="lazy">` : ""}
+            <p>${question.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg[index] ? `<img src="${Rimg[index]}" loading="lazy">` : ""}
+            <p>${reparr[index].replace(/\n/g, "<br>")}</p>
+        </div>
+    </div>`;
         console.log("Carte Ajouter")
         batch.push(card);
         }
@@ -326,10 +294,12 @@ function CreateCardCreated(questarr, reparr, Qimg, Rimg)
     renderCardsSmoothly(batch);
     MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
     batch = [];
-
 }
 
 
+
+
+// ################################################################ Fonction de rendu
 
 
 function CreatCardLogicGlobal()
@@ -360,6 +330,9 @@ function renderCardsSmoothly(cards) {
     requestAnimationFrame(step); // démarre le rendu
 }
 
+
+
+// ######################################################################## Fonction pour action des bouttons
 
 
 
