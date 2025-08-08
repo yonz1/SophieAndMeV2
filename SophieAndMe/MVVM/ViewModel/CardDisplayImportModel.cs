@@ -72,7 +72,6 @@ public class CardDisplayImportModel
 
     public void SendDataImport()
     {
-        
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < _level.Count; i++)
         {
@@ -92,9 +91,30 @@ public class CardDisplayImportModel
     public void CreatedLogic()
     {
         (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
-        var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
-        Console.WriteLine(jscode);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
+        var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
+        var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();
+        var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
+        ShowCard(q, r, uq, ur);
+    }
+    private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    {
+        Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < question.Count; i++)
+        {
+            
+            dico["level"] = "";
+            dico["course"] = "";
+            dico["question"] = question[i];
+            dico["repnse"] = reponse[i];
+            dico["urlQuestion"] = urlQuestion[i];
+            dico["urlRep"] = urlReponse[i];
+            dico["difficulty"] = "";
+            dico["len"] = question.Count.ToString();
+            dico["Action"] = "Created";
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        }
     }
     
 }

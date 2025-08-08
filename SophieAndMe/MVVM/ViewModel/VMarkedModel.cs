@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -105,16 +106,25 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
         var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();
         var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
-
-        try
+        ShowCard(q, r, uq, ur);
+    }
+    
+    private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    {
+        Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < question.Count; i++)
         {
-            _jscall = WebviewInteraction.send_data_Card_Marked(q, r, uq, ur);
-            WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(_jscall));
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            MessageBox.Show("An error occured while loading your Data, please retry later");
+            dico["level"] = "";
+            dico["course"] = "";
+            dico["question"] = question[i];
+            dico["repnse"] = reponse[i];
+            dico["urlQuestion"] = urlQuestion[i];
+            dico["urlRep"] = urlReponse[i];
+            dico["difficulty"] = "";
+            dico["len"] = question.Count.ToString();
+            dico["Action"] = "Marked";
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(jscode));
         }
     }
     public event PropertyChangedEventHandler? PropertyChanged;
