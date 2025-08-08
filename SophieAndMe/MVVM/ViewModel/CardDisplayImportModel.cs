@@ -67,7 +67,7 @@ public class CardDisplayImportModel
         
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
         // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("ClearCard('')"));
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("TestArrayMain()"));
     }
 
     public void SendDataImport()
@@ -83,6 +83,7 @@ public class CardDisplayImportModel
             dico["urlQuestion"] = _urlQuestion[i];
             dico["urlRep"] = _urlRep[i];
             dico["difficulty"] = _difficulty[i];
+            dico["Action"] = "Import";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }

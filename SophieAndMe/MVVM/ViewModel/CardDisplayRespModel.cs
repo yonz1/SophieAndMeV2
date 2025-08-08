@@ -64,6 +64,7 @@ public class CardDisplayRespModel
             dico["urlRep"] = urlReponse[i];
             dico["difficulty"] = "";
             dico["len"] = question.Count.ToString();
+            dico["Action"] = "Resp";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorDisplayResp.JsCallMessage(jscode));
         }

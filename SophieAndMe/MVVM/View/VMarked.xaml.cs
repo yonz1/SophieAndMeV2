@@ -36,7 +36,10 @@ namespace SophieAndMe.MVVM.View
                     webviewall.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne')");
                     WeakReferenceMessenger.Default.Register<MediatorMarked.JsCallMessage>(this, (r, m) =>
                     {
-                        webviewall.CoreWebView2.ExecuteScriptAsync(m.Value);
+                        if (m.Value.Contains("\"question\":"))
+                            webviewall.CoreWebView2?.PostWebMessageAsJson(m.Value);
+                        else
+                            webviewall.CoreWebView2?.ExecuteScriptAsync(m.Value);
                     });
                 };
             };

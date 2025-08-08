@@ -23,15 +23,6 @@ window.MathJax = {
     },
 };
 
-function ClearCard(info)
-{
-    console.log("Nettoyer")
-    divmain.innerHTML = "";
-    ArrayMain = [];
-    divmain.appendChild(observerTrigger);
-    i = 0;
-}
-
 function TestArrayMain()
 {
     console.log("Test Demandée")
@@ -64,32 +55,37 @@ function TestArrayMain()
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
     console.log(dico.level)
-    if (dico.level !== "")
-    {
-        
-        ArrayMain.push(dico);
-        localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
-        if (i < 10)
-        {
-            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-            i++;
-        }
-        if (i === parseInt(dico.len))
-        {
-            console.log(i + 1)
-            console.log(dico.len);
-            CreatCardLogicGlobal();
-        }
-    }
-    else 
-    {
-        ArrayMain.push(dico);
-        localStorage.setItem("DicosResp", JSON.stringify(ArrayMain));
-        if (i < 10)
-        {
-            CreateCardResp(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-            i++;
-        }
+    ArrayMain.push(dico);
+    switch (dico.Action) {
+        case "Resp":
+            localStorage.setItem("DicosResp", JSON.stringify(ArrayMain));
+            if (i < 10)
+            {
+                CreateCardResp(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
+                i++;
+            }
+            break;
+        case "Import":
+            localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
+            if (i < 10) {
+                CreateCardImport(dico.question, dico.repnse, dico.urlQuestion, dico.urlRep);
+                i++;
+            }
+            break;
+        case "Marked":
+            localStorage.setItem("DicosMarked", JSON.stringify(ArrayMain));
+            if (i < 10) {
+                CreateCardMarked(dico.question, dico.repnse, dico.urlQuestion, dico.urlRep);
+                i++;
+            }
+            break;
+        case "Created":
+            localStorage.setItem("DicosCreated", JSON.stringify(ArrayMain));
+            if (i < 10) {
+                CreateCardCreated(dico.question, dico.repnse, dico.urlQuestion, dico.urlRep);
+                i++;
+            }
+            break;
     }
 });
 
@@ -99,32 +95,44 @@ const oberserver = new IntersectionObserver(entries => {
         let y = 0;
         while (y < 10 && i < ArrayMain.length) {
             console.log("scrollTriger");
-            if (ArrayMain[i].level !== "")
-            {
-                CreateCardImport(
-                    ArrayMain[i].question,
-                    ArrayMain[i].repnse,
-                    ArrayMain[i].urlQuestion,
-                    ArrayMain[i].urlRep
-                );
-                console.log("Création carte importer");
-            }
-            else
-            {
-                CreateCardResp(
-                    ArrayMain[i].question,
-                    ArrayMain[i].repnse,
-                    ArrayMain[i].urlQuestion,
-                    ArrayMain[i].urlRep
-                );
-                console.log("Création carte reponse");
-            }
-            i++;
-            y++; 
+            switch (dico.Action) {
+                case "Resp":
+                    CreateCardResp(
+                        ArrayMain[i].question,
+                        ArrayMain[i].repnse,
+                        ArrayMain[i].urlQuestion,
+                        ArrayMain[i].urlRep
+                    );
+                    break;
+                case "Import":
+                    CreateCardImport(
+                        ArrayMain[i].question,
+                        ArrayMain[i].repnse,
+                        ArrayMain[i].urlQuestion,
+                        ArrayMain[i].urlRep
+                    );
+                    console.log("Création carte importer");
+                    break;
+                case "Marked":
+                    localStorage.setItem("DicosMarked", JSON.stringify(ArrayMain));
+                    if (i < 10) {
+                        CreateCardMarked(dico.question, dico.repnse, dico.urlQuestion, dico.urlRep);
+                        i++;
+                    }
+                    break;
+                case "Created":
+                    localStorage.setItem("DicosCreated", JSON.stringify(ArrayMain));
+                    if (i < 10) {
+                        CreateCardCreated(dico.question, dico.repnse, dico.urlQuestion, dico.urlRep);
+                        i++;
+                    }
+                    break;
         }
-    }
+            i++;
+            y++;
+        }
 
-},{threshold:0.1});
+}},{threshold:0.1});
 
 oberserver.observe(observerTrigger);
 
