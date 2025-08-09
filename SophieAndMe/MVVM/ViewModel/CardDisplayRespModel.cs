@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.View;
 using NavigationService = SophieAndMe.Core.NavigationService;
@@ -21,8 +22,10 @@ public class CardDisplayRespModel
     private readonly Func<string, Task> _invokejs;
     private string _jscall = null!;
     private readonly MainViewModel _mainViewModel;
+    private readonly IDataService _dataService;
+    // private readonly IWindowService _windowService;
     public ICommand Back_quizz_Click { get; }
-    private string _message = null!;
+    private string _message = null!; 
     public string Message
     {
         get => _message;set{        _message = value;        OnPropertyChanged();    }
@@ -30,7 +33,7 @@ public class CardDisplayRespModel
     public CardDisplayRespModel(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse,MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
-
+        _dataService =  App.DataService;
         Message = App.Current.Properties["nameindex"].ToString();
         var q = QuizzUtilities.Miseneformelist(question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(reponse) ?? new List<string>();
@@ -52,6 +55,7 @@ public class CardDisplayRespModel
     }
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
+        _dataService.IdCard.Number += 1;
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < question.Count; i++)
         {
@@ -64,6 +68,7 @@ public class CardDisplayRespModel
             dico["difficulty"] = "";
             dico["len"] = question.Count.ToString();
             dico["Action"] = "Resp";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorDisplayResp.JsCallMessage(jscode));
         }

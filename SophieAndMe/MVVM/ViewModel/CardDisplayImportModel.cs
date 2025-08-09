@@ -18,13 +18,14 @@ public class CardDisplayImportModel
     private List<string> _urlQuestion;
     private List<string> _urlRep;
     private List<string> _difficulty;
-
+    private readonly IDataService _dataService;
+    Dictionary<string, string> dico = new Dictionary<string, string>();
     
 
     public CardDisplayImportModel(VCustomModel vm,string action)
     {
         _vCustomModel = vm;
-        
+        _dataService =  App.DataService;
         
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
@@ -64,15 +65,22 @@ public class CardDisplayImportModel
     
     public void ImportLogic()
     {
-        
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
         // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("TestArrayMain()"));
+        // var val = JsonSerializer.Serialize("TestArrayMain()");
+        // WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(val));
+        _dataService.IdCard.Number += 1;
+        dico["level"] = _level[0];
+        dico["Id"] = _dataService.IdCard.Number.ToString();
+        string jscode = JsonSerializer.Serialize(dico);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        
+
+
     }
 
     public void SendDataImport()
     {
-        Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < _level.Count; i++)
         {
             dico["level"] = _level[i];
@@ -83,7 +91,8 @@ public class CardDisplayImportModel
             dico["urlRep"] = _urlRep[i];
             dico["difficulty"] = _difficulty[i];
             dico["Action"] = "Import";
-            string jscode = JsonSerializer.Serialize(dico);
+            dico["Id"] = _dataService.IdCard.Number.ToString();
+            string jscode = JsonSerializer.Serialize(dico); 
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }
     }
@@ -99,10 +108,10 @@ public class CardDisplayImportModel
     }
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
+        _dataService.IdCard.Number += 1;
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < question.Count; i++)
         {
-            
             dico["level"] = "";
             dico["course"] = "";
             dico["question"] = question[i];
@@ -112,6 +121,7 @@ public class CardDisplayImportModel
             dico["difficulty"] = "";
             dico["len"] = question.Count.ToString();
             dico["Action"] = "Created";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }

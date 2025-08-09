@@ -23,6 +23,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public ObservableCollection<string> Noms { get; set; } = new();
     public ObservableCollection<SubjectItem> Subjects { get; set; }
     public RelayCommand ChoisirNomCommand { get; }
+    private readonly IDataService _dataService;
 
     private string _jscall;
     private bool _isview;
@@ -37,6 +38,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public VMarkedModel(MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
+        _dataService =  App.DataService;
         IsActive = true;
         WeakReferenceMessenger.Default.Register<MediatorMarked.JsToAppMessage>(this, (r, m) =>
         {
@@ -111,6 +113,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
+        _dataService.IdCard.Number += 1;
         Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < question.Count; i++)
         {
@@ -123,6 +126,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
             dico["difficulty"] = "";
             dico["len"] = question.Count.ToString();
             dico["Action"] = "Marked";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(jscode));
         }

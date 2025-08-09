@@ -39,6 +39,7 @@ public partial class CardDisplayImport : UserControl
                     }
                     else
                     {
+                        Console.WriteLine("import2");
                         WebViewAllCard.CoreWebView2.ExecuteScriptAsync(m.Value);   
                     }
                 });
