@@ -405,6 +405,7 @@ namespace SophieAndMe.MVVM.Model
                     App.Current.Properties["matier"].ToString() +
                     " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question +
                     "\", ' ', '') AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\"";
+            Console.WriteLine(query);
             using (var db = new SQLiteConnection(ConSource))
             {
                 db.Open();

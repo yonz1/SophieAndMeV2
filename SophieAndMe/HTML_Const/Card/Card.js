@@ -3,33 +3,25 @@ i = 0;
 y = 0;
 let ArrayMain = [];
 let batch = [];
-const observerTrigger = document.createElement("div");
+let observerTrigger = document.createElement("div");
 observerTrigger.id = "scroll-trigger";
 console.log("Charger")
-localStorage.clear();
+let UsedQuestion = [];
 let OldId = "";
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    },
+    }, 
     options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
         renderActions: {
-            addMenu: [] // désactive le menu contextuel MathJax
+            addMenu: [] 
         }
     },
 };
 
-function clearcard()
-{
-    console.log("Clear card")
-    divmain.innerHTML = "";
-    ArrayMain = [];
-    divmain.appendChild(observerTrigger);
-    i = 0;
 
-}
 
 function TestArrayMain()
 {
@@ -40,49 +32,54 @@ function TestArrayMain()
         ArrayMain = JSON.parse(saved);
         console.log("Données restaurée");
     }
-    if (ArrayMain.length == 0)
+    if (ArrayMain.length === 0)
     {
         const question = "";
         const action = "Demande";
         const data = { action, question };
         window.chrome.webview.postMessage(data);
     }
-    else
-    {
-        console.log("ArrayMain chargée")
-        while (i < 10)
-        {
-            CreateCardMain(
-                ArrayMain[i].level,
-                ArrayMain[i].course,
-                ArrayMain[i].question,
-                ArrayMain[i].repnse,
-                ArrayMain[i].urlQuestion,
-                ArrayMain[i].urlRep,
-                ArrayMain[i].difficulty,
-                ArrayMain[i].len,
-                ArrayMain[i].Action
-            );
-            i++;
-        }
-    }
+    // else
+    // {
+    //     // console.log("ArrayMain chargée")
+    //     // while (i < 10)
+    //     // {
+    //     //     CreateCardMain(
+    //     //         ArrayMain[i].level,
+    //     //         ArrayMain[i].course,
+    //     //         ArrayMain[i].question,
+    //     //         ArrayMain[i].repnse,
+    //     //         ArrayMain[i].urlQuestion,
+    //     //         ArrayMain[i].urlRep,
+    //     //         ArrayMain[i].difficulty,
+    //     //         ArrayMain[i].len,
+    //     //         ArrayMain[i].Action
+    //     //     );
+    //     //     i++;
+    //     // }
+    // }
 }
 
 
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
+    console.log(i);
     if (dico.Id !== OldId)
     {
         OldId = dico.Id;
         clearcard();
     }
-    if (dico.level !== "" && i === 0)
+    if (dico.Action === "Test")
     {
-        TestArrayMain();
-        console.log("test appelée");
+            TestArrayMain();
+            console.log("test appelée");
     }
     else
     {
+        if (dico.Action === "Import")
+        {
+            localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
+        }
         ArrayMain.push(dico);
         if (i < 10){
             CreateCardMain(
@@ -95,8 +92,9 @@ window.chrome.webview.addEventListener('message', event => {
                 dico.difficulty,
                 dico.len,
                 dico.Action
-            );}
-        i++;
+            );
+            i++;}
+
     }
 
 });
@@ -105,8 +103,11 @@ const oberserver = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting)
     {
         let y = 0;
+        console.log("scrollTriger");
+        console.log(i);
+        console.log(ArrayMain[0].len);
         while (y < 10 && i < ArrayMain.length) {
-            console.log("scrollTriger");
+            console.log("scrollTriger2");
             CreateCardMain(
                 ArrayMain[i].level,
                 ArrayMain[i].course,
@@ -123,15 +124,23 @@ const oberserver = new IntersectionObserver(entries => {
         }
 
 }},{threshold:0.1});
-oberserver.observe(observerTrigger);
 
+function clearcard()
+{
+    console.log("Clear card")
+    divmain.innerHTML = "";
+    ArrayMain = [];
+    i = 0;
+    divmain.appendChild(observerTrigger);
+    oberserver.observe(observerTrigger);
+}
 // ################################################################ Fonction des différente cartes
-
 
 function CreateCardMain(level,course,quest, rep,Qimg, Rimg,difficulty, len,Action) {
     let card = document.createElement("div");
     let val = "\"" + quest + "\"";
     card.className = "card";
+    card.id = quest;
     console.log(i);
     console.log(len);
     switch (Action)
@@ -250,6 +259,7 @@ function CreatCardLogicGlobal()
 {
     console.log("Created")
     renderCardsSmoothly(batch);
+    //MathJax.typesetPromise([divmain]);
     MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
     batch = [];
 }
@@ -264,8 +274,7 @@ function renderCardsSmoothly(cards) {
         } else {
             if (window.MathJax) {
                 requestAnimationFrame(() => {
-                    MathJax.typesetPromise([divmain])
-                        .catch(err => console.error("MathJax error:", err));
+                    MathJax.typesetPromise([divmain]);
                 });
             }
         }

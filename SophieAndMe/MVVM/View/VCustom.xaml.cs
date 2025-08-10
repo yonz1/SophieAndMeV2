@@ -11,6 +11,7 @@ namespace SophieAndMe.MVVM.View;
 
 public partial class VCustom : UserControl
 {
+    public int i = 0;
     public VCustom(MainViewModel mainVm)
     {
         InitializeComponent();
@@ -33,7 +34,8 @@ public partial class VCustom : UserControl
                 this.DataContext = new VCustomModel(mainVm);
                 WeakReferenceMessenger.Default.Register<MediatorCustom.JsCallMessage>(this, (r, m) =>
                 {
-                    Console.WriteLine("Custom");
+                    i++;
+                    Console.WriteLine("Custom - " + i);
                     if (m.Value.Contains("TestArrayMain"))
                     {
                         Console.WriteLine("Custom2");

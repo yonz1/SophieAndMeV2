@@ -66,21 +66,21 @@ public class CardDisplayImportModel
     public void ImportLogic()
     {
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
-        // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
-        // var val = JsonSerializer.Serialize("TestArrayMain()");
-        // WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(val));
+        
+        
+        
         _dataService.IdCard.Number += 1;
         dico["level"] = _level[0];
+        dico["Action"] = "Test";
         dico["Id"] = _dataService.IdCard.Number.ToString();
         string jscode = JsonSerializer.Serialize(dico);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
-        
-
-
     }
+    
 
     public void SendDataImport()
     {
+        Console.WriteLine(_level.Count);
         for (int i = 0; i < _level.Count; i++)
         {
             dico["level"] = _level[i];
@@ -90,6 +90,7 @@ public class CardDisplayImportModel
             dico["urlQuestion"] = _urlQuestion[i];
             dico["urlRep"] = _urlRep[i];
             dico["difficulty"] = _difficulty[i];
+            dico["len"] = _question.Count.ToString();
             dico["Action"] = "Import";
             dico["Id"] = _dataService.IdCard.Number.ToString();
             string jscode = JsonSerializer.Serialize(dico); 
