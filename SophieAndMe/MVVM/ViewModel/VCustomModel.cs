@@ -123,7 +123,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             }
         });
     }
-
     public void ReplaceLogic(string matier,string name,string question,string rep,string imgQuestion,string imgRep)
     {
         DbInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
@@ -132,7 +131,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         Console.WriteLine(jscall);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscall));
     }
-    
     public void EditLogic(string question)
     {
         App.Current.Properties["old_quest"] = question;
@@ -146,8 +144,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         ClearLogic(true,false,false);
     }
-
-
     
     public  void FirstLayer(object matier)
     {

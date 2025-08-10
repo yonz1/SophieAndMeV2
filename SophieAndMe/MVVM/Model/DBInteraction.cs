@@ -1,10 +1,12 @@
-﻿using System.Data.SQLite;
+﻿using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Text;
-using System.Windows.Forms;
+using System.Windows;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.ViewModel;
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 
 namespace SophieAndMe.MVVM.Model
@@ -24,14 +26,15 @@ namespace SophieAndMe.MVVM.Model
 
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
+        private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
 
 
         private static readonly List<string> Level = new List<string>();
         private static readonly List<string> Course = new List<string>();
-        private static readonly List<string> Question = new List<string>();
-        private static readonly List<string> ImageQuestion = new List<string>();
-        private static readonly List<string> Reponse = new List<string>();
-        private static readonly List<string> ImageRep = new List<string>();
+        private static List<string> Question = new List<string>();
+        private static List<string> ImageQuestion = new List<string>();
+        private static List<string> Reponse = new List<string>();
+        private static List<string> ImageRep = new List<string>();
         private static readonly List<string> Difficulty = new List<string>();
 
         private static readonly List<string> TempList = [];
@@ -122,7 +125,6 @@ namespace SophieAndMe.MVVM.Model
         {
             _dataService = App.DataService;
             var chapter = _dataService.SharedListChapter;
-            
             var sb = new StringBuilder();
             var parameters = new List<SQLiteParameter>();
 
@@ -142,6 +144,14 @@ namespace SophieAndMe.MVVM.Model
             command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@matier", Application.Current.Properties["matier"]?.ToString());
         }
+        else if (App.Current.Properties["nameindex"].ToString() == "Progress")
+        {
+            connection.Close();
+            connection = new SQLiteConnection(ProgressSource);
+            connection.Open();
+            string query = "SELECT question,reponse,image_question_url,image_answer_url FROM Progressions";
+            command = new SQLiteCommand(query, connection);
+        }
         else
         {
             string query = $"SELECT question,reponse,image_question_url,image_answer_url FROM {Application.Current.Properties["matier"]} WHERE name = @name";
@@ -156,15 +166,19 @@ namespace SophieAndMe.MVVM.Model
                 resultsReponses.Add(reader.GetString(1));
                 resultsUrlQuestion.Add(reader.GetString(2));
                 resultsUrlRep.Add(reader.GetString(3));
+                Console.WriteLine("1 - " + resultsQuestions.Count);
             }
+            Console.WriteLine("2 - " +resultsQuestions.Count);
         }
+        Console.WriteLine("3 - " + resultsQuestions.Count);
     }
     catch (Exception ex)
     {
         System.Windows.Forms.MessageBox.Show(ex.ToString());
-        System.Diagnostics.Debug.WriteLine(ex.ToString());
+        Console.WriteLine(ex.ToString());
     }
 
+    Console.WriteLine("4 - " +resultsQuestions.Count);
     if (resultsQuestions.Count == 0)
     {
         MessageBox.Show("Ce quizz ne possède aucune question");
@@ -177,6 +191,7 @@ namespace SophieAndMe.MVVM.Model
             NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm));
         }
     }
+    Console.WriteLine("Fin");
     return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep); 
 }
         public static (List<string>, List<string>, List<string>, List<string>) RetrievequizzToCreated(string? nameindex)
@@ -509,8 +524,67 @@ namespace SophieAndMe.MVVM.Model
             }
             return TempList;
         }
-        
-        
-        
+
+        public static bool VerifStar()
+        {
+            string query = "";
+            using (var db = new SQLiteConnection(ProgressSource))
+            {
+                db.Open();
+                query = "SELECT COUNT(*) from Progressions";
+                using (var cmd = new SQLiteCommand(query, db))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetInt32(0) == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        public static void RegisterProgression(MainViewModel mainVm)
+        {
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            string query = "";
+            _dataService = App.DataService;
+            var chapter = _dataService.SharedListChapter;
+            SQLiteCommand command;
+            foreach (var info in  chapter)
+            {
+                Console.WriteLine("data -" + info);
+                query = "INSERT INTO Chapitre (Noms) VALUES (@val)";
+                command = new SQLiteCommand(query, c);
+                SQLiteParameter param = new SQLiteParameter();
+                param.ParameterName = "@val";
+                param.Value = info;
+                command.Parameters.Add(param);
+                command.ExecuteNonQuery();
+            }
+            Console.WriteLine("Appel lancée");
+            (Question,Reponse,ImageQuestion,ImageRep) = Retrievequizz(Application.Current.Properties["nameindex"]?.ToString(),"",mainVm);
+            for (int i = 0; i < Question.Count; i++)
+            {
+                query = "INSERT INTO Progressions (question,reponse,image_question_url,image_answer_url) VALUES (@question,@reponse,@imageQuestion,@imageRep)";
+                command = new SQLiteCommand(query, c);
+                command.Parameters.AddWithValue("@question", Question[i]);
+                command.Parameters.AddWithValue("@reponse", Reponse[i]);
+                command.Parameters.AddWithValue("@imageQuestion", ImageQuestion[i]);
+                command.Parameters.AddWithValue("@imageRep", ImageRep[i]);
+                Console.WriteLine("Stockée");
+                command.ExecuteNonQuery();
+            }
+        }
     }
+    
 }

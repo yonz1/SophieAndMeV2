@@ -139,6 +139,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
+        Console.WriteLine("Récupération lancée");
         (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         ActionText = "Response";

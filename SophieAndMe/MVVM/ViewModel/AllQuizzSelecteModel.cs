@@ -22,7 +22,8 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
     public ICommand Fill { get; }
     public ICommand Clear { get; }
     public ICommand StartQuizz { get; }
-
+    public ICommand Reinitialiser { get; }
+    public ICommand Continuer { get; }
     private bool _ischeckedvalue;
     public bool IsCheckedValue
     {
@@ -34,6 +35,18 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
                 _ischeckedvalue = value;
                 OnPropertyChanged(nameof(IsCheckedValue));
             }
+        }
+    }
+
+    private string _progvalue;
+
+    public string ProgValue
+    {
+        get => _progvalue;
+        set
+        {
+            _progvalue = value;
+            OnPropertyChanged();
         }
     }
     private ObservableCollection<string> Chapitres { get; set; } = [];
@@ -52,6 +65,15 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             Items.Add(Temps);
         }
 
+        if (DbInteraction.VerifStar())
+        {
+            _progvalue = "Continuer";
+        }
+        else
+        {
+            _progvalue = "Démarrer";
+        }
+        
         Fill = new RelayCommand(o => FillLogic());
         Clear = new RelayCommand(o => ClearLogic());
         BackQuizzClick = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm)));
@@ -60,8 +82,26 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             SaveAllChecked();
             NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
         });
+        Continuer = new RelayCommand(o =>
+        {
+            Application.Current.Properties["nameindex"] = "Progress";
+            if (_progvalue == "Démarrer")
+            {
+                SaveAllChecked();
+                SaveDataProgress(mainVm);
+                NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
+            }
+            else
+            {
+                NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
+            }
+        });
     }
 
+    private void SaveDataProgress(MainViewModel mainVm)
+    {
+        DbInteraction.RegisterProgression(mainVm);
+    }
     private void ClearLogic()
     {
         foreach (var item in Items)
@@ -81,7 +121,6 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         var listChecked = Items.Where(item => item.IsChecked).ToList();
         _dataService.SharedListChapter =  listChecked.Select(item => item.Name).ToList()!;
     }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
