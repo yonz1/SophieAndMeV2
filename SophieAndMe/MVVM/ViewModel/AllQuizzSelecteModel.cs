@@ -65,16 +65,7 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             Temps.Name = value;
             Items.Add(Temps);
         }
-
-        if (DbInteraction.VerifStart())
-        {
-            _progvalue = "Continuer";
-        }
-        else
-        {
-            _progvalue = "Démarrer";
-        }
-        
+        MessageLogic();
         Fill = new RelayCommand(o => FillLogic());
         Clear = new RelayCommand(o => ClearLogic());
         BackQuizzClick = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm)));
@@ -84,11 +75,15 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             SaveAllChecked();
             NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
         });
+        Reinitialiser = new RelayCommand(o =>
+        {
+            DeleteLogic();
+            MessageLogic();
+        });
         Continuer = new RelayCommand(o =>
         {
             _dataService.QuizzId.options = "Progressif";
-            
-            if (_progvalue == "Démarrer")
+            if (ProgValue == "Démarrer")
             {
                 SaveAllChecked();
                 SaveDataProgress(mainVm);
@@ -101,6 +96,23 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         });
     }
 
+
+    private void MessageLogic()
+    {
+        if (DbInteraction.VerifStart())
+        {
+             ProgValue =  "Continuer";
+        }
+        else
+        {
+            ProgValue = "Démarrer";
+        }
+    }
+    private void DeleteLogic()
+    {
+        DbInteraction.DeleteProg();
+
+    }
     private void SaveDataProgress(MainViewModel mainVm)
     {
         DbInteraction.RegisterProgression(mainVm);

@@ -176,21 +176,15 @@ namespace SophieAndMe.MVVM.Model
                         resultsReponses.Add(reader.GetString(1));
                         resultsUrlQuestion.Add(reader.GetString(2));
                         resultsUrlRep.Add(reader.GetString(3));
-                        Console.WriteLine("1 - " + resultsQuestions.Count);
                     }
-
-                    Console.WriteLine("2 - " + resultsQuestions.Count);
                 }
-
-                Console.WriteLine("3 - " + resultsQuestions.Count);
             }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
                 Console.WriteLine(ex.ToString());
             }
-
-            Console.WriteLine("4 - " + resultsQuestions.Count);
+            
             if (resultsQuestions.Count == 0)
             {
                 MessageBox.Show("Ce quizz ne possède aucune question");
@@ -203,8 +197,7 @@ namespace SophieAndMe.MVVM.Model
                     NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm));
                 }
             }
-
-            Console.WriteLine("Fin");
+            
             return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep);
         }
 
@@ -583,6 +576,7 @@ namespace SophieAndMe.MVVM.Model
 
         public static void RegisterProgression(MainViewModel mainVm)
         {
+            DeleteProg();
             using SQLiteConnection c = new SQLiteConnection(ProgressSource);
             c.Open();
             string query = "";
@@ -601,8 +595,7 @@ namespace SophieAndMe.MVVM.Model
                 command.Parameters.Add(param);
                 command.ExecuteNonQuery();
             }
-
-            Console.WriteLine("Appel lancée");
+            
             (Question, Reponse, ImageQuestion, ImageRep) = Retrievequizz(Application.Current.Properties["nameindex"]?.ToString(), "", mainVm);
             for (int i = 0; i < Question.Count; i++)
             {
@@ -615,7 +608,6 @@ namespace SophieAndMe.MVVM.Model
                 command.Parameters.AddWithValue("@reponse", Reponse[i]);
                 command.Parameters.AddWithValue("@imageQuestion", ImageQuestion[i]);
                 command.Parameters.AddWithValue("@imageRep", ImageRep[i]);
-                Console.WriteLine("Stockée");
                 command.ExecuteNonQuery();
             }
         }
@@ -644,6 +636,34 @@ namespace SophieAndMe.MVVM.Model
                 }
             } 
             return (resultsQuestions,resultsReponses,resultsUrlQuestion,resultsUrlRep);
+        }
+
+        public static void DeleteProg()
+        {
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier;
+            command = new SQLiteCommand(query, c);
+            command.ExecuteNonQuery();
+            query = "DELETE FROM Chapitre" +  _dataService.QuizzId.Matier;
+            command = new SQLiteCommand(query, c);
+            command.ExecuteNonQuery();
+        }
+
+        public static void DeleteQuestion(List<string> Question)
+        {
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            SQLiteCommand command;
+            foreach (var data in Question)
+            {
+                string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier + " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + data  +  "\", ' ', '')"; 
+                Console.WriteLine(query);
+                command = new SQLiteCommand(query, c);
+                command.ExecuteNonQuery();                
+            }
+
         }
     }
 }

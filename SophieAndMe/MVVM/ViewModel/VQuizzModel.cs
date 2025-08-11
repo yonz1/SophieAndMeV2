@@ -66,6 +66,7 @@ namespace SophieAndMe.MVVM.ViewModel;
                 else
                 {
                     _dataService.QuizzId.IsAll = false;
+                    _dataService.QuizzId.options = "";
                     NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
                 }
                 

@@ -27,6 +27,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     public ICommand Back_quizz_Click { get; }
     public ICommand Respaper { get; } = null!;
     public ICommand DirectResp { get; }
+    private readonly List<string> _viewedQuestion = [];
 
     private readonly Func<string, Task> _invokejs;
     private string _time = "";
@@ -164,6 +165,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         ShowQuestion();
         Back_quizz_Click = new RelayCommand(o =>
         {
+            if (_dataService.QuizzId.IsAll) { DeleteData(); }
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
                 NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
@@ -174,7 +176,12 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             }
             
         });
-        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep,mainVm)));
+        DirectResp = new RelayCommand(o =>
+        {
+            if (_dataService.QuizzId.IsAll) { DeleteData(); }
+            NavigationService.Instance.Navigate("MainContent",
+                new CardDisplayResp(_question, _repnse, _urlQuestion, _urlRep, mainVm));
+        });
     }
     
     
@@ -242,6 +249,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         try
         {
             string jscall = WebviewInteraction.send_data("reponse", QuizzUtilities.Miseneformetext(_question[_i]), QuizzUtilities.Miseneformetext(_repnse[_i]),_urlQuestion[_i],_urlRep[_i]);
+            _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i]));
             await _invokejs(jscall);
 
         }
@@ -250,16 +258,18 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             Console.WriteLine(e);
             throw;
         }
-
     }
 
-    private void MarkedChecked()
+    private void DeleteData()
     {
-        
+        DbInteraction.DeleteQuestion(_viewedQuestion);
     }
+    
     
     private void FinDeQuizz()
     {
+        _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i-1]));
+        if (_dataService.QuizzId.IsAll) { DeleteData(); }
         NavigationService.Instance.Navigate("MainContent",new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     
