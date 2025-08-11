@@ -14,6 +14,7 @@ namespace SophieAndMe.MVVM.ViewModel;
     
     public class VQuizzModel : INotifyPropertyChanged
     {
+        public IDataService _dataService;
         private readonly MainViewModel _mainViewModel;
         public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
@@ -21,8 +22,9 @@ namespace SophieAndMe.MVVM.ViewModel;
         private static readonly List<string> ListMat =
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
         
-        public VQuizzModel(MainViewModel mainVm) 
+        public VQuizzModel(MainViewModel mainVm)
         {
+            _dataService = App.DataService;
             _mainViewModel = mainVm;
             _mainViewModel.CurrentMessage = "Quizzs";
             Subjects = new ObservableCollection<SubjectItem>
@@ -48,7 +50,7 @@ namespace SophieAndMe.MVVM.ViewModel;
                     Noms.Clear();
                     var name = DbInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}
-                    App.Current.Properties["matier"]  = localSubject.Name.ToString();
+                    _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 });
             }
             
@@ -58,10 +60,12 @@ namespace SophieAndMe.MVVM.ViewModel;
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
                 if (ListMat.Contains(nom))
                 {
+                    _dataService.QuizzId.IsAll = true;
                     NavigationService.Instance.Navigate("MainContent",new AllQuizzSelect(mainVm));    
                 }
                 else
                 {
+                    _dataService.QuizzId.IsAll = false;
                     NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
                 }
                 

@@ -87,7 +87,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
                     LoadMark("");    
                     var name = DbInteraction.GetName("All");
                     foreach (var value in name) { Noms.Add(value);}
-                    App.Current.Properties["matier"]  = localSubject.Name.ToString();
+                    _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 }
                 
             });
@@ -96,13 +96,21 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         ChoisirNomCommand = new RelayCommand(nom =>
         {
             App.Current.Properties["nameindex"] = "Marked-" + nom;
-            App.Current.Properties["matier"] = nom;
+            _dataService.QuizzId.Matier = (string)nom;
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
     }
 
     public async void LoadMark(string mat)
     {
+        if (mat == "All")
+        {
+            _dataService.QuizzId.IsAll = true;
+        }
+        else
+        {
+            _dataService.QuizzId.IsAll = false;
+        }
         (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.GetMarked(mat);
         var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();

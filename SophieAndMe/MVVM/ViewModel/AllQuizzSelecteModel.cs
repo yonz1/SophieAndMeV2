@@ -55,6 +55,7 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         _dataService = App.DataService;
         Items = new ObservableCollection<CheckBoxItem>();
         _mainViewModel = mainVm;
+        _dataService.QuizzId.Matier = Application.Current.Properties["nameindex"].ToString();
         var name = DbInteraction.GetName(Application.Current.Properties["nameindex"]);
         foreach (var value in name)
         {
@@ -65,7 +66,7 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             Items.Add(Temps);
         }
 
-        if (DbInteraction.VerifStar())
+        if (DbInteraction.VerifStart())
         {
             _progvalue = "Continuer";
         }
@@ -79,12 +80,14 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         BackQuizzClick = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm)));
         StartQuizz = new RelayCommand(o =>
         {
+            _dataService.QuizzId.options = "";
             SaveAllChecked();
             NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
         });
         Continuer = new RelayCommand(o =>
         {
-            Application.Current.Properties["nameindex"] = "Progress";
+            _dataService.QuizzId.options = "Progressif";
+            
             if (_progvalue == "Démarrer")
             {
                 SaveAllChecked();

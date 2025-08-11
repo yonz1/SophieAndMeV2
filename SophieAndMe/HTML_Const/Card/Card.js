@@ -39,25 +39,6 @@ function TestArrayMain()
         const data = { action, question };
         window.chrome.webview.postMessage(data);
     }
-    // else
-    // {
-    //     // console.log("ArrayMain chargée")
-    //     // while (i < 10)
-    //     // {
-    //     //     CreateCardMain(
-    //     //         ArrayMain[i].level,
-    //     //         ArrayMain[i].course,
-    //     //         ArrayMain[i].question,
-    //     //         ArrayMain[i].repnse,
-    //     //         ArrayMain[i].urlQuestion,
-    //     //         ArrayMain[i].urlRep,
-    //     //         ArrayMain[i].difficulty,
-    //     //         ArrayMain[i].len,
-    //     //         ArrayMain[i].Action
-    //     //     );
-    //     //     i++;
-    //     // }
-    // }
 }
 
 

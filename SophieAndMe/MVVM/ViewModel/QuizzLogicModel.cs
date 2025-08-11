@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Timers;
+using System.Windows.Forms;
 using System.Windows.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
@@ -29,6 +30,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
 
     private readonly Func<string, Task> _invokejs;
     private string _time = "";
+    private IDataService  _dataService;
     
     //########################################### ToggleButton 
     
@@ -131,16 +133,27 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     //###################################################### Function primaire
     public QuizzLogicModel(Func<string, Task> invokeJs,MainViewModel mainVm)
     {
+        _dataService = App.DataService;
         _mainViewModel = mainVm;
-        MarkedQuestion = DbInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
+        MarkedQuestion = DbInteraction.GetMarkedForQUizz(_dataService.QuizzId.Matier.ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += OnTimerElapse;
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        Console.WriteLine("Récupération lancée");
-        (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
+        Console.WriteLine("Lancée");
+        switch (_dataService.QuizzId.options)
+        {
+            case "":
+                Console.WriteLine("Normale");
+                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
+                break;
+            case "Progressif":
+                Console.WriteLine("Prog");
+                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.RetrievequizzToProg();
+                break;
+        }
         ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         ActionText = "Response";
         QuestionCounter = (_i + 1).ToString() + "/" + _question.Count; 

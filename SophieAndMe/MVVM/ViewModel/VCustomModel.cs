@@ -40,6 +40,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     private List<string> _urlQuestion;
     private List<string> _urlRep;
     private List<string> _difficulty;
+    private readonly IDataService  _dataService;
     public List<Dictionary<string, string>> _all;
     private bool _isview;
     public bool  IsView
@@ -69,7 +70,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     
     public VCustomModel(MainViewModel mainVm)
     {
-        
+        _dataService = App.DataService;
         IsActive = true;
         _mainViewModel = mainVm;
 
@@ -79,7 +80,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             {
                 case "FirstLayer":
                     App.Current.Properties["old"] = "CreatedLogic";
-                    FirstLayer(App.Current.Properties["matier"]);
+                    FirstLayer(_dataService.QuizzId.Matier);
                     break;
                 case "CreatedLogic":
                     CreatedLogic();
@@ -148,7 +149,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public  void FirstLayer(object matier)
     {
         ClearLogic(false,false,true);
-        App.Current.Properties["matier"] = matier;
+        _dataService.QuizzId.Matier = (string)matier;
         var name = DbInteraction.GetNameCreated(matier.ToString());
         foreach (var value in name) { Matier.Add(value);} 
     }
