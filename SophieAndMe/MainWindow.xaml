@@ -132,15 +132,31 @@
                                         Foreground="Gainsboro"
                                         Icon="Search"
                                         Style="{StaticResource TopButtonIcon}" />
-                                    <materialDesign:AutoSuggestBox
+                                    <ComboBox
                                         Margin="10,0,16,0"
                                         Height="51"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
                                         FontSize="16"
+                                        Background="{StaticResource Elementbackground}"
+                                        ItemsSource="{Binding Chapter}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        MinWidth="50"
+                                        IsEditable="True"
                                         Foreground="{StaticResource Textcolor}"
-                                        Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
+                                        Style="{StaticResource MaterialDesignComboBox}">
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                                <Setter Property="Background" Value="{StaticResource Elementbackground}"/>
+                                                <Setter Property="Foreground" Value="{StaticResource Textcolor}"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="FontSize" Value="15"/>
+                                                <Setter Property="Padding" Value="8,4"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
                                 </DockPanel>
                             </Border>
                         </DockPanel>

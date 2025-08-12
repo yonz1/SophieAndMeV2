@@ -315,7 +315,7 @@ namespace SophieAndMe.MVVM.Model
 
             using (var db = new SQLiteConnection(ConSource))
             {
-                db.Open();
+                db.Open(); 
                 using (var cmd = new SQLiteCommand(query, db))
                 using (var reader = cmd.ExecuteReader())
                 {

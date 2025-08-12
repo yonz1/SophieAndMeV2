@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.Core;
@@ -11,7 +12,7 @@ using SophieAndMe.MVVM.Model;
 namespace SophieAndMe.MVVM.ViewModel ;
 
     public class MainViewModel : ObservableRecipient, INotifyPropertyChanged
-    {
+    { 
         private object _currentView;
         public object CurrentView
         {
@@ -28,6 +29,8 @@ namespace SophieAndMe.MVVM.ViewModel ;
         public ICommand ExitCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
+        public List<string> Chapter { get; } = new();
+        public string SelectedItem { get; set; }
         private bool _isview;
         public bool  IsView
         {
@@ -54,6 +57,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 }
             }
         }
+        
         public MainViewModel()
         {
             _dataService =  App.DataService;
@@ -61,6 +65,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             _dataService.IdCard.Number = 0;
             CurrentMessage = "Acceuil";
             NavigationService.Instance.Navigate("MainContent",new VLanding());
+            Chapter = DbInteraction.GetAllName();
             Pages = new ObservableCollection<SubjectItem>
             {
                 new SubjectItem {Name = "Quizz", IconVal = IconChar.UserGraduate, Navigation = new VQuizz(this), Value = "A"},        
@@ -84,6 +89,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 });
             }
         }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
