@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"sts":[{"expiry":1769851142.16101,"host":"E10e7Gwg5+phsYD4E8qNYFsQySXnIHPAfo4zloUPESc=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1754071142.161013},{"expiry":1785606036.020431,"host":"nAuqgR4iEWti7SOdT3UHPl6rmZU/DeaIm38P2O2OkgA=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1754070036.020435},{"expiry":1785607115.725809,"host":"qaDeFdT1UTirY0OQe+c5LKw+zjx6vF/+3vFh7CgrAOY=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1754071115.725813}],"version":2}
+=======
+{"sts":[{"expiry":1770473086.676019,"host":"E10e7Gwg5+phsYD4E8qNYFsQySXnIHPAfo4zloUPESc=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1754693086.676023},{"expiry":1786524787.62351,"host":"nAuqgR4iEWti7SOdT3UHPl6rmZU/DeaIm38P2O2OkgA=","mode":"force-https","sts_include_subdomains":false,"sts_observed":1754988787.623514},{"expiry":1786260916.64103,"host":"qaDeFdT1UTirY0OQe+c5LKw+zjx6vF/+3vFh7CgrAOY=","mode":"force-https","sts_include_subdomains":true,"sts_observed":1754724916.641036}],"version":2}
+>>>>>>> DevQuizz

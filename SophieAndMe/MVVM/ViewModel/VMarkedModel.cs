@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -22,6 +23,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public ObservableCollection<string> Noms { get; set; } = new();
     public ObservableCollection<SubjectItem> Subjects { get; set; }
     public RelayCommand ChoisirNomCommand { get; }
+    private readonly IDataService _dataService;
 
     private string _jscall;
     private bool _isview;
@@ -36,6 +38,9 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     public VMarkedModel(MainViewModel mainVm)
     {
         _mainViewModel = mainVm;
+        _dataService =  App.DataService;
+        _dataService.QuizzId.options = "";
+        _dataService.QuizzId.IsAll = false;
         IsActive = true;
         WeakReferenceMessenger.Default.Register<MediatorMarked.JsToAppMessage>(this, (r, m) =>
         {
@@ -43,7 +48,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
             question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             Console.WriteLine("trigger");
             Console.WriteLine(question);
-            DBInteraction.UnMark(question);
+            DbInteraction.UnMark(question);
         });
         
         
@@ -82,9 +87,9 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
                     IsView = false;
                     Noms.Clear();
                     LoadMark("");    
-                    var name = DBInteraction.GetName("All");
+                    var name = DbInteraction.GetName("All");
                     foreach (var value in name) { Noms.Add(value);}
-                    App.Current.Properties["matier"]  = localSubject.Name.ToString();
+                    _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 }
                 
             });
@@ -93,28 +98,47 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         ChoisirNomCommand = new RelayCommand(nom =>
         {
             App.Current.Properties["nameindex"] = "Marked-" + nom;
-            App.Current.Properties["matier"] = nom;
+            _dataService.QuizzId.Matier = (string)nom;
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
     }
 
     public async void LoadMark(string mat)
     {
-        (_question, _repnse, _urlQuestion, _urlRep) = DBInteraction.GetMarked(mat);
+        if (mat == "All")
+        {
+            _dataService.QuizzId.IsAll = true;
+        }
+        else
+        {
+            _dataService.QuizzId.IsAll = false;
+        }
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.GetMarked(mat);
         var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
         var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();
         var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
-
-        try
+        ShowCard(q, r, uq, ur);
+    }
+    
+    private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    {
+        _dataService.IdCard.Number += 1;
+        Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < question.Count; i++)
         {
-            _jscall = WebviewInteraction.send_data_Card_Marked(q, r, uq, ur);
-            WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(_jscall));
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            MessageBox.Show("An error occured while loading your Data, please retry later");
+            dico["level"] = "";
+            dico["course"] = "";
+            dico["question"] = question[i];
+            dico["repnse"] = reponse[i];
+            dico["urlQuestion"] = urlQuestion[i];
+            dico["urlRep"] = urlReponse[i];
+            dico["difficulty"] = "";
+            dico["len"] = question.Count.ToString();
+            dico["Action"] = "Marked";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorMarked.JsCallMessage(jscode));
         }
     }
     public event PropertyChangedEventHandler? PropertyChanged;

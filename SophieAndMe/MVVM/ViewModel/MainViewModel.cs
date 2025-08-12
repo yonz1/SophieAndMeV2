@@ -18,9 +18,8 @@ namespace SophieAndMe.MVVM.ViewModel ;
             get => _currentView;
             set { _currentView = value; OnPropertyChanged(); } 
         }
-
         public ICommand ChoisirNomCommand {  get; }
-        
+        private readonly IDataService _dataService;
         public ObservableCollection<SubjectItem> Pages { get; set; }
         public ICommand ShowQuizzCommand { get; }
         public ICommand ShowMarkedCommand { get; }
@@ -37,13 +36,11 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 OnPropertyChanged();
             }
         }
-        
         private string _currentmessage = null!;
         public string CurrentMessage
         {
             get => _currentmessage;set{        _currentmessage = value;        OnPropertyChanged();    }
         }
-
         private string _selectedValue;
         public string SelectedValue
         {
@@ -57,10 +54,11 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 }
             }
         }
-        
         public MainViewModel()
         {
-            // NavigationService.Instance.NavigateAction = view => CurrentView = view;
+            _dataService =  App.DataService;
+            _dataService.IdCard = new IdCard();
+            _dataService.IdCard.Number = 0;
             CurrentMessage = "Acceuil";
             NavigationService.Instance.Navigate("MainContent",new VLanding());
             Pages = new ObservableCollection<SubjectItem>
@@ -71,7 +69,6 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 new SubjectItem {Name = "Agenda", IconVal = IconChar.Calendar, Navigation = new VAgenda(this), Value = "D"},
                 new SubjectItem {Name = "Notes", IconVal = IconChar.Edit, Navigation = new VNotes(this), Value = "E"}
             };
-            
             foreach (var subject in Pages)
             {
                 var localSubject = subject;
@@ -81,16 +78,12 @@ namespace SophieAndMe.MVVM.ViewModel ;
                     {
                         s.IsSelected = false;
                     }
-                        
-
                     localSubject.IsSelected = true;
                     NavigationService.Instance.Navigate("MainContent",subject.Navigation);
                     CurrentMessage = localSubject.Name;
-
                 });
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

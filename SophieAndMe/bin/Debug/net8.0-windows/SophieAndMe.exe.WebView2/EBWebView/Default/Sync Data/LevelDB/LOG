@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2025/08/04-17:24:27.520 c4e8 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
 2025/08/04-17:24:27.523 c4e8 Recovering log #3
 2025/08/04-17:24:27.524 c4e8 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Sync Data\LevelDB/000003.log 
+=======
+2025/08/12-11:23:19.672 19874 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
+2025/08/12-11:23:19.674 19874 Recovering log #3
+2025/08/12-11:23:19.674 19874 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Sync Data\LevelDB/000003.log 
+>>>>>>> DevQuizz

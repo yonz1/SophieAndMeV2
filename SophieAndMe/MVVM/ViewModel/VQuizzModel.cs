@@ -14,13 +14,17 @@ namespace SophieAndMe.MVVM.ViewModel;
     
     public class VQuizzModel : INotifyPropertyChanged
     {
+        public IDataService _dataService;
         private readonly MainViewModel _mainViewModel;
         public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
         public ObservableCollection<SubjectItem> Subjects { get; set; }
+        private static readonly List<string> ListMat =
+            ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
         
-        public VQuizzModel(MainViewModel mainVm) 
+        public VQuizzModel(MainViewModel mainVm)
         {
+            _dataService = App.DataService;
             _mainViewModel = mainVm;
             _mainViewModel.CurrentMessage = "Quizzs";
             Subjects = new ObservableCollection<SubjectItem>
@@ -44,10 +48,9 @@ namespace SophieAndMe.MVVM.ViewModel;
 
                     localSubject.IsSelected = true;
                     Noms.Clear();
-                    var name = DBInteraction.GetName(localSubject.Name.ToString());
+                    var name = DbInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}
-                    App.Current.Properties["matier"]  = localSubject.Name.ToString();
-
+                    _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 });
             }
             
@@ -55,7 +58,18 @@ namespace SophieAndMe.MVVM.ViewModel;
             {
                 Application.Current.Properties["nameindex"] = nom;
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
-                NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
+                if (ListMat.Contains(nom))
+                {
+                    _dataService.QuizzId.IsAll = true;
+                    NavigationService.Instance.Navigate("MainContent",new AllQuizzSelect(mainVm));    
+                }
+                else
+                {
+                    _dataService.QuizzId.IsAll = false;
+                    _dataService.QuizzId.options = "";
+                    NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
+                }
+                
             });
         }
 

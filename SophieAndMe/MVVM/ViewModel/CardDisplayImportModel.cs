@@ -18,13 +18,14 @@ public class CardDisplayImportModel
     private List<string> _urlQuestion;
     private List<string> _urlRep;
     private List<string> _difficulty;
-
+    private readonly IDataService _dataService;
+    Dictionary<string, string> dico = new Dictionary<string, string>();
     
 
     public CardDisplayImportModel(VCustomModel vm,string action)
     {
         _vCustomModel = vm;
-        
+        _dataService =  App.DataService;
         
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
@@ -35,10 +36,10 @@ public class CardDisplayImportModel
             switch (action)
             {
                 case "Delete":
-                    DBInteraction.DeleteCreated(question);
+                    DbInteraction.DeleteCreated(question);
                     break;
                 case "save":
-                    DBInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
+                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
                     break;
                 case "edit":
                     _vCustomModel.EditLogic(question);
@@ -64,15 +65,22 @@ public class CardDisplayImportModel
     
     public void ImportLogic()
     {
+        (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
         
-        (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DBInteraction.GetAllPublic();
-        // var jscode = WebviewInteraction.send_data_Card_Import(_level, _course,QuizzUtilities.Miseneformelist(_question),_urlQuestion,QuizzUtilities.Miseneformelist(_repnse),_urlRep,_difficulty);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage("ClearCard()"));
+        
+        
+        _dataService.IdCard.Number += 1;
+        dico["level"] = _level[0];
+        dico["Action"] = "Test";
+        dico["Id"] = _dataService.IdCard.Number.ToString();
+        string jscode = JsonSerializer.Serialize(dico);
+        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
     }
+    
 
     public void SendDataImport()
     {
-        Dictionary<string, string> dico = new Dictionary<string, string>();
+        Console.WriteLine(_level.Count);
         for (int i = 0; i < _level.Count; i++)
         {
             dico["level"] = _level[i];
@@ -82,17 +90,42 @@ public class CardDisplayImportModel
             dico["urlQuestion"] = _urlQuestion[i];
             dico["urlRep"] = _urlRep[i];
             dico["difficulty"] = _difficulty[i];
-            string jscode = JsonSerializer.Serialize(dico);
+            dico["len"] = _question.Count.ToString();
+            dico["Action"] = "Import";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
+            string jscode = JsonSerializer.Serialize(dico); 
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }
     }
 
     public void CreatedLogic()
     {
-        (_question, _repnse, _urlQuestion, _urlRep) = DBInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
-        var jscode = WebviewInteraction.send_data_Card_Created(QuizzUtilities.Miseneformelist(_question),QuizzUtilities.Miseneformelist(_repnse),_urlQuestion,_urlRep);
-        Console.WriteLine(jscode);
-        WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
+        var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
+        var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
+        var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();
+        var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
+        ShowCard(q, r, uq, ur);
+    }
+    private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    {
+        _dataService.IdCard.Number += 1;
+        Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < question.Count; i++)
+        {
+            dico["level"] = "";
+            dico["course"] = "";
+            dico["question"] = question[i];
+            dico["repnse"] = reponse[i];
+            dico["urlQuestion"] = urlQuestion[i];
+            dico["urlRep"] = urlReponse[i];
+            dico["difficulty"] = "";
+            dico["len"] = question.Count.ToString();
+            dico["Action"] = "Created";
+            dico["Id"] = _dataService.IdCard.Number.ToString();
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
+        }
     }
     
 }

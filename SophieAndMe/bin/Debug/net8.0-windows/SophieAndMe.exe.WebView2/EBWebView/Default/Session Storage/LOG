@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2025/08/04-17:25:19.061 16a7c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
 2025/08/04-17:25:19.066 16a7c Recovering log #4
 2025/08/04-17:25:19.079 16a7c Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/000004.log 
+=======
+2025/08/12-11:25:24.786 16afc Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
+2025/08/12-11:25:24.788 16afc Recovering log #8
+2025/08/12-11:25:24.794 16afc Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/000008.log 
+>>>>>>> DevQuizz

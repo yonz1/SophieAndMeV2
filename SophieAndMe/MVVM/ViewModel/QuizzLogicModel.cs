@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Timers;
+using System.Windows.Forms;
 using System.Windows.Input;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
@@ -26,9 +27,11 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     public ICommand Back_quizz_Click { get; }
     public ICommand Respaper { get; } = null!;
     public ICommand DirectResp { get; }
+    private readonly List<string> _viewedQuestion = [];
 
     private readonly Func<string, Task> _invokejs;
     private string _time = "";
+    private IDataService  _dataService;
     
     //########################################### ToggleButton 
     
@@ -131,20 +134,28 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     //###################################################### Function primaire
     public QuizzLogicModel(Func<string, Task> invokeJs,MainViewModel mainVm)
     {
+        _dataService = App.DataService;
         _mainViewModel = mainVm;
-        MarkedQuestion = DBInteraction.GetMarkedForQUizz(App.Current.Properties["matier"].ToString());
+        MarkedQuestion = DbInteraction.GetMarkedForQUizz(_dataService.QuizzId.Matier.ToString());
         _stopwatch = new Stopwatch();
         _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += OnTimerElapse;
         _stopwatch.Start();
         _timer.Start();
         _invokejs = invokeJs;
-        (_question,_repnse,_urlQuestion,_urlRep) = DBInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
-        ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
-        foreach (var VARIABLE in _urlRep)
+        Console.WriteLine("Lancée");
+        switch (_dataService.QuizzId.options)
         {
-            Console.WriteLine(VARIABLE);
+            case "":
+                Console.WriteLine("Normale");
+                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
+                break;
+            case "Progressif":
+                Console.WriteLine("Prog");
+                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.RetrievequizzToProg();
+                break;
         }
+        ( _question, _repnse, _urlQuestion, _urlRep) = QuizzUtilities.Shuffle(_question, _repnse, _urlQuestion, _urlRep);
         ActionText = "Response";
         QuestionCounter = (_i + 1).ToString() + "/" + _question.Count; 
         if (MarkedQuestion.Contains(_question[_i]))
@@ -154,6 +165,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         ShowQuestion();
         Back_quizz_Click = new RelayCommand(o =>
         {
+            if (_dataService.QuizzId.IsAll) { DeleteData(); }
             if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
             {
                 NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
@@ -164,7 +176,12 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             }
             
         });
-        DirectResp = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new CardDisplayResp(_question,_repnse,_urlQuestion,_urlRep,mainVm)));
+        DirectResp = new RelayCommand(o =>
+        {
+            if (_dataService.QuizzId.IsAll) { DeleteData(); }
+            NavigationService.Instance.Navigate("MainContent",
+                new CardDisplayResp(_question, _repnse, _urlQuestion, _urlRep, mainVm));
+        });
     }
     
     
@@ -190,12 +207,12 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         if (value)
         {
             CurrentIcon = IconFont.Solid;
-            DBInteraction.MarkData(_question[_i],_repnse[_i],_urlQuestion[_i],_urlRep[_i]);
+            DbInteraction.MarkData(_question[_i],_repnse[_i],_urlQuestion[_i],_urlRep[_i]);
         }
         else
         {
             CurrentIcon = IconFont.Regular;
-            DBInteraction.UnMark(_question[_i]);
+            DbInteraction.UnMark(_question[_i]);
         }
     }
     
@@ -232,6 +249,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         try
         {
             string jscall = WebviewInteraction.send_data("reponse", QuizzUtilities.Miseneformetext(_question[_i]), QuizzUtilities.Miseneformetext(_repnse[_i]),_urlQuestion[_i],_urlRep[_i]);
+            _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i]));
             await _invokejs(jscall);
 
         }
@@ -240,16 +258,18 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             Console.WriteLine(e);
             throw;
         }
-
     }
 
-    private void MarkedChecked()
+    private void DeleteData()
     {
-        
+        DbInteraction.DeleteQuestion(_viewedQuestion);
     }
+    
     
     private void FinDeQuizz()
     {
+        _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i-1]));
+        if (_dataService.QuizzId.IsAll) { DeleteData(); }
         NavigationService.Instance.Navigate("MainContent",new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     

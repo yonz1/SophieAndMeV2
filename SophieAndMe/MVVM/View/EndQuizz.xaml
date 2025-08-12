@@ -33,6 +33,7 @@
                 Command="{Binding RestartQuizz}"
                 Content="Recommencer"
                 DockPanel.Dock="Left"
+                Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}}"
                 Foreground="{StaticResource Textcolor}"
                 Style="{StaticResource MaterialDesignFlatMidBgButton}" />
             <Button

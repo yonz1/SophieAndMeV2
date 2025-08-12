@@ -79,8 +79,7 @@
                     </ItemsControl>
                 </DockPanel>
             </Border>
-
-            <!--  ✅ Affichage dynamique des boutons  -->
+            
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
                 <ItemsControl ItemsSource="{Binding Noms}">
                     <ItemsControl.ItemsPanel>

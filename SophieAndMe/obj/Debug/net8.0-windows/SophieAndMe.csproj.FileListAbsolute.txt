@@ -144,3 +144,5 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayResp.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayImport.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayResp.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\AllQuizzSelect.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\AllQuizzSelect.baml
