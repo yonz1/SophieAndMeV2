@@ -39,6 +39,8 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     {
         _mainViewModel = mainVm;
         _dataService =  App.DataService;
+        _dataService.QuizzId.options = "";
+        _dataService.QuizzId.IsAll = false;
         IsActive = true;
         WeakReferenceMessenger.Default.Register<MediatorMarked.JsToAppMessage>(this, (r, m) =>
         {

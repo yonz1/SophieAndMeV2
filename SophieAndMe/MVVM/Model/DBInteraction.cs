@@ -658,9 +658,10 @@ namespace SophieAndMe.MVVM.Model
             SQLiteCommand command;
             foreach (var data in Question)
             {
-                string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier + " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + data  +  "\", ' ', '')"; 
-                Console.WriteLine(query);
+                string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier + " WHERE REPLACE(question,'\"', '''') =  @data"; 
+                Console.WriteLine(data);
                 command = new SQLiteCommand(query, c);
+                command.Parameters.AddWithValue("@data", data);
                 command.ExecuteNonQuery();                
             }
 

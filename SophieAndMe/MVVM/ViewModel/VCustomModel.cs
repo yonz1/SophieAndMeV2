@@ -71,6 +71,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public VCustomModel(MainViewModel mainVm)
     {
         _dataService = App.DataService;
+        _dataService.QuizzId.options = "";
         IsActive = true;
         _mainViewModel = mainVm;
 

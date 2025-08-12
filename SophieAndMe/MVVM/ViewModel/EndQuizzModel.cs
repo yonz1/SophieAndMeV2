@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.Core;
@@ -25,9 +26,7 @@ public class EndQuizzModel : INotifyPropertyChanged
     public EndQuizzModel(List<string> question, List<string> repnse, List<string> urlQuestion, List<string> urlRep,MainViewModel mainVm)
     {
         _dataService = App.DataService;
-        if (_dataService.QuizzId.IsAll)
-        {
-            IsView = false; }
+        IsView = !_dataService.QuizzId.IsAll;
         ViewResponse = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new CardDisplayResp(question, repnse, urlQuestion, urlRep,mainVm)));
         RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm)));
         ReturnSelection = new RelayCommand(o =>
