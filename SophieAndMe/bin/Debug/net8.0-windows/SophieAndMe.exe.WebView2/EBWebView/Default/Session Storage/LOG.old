@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-2025/08/01-19:40:33.547 1879c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
-2025/08/01-19:40:33.558 1879c Recovering log #4
-2025/08/01-19:40:33.562 1879c Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/000004.log 
-=======
-2025/08/12-11:23:03.734 22628 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
-2025/08/12-11:23:03.737 22628 Recovering log #8
-2025/08/12-11:23:03.741 22628 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/000008.log 
->>>>>>> DevQuizz
+2025/08/12-11:33:05.392 17a28 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/MANIFEST-000001
+2025/08/12-11:33:05.394 17a28 Recovering log #8
+2025/08/12-11:33:05.399 17a28 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Session Storage/000008.log 
+2025/08/12-11:33:05.401 17a28 Delete type=0 #4
