@@ -24,19 +24,22 @@ for (i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages");
 }
 
-FillMessages("Anglais"," NDOYE Amala; Rg:6/14; Moy:13,61; ET:3,31;14","Notes")
-FillMessages("Maths"," LAURENCON Beno\u00EFt; Rg:1/31; Moy:12,90; ET:2,76;19","Notes")
-FillMessages("Physique"," ADROGUER PIERRE; Rg:1/15; Moy:10,53; ET:4,03;16","Notes")
+// FillMessages("Anglais"," NDOYE Amala; Rg:6/14; Moy:13,61; ET:3,31;14","Notes")
+// FillMessages("Maths"," LAURENCON Beno\u00EFt; Rg:1/31; Moy:12,90; ET:2,76;19","Notes")
+// FillMessages("Physique"," ADROGUER PIERRE; Rg:1/15; Moy:10,53; ET:4,03;16","Notes")
+//
+//
+//
+// MetaQuizz = ["Si","Mathématiques","Physique"]
+// DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
+// for (i  = 0; i < MetaQuizz.length; i++) {
+//     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz");
+// }
 
-
-
-MetaQuizz = ["Si","Mathématiques","Physique"]
-DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
-for (i  = 0; i < MetaQuizz.length; i++) {
-    FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz");
-}
-
-
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;
+    FillMessages(dico.Meta,dico.Data,dico.Position)
+});
 
 function FillMessages(Meta,Data,Position)
 {
@@ -59,7 +62,6 @@ function FillMessages(Meta,Data,Position)
             Quizz.appendChild(infos);
             break;
     }
-    
 }
 
 const renderCalendar = () => {

@@ -298,11 +298,3 @@ function get_data(button){
     console.log(question);
     window.chrome.webview.postMessage(data);
 }
-
-// document.addEventListener("click", () => {
-//     if (selectedCard)
-//     {
-//         selectedCard.style.backgroundColor = "#242424";
-//         selectedCard = null
-//     }
-// })

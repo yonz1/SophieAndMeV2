@@ -98,7 +98,7 @@ public abstract class WebviewInteraction
         foreach (var val in name)
         {
             info = $"FillMessages({JsonSerializer.Serialize(DbInteraction.GetMat(val))},{JsonSerializer.Serialize(val)},{JsonSerializer.Serialize("Quizz")})";
-            JsCode.Add(json);
+            JsCode.Add(info);
         }
 
         return JsCode;

@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
 using SophieAndMe.MVVM.Model;
 
@@ -30,20 +31,29 @@ public class VLandingModel : INotifyPropertyChanged
         _mainViewModel = mainVm;
         _mainViewModel.CurrentMessage = "Acceuil";
         IsView = true;
+        Dictionary<string, string> dico = new Dictionary<string, string>();
         (var metaNotes, var dataNotes) = DbInteraction.GetNotesWeb();
-        Console.WriteLine("avancée");
-        List<string> jsCode = WebviewInteraction.LandingNotes(metaNotes, dataNotes);
-        foreach (var call in jsCode)
+        for (int i = 0; i < metaNotes.Count; i++)
         { 
-            Console.WriteLine(call);
-            WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(call));    
+            dico["Meta"] =  metaNotes[i];
+            dico["Data"] =  dataNotes[i];
+            dico["Position"] = "Notes";
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         } 
         var quizzName = DbInteraction.GetQuizzWeb();
-        jsCode = WebviewInteraction.LandingQuizz(quizzName);
-        foreach (var call in jsCode)
+        List<string> Mat = new List<string>();
+        foreach (var name in quizzName)
         {
-            Console.WriteLine(call);
-            WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(call));    
+            Mat.Add(DbInteraction.GetMat(name));
+        }
+        for (int i = 0; i < Mat.Count; i++)
+        {
+            dico["Meta"] =  Mat[i];
+            dico["Data"] =  quizzName[i];
+            dico["Position"] = "Quizz";
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    
         }
         
     }

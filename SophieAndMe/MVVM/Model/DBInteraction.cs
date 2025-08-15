@@ -710,21 +710,11 @@ namespace SophieAndMe.MVVM.Model
             var matiereStr = new List<string> { "Anglais", "Français", "Maths", "Physique", "SI" };
             for (int i = 0; i < matiere.Count ; i++)
             {
-                Console.WriteLine(matiereStr[i]);
-                Console.WriteLine(matiere[i][Anglais.Count-1].ToString());
                 if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
                 {
-                    Main[matiereStr[i]] =  matiere[i][Anglais.Count-1].ToString();
+                    string[] val = matiere[i][Anglais.Count-1].ToString().Split(";");
+                    Main[matiereStr[i]] = $"{val[0]} - {val[4]} - {val[2].Replace("Moy:","")}";
                 }
-            }
-            foreach (var variable in  Main.Keys.ToList())
-            {
-                Console.WriteLine(variable);
-            }
-
-            foreach (var VARIABLE in Main.Values.ToList())
-            {
-                Console.Write("-" + VARIABLE);
             }
             return(Main.Keys.ToList(),Main.Values.ToList());
         }
@@ -742,6 +732,7 @@ namespace SophieAndMe.MVVM.Model
             {
                 while (reader.Read())
                 {
+                    Console.WriteLine(reader.GetString(0));
                     Name.Add(reader.GetString(0));
                 }
             }
