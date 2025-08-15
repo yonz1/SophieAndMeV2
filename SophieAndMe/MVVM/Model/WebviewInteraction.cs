@@ -76,6 +76,35 @@ public abstract class WebviewInteraction
         return jscode;
     }
     
+    public static List<string> LandingNotes(List<string> meta,List<string> data)
+    {
+        string val = "";
+        List<string> JsCode = [];
+        Console.WriteLine("Landingnotes appelé");
+        Console.WriteLine(meta.Count);
+        for (int i = 0; i < meta.Count; i++)
+        {
+            val = $"FillMessages({JsonSerializer.Serialize(meta[i])},{JsonSerializer.Serialize(data[i])},{JsonSerializer.Serialize("Notes")})";
+            JsCode.Add(val);
+        }
+        return JsCode;
+    }
+
+    public static List<string> LandingQuizz(List<string> name)
+    {
+        string info = "";
+        string json = "";
+        List<string> JsCode = [];
+        foreach (var val in name)
+        {
+            info = $"FillMessages({JsonSerializer.Serialize(DbInteraction.GetMat(val))},{JsonSerializer.Serialize(val)},{JsonSerializer.Serialize("Quizz")})";
+            JsCode.Add(json);
+        }
+
+        return JsCode;
+    }
+    
+    
     
 
 }

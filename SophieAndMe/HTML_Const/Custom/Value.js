@@ -143,6 +143,7 @@ function button_fill(val)
         btnAction.id = "btnSave";
         btnAction.textContent = "Add";
         btnAction.addEventListener("click", save);
+        clear(); 
     } else {
         btnAction.id = "btnReplace";
         btnAction.textContent = "Replace";
@@ -213,7 +214,8 @@ function clear()
     document.querySelectorAll('input,textarea').forEach(el => el.value = "");
     const textarea = document.getElementById('inputText')
     const output = document.getElementById('OutputText')
-    Output_rep.innerHTML = textarea_rep.value;
+    const output_rep = document.getElementById('Output_rep')
+    output_rep.innerHTML = textarea.value;
     output.innerHTML = textarea.value;
     QuestionBox.checked = true;
     ReponseBox.checked = true;
@@ -222,9 +224,9 @@ function clear()
     bannerResponse.src = "";
     bannerQuestion.src = "";
 }
+
 document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
     const file = event.target.files[0];
-
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
 

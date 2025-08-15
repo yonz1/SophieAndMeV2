@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using SophieAndMe.Core;
+using SophieAndMe.MVVM.View;
 
 namespace SophieAndMe;
 
@@ -32,6 +33,7 @@ public partial class MainWindow : Window
         {
             InitializeComponent();
             NavigationService.Instance.Register("MainContent", view => MainContentControl.Content = view);
+            this.DataContext = new MVVM.ViewModel.MainViewModel();
         }
     
 
@@ -55,12 +57,7 @@ public partial class MainWindow : Window
             System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
             Application.Current.Shutdown();
         }
-
-
-
-
-
-
+        
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wParam, int wMsg, int lParam);
 

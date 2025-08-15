@@ -18,16 +18,18 @@ namespace SophieAndMe.MVVM.View
         public VMarked(MainViewModel mainVm)
         {
             InitializeComponent();
-            string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
-            urif = urif.Replace("\\", "/");
-            System.Uri uri1 = new System.Uri(urif);
-            webviewall.Source = uri1 as System.Uri;
+
             Loaded += async (s, e) =>
             {
                 await webviewall.EnsureCoreWebView2Async();
 
                 webviewall.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+                string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
+                urif = urif.Replace("\\", "/");
+                System.Uri uri1 = new System.Uri(urif);
+                webviewall.Source = uri1 as System.Uri;
                 DataContext = new VMarkedModel(mainVm);
+                
                 
                 // webviewall.CoreWebView2.OpenDevToolsWindow();
                 

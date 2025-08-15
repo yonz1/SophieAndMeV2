@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
@@ -34,6 +35,8 @@ namespace SophieAndMe.MVVM.Model
         private static readonly List<string> ListMat =
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
 
+
+        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
         private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
@@ -626,7 +629,6 @@ namespace SophieAndMe.MVVM.Model
             command = new SQLiteCommand(query, connection);
             using (var reader = command.ExecuteReader())
             {
-                
                 while (reader.Read())
                 {
                     resultsQuestions.Add(reader.GetString(0));
@@ -664,7 +666,87 @@ namespace SophieAndMe.MVVM.Model
                 command.Parameters.AddWithValue("@data", data);
                 command.ExecuteNonQuery();                
             }
-
         }
+
+
+        public static string GetMat(string Name)
+        {
+            Dictionary<string, string> mainDic= new Dictionary<string, string>();
+            foreach (var info in ListMat)
+            {
+                foreach (var Chapter in GetName(info))
+                {
+                    mainDic[Chapter] = info;
+                }
+            }
+            return mainDic[Name];
+        }
+
+        public static (List<string>, List<string>) GetNotesWeb()
+        {
+            List<string> Anglais =  new List<string>();
+            List<string> Français = new List<string>();
+            List<string> Maths = new List<string>();
+            List<string> Physique =  new List<string>();
+            List<string> SI = new List<string>();
+            Dictionary<string?, string> Main = new Dictionary<string?, string>();
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Anglais,Français,Maths,Physique,SI FROM Plus ";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Anglais.Add(reader.GetString(0));
+                    Français.Add(reader.GetString(1));
+                    Maths.Add(reader.GetString(2));
+                    Physique.Add(reader.GetString(3));
+                    SI.Add(reader.GetString(4));
+                }
+            }
+            var matiere = new List<List<string>> { Anglais, Français, Maths, Physique, SI };
+            var matiereStr = new List<string> { "Anglais", "Français", "Maths", "Physique", "SI" };
+            for (int i = 0; i < matiere.Count ; i++)
+            {
+                Console.WriteLine(matiereStr[i]);
+                Console.WriteLine(matiere[i][Anglais.Count-1].ToString());
+                if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
+                {
+                    Main[matiereStr[i]] =  matiere[i][Anglais.Count-1].ToString();
+                }
+            }
+            foreach (var variable in  Main.Keys.ToList())
+            {
+                Console.WriteLine(variable);
+            }
+
+            foreach (var VARIABLE in Main.Values.ToList())
+            {
+                Console.Write("-" + VARIABLE);
+            }
+            return(Main.Keys.ToList(),Main.Values.ToList());
+        }
+
+
+        public static List<string> GetQuizzWeb()
+        {
+            List<string> Name = [];
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Name FROM DATE ORDER BY Inserted DESC LIMIT 3";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Name.Add(reader.GetString(0));
+                }
+            }
+            return Name;
+        }
+        
     }
 }
