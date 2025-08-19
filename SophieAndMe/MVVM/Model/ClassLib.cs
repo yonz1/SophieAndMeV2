@@ -42,7 +42,10 @@ public class TimeTableItem
         System.Windows.Media.Color val = System.Windows.Media.Color.FromRgb(22, 23, 23);
         switch (Mat)
         {
-            case "Mathématiques":
+            case "Maths":
+                val = System.Windows.Media.Color.FromRgb(30, 110, 244);
+                break;
+            case "TD maths" or "TD Maths":
                 val = System.Windows.Media.Color.FromRgb(0, 136, 255);
                 break;
             case "Physique":
@@ -51,20 +54,32 @@ public class TimeTableItem
             case "SI":
                 val = System.Windows.Media.Color.FromRgb(255, 141, 40);
                 break;
-            case "Anglais":
-                val = System.Windows.Media.Color.FromRgb(97, 85, 245);
+            case "TP SI":
+                val = System.Windows.Media.Color.FromRgb(251, 192, 45);
                 break;
-            case "Français":
+            case "TD Si":
+                val =  System.Windows.Media.Color.FromRgb(255, 193, 7);    
+                break;
+            case "Anglais":
+                val = System.Windows.Media.Color.FromRgb(179, 136, 255);     //A revoir Trop proche de Maths
+                break;
+            case "Francais" or "TD Francais":
                 val = System.Windows.Media.Color.FromRgb(59, 221, 236);
                 break;
-            case "Informatique":
-                val = System.Windows.Media.Color.FromRgb(0, 137, 50);
+            case "Info":
+                val = System.Windows.Media.Color.FromRgb(26, 35, 126);
+                break;
+            case "TD info" or "TD Info":
+                val = System.Windows.Media.Color.FromRgb(40, 53, 147);
                 break;
             case "Sport":
                 val = System.Windows.Media.Color.FromRgb(219, 166, 121);
                 break;
             case "Colles":
                 val = System.Windows.Media.Color.FromRgb(255, 56, 60);
+                break;
+            case "TIPE":
+                val = System.Windows.Media.Color.FromRgb(93, 64, 55);
                 break;
         }
         return val;

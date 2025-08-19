@@ -75,6 +75,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         IsActive = true;
         _mainViewModel = mainVm;
 
+        _mainViewModel.CurrentMessage = "Personnaliser";
         Return = new RelayCommand(o =>
         {
             switch (App.Current.Properties["old"])

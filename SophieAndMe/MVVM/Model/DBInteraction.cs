@@ -40,6 +40,7 @@ namespace SophieAndMe.MVVM.Model
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
         private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
+        private static readonly string EDTSource = "Data Source=..//..//..//Database//EDT.db";
 
 
         private static readonly List<string> Level = new List<string>();
@@ -682,6 +683,9 @@ namespace SophieAndMe.MVVM.Model
             return mainDic[Name];
         }
 
+        
+        
+        // ########################################################## Collection de fonction pour le Landing
         public static (List<string>, List<string>) GetNotesWeb()
         {
             List<string> Anglais =  new List<string>();
@@ -737,6 +741,31 @@ namespace SophieAndMe.MVVM.Model
                 }
             }
             return Name;
+        }
+        
+        // ########################################################## Collection de fonction pour l'emploi du temps
+        
+        
+        public static (List<string>,List<string>,List<string>) GetPlanning(string Days, string Semaine)
+        {
+            List<string> Mat =  new List<string>();
+            List<string> Salle = new List<string>();
+            List<string> Ensei = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Salle,Enseignant FROM " + Days + Semaine;
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Mat.Add(reader.GetString(0));
+                    Salle.Add(reader.GetString(1));
+                    Ensei.Add(reader.GetString(2));
+                }
+            }
+            return (Mat,Salle,Ensei);
         }
         
     }

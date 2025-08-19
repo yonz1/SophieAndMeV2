@@ -9,6 +9,6 @@ public partial class VAgenda : UserControl
     {
         
         InitializeComponent();
-        this.DataContext = new VAgendaModel();
+        this.DataContext = new VAgendaModel(mainVm);
     }
 }
