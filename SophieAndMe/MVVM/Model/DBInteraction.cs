@@ -767,6 +767,72 @@ namespace SophieAndMe.MVVM.Model
             }
             return (Mat,Salle,Ensei);
         }
+
+        public static bool IsHolliday(DateTime date)
+        {
+            bool Vec = false;
+            List<string> DYear =  new List<string>();
+            List<string> FYear = new List<string>();
+            List<string> DMonth =  new List<string>();
+            List<string> FMonth = new List<string>();
+            List<string> DDays =  new List<string>();
+            List<string> FDays = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT DYear,FYear,DMonth,FMonth,DDays,FDays FROM Vacance";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DYear.Add(reader.GetString(0));
+                    FYear.Add(reader.GetString(1));
+                    DMonth.Add(reader.GetString(2));
+                    FMonth.Add(reader.GetString(3));
+                    DDays.Add(reader.GetString(4));
+                    FDays.Add(reader.GetString(5));
+                }
+            }
+            Console.WriteLine(date);
+            for (int i = 0; i < DDays.Count; i++)
+            {
+                DateTime ValD = new DateTime(Int32.Parse(DYear[i]), Int32.Parse(DMonth[i]), Int32.Parse(DDays[i]));
+                DateTime ValF = new DateTime(Int32.Parse(FYear[i]),Int32.Parse(FMonth[i]),Int32.Parse(FDays[i]));
+                if (date > ValD && date < ValF)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string GetDS(DateTime date)
+        {
+            List<string> DateSam =  new List<string>();
+            List<string> Mat =  new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Date  FROM DSPlanning";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DateSam.Add(reader.GetString(0));
+                    Mat.Add(reader.GetString(1));
+                }
+            }
+            for (int i = 0; i < DateSam.Count; i++)
+            {
+                if (DateSam[i] == date.ToString("dd/MM/yyyy"))
+                {
+                    return Mat[i];
+                }
+            }
+            return "";
+        }
         
     }
 }

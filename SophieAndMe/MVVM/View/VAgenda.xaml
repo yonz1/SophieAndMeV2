@@ -100,9 +100,9 @@
                 <Button
                     Width="45"
                     Height="40"
-                    Command="{Binding Back}"
                     Background="Transparent"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Command="{Binding Back}">
                     <fs:IconImage
                         Width="24"
                         Height="24"
@@ -116,8 +116,8 @@
                     Width="45"
                     Height="40"
                     Background="Transparent"
-                    Command="{Binding Forward}"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Command="{Binding Forward}">
                     <fs:IconImage
                         Width="24"
                         Height="24"
@@ -222,6 +222,7 @@
                     <Style TargetType="ContentPresenter">
                         <Setter Property="Grid.Column" Value="{Binding ColumnId}" />
                         <Setter Property="Grid.Row" Value="{Binding RowId}" />
+                        <Setter Property="Grid.RowSpan" Value="{Binding RowNumSpan}" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
 

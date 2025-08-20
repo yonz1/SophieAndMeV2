@@ -37,6 +37,7 @@ public class TimeTableItem
     public Brush  MatColor => new SolidColorBrush(MatToColor(Matiere));
     public int ColumnId  { get; set; }
     public int RowId  { get; set; }
+    public int RowNumSpan { get; set; }
     public static System.Windows.Media.Color MatToColor(string Mat)
     {
         System.Windows.Media.Color val = System.Windows.Media.Color.FromRgb(22, 23, 23);
@@ -48,7 +49,7 @@ public class TimeTableItem
             case "TD maths" or "TD Maths":
                 val = System.Windows.Media.Color.FromRgb(0, 136, 255);
                 break;
-            case "Physique":
+            case "Physique" or "SPC":
                 val = System.Windows.Media.Color.FromRgb(52, 199, 89);
                 break;
             case "SI":
@@ -57,13 +58,13 @@ public class TimeTableItem
             case "TP SI":
                 val = System.Windows.Media.Color.FromRgb(251, 192, 45);
                 break;
-            case "TD Si":
+            case "TD Si":<
                 val =  System.Windows.Media.Color.FromRgb(255, 193, 7);    
                 break;
             case "Anglais":
                 val = System.Windows.Media.Color.FromRgb(179, 136, 255);     //A revoir Trop proche de Maths
                 break;
-            case "Francais" or "TD Francais":
+            case "Francais" or "TD Francais" or "Français":
                 val = System.Windows.Media.Color.FromRgb(59, 221, 236);
                 break;
             case "Info":

@@ -15,6 +15,9 @@ namespace SophieAndMe.MVVM.ViewModel
 {
     public class VAgendaModel : INotifyPropertyChanged
     {
+
+        public int SpanNum = 1;
+        public string OldMatiere = "";
         private readonly MainViewModel _mainViewModel;
         public ObservableCollection<HoursPanel> Hours { get; set; }
         public ObservableCollection<DaysItem> DaysItem { get; set; }
@@ -57,19 +60,43 @@ namespace SophieAndMe.MVVM.ViewModel
             _mainViewModel = mainVm;
             Back = new RelayCommand(o =>
             {
+                _TimeTableItems.Clear();
                 z = z - 7;
-                FillPlanning(DiffSem());
                 var dates = GetDates(z);
-                FillInfos(dates,Jours);
+                if (DbInteraction.IsHolliday(dates[0]))
+                {
+                    Console.WriteLine("Vacance");
+                    FillPlanning("Vac");
+                    FillInfos(dates,Jours);   
+                }
+                else
+                {
+                    FillPlanning(DiffSem());
+                    FillInfos(dates,Jours);   
+                    FillDs(DbInteraction.GetDS(dates[5]));
+                }
                 MonthText = GetMonthText(z);
             });
             Forward = new RelayCommand(o =>
             {
+                _TimeTableItems.Clear();
                 z = z + 7;
-                FillPlanning(DiffSem());
                 var dates = GetDates(z);
-                FillInfos(dates,Jours);
+                if (DbInteraction.IsHolliday(dates[0]))
+                {
+                    Console.WriteLine("Vacance");
+                    FillPlanning("Vac");
+                    FillInfos(dates,Jours);   
+                    FillDs(DbInteraction.GetDS(dates[5]));
+                }
+                else
+                {
+                    FillPlanning(DiffSem());
+                    FillInfos(dates,Jours); 
+                    FillDs(DbInteraction.GetDS(dates[5]));
+                }
                 MonthText = GetMonthText(z);
+                
             });
             var dates = GetDates(z);
             DateTime dateTime = DateTime.UtcNow.Date;
@@ -90,13 +117,58 @@ namespace SophieAndMe.MVVM.ViewModel
                 new HoursPanel {RowID = 1+11, TopText= "19h" },
             };
 
+            
+            
+            
             DaysItem = new ObservableCollection<DaysItem>();
             _TimeTableItems= new ObservableCollection<TimeTableItem>();
             MonthText = $"{DateTime.Now.ToString("MMMMMMM")}  {DateTime.Now.Year.ToString()}";
             FillInfos(dates,Jours);
-            FillPlanning(ActualSem);
+            if (DbInteraction.IsHolliday(dates[0]))
+            {
+                Console.WriteLine("Vacance");
+                FillPlanning("Vac");
+                FillInfos(dates,Jours);   
+            }
+            else
+            {
+                FillPlanning(ActualSem);
+                FillInfos(dates,Jours);  
+                FillDs(DbInteraction.GetDS(dates[5]));
+            }
         }
 
+        public void FillDs(string Mat)
+        {
+            if (Mat != "")
+            {
+                TimeTableItem item = new TimeTableItem();
+                item.ColumnId = 5;
+                item.RowId = 0;
+                item.Salle = "";
+                item.Enseignant = "";
+                item.Matiere = Mat;
+                item.RowNumSpan = 4;
+                _TimeTableItems.Add(item);
+            }
+
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    TimeTableItem item = new TimeTableItem();
+                    item.ColumnId = 5;
+                    item.RowId = i;
+                    item.Salle = "";
+                    item.Enseignant = "";
+                    item.Matiere = Mat;
+                    item.RowNumSpan = 1;
+                    _TimeTableItems.Add(item); 
+                }
+            }
+
+        }
+        
         public string GetMonthText(int z)
         {
 
@@ -150,25 +222,60 @@ namespace SophieAndMe.MVVM.ViewModel
 
         public void FillPlanning(string val)
         {
-            for (int y = 0;  y < Days.Count; y++)
+            if (val == "Vac")
             {
-                (Matiere, Salle, Enseignant) = DbInteraction.GetPlanning(Days[y],val);
-                for (int  i = 0;  i < 11;  i++)
+                for (int y = 0; y < Days.Count; y++)
                 {
-                    TimeTableItem item = new TimeTableItem();
-                    string s_val = i >= Salle.Count ? "" : Salle[i];
-                    string m_val = i >=  Matiere.Count ? "" : Matiere[i];
-                    string e_val = i >=  Enseignant.Count ? "" : Enseignant[i];
-                    item.ColumnId = y;
-                    item.RowId = i;
-                    item.Salle = s_val;
-                    item.Enseignant = e_val;
-                    item.Matiere = m_val;
-                    _TimeTableItems.Add(item);
-                    Console.WriteLine(item.MatColor);
-                    Console.WriteLine(item.Infos);
+                    for (int i = 0; i < 11; i++)
+                    {
+                        TimeTableItem item = new TimeTableItem();
+                        item.ColumnId = y;
+                        item.RowId = i;
+                        item.Salle = "";
+                        item.Enseignant = "";
+                        item.Matiere = "";
+                        item.RowNumSpan = 1;
+                        _TimeTableItems.Add(item);
+                    }
                 }
-                Console.WriteLine(_TimeTableItems.Count);
+            }
+            else
+            {
+                for (int y = 0; y < Days.Count; y++)
+                {
+                    (Matiere, Salle, Enseignant) = DbInteraction.GetPlanning(Days[y], val);
+                    for (int i = 0; i < 11; i++)
+                    {
+                        TimeTableItem item = new TimeTableItem();
+                        string s_val = i >= Salle.Count ? "" : Salle[i];
+                        string m_val = i >= Matiere.Count ? "" : Matiere[i];
+                        string e_val = i >= Enseignant.Count ? "" : Enseignant[i];
+                        item.ColumnId = y;
+                        item.RowId = i;
+                        item.Salle = s_val;
+                        item.Enseignant = e_val;
+                        item.Matiere = m_val;
+                        item.RowNumSpan = 1;
+                        int Ret = i + 1;
+                        OldMatiere = i >= Matiere.Count ? "" : Matiere[i];
+                        if (Ret < Matiere.Count && OldMatiere != "")
+                        {
+                            while (Matiere[Ret] == OldMatiere)
+                            {
+                                Console.WriteLine(Ret);
+                                item.RowNumSpan++;
+                                i++;
+                                Ret++;
+                                if (Ret >= 10)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        Console.WriteLine(OldMatiere);
+                        _TimeTableItems.Add(item);
+                    }
+                }
             }
         }
 
