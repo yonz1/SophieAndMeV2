@@ -58,7 +58,7 @@ public class TimeTableItem
             case "TP SI":
                 val = System.Windows.Media.Color.FromRgb(251, 192, 45);
                 break;
-            case "TD Si":<
+            case "TD Si":
                 val =  System.Windows.Media.Color.FromRgb(255, 193, 7);    
                 break;
             case "Anglais":
