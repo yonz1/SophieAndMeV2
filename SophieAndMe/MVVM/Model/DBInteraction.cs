@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
@@ -34,9 +35,12 @@ namespace SophieAndMe.MVVM.Model
         private static readonly List<string> ListMat =
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
 
+
+        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
         private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
+        private static readonly string EDTSource = "Data Source=..//..//..//Database//EDT.db";
 
 
         private static readonly List<string> Level = new List<string>();
@@ -315,7 +319,7 @@ namespace SophieAndMe.MVVM.Model
 
             using (var db = new SQLiteConnection(ConSource))
             {
-                db.Open();
+                db.Open(); 
                 using (var cmd = new SQLiteCommand(query, db))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -626,7 +630,6 @@ namespace SophieAndMe.MVVM.Model
             command = new SQLiteCommand(query, connection);
             using (var reader = command.ExecuteReader())
             {
-                
                 while (reader.Read())
                 {
                     resultsQuestions.Add(reader.GetString(0));
@@ -664,7 +667,172 @@ namespace SophieAndMe.MVVM.Model
                 command.Parameters.AddWithValue("@data", data);
                 command.ExecuteNonQuery();                
             }
-
         }
+
+
+        public static string GetMat(string Name)
+        {
+            Dictionary<string, string> mainDic= new Dictionary<string, string>();
+            foreach (var info in ListMat)
+            {
+                foreach (var Chapter in GetName(info))
+                {
+                    mainDic[Chapter] = info;
+                }
+            }
+            return mainDic[Name];
+        }
+
+        
+        
+        // ########################################################## Collection de fonction pour le Landing
+        public static (List<string>, List<string>) GetNotesWeb()
+        {
+            List<string> Anglais =  new List<string>();
+            List<string> Français = new List<string>();
+            List<string> Maths = new List<string>();
+            List<string> Physique =  new List<string>();
+            List<string> SI = new List<string>();
+            Dictionary<string?, string> Main = new Dictionary<string?, string>();
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Anglais,Français,Maths,Physique,SI FROM Plus ";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Anglais.Add(reader.GetString(0));
+                    Français.Add(reader.GetString(1));
+                    Maths.Add(reader.GetString(2));
+                    Physique.Add(reader.GetString(3));
+                    SI.Add(reader.GetString(4));
+                }
+            }
+            var matiere = new List<List<string>> { Anglais, Français, Maths, Physique, SI };
+            var matiereStr = new List<string> { "Anglais", "Français", "Maths", "Physique", "SI" };
+            for (int i = 0; i < matiere.Count ; i++)
+            {
+                if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
+                {
+                    string[] val = matiere[i][Anglais.Count-1].ToString().Split(";");
+                    Main[matiereStr[i]] = $"{val[0]} - {val[4]} - {val[2].Replace("Moy:","")}";
+                }
+            }
+            return(Main.Keys.ToList(),Main.Values.ToList());
+        }
+
+
+        public static List<string> GetQuizzWeb()
+        {
+            List<string> Name = [];
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Name FROM DATE ORDER BY Inserted DESC LIMIT 3";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader.GetString(0));
+                    Name.Add(reader.GetString(0));
+                }
+            }
+            return Name;
+        }
+        
+        // ########################################################## Collection de fonction pour l'emploi du temps
+        
+        
+        public static (List<string>,List<string>,List<string>) GetPlanning(string Days, string Semaine)
+        {
+            List<string> Mat =  new List<string>();
+            List<string> Salle = new List<string>();
+            List<string> Ensei = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Salle,Enseignant FROM " + Days + Semaine;
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Mat.Add(reader.GetString(0));
+                    Salle.Add(reader.GetString(1));
+                    Ensei.Add(reader.GetString(2));
+                }
+            }
+            return (Mat,Salle,Ensei);
+        }
+
+        public static bool IsHolliday(DateTime date)
+        {
+            bool Vec = false;
+            List<string> DYear =  new List<string>();
+            List<string> FYear = new List<string>();
+            List<string> DMonth =  new List<string>();
+            List<string> FMonth = new List<string>();
+            List<string> DDays =  new List<string>();
+            List<string> FDays = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT DYear,FYear,DMonth,FMonth,DDays,FDays FROM Vacance";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DYear.Add(reader.GetString(0));
+                    FYear.Add(reader.GetString(1));
+                    DMonth.Add(reader.GetString(2));
+                    FMonth.Add(reader.GetString(3));
+                    DDays.Add(reader.GetString(4));
+                    FDays.Add(reader.GetString(5));
+                }
+            }
+            Console.WriteLine(date);
+            for (int i = 0; i < DDays.Count; i++)
+            {
+                DateTime ValD = new DateTime(Int32.Parse(DYear[i]), Int32.Parse(DMonth[i]), Int32.Parse(DDays[i]));
+                DateTime ValF = new DateTime(Int32.Parse(FYear[i]),Int32.Parse(FMonth[i]),Int32.Parse(FDays[i]));
+                if (date > ValD && date < ValF)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string GetDS(DateTime date)
+        {
+            List<string> DateSam =  new List<string>();
+            List<string> Mat =  new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Date  FROM DSPlanning";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DateSam.Add(reader.GetString(0));
+                    Mat.Add(reader.GetString(1));
+                }
+            }
+            for (int i = 0; i < DateSam.Count; i++)
+            {
+                if (DateSam[i] == date.ToString("dd/MM/yyyy"))
+                {
+                    return Mat[i];
+                }
+            }
+            return "";
+        }
+        
     }
 }

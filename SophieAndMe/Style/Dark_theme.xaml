@@ -2,7 +2,7 @@
 
 
     <SolidColorBrush x:Key="Iconcolor" Color="Gainsboro" />
-    <SolidColorBrush x:Key="Textcolor" Color="Gainsboro" />
+    <SolidColorBrush x:Key="Textcolor" Color="White" />
     <SolidColorBrush x:Key="Top_iconc_color" Color="Gainsboro" />
     <SolidColorBrush x:Key="Top_iconc_unused" Color="#7c7c80" />
     <SolidColorBrush x:Key="main_background" Color="#242424" />

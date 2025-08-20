@@ -23,9 +23,9 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
+    <!-- <Window.DataContext> -->
+    <!--     <vm:MainViewModel /> -->
+    <!-- </Window.DataContext> -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -69,7 +69,7 @@
                                 FontSize="30"
                                 FontWeight="Bold"
                                 Foreground="{StaticResource Textcolor}"
-                                Text="{Binding CurrentMessage}" />
+                                Text="{Binding CurrentMessage,FallbackValue=Acceuil}" />
 
 
 
@@ -132,15 +132,17 @@
                                         Foreground="Gainsboro"
                                         Icon="Search"
                                         Style="{StaticResource TopButtonIcon}" />
-                                    <materialDesign:AutoSuggestBox
+                                    <ComboBox
                                         Margin="10,0,16,0"
                                         Height="51"
                                         HorizontalAlignment="Stretch"
+                                        materialDesign:ThemeAssist.Theme="Dark"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
-                                        FontSize="16"
-                                        Foreground="{StaticResource Textcolor}"
-                                        Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
+                                        ItemsSource="{Binding Chapter}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        Style="{StaticResource SearchBox}">
+                                    </ComboBox>
                                 </DockPanel>
                             </Border>
                         </DockPanel>
@@ -208,17 +210,19 @@
                         CornerRadius="17">
                         <Grid Grid.Column="0">
                             <DockPanel>
-                                <Rectangle
+                                <Button 
                                     Width="50"
                                     Height="50"
                                     Margin="0,15,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    BorderThickness="0"
+                                    Command="{Binding AcceuilClick}"
                                     DockPanel.Dock="top">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
-                                    </Rectangle.Fill>
-                                </Rectangle>
+                                    <Button.Background>
+                                    <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
+                                    </Button.Background>
+                                </Button>
                                 
                                 <ItemsControl ItemsSource="{Binding Pages}">
                         <ItemsControl.ItemsPanel>

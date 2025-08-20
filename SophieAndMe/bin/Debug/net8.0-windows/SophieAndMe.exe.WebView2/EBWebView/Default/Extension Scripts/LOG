@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 2025/08/01-19:40:33.516 13258 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/MANIFEST-000001
 2025/08/01-19:40:33.517 13258 Recovering log #3
 2025/08/01-19:40:33.517 13258 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
@@ -7,3 +8,8 @@
 2025/08/10-12:33:13.279 1ec6c Recovering log #3
 2025/08/10-12:33:13.280 1ec6c Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
 >>>>>>> DevQuizz
+=======
+2025/08/15-18:12:46.033 93d0 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/MANIFEST-000001
+2025/08/15-18:12:46.034 93d0 Recovering log #3
+2025/08/15-18:12:46.035 93d0 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Extension Scripts/000003.log 
+>>>>>>> Planning
