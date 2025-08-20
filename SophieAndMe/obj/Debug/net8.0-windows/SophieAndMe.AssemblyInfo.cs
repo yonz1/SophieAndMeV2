@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee9ca52ebf782f257f4fa3b4fa6450ed7c74743e")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c309a8e02a7067c5686b01fe5fce6c992511a6f")]
->>>>>>> Planning
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b10fdc2786ae8ce5123dbc38cba38526ee98ffe7")]
 [assembly: System.Reflection.AssemblyProductAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
