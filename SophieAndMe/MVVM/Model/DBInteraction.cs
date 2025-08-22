@@ -19,10 +19,6 @@ namespace SophieAndMe.MVVM.Model
         {
             _dataService = App.DataService;
         }
-        // public DbInteraction()
-        // {
-        //     _dataService = App.DataService;
-        // }
         
         // ################################################### Initialisations 
 
@@ -341,6 +337,19 @@ namespace SophieAndMe.MVVM.Model
         {
             Name.Clear();
             var query = "SELECT name FROM " + nom + " WHERE ID = \"100\"";
+            if (nom == "All")
+            {
+                var sb = new StringBuilder();
+                var parameters = new List<SQLiteParameter>();
+                Console.WriteLine("All");
+                for (int i = 0; i < ListMat.Count; i++)
+                {
+                    if (i > 0) sb.Append(" UNION ");
+                    sb.Append(
+                        $"SELECT name FROM {ListMat[i]} WHERE ID = \"100\"");
+                    query = sb.ToString();
+                }
+            }
             using var db = new SQLiteConnection(ConSource);
             db.Open();
             using var cmd = new SQLiteCommand(query, db);
@@ -353,7 +362,6 @@ namespace SophieAndMe.MVVM.Model
                     Name.Add(value);
                 }
             }
-
             return Name;
         }
 
@@ -717,7 +725,7 @@ namespace SophieAndMe.MVVM.Model
                 if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
                 {
                     string[] val = matiere[i][Anglais.Count-1].ToString().Split(";");
-                    Main[matiereStr[i]] = $"{val[0]} - {val[4]} - {val[2].Replace("Moy:","")}";
+                    Main[matiereStr[i]] = $"{val[0]};{val[4]}";
                 }
             }
             return(Main.Keys.ToList(),Main.Values.ToList());
@@ -833,6 +841,16 @@ namespace SophieAndMe.MVVM.Model
             }
             return "";
         }
-        
+
+        public static (string, string, string, string) GetQuizzImport(string question)
+        {
+            string reponse = "";
+            string ImgRep = "";
+            string ImgQuest = "";
+            
+            
+            return (question,reponse, ImgRep, ImgQuest);
+        }
+
     }
 }

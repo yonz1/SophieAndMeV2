@@ -31,7 +31,7 @@ const keymap = {
     '«': { value: '«»', pos: 1 },
     '「': { value: '「」', pos: 1 },
     '*': { value: '**', pos: 1 },
-    '_': { value: '__', pos: 1 },
+    '_': { value: '_{}', pos: 2 },
     '>': { value: '> ', pos: 2 },
     '~': { value: '~~', pos: 1 },
     '/': { value: '\\frac{}{}', pos: 6 },

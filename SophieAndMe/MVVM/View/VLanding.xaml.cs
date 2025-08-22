@@ -25,12 +25,10 @@ namespace SophieAndMe.MVVM.View
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing.html");
                 var uri = new Uri(Path.GetFullPath(path));
                 WebViewAll.Source = uri;
-                WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) => {             var vm = new VLandingModel(mainVm);
+                WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) => { 
+                    var vm = new VLandingModel(mainVm);
                     this.DataContext = vm;};
             };
-            
-            
-
             
             Unloaded += (s, e) =>
             {

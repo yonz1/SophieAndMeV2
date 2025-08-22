@@ -5,6 +5,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Messaging;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
+using SophieAndMe.Windows;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
@@ -18,14 +19,17 @@ public class CardDisplayImportModel
     private List<string> _urlQuestion;
     private List<string> _urlRep;
     private List<string> _difficulty;
-    private readonly IDataService _dataService;
+    private IDataService _dataService;
     Dictionary<string, string> dico = new Dictionary<string, string>();
+
     
+
 
     public CardDisplayImportModel(VCustomModel vm,string action)
     {
         _vCustomModel = vm;
         _dataService =  App.DataService;
+
         
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
@@ -50,6 +54,18 @@ public class CardDisplayImportModel
                 case "Demande":
                     SendDataImport();
                     break;
+                case "Add":
+
+                    Console.WriteLine(_dataService.WinBin.ToString());
+                    if (!_dataService.WinBin)
+                    {
+                        Console.WriteLine("Windows charger");
+                        ImportAdd win = new ImportAdd(question,imgQuestion,rep,imgRep);
+                        win.ShowDialog();
+                        _dataService.WinBin = true;
+                    }
+                    
+                    break;
             }
         });
         switch ( action)
@@ -66,9 +82,6 @@ public class CardDisplayImportModel
     public void ImportLogic()
     {
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();
-        
-        
-        
         _dataService.IdCard.Number += 1;
         dico["level"] = _level[0];
         dico["Action"] = "Test";
@@ -127,5 +140,9 @@ public class CardDisplayImportModel
             WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         }
     }
+    
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void OnPropertyChanged([CallerMemberName] string name = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     
 }

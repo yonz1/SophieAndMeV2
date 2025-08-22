@@ -9,6 +9,7 @@ public class MediatorLanding
         public string Meta { get; set; } = string.Empty;
         public string Data { get; set; } = string.Empty;
         public string Positions { get; set; } = string.Empty;
+        public string Notes { get; set; } = string.Empty;
     }
     
     public class JsCallMessage : ValueChangedMessage<string>
@@ -16,8 +17,8 @@ public class MediatorLanding
         public JsCallMessage(string value) : base(value) { }
     }
 
-    public class JsToAppMessage : ValueChangedMessage<(string Meta, string Data,string Positions)>
+    public class JsToAppMessage : ValueChangedMessage<(string Meta, string Data,string Position,string Notes)>
     {
-        public JsToAppMessage(string Meta, string Data,string Positions) : base((Meta,Data,Positions)) { }
+        public JsToAppMessage(string Meta, string Data,string Positions,string Notes) : base((Meta,Data,Positions,Notes)) { }
     }
 }

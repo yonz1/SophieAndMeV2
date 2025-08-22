@@ -8,6 +8,7 @@ let para = "";
 
 function updatequizz(action,question,reponse,quest_img,rep_img)
 {
+    console.log("Updating quizz...");
     let img1 = "";
     let img2 = "";
 

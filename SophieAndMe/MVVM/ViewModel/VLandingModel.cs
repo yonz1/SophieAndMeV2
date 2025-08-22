@@ -36,7 +36,9 @@ public class VLandingModel : INotifyPropertyChanged
         for (int i = 0; i < metaNotes.Count; i++)
         { 
             dico["Meta"] =  metaNotes[i];
-            dico["Data"] =  dataNotes[i];
+            dico["Data"] =  dataNotes[i].ToString().Split(";")[0];
+            dico["Notes"] = dataNotes[i].ToString().Split(";")[1];
+            // dico["Notes"] = "";
             dico["Position"] = "Notes";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
@@ -51,6 +53,7 @@ public class VLandingModel : INotifyPropertyChanged
         {
             dico["Meta"] =  Mat[i];
             dico["Data"] =  quizzName[i];
+            dico["Notes"] = "";
             dico["Position"] = "Quizz";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    

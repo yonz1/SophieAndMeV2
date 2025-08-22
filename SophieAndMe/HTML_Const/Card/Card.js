@@ -178,6 +178,9 @@ function CreateCardMain(level,course,quest, rep,Qimg, Rimg,difficulty, len,Actio
             ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
             <p>${rep.replace(/\n/g, "<br>")}</p>
         </div>
+                <div class="card-button">
+                <button value=${val} onclick="add_val(this)" class="Add">Ajouter</button>
+        </div>
     </div>`;
             break;
         
@@ -273,7 +276,6 @@ function renderCardsSmoothly(cards) {
 
 
 function get_val(button) {
-
     const card = button.closest(".card");
 
     if (card) {
@@ -284,6 +286,21 @@ function get_val(button) {
     }
     const question = button.value;
     const action = "Delete";
+    const data = { action, question };
+    console.log(data);
+    window.chrome.webview.postMessage(data);
+}
+
+function add_val(button){
+    const card = button.closest(".card");
+    if (card) {
+        card.classList.add("fade-out");
+        setTimeout(() => {
+            card.remove();
+        }, 200);
+    }
+    const question = button.value;
+    const action = "Add";
     const data = { action, question };
     console.log(data);
     window.chrome.webview.postMessage(data);

@@ -128,15 +128,12 @@ function Suggestion(arr,val)
 function button_fill(val)
 {
     const buttonTag = document.getElementById("button_div");
-
-    buttonTag.innerHTML = ''; 
-
+    buttonTag.innerHTML = '';
     const btnClear = document.createElement("button");
     btnClear.textContent = "Clear";
     btnClear.className = "animated-button";
     btnClear.id = "btnclear";
     btnClear.addEventListener("click", clear);
-
     const btnAction = document.createElement("button");
     btnAction.className = "animated-button";
     if (val === "Add") {
@@ -144,12 +141,12 @@ function button_fill(val)
         btnAction.textContent = "Add";
         btnAction.addEventListener("click", save);
         clear(); 
-    } else {
+    } 
+    else {
         btnAction.id = "btnReplace";
         btnAction.textContent = "Replace";
         btnAction.addEventListener("click", Replace);
     }
-
     buttonTag.appendChild(btnClear);
     buttonTag.appendChild(btnAction);
 

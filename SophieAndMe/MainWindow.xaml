@@ -6,7 +6,6 @@
     xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:SophieAndMe.MVVM.ViewModel"
     Title="MainWindow"
     Width="1280"
     Height="740"
@@ -22,10 +21,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-
-    <!-- <Window.DataContext> -->
-    <!--     <vm:MainViewModel /> -->
-    <!-- </Window.DataContext> -->
+    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,13 +43,11 @@
 
 
                 <Border
-                    x:Name="Border_top"
                     Grid.Column="2"
                     Background="Transparent"
                     CornerRadius="10"
                     MouseDown="Grid_MouseDown">
                     <Grid
-                        x:Name="Grid_top"
                         Margin="0,0,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -71,15 +65,12 @@
                                 Foreground="{StaticResource Textcolor}"
                                 Text="{Binding CurrentMessage,FallbackValue=Acceuil}" />
 
-
-
+                            
                             <Button
-                                Grid.Column="2"
                                 Width="50"
                                 Height="50"
                                 Margin="0,15,15,0"
                                 VerticalAlignment="Top"
-                                Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding ShowProfileContent}"
                                 DockPanel.Dock="Right"
