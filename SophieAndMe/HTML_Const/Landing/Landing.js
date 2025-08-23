@@ -19,52 +19,47 @@ const NvContainer = document.getElementById("Nouveau");
 const Messages = document.getElementById("Messages"); 
 const Notes = document.getElementById("Notes");
 const Quizz =  document.getElementById("Quizz");
- 
+
 MetaMess = ["General","Physique","SI"]
 DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
 for (i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
 
-// FillMessages("Anglais"," NDOYE Amala","Notes",14)
-// FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
-// FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
-//
-//
-//
-// MetaQuizz = ["Si","Mathématiques","Physique"]
-// DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
-// for (i  = 0; i < MetaQuizz.length; i++) {
-//     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
-// }
+FillMessages("Anglais"," NDOYE Amala","Notes",14)
+FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
+FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
 
-window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
-    console.log(dico);
-    FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
-});
 
-function FillMessages(Meta,Data,Position,Mark)
-{
+
+MetaQuizz = ["Si","Mathématiques","Physique"]
+DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
+for (i  = 0; i < MetaQuizz.length; i++) {
+    FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
+}
+
+// window.chrome.webview.addEventListener('message', event => {
+//     dico = event.data;
+//     console.log(dico);
+//     FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
+// });
+
+function FillMessages(Meta, Data, Position, Mark) {
     Mark = parseInt(Mark);
     console.log(Meta)
     console.log(Data)
     console.log(Position)
     let infos = document.createElement("div");
     infos.className = "Infos";
-    if (Mark => 15)
-    {
+    if (Mark => 15) {
         MarkInfo = "NotesG"
-    }
-    else if(Mark < 11)
-    {
-        MarkInfo = "NotesB"    
-    }
-    else {
+    } else if (Mark < 11) {
+        MarkInfo = "NotesB"
+    } else {
         MarkInfo = "NotesM"
     }
-    
-    switch (Position){
+
+    switch (Position) {
         case "Messages":
             infos.innerHTML = ` 
                 <div class="round"></div>                   
@@ -142,7 +137,8 @@ prevNextIcon.forEach(icon => {
     var options = {
       chart: {
         type: 'bar',
-        // height: window.innerHeight * 0.35,
+        height: 300,
+          width: window.innerWidth * 0.45,
         toolbar: { show: false }
       },
       tooltip: {
@@ -223,6 +219,6 @@ grid: {
 
     window.addEventListener('resize', () => {
   chart.updateOptions({
-    chart: { height: window.innerHeight * 0.35 }
+    chart: { width: window.innerWidth * 0.45 }
   });
 });

@@ -274,8 +274,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T09:58:32.787Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-17T09:58:32.787Z"
             },
             {
               "$type": "Document",
@@ -298,8 +297,7 @@
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-15T22:45:55.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T22:45:55.569Z"
             },
             {
               "$type": "Document",
@@ -310,8 +308,7 @@
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T21:11:13.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T21:11:13.041Z"
             },
             {
               "$type": "Document",
@@ -322,8 +319,7 @@
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
               "RelativeToolTip": "SophieAndMe\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:31:12.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T17:31:12.408Z"
             },
             {
               "$type": "Document",
@@ -335,8 +331,7 @@
               "RelativeToolTip": "SophieAndMe\\MainWindow.xaml.cs",
               "ViewState": "AQIAAGIAAAAAAAAAAAAEwGMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T21:11:04.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T21:11:04.518Z"
             },
             {
               "$type": "Document",
@@ -832,8 +827,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\Model\\ClassLib.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T07:35:13.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T07:35:13.433Z"
             },
             {
               "$type": "Document",
@@ -856,7 +850,7 @@
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
         "Id": "9b9e6e52-3d65-406c-8440-8376eb128bf6",
-        "Display": 1,
+        "Display": 0,
         "X": 740,
         "Y": 276,
         "Width": 800,
@@ -891,8 +885,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\ViewModel\\VAgendaModel.cs",
               "ViewState": "AQIAAB4BAAAAAAAAAAAAACcAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T07:38:07.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T07:38:07.127Z"
             },
             {
               "$type": "Document",
@@ -904,8 +897,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
               "ViewState": "AQIAAM0AAAAAAAAAAAAUwNIAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-15T22:46:12.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T22:46:12.719Z"
             },
             {
               "$type": "Document",
@@ -917,8 +909,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T21:11:16.168Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T21:11:16.168Z"
             },
             {
               "$type": "Document",
@@ -930,8 +921,7 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VCustom.xaml.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T21:18:54.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T21:18:54.745Z"
             },
             {
               "$type": "Document",
@@ -943,8 +933,7 @@
               "RelativeToolTip": "SophieAndMe\\MainWindow.xaml",
               "ViewState": "AQIAAHIAAAAAAAAAAAAAAI0AAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:31:17.334Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T17:31:17.334Z"
             },
             {
               "$type": "Document",
@@ -956,8 +945,7 @@
               "RelativeToolTip": "SophieAndMe\\Windows\\ImportAdd.xaml",
               "ViewState": "AQIAABwAAAAAAAAAAAAUwC0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-21T08:34:29.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T08:34:29.559Z"
             },
             {
               "$type": "Document",

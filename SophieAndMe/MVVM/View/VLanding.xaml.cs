@@ -22,7 +22,7 @@ namespace SophieAndMe.MVVM.View
             Loaded += async (s, e) =>
             {
                 await WebViewAll.EnsureCoreWebView2Async();
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing.html");
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing2.html");
                 var uri = new Uri(Path.GetFullPath(path));
                 WebViewAll.Source = uri;
                 WebViewAll.CoreWebView2.NavigationCompleted += (sender, args) => { 

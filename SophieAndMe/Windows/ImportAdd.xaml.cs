@@ -65,5 +65,4 @@ public partial class ImportAdd : Window
             WeakReferenceMessenger.Default.Unregister<MediatorImportAdd.JsCallMessage>(this);
         };
     }
-    
 }
