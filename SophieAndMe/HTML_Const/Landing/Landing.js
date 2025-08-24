@@ -25,7 +25,7 @@ DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ips
 for (i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
-//
+
 // FillMessages("Anglais"," NDOYE Amala","Notes",14)
 // FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
 // FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
@@ -137,7 +137,7 @@ prevNextIcon.forEach(icon => {
     var options = {
       chart: {
         type: 'bar',
-        height: 300,
+        height: 260,
           width: window.innerWidth * 0.45,
         toolbar: { show: false }
       },

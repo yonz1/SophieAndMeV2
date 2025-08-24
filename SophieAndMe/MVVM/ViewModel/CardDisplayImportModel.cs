@@ -22,35 +22,42 @@ public class CardDisplayImportModel
     private IDataService _dataService;
     Dictionary<string, string> dico = new Dictionary<string, string>();
 
-    
+    public class CardMessage
+    {
+        public string Action { get; set; }
+        public string Question { get; set; }
+        public string Matiere { get; set; }
+        public string Name { get; set; }
+        public string ImgQuestion { get; set; }
+        public string Rep { get; set; }
+        public string ImgRep { get; set; }
+    }
 
 
     public CardDisplayImportModel(VCustomModel vm,string action)
     {
         _vCustomModel = vm;
         _dataService =  App.DataService;
-
-        
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
             MessageBox.Show(m.Value.ToString());
-            var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
+            var msg = JsonSerializer.Deserialize<CardMessage>(m.Value.ToString());
             MessageBox.Show(m.Value.ToString());
-            question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
-            rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            msg.Question = msg.Question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            msg.Rep = msg.Rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             switch (action)
             {
                 case "Delete":
-                    DbInteraction.DeleteCreated(question);
+                    DbInteraction.DeleteCreated(msg.Question);
                     break;
                 case "save":
-                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
+                    DbInteraction.SaveQuizz(msg.Matiere,msg.Name,msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
                     break;
                 case "edit":
-                    _vCustomModel.EditLogic(question);
+                    _vCustomModel.EditLogic(msg.Question);
                     break;
                 case "Replace":
-                    _vCustomModel.ReplaceLogic(matier,name,question,rep,imgQuestion,imgRep);
+                    _vCustomModel.ReplaceLogic(msg.Matiere,msg.Name,msg.Question,msg.Rep,msg.ImgQuestion,msg.ImgRep);
                     break;
                 case "Demande":
                     SendDataImport();
@@ -60,11 +67,10 @@ public class CardDisplayImportModel
                     if (!_dataService.WinBin)
                     {
                         Console.WriteLine("Windows charger");
-                        ImportAdd win = new ImportAdd(question,imgQuestion,rep,imgRep);
+                        ImportAdd win = new ImportAdd(msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
                         win.ShowDialog();
                         _dataService.WinBin = true;
                     }
-                    
                     break;
             }
         });
