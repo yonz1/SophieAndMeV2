@@ -42,7 +42,8 @@ public class ImportAddViewModel : INotifyPropertyChanged
     public ImportAddViewModel(string question,string imgQuestion,string rep, string imgRep)
     {
         _dataService = App.DataService;
-        string jscall = WebviewInteraction.send_data("reponse", QuizzUtilities.Miseneformetext(question), QuizzUtilities.Miseneformetext(rep),imgQuestion,imgRep);  
+        string jscall = WebviewInteraction.send_data("", QuizzUtilities.Miseneformetext(question), QuizzUtilities.Miseneformetext(rep),imgQuestion,imgRep);
+        MessageBox.Show(jscall);
         WeakReferenceMessenger.Default.Send(new MediatorImportAdd.JsCallMessage(jscall));
         Chapter = DbInteraction.GetNameCreated("All");
         ExitCommand = new RelayCommand(o =>
@@ -56,7 +57,6 @@ public class ImportAddViewModel : INotifyPropertyChanged
             MessageBox.Show(SelectedItem);
             _dataService.WinBin = false;
             DialogResult = true;
-
         });
     }
     public event PropertyChangedEventHandler PropertyChanged;

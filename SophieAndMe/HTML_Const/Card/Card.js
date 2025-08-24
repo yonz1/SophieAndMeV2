@@ -44,7 +44,7 @@ function TestArrayMain()
 
 
 window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
+    let dico = event.data;
     console.log(i);
     if (dico.Id !== OldId)
     {
@@ -84,7 +84,7 @@ window.chrome.webview.addEventListener('message', event => {
 
 function Clickdiv()
 {
-    console.writeline("Card Clicked")
+    console.log("Card Clicked")
 }
 
 const oberserver = new IntersectionObserver(entries => {
@@ -273,8 +273,6 @@ function renderCardsSmoothly(cards) {
 
 // ######################################################################## Fonction pour action des bouttons
 
-
-
 function get_val(button) {
     const card = button.closest(".card");
 
@@ -305,7 +303,6 @@ function add_val(button){
     console.log(data);
     window.chrome.webview.postMessage(data);
 }
-
 
 function get_data(button){
     const card = button.closest(".card")

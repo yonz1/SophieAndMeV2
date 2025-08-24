@@ -1,8 +1,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Windows;
 using CommunityToolkit.Mvvm.Messaging;
+using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
+using SophieAndMe.MVVM.View;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
@@ -17,6 +20,7 @@ public class VLandingModel : INotifyPropertyChanged
     private readonly MainViewModel _mainViewModel;
     private List<string> _meta = [];
     private List<string> _data = [];
+    private readonly IDataService _dataService;
     private bool _isview;
     public bool  IsView
     {
@@ -30,7 +34,22 @@ public class VLandingModel : INotifyPropertyChanged
     {
         _mainViewModel = mainVm;
         _mainViewModel.CurrentMessage = "Acceuil";
+        _dataService = App.DataService;
         IsView = true;
+        WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
+        {
+            var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
+            string[] value = question.Split("-");
+            Application.Current.Properties["nameindex"] = value[1];
+            _dataService.QuizzId.IsAll = false;
+            _dataService.QuizzId.options = "";
+            _mainViewModel.CurrentMessage = value[1];
+            _dataService.QuizzId.Matier = value[0];
+            NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
+        });
+        
+        
+        
         Dictionary<string, string> dico = new Dictionary<string, string>();
         (var metaNotes, var dataNotes) = DbInteraction.GetNotesWeb();
         for (int i = 0; i < metaNotes.Count; i++)

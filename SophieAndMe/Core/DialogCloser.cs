@@ -13,9 +13,9 @@ public class DialogCloser
 
     private static void OnDialogResultChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is Window window)
+        if (d is Window window && e.NewValue is bool result)
         {
-            window.DialogResult = (bool?)e.NewValue;
+            window.DialogResult = result;
         }
     }
 

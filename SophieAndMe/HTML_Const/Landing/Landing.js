@@ -25,24 +25,24 @@ DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ips
 for (i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
+//
+// FillMessages("Anglais"," NDOYE Amala","Notes",14)
+// FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
+// FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
+//
+//
+//
+// MetaQuizz = ["Si","Mathématiques","Physique"]
+// DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
+// for (i  = 0; i < MetaQuizz.length; i++) {
+//     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
+// }
 
-FillMessages("Anglais"," NDOYE Amala","Notes",14)
-FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
-FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
-
-
-
-MetaQuizz = ["Si","Mathématiques","Physique"]
-DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
-for (i  = 0; i < MetaQuizz.length; i++) {
-    FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
-}
-
-// window.chrome.webview.addEventListener('message', event => {
-//     dico = event.data;
-//     console.log(dico);
-//     FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
-// });
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;
+    console.log(dico);
+    FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
+});
 
 function FillMessages(Meta, Data, Position, Mark) {
     Mark = parseInt(Mark);
@@ -79,7 +79,7 @@ function FillMessages(Meta, Data, Position, Mark) {
             infos.innerHTML = `                
                 <label class="MetaA">${Meta}</label>
                 <label class="DataA">${Data}</label>
-                <button class="OpenQuizz">Ouvrir</button>`
+                <button value="${Meta}-${Data}" onclick="get_data(this)"  class="OpenQuizz">Ouvrir</button>`
             Quizz.appendChild(infos);
             break;
     }
@@ -215,6 +215,21 @@ grid: {
 
     var chart = new ApexCharts(document.querySelector(".chart"), options);
     chart.render();
+
+
+function  get_data(button)
+{
+    const card = button.closest(".OpenQuizz")
+    const question = card.value;
+    const action = "edit";
+    const data = {action,question };
+    console.log(question);
+    window.chrome.webview.postMessage(data);
+}
+
+
+
+
 
 
     window.addEventListener('resize', () => {

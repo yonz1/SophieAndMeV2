@@ -33,8 +33,9 @@ public class CardDisplayImportModel
         
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
+            MessageBox.Show(m.Value.ToString());
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
-            Console.WriteLine(m.Value);
+            MessageBox.Show(m.Value.ToString());
             question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             switch (action)
@@ -55,7 +56,6 @@ public class CardDisplayImportModel
                     SendDataImport();
                     break;
                 case "Add":
-
                     Console.WriteLine(_dataService.WinBin.ToString());
                     if (!_dataService.WinBin)
                     {

@@ -1,9 +1,11 @@
 ﻿
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Web.WebView2.Core;
 using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.ViewModel;
 
@@ -22,6 +24,7 @@ namespace SophieAndMe.MVVM.View
             Loaded += async (s, e) =>
             {
                 await WebViewAll.EnsureCoreWebView2Async();
+                WebViewAll.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing2.html");
                 var uri = new Uri(Path.GetFullPath(path));
                 WebViewAll.Source = uri;
@@ -34,6 +37,22 @@ namespace SophieAndMe.MVVM.View
             {
                 WeakReferenceMessenger.Default.Unregister<MediatorLanding.JsCallMessage>(this);
             };
+        }
+        private void OnWebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            try
+            {
+                var msgSoR = JsonSerializer.Deserialize<MediatorCustom.WebJsMessage>(e.WebMessageAsJson);
+                if (msgSoR != null)
+                {
+                    WeakReferenceMessenger.Default.Send(new MediatorCustom.JstoAppMessage(msgSoR.action, msgSoR.matier, msgSoR.name, msgSoR.question, msgSoR.imgQuestion, msgSoR.rep, msgSoR.imgRep));
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur JS: " + ex.Message);
+            }
         }
     }
 }

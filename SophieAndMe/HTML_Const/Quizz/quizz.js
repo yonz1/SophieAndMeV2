@@ -5,10 +5,10 @@ const rep_img = "";
 let para = "";
 let val= "";
 
-updatequizz("question", question[0],reponse[0],"","");
-const textarea_rep = document.getElementById('input_rep')
-textarea_rep.value = "x";
-updatequizz("questin", question[0],reponse[0],"","");
+// updatequizz("question", question[0],reponse[0],"","");
+// const textarea_rep = document.getElementById('input_rep')
+// textarea_rep.value = "x";
+// updatequizz("questin", question[0],reponse[0],"","");
 
 
 function updatequizz(action,question,reponse,quest_img,rep_img)
@@ -32,12 +32,12 @@ function updatequizz(action,question,reponse,quest_img,rep_img)
 
     const main = document.getElementById("main");
     console.log(main.innerHTML)
-    if (main.innerHTML.includes("input_rep"))
-    {
-        alert("in")
-        const textarea_rep = document.getElementById('input_rep')
-        val = textarea_rep.value;
-    }
+    // if (main.innerHTML.includes("input_rep"))
+    // {
+    //     // alert("in")
+    //     const textarea_rep = document.getElementById('input_rep')
+    //     val = textarea_rep.value;
+    // }
 
     if (quest_img !== "")
     {
@@ -52,17 +52,17 @@ function updatequizz(action,question,reponse,quest_img,rep_img)
     if (action == "question") {
         main.innerHTML = "";
         main.innerHTML = `<div class="container">  ${img1} <p class="question">${question}</p>  </div>`;
-        main.innerHTML += `        <div class="input-group">
-            <textarea required="" type="text" name="text" autocomplete="off" class="input_nq" id="input_rep"></textarea>
-            <label class="user-label">Votre réponse ...</label>
-        </div>`;
+        // main.innerHTML += `        <div class="input-group">
+        //     <textarea required="" type="text" name="text" autocomplete="off" class="input_nq" id="input_rep"></textarea>
+        //     <label class="user-label">Votre réponse ...</label>
+        // </div>`;
     }
     else {
         main.innerHTML = "";
         main.innerHTML = `<div class="container_q"> ${img1}  <p class="question">${question}</p>  </div>`;
         main.innerHTML += `<div class="container_r"> ${img2} <p class="reponse">${reponse}</p> </div>`;
-        alert("Value: ",val)
-        console.log("Value: ",val)
+        // alert("Value: ",val)
+        // console.log("Value: ",val)
     }
     console.log(main.innerHTML)
 
