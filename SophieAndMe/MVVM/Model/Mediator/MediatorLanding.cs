@@ -6,9 +6,13 @@ public class MediatorLanding
 {
     public class WebJsMessage
     {
-        public string Meta { get; set; } = string.Empty;
-        public string Data { get; set; } = string.Empty;
-        public string Positions { get; set; } = string.Empty;
+        public  string action  { get; set; } = string.Empty;
+        public string matier { get; set; } = string.Empty;
+        public string name { get; set; } = string.Empty;
+        public string question { get; set; } = string.Empty;
+        public string imgQuestion { get; set; } = string.Empty;
+        public string rep { get; set; } = string.Empty;
+        public string imgRep { get; set; } = string.Empty;
     }   
     
     public class JsCallMessage : ValueChangedMessage<string>
@@ -16,8 +20,8 @@ public class MediatorLanding
         public JsCallMessage(string value) : base(value) { }
     }
 
-    public class JsToAppMessage : ValueChangedMessage<(string Meta, string Data,string Positions)>
+    public class  JstoAppMessage : ValueChangedMessage<(string Action, string Matier, string Name,string Question,string ImgQuestion,string Rep,string ImgRep)>
     {
-        public JsToAppMessage(string Meta, string Data,string Positions) : base((Meta,Data,Positions)) { }
+        public JstoAppMessage(string action, string matier, string name, string question, string imgQuestion, string rep, string imgRep)  : base((action, matier, name, question, imgQuestion, rep, imgRep)) {}
     }
 }

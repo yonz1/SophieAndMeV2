@@ -88,7 +88,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
                 new SubjectItem {Name = "Marquer", IconVal = IconChar.BookBookmark, Navigation = new VMarked(this), Value = "B"},
                 new SubjectItem {Name = "Personnaliser", IconVal = IconChar.UserPen, Navigation = new VCustom(this), Value = "C"},
                 new SubjectItem {Name = "Agenda", IconVal = IconChar.Calendar, Navigation = new VAgenda(this), Value = "D"},
-                new SubjectItem {Name = "Notes", IconVal = IconChar.Edit, Navigation = new VNotes(this), Value = "E"}
+                // new SubjectItem {Name = "Notes", IconVal = IconChar.Edit, Navigation = new VNotes(this), Value = "E"}
             };
             AcceuilClick = new RelayCommand(o =>
             {

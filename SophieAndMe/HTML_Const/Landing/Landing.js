@@ -44,8 +44,10 @@ window.chrome.webview.addEventListener('message', event => {
     FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
 });
 
-function FillMessages(Meta, Data, Position, Mark) {
-    Mark = parseInt(Mark);
+function FillMessages(Meta, Data, Position) {
+    Info = Data.split(';');
+    Mark = Info[1]
+    Data = Info[0]
     console.log(Meta)
     console.log(Data)
     console.log(Position)

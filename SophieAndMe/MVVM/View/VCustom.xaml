@@ -87,20 +87,20 @@
                         Foreground="{StaticResource Textcolor}"
                         Style="{StaticResource topquizzmat}"
                         Tag="Physique" />
-                    <Button
-                        Width="120"
-                        Height="40"
-                        Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Background="Transparent"
-                        Command="{Binding Import}"
-                        Content="Importer"
-                        DockPanel.Dock="Left"
-                        Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"
-                        Tag="Physique" />
+                    <!-- <Button -->
+                    <!--     Width="120" -->
+                    <!--     Height="40" -->
+                    <!--     Margin="5,0,5,0" -->
+                    <!--     HorizontalAlignment="Center" -->
+                    <!--     VerticalAlignment="Center" -->
+                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
+                    <!--     Background="Transparent" -->
+                    <!--     Command="{Binding Import}" -->
+                    <!--     Content="Importer" -->
+                    <!--     DockPanel.Dock="Left" -->
+                    <!--     Foreground="{StaticResource Textcolor}" -->
+                    <!--     Style="{StaticResource topquizzmat}" -->
+                    <!--     Tag="Physique" /> -->
                 </DockPanel>
             </Border>
         </DockPanel>
