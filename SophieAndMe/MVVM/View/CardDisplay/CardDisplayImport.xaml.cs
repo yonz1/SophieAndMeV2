@@ -63,7 +63,7 @@ public partial class CardDisplayImport : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erreur JS: " + ex.Message);
+            MessageBox.Show("Erreur JS - Import: " + ex.Message);
         }
     }
     

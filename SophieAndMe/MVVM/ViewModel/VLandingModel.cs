@@ -36,7 +36,7 @@ public class VLandingModel : INotifyPropertyChanged
         _mainViewModel.CurrentMessage = "Acceuil";
         _dataService = App.DataService;
         IsView = true;
-        WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
+        WeakReferenceMessenger.Default.Register<MediatorLanding.JstoAppMessage>(this, (r, m) =>
         {
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
             string[] value = question.Split("-");
@@ -55,9 +55,7 @@ public class VLandingModel : INotifyPropertyChanged
         for (int i = 0; i < metaNotes.Count; i++)
         { 
             dico["Meta"] =  metaNotes[i];
-            dico["Data"] =  dataNotes[i].ToString().Split(";")[0];
-            dico["Notes"] = dataNotes[i].ToString().Split(";")[1];
-            // dico["Notes"] = "";
+            dico["Data"] =  dataNotes[i];
             dico["Position"] = "Notes";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
@@ -72,7 +70,6 @@ public class VLandingModel : INotifyPropertyChanged
         {
             dico["Meta"] =  Mat[i];
             dico["Data"] =  quizzName[i];
-            dico["Notes"] = "";
             dico["Position"] = "Quizz";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    

@@ -40,38 +40,37 @@ public class CardDisplayImportModel
         _dataService =  App.DataService;
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
+            var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
             MessageBox.Show(m.Value.ToString());
-            var msg = JsonSerializer.Deserialize<CardMessage>(m.Value.ToString());
-            MessageBox.Show(m.Value.ToString());
-            msg.Question = msg.Question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
-            msg.Rep = msg.Rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             switch (action)
             {
                 case "Delete":
-                    DbInteraction.DeleteCreated(msg.Question);
+                    DbInteraction.DeleteCreated(question);
                     break;
                 case "save":
-                    DbInteraction.SaveQuizz(msg.Matiere,msg.Name,msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
+                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
                     break;
                 case "edit":
-                    _vCustomModel.EditLogic(msg.Question);
+                    _vCustomModel.EditLogic(question);
                     break;
                 case "Replace":
-                    _vCustomModel.ReplaceLogic(msg.Matiere,msg.Name,msg.Question,msg.Rep,msg.ImgQuestion,msg.ImgRep);
+                    _vCustomModel.ReplaceLogic(matier,name,question,rep,imgQuestion,imgRep);
                     break;
                 case "Demande":
                     SendDataImport();
                     break;
-                // case "Add":
-                //     Console.WriteLine(_dataService.WinBin.ToString());
-                //     if (!_dataService.WinBin)
-                //     {
-                //         Console.WriteLine("Windows charger");
-                //         ImportAdd win = new ImportAdd(msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
-                //         win.ShowDialog();
-                //         _dataService.WinBin = true;
-                //     }
-                //     break;
+                case "Add":
+                    Console.WriteLine(_dataService.WinBin.ToString());
+                    if (!_dataService.WinBin)
+                    {
+                        Console.WriteLine("Windows charger");
+                        ImportAdd win = new ImportAdd(question,imgQuestion,rep,imgRep);
+                        win.ShowDialog();
+                        _dataService.WinBin = true;
+                    }
+                    break;
             }
         });
         switch ( action)

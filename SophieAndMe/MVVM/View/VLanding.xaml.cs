@@ -42,10 +42,10 @@ namespace SophieAndMe.MVVM.View
         {
             try
             {
-                var msgSoR = JsonSerializer.Deserialize<MediatorCustom.WebJsMessage>(e.WebMessageAsJson);
+                var msgSoR = JsonSerializer.Deserialize<MediatorLanding.WebJsMessage>(e.WebMessageAsJson);
                 if (msgSoR != null)
                 {
-                    WeakReferenceMessenger.Default.Send(new MediatorCustom.JstoAppMessage(msgSoR.action, msgSoR.matier, msgSoR.name, msgSoR.question, msgSoR.imgQuestion, msgSoR.rep, msgSoR.imgRep));
+                    WeakReferenceMessenger.Default.Send(new MediatorLanding.JstoAppMessage(msgSoR.action, msgSoR.matier, msgSoR.name, msgSoR.question, msgSoR.imgQuestion, msgSoR.rep, msgSoR.imgRep));
                 }
             
             }

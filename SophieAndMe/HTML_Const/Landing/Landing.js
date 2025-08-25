@@ -41,11 +41,13 @@ for (i  = 0; i < MetaMess.length; i++) {
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
     console.log(dico);
-    FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
+    FillMessages(dico.Meta,dico.Data,dico.Position)
 });
 
-function FillMessages(Meta, Data, Position, Mark) {
-    Mark = parseInt(Mark);
+function FillMessages(Meta, Data, Position) {
+    Info = Data.split(';');
+    Mark = Info[1]
+    Data = Info[0]
     console.log(Meta)
     console.log(Data)
     console.log(Position)
@@ -226,11 +228,6 @@ function  get_data(button)
     console.log(question);
     window.chrome.webview.postMessage(data);
 }
-
-
-
-
-
 
     window.addEventListener('resize', () => {
   chart.updateOptions({

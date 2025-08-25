@@ -69,7 +69,7 @@ public partial class VCustom : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erreur JS: " + ex.Message);
+            MessageBox.Show("Erreur JS - Custom: " + ex.Message);
         }
     }
 }

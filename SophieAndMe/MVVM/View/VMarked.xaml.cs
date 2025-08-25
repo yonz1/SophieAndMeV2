@@ -59,7 +59,7 @@ namespace SophieAndMe.MVVM.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur JS: " + ex.Message);
+                MessageBox.Show("Erreur JS - Marked: " + ex.Message);
             }
         }
         
