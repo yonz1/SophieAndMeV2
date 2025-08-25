@@ -49,6 +49,10 @@ public partial class CardDisplayImport : UserControl
             };
 
         };
+        Unloaded += (s, e) =>
+        {
+            WeakReferenceMessenger.Default.Unregister<MediatorDisplayImport.JsCallImportMessage>(this);
+        };
     }
     private void OnWebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)
     {

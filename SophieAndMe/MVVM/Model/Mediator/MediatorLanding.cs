@@ -9,7 +9,7 @@ public class MediatorLanding
         public string Meta { get; set; } = string.Empty;
         public string Data { get; set; } = string.Empty;
         public string Positions { get; set; } = string.Empty;
-    }
+    }   
     
     public class JsCallMessage : ValueChangedMessage<string>
     {

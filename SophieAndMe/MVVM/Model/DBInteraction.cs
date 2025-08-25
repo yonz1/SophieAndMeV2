@@ -717,7 +717,7 @@ namespace SophieAndMe.MVVM.Model
                 if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
                 {
                     string[] val = matiere[i][Anglais.Count-1].ToString().Split(";");
-                    Main[matiereStr[i]] = $"{val[0]} - {val[4]} - {val[2].Replace("Moy:","")}";
+                    Main[matiereStr[i]] = $"{val[0]};{val[4]}";
                 }
             }
             return(Main.Keys.ToList(),Main.Values.ToList());

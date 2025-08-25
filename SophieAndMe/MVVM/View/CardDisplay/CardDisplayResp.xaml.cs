@@ -42,6 +42,12 @@ public partial class CardDisplayResp : UserControl
                 }
             };
         };
+        
+        Unloaded += (s, e) =>
+        {
+            WeakReferenceMessenger.Default.Unregister<MediatorDisplayResp.JsCallMessage>(this);
+        };
+        
     }
 
 

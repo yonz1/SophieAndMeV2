@@ -54,6 +54,11 @@ public partial class VCustom : UserControl
                 });
             };
         };
+        
+        Unloaded += (s, e) =>
+        {
+            WeakReferenceMessenger.Default.Unregister<MediatorCustom.JsCallMessage>(this);
+        };
     }
 
     private void OnWebMessageReceived(object? sender, CoreWebView2WebMessageReceivedEventArgs e)

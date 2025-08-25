@@ -18,6 +18,11 @@ namespace SophieAndMe.MVVM.View
         public VMarked(MainViewModel mainVm)
         {
             InitializeComponent();
+            
+            Unloaded += (s, e) =>
+            {
+                WeakReferenceMessenger.Default.Unregister<MediatorMarked.JsCallMessage>(this);
+            };
 
             Loaded += async (s, e) =>
             {
@@ -62,6 +67,8 @@ namespace SophieAndMe.MVVM.View
                 MessageBox.Show("Erreur JS: " + ex.Message);
             }
         }
+        
+        
         
         
         
