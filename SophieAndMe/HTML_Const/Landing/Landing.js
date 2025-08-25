@@ -1,3 +1,5 @@
+
+
 const daysTag = document.querySelector(".days"),
     currentDate = document.querySelector(".current-date"),
     prevNextIcon = document.querySelectorAll(".icons span");
@@ -17,48 +19,67 @@ const NvContainer = document.getElementById("Nouveau");
 const Messages = document.getElementById("Messages"); 
 const Notes = document.getElementById("Notes");
 const Quizz =  document.getElementById("Quizz");
- 
+
 MetaMess = ["General","Physique","SI"]
 DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
 for (i  = 0; i < MetaMess.length; i++) {
-    FillMessages(MetaMess[i],DataMess[i],"Messages");
+    FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
 
-// FillMessages("Anglais"," NDOYE Amala; Rg:6/14; Moy:13,61; ET:3,31;14","Notes")
-// FillMessages("Maths"," LAURENCON Beno\u00EFt; Rg:1/31; Moy:12,90; ET:2,76;19","Notes")
-// FillMessages("Physique"," ADROGUER PIERRE; Rg:1/15; Moy:10,53; ET:4,03;16","Notes")
+// FillMessages("Anglais"," NDOYE Amala","Notes",14)
+// FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
+// FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
 //
 //
 //
 // MetaQuizz = ["Si","Mathématiques","Physique"]
 // DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
 // for (i  = 0; i < MetaQuizz.length; i++) {
-//     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz");
+//     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
 // }
 
 window.chrome.webview.addEventListener('message', event => {
     dico = event.data;
-    FillMessages(dico.Meta,dico.Data,dico.Position)
+    console.log(dico);
+    FillMessages(dico.Meta,dico.Data,dico.Position,dico.Notes)
 });
 
-function FillMessages(Meta,Data,Position)
-{
+function FillMessages(Meta, Data, Position, Mark) {
+    Mark = parseInt(Mark);
     console.log(Meta)
     console.log(Data)
     console.log(Position)
     let infos = document.createElement("div");
     infos.className = "Infos";
-    infos.innerHTML = `                
-                <label class="Meta">${Meta}</label>
-                <label class="Data">${Data}</label>`
-    switch (Position){
+    if (Mark => 15) {
+        MarkInfo = "NotesG"
+    } else if (Mark < 11) {
+        MarkInfo = "NotesB"
+    } else {
+        MarkInfo = "NotesM"
+    }
+
+    switch (Position) {
         case "Messages":
+            infos.innerHTML = ` 
+                <div class="round"></div>                   
+                <label class="MetaM">${Meta}</label>
+                <label class="DataM">${Data}</label>`
             Messages.appendChild(infos);
             break;
         case "Notes":
+            infos.innerHTML = `                
+                <label class="MetaA">${Meta}</label>
+                <label class="DataA">${Data}</label>
+                <label class="${MarkInfo}">${Mark}</label>`
             Notes.appendChild(infos);
             break;
         case "Quizz":
+            infos.id = "QuizzI";
+            infos.innerHTML = `                
+                <label class="MetaA">${Meta}</label>
+                <label class="DataA">${Data}</label>
+                <button value="${Meta}-${Data}" onclick="get_data(this)"  class="OpenQuizz">Ouvrir</button>`
             Quizz.appendChild(infos);
             break;
     }
@@ -116,7 +137,8 @@ prevNextIcon.forEach(icon => {
     var options = {
       chart: {
         type: 'bar',
-        height: window.innerHeight * 0.35,
+        height: 260,
+          width: window.innerWidth * 0.45,
         toolbar: { show: false }
       },
       tooltip: {
@@ -149,12 +171,14 @@ grid: {
     show: false // enlève les petites "barrettes" sous chaque label
   },
         categories: [
-          "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"
+          "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"
         ],
         labels: {
           style: {
             colors: '#fff',
-            fontSize: '13px'
+              fontSize: '12px',
+              fontFamily: 'Inherit',
+              fontWeight: '400',
           }
         }
       },
@@ -168,12 +192,15 @@ grid: {
               opacity:1,
               opacityFrom: 1,
               inverseColors: false,
-              gradientToColors: ["#242424"]
+              gradientToColors: ["#8b5cf6"]
           }
 },
       yaxis:{
         labels: {
             style:{
+                fontSize: '12px',
+                fontFamily: 'Inherit',
+                fontWeight: '400',
                 colors: '#fff'
             }
         }
@@ -183,15 +210,30 @@ grid: {
         name: "Temps passé",
         data: [30, 40, 20, 50, 60, 10, 0]
       }],
-      colors: ['#9B59B6'],
+      colors: ['#38bdf8'],
     };
 
     var chart = new ApexCharts(document.querySelector(".chart"), options);
     chart.render();
 
 
+function  get_data(button)
+{
+    const card = button.closest(".OpenQuizz")
+    const question = card.value;
+    const action = "edit";
+    const data = {action,question };
+    console.log(question);
+    window.chrome.webview.postMessage(data);
+}
+
+
+
+
+
+
     window.addEventListener('resize', () => {
   chart.updateOptions({
-    chart: { height: window.innerHeight * 0.35 }
+    chart: { width: window.innerWidth * 0.45 }
   });
 });
