@@ -62,16 +62,16 @@ public class CardDisplayImportModel
                 case "Demande":
                     SendDataImport();
                     break;
-                case "Add":
-                    Console.WriteLine(_dataService.WinBin.ToString());
-                    if (!_dataService.WinBin)
-                    {
-                        Console.WriteLine("Windows charger");
-                        ImportAdd win = new ImportAdd(msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
-                        win.ShowDialog();
-                        _dataService.WinBin = true;
-                    }
-                    break;
+                // case "Add":
+                //     Console.WriteLine(_dataService.WinBin.ToString());
+                //     if (!_dataService.WinBin)
+                //     {
+                //         Console.WriteLine("Windows charger");
+                //         ImportAdd win = new ImportAdd(msg.Question,msg.ImgQuestion,msg.Rep,msg.ImgRep);
+                //         win.ShowDialog();
+                //         _dataService.WinBin = true;
+                //     }
+                //     break;
             }
         });
         switch ( action)
