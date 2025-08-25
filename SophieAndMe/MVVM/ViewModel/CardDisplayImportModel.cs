@@ -40,8 +40,8 @@ public class CardDisplayImportModel
         _dataService =  App.DataService;
         WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
         {
+            Console.WriteLine("Debut " +  _dataService.WinBin.ToString());
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
-            MessageBox.Show(m.Value.ToString());
             question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
             switch (action)
@@ -62,13 +62,13 @@ public class CardDisplayImportModel
                     SendDataImport();
                     break;
                 case "Add":
-                    Console.WriteLine(_dataService.WinBin.ToString());
+                    Console.WriteLine("Avant " + _dataService.WinBin.ToString());
                     if (!_dataService.WinBin)
                     {
                         Console.WriteLine("Windows charger");
-                        ImportAdd win = new ImportAdd(question,imgQuestion,rep,imgRep);
-                        win.ShowDialog();
                         _dataService.WinBin = true;
+                        ImportAdd win = new ImportAdd(vm,question,imgQuestion,rep,imgRep);
+                        win.ShowDialog();
                     }
                     break;
             }
@@ -83,7 +83,6 @@ public class CardDisplayImportModel
                 break;
         }
     }
-    
     public void ImportLogic()
     {
         (_level, _course, _question, _urlQuestion, _repnse, _urlRep, _difficulty) = DbInteraction.GetAllPublic();

@@ -24,12 +24,10 @@ public partial class ImportAdd : Window
         public int cyTopHeight;
         public int cyBottomHeight;
     }
-    public ImportAdd(string question,string imgQuestion,string rep, string imgRep)
+    public ImportAdd(VCustomModel vm,string question,string imgQuestion,string rep, string imgRep)
     {
         
-        InitializeComponent();
-        ImportAddViewModel vm =  new ImportAddViewModel(question,imgQuestion,rep,imgRep);
-        this.DataContext = vm;
+        InitializeComponent(); 
         var hwnd = new WindowInteropHelper(this).Handle;
         var margins = new Margins()
         {
@@ -41,24 +39,30 @@ public partial class ImportAdd : Window
         DwmExtendFrameIntoClientArea(hwnd, ref margins);
         int attrValue = 2; 
         DwmSetWindowAttribute(hwnd, 20, ref attrValue, sizeof(int));
-        WeakReferenceMessenger.Default.Register<MediatorImportAdd.JsCallMessage>(this, (r, m) =>
-        {
-            WebView2.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");
-            Console.WriteLine(m.Value);
-            WebView2.CoreWebView2.PostWebMessageAsJson(m.Value);
-        });
         Loaded += async (s, e) =>
         {
             await WebView2.EnsureCoreWebView2Async();
-            WebView2.CoreWebView2.OpenDevToolsWindow();
+            Console.WriteLine("En chargement");
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Quizz\quizz.html");
             var uri = new Uri(Path.GetFullPath(path));
             WebView2.Source = uri;
+            Console.WriteLine("Charger1");
+            WebView2.CoreWebView2.OpenDevToolsWindow();
             WebView2.CoreWebView2.NavigationCompleted += (sender, args) => 
-            {         
-
+            {
+                this.DataContext = new ImportAddViewModel(vm,question,imgQuestion,rep,imgRep);
                 Console.WriteLine("Charger");
             };
+            
+            WeakReferenceMessenger.Default.Register<MediatorImportAdd.JsCallMessage>(this, (r, m) =>
+            {
+                if (WebView2.CoreWebView2 != null)
+                {
+                    WebView2.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");
+                    Console.WriteLine(m.Value);
+                    WebView2.CoreWebView2.PostWebMessageAsJson(m.Value);
+                }
+            });
         };
         Unloaded += (s, e) =>
         {

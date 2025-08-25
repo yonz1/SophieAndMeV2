@@ -39,7 +39,7 @@ public class ImportAddViewModel : INotifyPropertyChanged
         }
     }
 
-    public ImportAddViewModel(string question,string imgQuestion,string rep, string imgRep)
+    public ImportAddViewModel(VCustomModel vm,string question,string imgQuestion,string rep, string imgRep)
     {
         _dataService = App.DataService;
         string jscall = WebviewInteraction.send_data("", QuizzUtilities.Miseneformetext(question), QuizzUtilities.Miseneformetext(rep),imgQuestion,imgRep);
@@ -48,12 +48,14 @@ public class ImportAddViewModel : INotifyPropertyChanged
         ExitCommand = new RelayCommand(o =>
         {
             _dataService.WinBin = false;
+            Console.WriteLine(_dataService.WinBin.ToString());
             DialogResult = false;
 
         });
         AjouterAuQuizz = new RelayCommand(o =>
         {
             _dataService.WinBin = false;
+            Console.WriteLine(_dataService.WinBin.ToString());
             DialogResult = true;
         });
     }

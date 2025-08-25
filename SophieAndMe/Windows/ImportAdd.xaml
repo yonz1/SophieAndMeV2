@@ -58,7 +58,7 @@
                 x:Name="WebView2"
                 Margin="30,30,30,30"
                 Panel.ZIndex="2"
-                Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}" />
+                Visibility="Visible" />
         </Grid>
 
         <Grid Grid.Row="2" Background="{StaticResource Elementbackground}">
