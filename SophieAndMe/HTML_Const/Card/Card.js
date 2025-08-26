@@ -22,6 +22,11 @@ window.MathJax = {
     },
 };
 
+// document.body.classList.toggle("Light");
+document.body.classList.toggle("Dark");
+const color = {"DarkText":"#242424","LightText":"#FFFFFF"}
+let SelectedBg = color["DarkText"]
+
 
 
 function TestArrayMain()
@@ -134,11 +139,11 @@ function CreateCardMain(level,course,quest, rep,Qimg, Rimg,difficulty, len,Actio
     card.addEventListener("click", () => {
         if (selectedCard && selectedCard !== card)
         {
-            selectedCard.style.backgroundColor = "#242424";
+            selectedCard.style.backgroundColor = SelectedBg;
             selectedCard.style.boxShadow = "none";
             selectedCard.classList.remove("active");
         }
-        card.style.backgroundColor = selectedCard && selectedCard === card ? "#242424" : "transparent";
+        card.style.backgroundColor = selectedCard && selectedCard === card ? SelectedBg : "transparent";
         card.style.boxShadow = selectedCard && selectedCard === card ? "none" : "6px 6px 10px 0px lightblue";
         if (selectedCard && selectedCard === card)
         {

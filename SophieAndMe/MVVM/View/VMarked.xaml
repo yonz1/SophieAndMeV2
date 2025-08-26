@@ -101,7 +101,7 @@
                             CommandParameter="{Binding}"
                             Content="{Binding}"
                             FontSize="14"
-                            Foreground="White"
+                            Foreground="{StaticResource Textcolor}"
                             Style="{StaticResource button_quizz_desi}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

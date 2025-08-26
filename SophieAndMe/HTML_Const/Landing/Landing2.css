@@ -3,6 +3,39 @@
 @tailwind components;
 @tailwind utilities;
 
+.Dark{
+    --ELementbg: #242424;
+    --bg: #161717;
+    --Text: #e2e8f0;
+    --TextInactive : #aaa;
+    --TextOnColor: #e2e8f0;
+    --Bad: #7f1d1d;
+    --BadText : #fecdd3;
+    --Mid : #78350f;
+    --MidText: #fde68a;
+    --Good : #064e3b;
+    --GoodText : #a7f3d0;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+    --HoverQuizz: #8b5cf611;
+}
+
+.Light{
+    --ELementbg: #FFFFFF;
+    --bg : #F8FAFC;
+    --Text: #1E293B;
+    --TextInactive : #64748B;
+    --TextOnColor: #e2e8f0;
+    --Border: #F1F5F9;
+    --Bad: #fecdd388;
+    --BadText : #F43F5E;
+    --Mid : #fde68a88;
+    --MidText: #F59E0B;
+    --Good : #a7f3d088;
+    --GoodText : #10B981;
+    --HoverQuizz: #8b5cf611;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -11,7 +44,7 @@
 }
 
 body {
-    background-color: #161717;
+    background-color: var(--bg);
 }
 
 .Main{
@@ -34,12 +67,15 @@ body {
 .Progonly{
     grid-column: 1;
     grid-row: 2;
-    background: #242424;
+    background: var(--ELementbg);
     border-radius: 20px;
     height: fit-content;
     width: 20vw;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-color: var(--Border);
+    border-width: 2px;
+    border-style: solid;
 }
 
 
@@ -49,7 +85,7 @@ body {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background: #242424;
+    background: var(--ELementbg);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(12.2px);
     -webkit-backdrop-filter: blur(12.2px);
@@ -73,11 +109,14 @@ body {
 }
 
 .ClearContainer{
-    background: #242424;
+    background: var(--ELementbg);
     border-radius: 20px;
     height: 300px;
     padding-bottom: 15px;
     padding-top:  10px;
+    border-color: var(--Border);
+    border-width: 2px;
+    border-style: solid;
 }
 
 .ContainerWelcome{
@@ -134,11 +173,14 @@ body {
 .ContainerCalendar{
     grid-column: 1;
     grid-row: 1;
-    background-color: #242424;
+    background-color: var(--ELementbg);
     width: 28vw;
     float: left;
     height: 100%;
     border-radius: 20px;
+    border-color: var(--Border);
+    border-width: 2px;
+    border-style: solid;
 }
 
 .Handler{
@@ -152,7 +194,7 @@ body {
 
 
 .Title{
-    color: #e2e8f0;
+    color: var(--Text);
     position: relative;
     margin-left:20px;
     margin-top: 10px;
@@ -177,7 +219,7 @@ body {
 }
 
 .MainProgressions{
-    background-color: #242424;
+    background-color: var(--ELementbg);
     border-radius: 20px;
     margin-top: 20px;
     height: 100%;
@@ -192,7 +234,7 @@ body {
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    color: #dcdcdc;
+    color: var(--Text);
     background: transparent;
     border-radius: 16px;
     /*border-color: grey;*/
@@ -204,8 +246,8 @@ body {
 }
 
 #QuizzI:hover{
-    background: oklch(13% 0.028 261.692);
-    box-shadow: 0 0.1px 3px rgb(56, 189, 248);
+    background: var(--HoverQuizz);
+    box-shadow: 0 0.1px 3px var(--HoverQuizzShadow);
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
 }
@@ -213,33 +255,37 @@ body {
 .MetaM{
     margin-left: 20px;
     font-size: 12px;
-    color: gray;
+    color: var(--TextInactive);
 }
 
 .DataM{
     margin-left: 20px;
     font-size: 13px;
-    color: #e2e8f0
+    color: var(--Text)
 }
 
 .MetaA{
     margin-left: 15px;
     font-size: 12px;
-    color: #e2e8f0;
+    color: var(--Text);
 }
 
 .DataA{
     margin-left: 15px;
     font-size: 13px;
-    color: gray;
+    color: var(--TextInactive);
 }
 
 .Chart{
-    background-color: #242424;
+    background-color: var(--ELementbg);
     height: 300px;
     width: 50vw;
     border-radius: 20px;
     padding: 10px ;
+    border-color: var(--Border);
+    border-width: 2px;
+    border-style: solid;
+
 }
 
 
@@ -253,7 +299,7 @@ body {
 
 .BarLabel{
     margin-top: 3vh;
-    color: gainsboro;
+    color: var(--Text);
     font-weight: 700;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 17px;
@@ -261,7 +307,7 @@ body {
 
 .BarLabel1{
     margin-top: 10px;
-    color: gainsboro;
+    color: var(--Text);
     font-weight: 700;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 17px;
@@ -349,7 +395,7 @@ body {
     margin-bottom: 20px;
 }
 .calendar li{
-    color: #e2e8f0;
+    color: var(--Text);
     width: calc(100% / 7);
     font-size: 0.8vw;
 }
@@ -364,10 +410,10 @@ body {
     margin-top: 3.4vh;
 }
 .days li.inactive{
-    color: #aaa;
+    color: var(--TextInactive);
 }
 .days li.active{
-    color: #e2e8f0;
+    color: var(--TextOnColor);
 }
 .days li::before{
     position: absolute;
@@ -388,8 +434,6 @@ body {
     background: #9B59B6;
 }
 
-
-
 .days li:not(.active):hover::before{
     background: #9B59B6;
 }
@@ -402,7 +446,7 @@ body {
 .wrapper{
     width: 100%;
     height: 100%;
-    background: #242424;
+    background: var(--ELementbg);
     border-radius: 10px;
     float: left;
     margin-left: 0;
@@ -424,12 +468,12 @@ header .current-date{
     border-radius: 10px;
     margin-top: 3px;
     margin-left: 3px;
-    background: #38BDF8;
+    background: #8B5CF6;
     position: absolute;
     width: 10px;
     height: 10px;
     float: left;
-    box-shadow: 0 0px 3px rgb(56, 189, 248);
+    box-shadow: 0 0px 3px rgb(139, 92, 246);
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
 }
@@ -446,9 +490,9 @@ header .current-date{
     text-transform: uppercase;
     margin-right: 20px;
     font-size: 13px;
-    background: #064e3b;
-    color: #a7f3d0;
-    border-color: #a7f3d0;
+    background: var(--Good);
+    color: var(--GoodText);
+    border-color: var(--GoodText);
     border-width: 0.01px;
     border-radius: 20px;
 }
@@ -465,9 +509,9 @@ header .current-date{
     text-transform: uppercase;
     margin-right: 20px;
     font-size: 13px;
-    background: #78350f;
-    color: #fde68a;
-    border-color: #fde68a;
+    background: var(--Mid);
+    color: var(--MidText);
+    border-color: var(--MidText);
     border-width: 0.01px;
     border-radius: 20px;
 }
@@ -484,9 +528,9 @@ header .current-date{
     text-transform: uppercase;
     margin-right: 20px;
     font-size: 13px;
-    background: #7f1d1d;
-    color: #fecdd3;
-    border-color: #fecdd3;
+    background: var(--Bad);
+    color: var(--BadText);
+    border-color: var(--BadText);
     border-width: 0.01px;
     border-radius: 20px;
 }
@@ -500,10 +544,12 @@ header .current-date{
     text-align: center;
     text-transform: uppercase;
     margin-right:  20px;
-    background: #38BDF8;
-    color: #e2e8f0;
+    background: #6255f5;
+    color: var(--TextOnColor);
     font-size: 13px;
     border-radius: 10px;
     height: 35px;
     width:  80px;
 }
+
+

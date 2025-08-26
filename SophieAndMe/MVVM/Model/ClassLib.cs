@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using SophieAndMe.Core;
 using Color = System.Drawing.Color;
 
 namespace SophieAndMe.MVVM.Model;
@@ -23,13 +24,16 @@ public class DaysItem
     public int ColumnId { get; set; }
     public string Days { get; set; }
     public string Date { get; set; }
-
-
 }
 
 
 public class TimeTableItem
 {
+    private readonly IDataService _dataService;   
+    public  TimeTableItem()
+    {
+        _dataService = App.DataService;
+    }
     public string Matiere { get; set; }
     public string Salle {get; set;}
     public string Enseignant { get; set; }
@@ -38,9 +42,11 @@ public class TimeTableItem
     public int ColumnId  { get; set; }
     public int RowId  { get; set; }
     public int RowNumSpan { get; set; }
-    public static System.Windows.Media.Color MatToColor(string Mat)
+    public System.Windows.Media.Color MatToColor(string Mat)
     {
-        System.Windows.Media.Color val = System.Windows.Media.Color.FromRgb(22, 23, 23);
+        System.Windows.Media.Color val = _dataService.IsDark
+            ? System.Windows.Media.Color.FromRgb(22, 23, 23)
+            : System.Windows.Media.Color.FromRgb(248, 250, 252);
         switch (Mat)
         {
             case "Maths":

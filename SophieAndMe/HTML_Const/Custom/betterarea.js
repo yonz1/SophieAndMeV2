@@ -1,6 +1,8 @@
 imgQuestion = "";
 imgRep = "";
 button_fill("Add");
+document.body.classList.toggle("Dark");
+// document.body.classList.toggle("Light");
 
 const wordReplacements = {
     "somme": "\\sum_{k}^{n}",

@@ -237,7 +237,7 @@
                                         DockPanel.Dock="Top"
                                         FontSize="17"
                                         FontWeight="Bold"
-                                        Foreground="{StaticResource Textcolor}"
+                                        Foreground="{StaticResource TextcolorOncolor}"
                                         Text="{Binding Matiere}" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
@@ -245,7 +245,7 @@
                                         DockPanel.Dock="Top"
                                         FontSize="12"
                                         FontWeight="Bold"
-                                        Foreground="{StaticResource Textcolor}"
+                                        Foreground="{StaticResource TextcolorOncolor}"
                                         Text="{Binding Infos}" />
                                 </DockPanel>
                             </Border>

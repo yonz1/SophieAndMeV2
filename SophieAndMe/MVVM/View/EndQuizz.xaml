@@ -22,7 +22,7 @@
                 Command="{Binding ViewResponse}"
                 Content="Afficher les réponses"
                 DockPanel.Dock="Left"
-                Foreground="{StaticResource Textcolor}"
+                Foreground="{StaticResource TextcolorOncolor}"
                 Style="{StaticResource MaterialDesignFlatMidBgButton}" />
             <Button
                 x:Name="Restart"
@@ -34,7 +34,7 @@
                 Content="Recommencer"
                 DockPanel.Dock="Left"
                 Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}}"
-                Foreground="{StaticResource Textcolor}"
+                Foreground="{StaticResource TextcolorOncolor}"
                 Style="{StaticResource MaterialDesignFlatMidBgButton}" />
             <Button
                 x:Name="Return"

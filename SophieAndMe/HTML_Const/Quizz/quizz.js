@@ -5,7 +5,12 @@ const rep_img = "";
 let para = "";
 let val= "";
 
-// updatequizz("question", question[0],reponse[0],"","");
+
+document.body.classList.toggle("Dark");
+// document.body.classList.toggle("Light");
+
+
+// updatequizz("re", question[0],reponse[0],"","");
 // const textarea_rep = document.getElementById('input_rep')
 // textarea_rep.value = "x";
 // updatequizz("questin", question[0],reponse[0],"","");

@@ -31,7 +31,7 @@
                     Margin="0,0,0,0"
                     HorizontalAlignment="Left"
                     Command="{Binding Back_quizz_Click}"
-                    Foreground="Gainsboro"
+                    Foreground="{StaticResource Textcolor}"
                     Style="{StaticResource MaterialDesignFlatButton}">
                     <StackPanel Orientation="Horizontal">
                         <fs:IconImage

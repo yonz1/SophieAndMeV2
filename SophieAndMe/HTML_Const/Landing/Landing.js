@@ -1,3 +1,9 @@
+const DarkText = "#e2e8f0"
+const LightText = "#1E293B"
+const color = {"DarkText":"#e2e8f0","LightText":"#1E293B"}
+let SelectedText = color["LightText"]
+// document.body.classList.toggle("Light");
+document.body.classList.toggle("Dark");
 
 
 const daysTag = document.querySelector(".days"),
@@ -26,9 +32,9 @@ for (i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
 
-// FillMessages("Anglais"," NDOYE Amala","Notes",14)
-// FillMessages("Maths"," LAURENCON Beno\u00EFt","Notes",19)
-// FillMessages("Physique"," ADROGUER PIERRE","Notes",16)
+// FillMessages("Anglais"," NDOYE Amala;13","Notes")
+// FillMessages("Maths"," LAURENCON Beno\u00EFt;19","Notes")
+// FillMessages("Physique"," ADROGUER PIERRE;10","Notes")
 //
 //
 //
@@ -53,13 +59,8 @@ function FillMessages(Meta, Data, Position) {
     console.log(Position)
     let infos = document.createElement("div");
     infos.className = "Infos";
-    if (Mark => 15) {
-        MarkInfo = "NotesG"
-    } else if (Mark < 11) {
-        MarkInfo = "NotesB"
-    } else {
-        MarkInfo = "NotesM"
-    }
+
+    MarkInfo = Mark >= 15 ? "NotesG" : Mark < 11 ? "NotesB" : "NotesM";
 
     switch (Position) {
         case "Messages":
@@ -94,6 +95,7 @@ const renderCalendar = () => {
         lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
 
     let liTag = "";
+    let color = "";
 
     for (let i = firstDayofMonth; i > 0; i--) {
         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
@@ -108,7 +110,7 @@ const renderCalendar = () => {
           isActive = "active"
         }
 
-        liTag += `<li id="${isActual}" class="${isActive}">${i}</li>`;
+        liTag += `<li id="${isActual}" Style="color:${color};" class="${isActive}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -177,7 +179,7 @@ grid: {
         ],
         labels: {
           style: {
-            colors: '#fff',
+            colors: SelectedText,
               fontSize: '12px',
               fontFamily: 'Inherit',
               fontWeight: '400',
@@ -203,7 +205,7 @@ grid: {
                 fontSize: '12px',
                 fontFamily: 'Inherit',
                 fontWeight: '400',
-                colors: '#fff'
+                colors: SelectedText
             }
         }
       },

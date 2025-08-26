@@ -120,14 +120,13 @@
                                         Width="22"
                                         Height="22"
                                         Margin="10,0,0,0"
-                                        Foreground="Gainsboro"
+                                        Foreground="{StaticResource Textcolor}"
                                         Icon="Search"
                                         Style="{StaticResource TopButtonIcon}" />
                                     <ComboBox
                                         Margin="10,0,16,0"
                                         Height="51"
                                         HorizontalAlignment="Stretch"
-                                        materialDesign:ThemeAssist.Theme="Dark"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
                                         ItemsSource="{Binding Chapter}"

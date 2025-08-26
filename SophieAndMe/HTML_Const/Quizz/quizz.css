@@ -1,5 +1,39 @@
+.Dark{
+    --ELementbg: #242424;
+    --bg: #161717;
+    --Text: #e2e8f0;
+    --TextInactive : #aaa;
+    --TextOnColor: #e2e8f0;
+    --Bad: #7f1d1d;
+    --BadText : #fecdd3;
+    --Mid : #78350f;
+    --MidText: #fde68a;
+    --Good : #064e3b;
+    --GoodText : #a7f3d0;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+    --HoverQuizz: #8b5cf611;
+}
+
+:root{
+    --ELementbg: #FFFFFF;
+    --bg : #F8FAFC;
+    --Text: #1E293B;
+    --TextInactive : #64748B;
+    --TextOnColor: #e2e8f0;
+    --Border: #F1F5F9;
+    --Bad: #fecdd388;
+    --BadText : #F43F5E;
+    --Mid : #fde68a88;
+    --MidText: #F59E0B;
+    --Good : #a7f3d088;
+    --GoodText : #10B981;
+    --HoverQuizz: #8b5cf611;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+}
+
+
 body {
-    background: #161717;
+    background: var(--bg);
 }
 
 p {
@@ -14,14 +48,16 @@ p {
 }
 
 .reponse {
-    color: #F5F5F5;
+    color: var(--Text);
     padding: 1cm;
     float: left;
+
 }
 .question {
-    color: #F5F5F5;
+    color: var(--Text);
     padding: 0.8cm;
     float: left;
+    border-radius: 20px;
 }
 
 
@@ -32,9 +68,10 @@ p {
 }
 
 .container_r {
-    background: #242424;
+    background: var(--ELementbg);
     display: inline-flex;
     width: 90vw;
+    border-radius: 20px;
 }
 
 img {
@@ -57,7 +94,7 @@ img {
     field-sizing: content;
     resize: none;
     width:45vw ;
-    color: #f5f5f5;
+    color: var(--Text);
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -67,7 +104,7 @@ img {
 .user-label {
     position: absolute;
     left: 15px;
-    color: #e8e8e8;
+    color: var(--Text);
     pointer-events: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transform: translateY(1rem);
