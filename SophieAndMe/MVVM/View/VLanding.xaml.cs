@@ -24,6 +24,7 @@ namespace SophieAndMe.MVVM.View
             Loaded += async (s, e) =>
             {
                 await WebViewAll.EnsureCoreWebView2Async();
+                WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
                 WebViewAll.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing2.html");
                 var uri = new Uri(Path.GetFullPath(path));

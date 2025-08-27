@@ -1,9 +1,5 @@
-const DarkText = "#e2e8f0"
-const LightText = "#1E293B"
-const color = {"DarkText":"#e2e8f0","LightText":"#1E293B"}
-let SelectedText = color["LightText"]
-// document.body.classList.toggle("Light");
-document.body.classList.toggle("Dark");
+let SelectedText = window.color["Text"];
+
 
 
 const daysTag = document.querySelector(".days"),
@@ -26,9 +22,9 @@ const Messages = document.getElementById("Messages");
 const Notes = document.getElementById("Notes");
 const Quizz =  document.getElementById("Quizz");
 
-MetaMess = ["General","Physique","SI"]
-DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
-for (i  = 0; i < MetaMess.length; i++) {
+let MetaMess = ["General","Physique","SI"]
+let DataMess = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
+for (let i  = 0; i < MetaMess.length; i++) {
     FillMessages(MetaMess[i],DataMess[i],"Messages","");
 }
 
@@ -38,9 +34,9 @@ for (i  = 0; i < MetaMess.length; i++) {
 //
 //
 //
-// MetaQuizz = ["Si","Mathématiques","Physique"]
-// DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
-// for (i  = 0; i < MetaQuizz.length; i++) {
+// let MetaQuizz = ["Si","Mathématiques","Physique"]
+// let DataQuizz = ["Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet","Lorem Ipsum Dolor sit amet"]
+// for (let i  = 0; i < MetaQuizz.length; i++) {
 //     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
 // }
 
@@ -51,8 +47,8 @@ window.chrome.webview.addEventListener('message', event => {
 });
 
 function FillMessages(Meta, Data, Position) {
-    Info = Data.split(';');
-    Mark = Info[1]
+    let Info = Data.split(';');
+    let Mark = Info[1]
     Data = Info[0]
     console.log(Meta)
     console.log(Data)
@@ -60,7 +56,7 @@ function FillMessages(Meta, Data, Position) {
     let infos = document.createElement("div");
     infos.className = "Infos";
 
-    MarkInfo = Mark >= 15 ? "NotesG" : Mark < 11 ? "NotesB" : "NotesM";
+    let MarkInfo = Mark >= 15 ? "NotesG" : Mark < 11 ? "NotesB" : "NotesM";
 
     switch (Position) {
         case "Messages":

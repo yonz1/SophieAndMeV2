@@ -3,7 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/Converter.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/ButtonStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/Dark_theme.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/Dark_Theme.xaml"/>
         <!-- <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/Light_Theme.xaml"/> -->
         <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/General.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SophieAndMe;component/Style/Calendar.xaml"/>

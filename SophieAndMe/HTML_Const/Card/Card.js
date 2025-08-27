@@ -1,6 +1,7 @@
+let SelectedBg = window.color["bg"];
 const divmain = document.getElementById("main");
-i = 0;
-y = 0;
+let i = 0;
+let y = 0;
 let ArrayMain = [];
 let batch = [];
 let selectedCard = null;
@@ -22,10 +23,7 @@ window.MathJax = {
     },
 };
 
-// document.body.classList.toggle("Light");
-document.body.classList.toggle("Dark");
-const color = {"DarkText":"#242424","LightText":"#FFFFFF"}
-let SelectedBg = color["DarkText"]
+
 
 
 
@@ -49,6 +47,7 @@ function TestArrayMain()
 
 
 window.chrome.webview.addEventListener('message', event => {
+    
     let dico = event.data;
     console.log(i);
     if (dico.Id !== OldId)
@@ -240,7 +239,7 @@ function ClickedCard(id)
 {
     console.log("recçus")
     console.log(id);
-    Cliked =  document.getElementById(id);
+    let Cliked =  document.getElementById(id);
     Cliked.style.borderColor = "white"
     Cliked.style.backgroundColor = "transparent";
     
@@ -317,3 +316,4 @@ function get_data(button){
     console.log(question);
     window.chrome.webview.postMessage(data);
 }
+

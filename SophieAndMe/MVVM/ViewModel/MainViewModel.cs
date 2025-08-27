@@ -76,6 +76,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
         
         public MainViewModel()
         {
+            LoadThemeWeb.LoadThemeWebval();
             NavigationService.Instance.Navigate("MainContent",new VLanding(this));
             CurrentMessage = "Acceuil";
             _dataService =  App.DataService;

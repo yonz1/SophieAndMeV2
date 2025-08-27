@@ -70,7 +70,7 @@
                     materialDesign:HintAssist.Hint="Chercher vos quizzs"
                     materialDesign:ThemeAssist.Theme="Dark"
                     DockPanel.Dock="Left"
-                    ItemsSource="{Binding Chapter}"
+                    ItemsSource="{Binding Chapter2}"
                     SelectedItem="{Binding SelectedItem}"
                     Style="{StaticResource SearchBox}" />
                 <Button

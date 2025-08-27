@@ -15,18 +15,24 @@ public partial class VCustom : UserControl
     public VCustom(MainViewModel mainVm)
     {
         InitializeComponent();
-        string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Custom\\Custom.html";
-        urif = urif.Replace("\\", "/");
-        System.Uri uri1 = new System.Uri(urif);
-        WebViewCustom.Source = uri1 as System.Uri;
-        urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
-        urif = urif.Replace("\\", "/");
-        uri1 = new System.Uri(urif);
-        WebViewCard.Source = uri1 as System.Uri;
         Loaded += async (s, e) =>
         {
             await WebViewCustom.EnsureCoreWebView2Async();
             await WebViewCard.EnsureCoreWebView2Async();
+            string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Custom\\Custom.html";
+            urif = urif.Replace("\\", "/");
+            System.Uri uri1 = new System.Uri(urif);
+            WebViewCustom.Source = uri1 as System.Uri;
+            urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
+            urif = urif.Replace("\\", "/");
+            uri1 = new System.Uri(urif);
+            WebViewCard.Source = uri1 as System.Uri;
+            
+            WebViewCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
+            WebViewCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            WebViewCustom.CoreWebView2.Settings.IsStatusBarEnabled = false;
+            WebViewCustom.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            
             WebViewCustom.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             WebViewCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             WebViewCustom.CoreWebView2.NavigationCompleted += (sender, args) =>

@@ -44,7 +44,9 @@
 }
 
 
-
+html{
+    background-color: var(--bg);
+}
 
 img{
   max-width: 60%;

@@ -15,7 +15,7 @@ public class ImportAddViewModel : INotifyPropertyChanged
     public ICommand AjouterAuQuizz { get; set; }
     public ICommand ExitCommand { get; set; }
     public Action CloseAction { get; set; }
-    public List<string> Chapter { get; } = new();
+    public List<string> Chapter2 { get; } = new();
     private string _selecteditem;
     public Action Close { get; set; }
     private bool? _dialogResult;
@@ -44,7 +44,7 @@ public class ImportAddViewModel : INotifyPropertyChanged
         _dataService = App.DataService;
         string jscall = WebviewInteraction.send_data("", QuizzUtilities.Miseneformetext(question), QuizzUtilities.Miseneformetext(rep),imgQuestion,imgRep);
         WeakReferenceMessenger.Default.Send(new MediatorImportAdd.JsCallMessage(jscall));
-        Chapter = DbInteraction.GetNameCreated("All");
+        Chapter2 = DbInteraction.GetNameCreated("All");
         ExitCommand = new RelayCommand(o =>
         {
             _dataService.WinBin = false;

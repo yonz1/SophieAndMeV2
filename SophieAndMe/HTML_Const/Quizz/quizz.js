@@ -6,8 +6,6 @@ let para = "";
 let val= "";
 
 
-document.body.classList.toggle("Dark");
-// document.body.classList.toggle("Light");
 
 
 // updatequizz("re", question[0],reponse[0],"","");
@@ -77,9 +75,6 @@ function updatequizz(action,question,reponse,quest_img,rep_img)
             return "val";
     }
 };
-
-
-
 
 window.MathJax = {
   tex: {

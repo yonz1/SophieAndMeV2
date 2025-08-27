@@ -20,6 +20,8 @@ public partial class CardDisplayImport : UserControl
         Loaded += async (s, e) =>
         {
             await WebViewAllCard.EnsureCoreWebView2Async();
+            WebViewAllCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
+            WebViewAllCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             WebViewAllCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
             urif = urif.Replace("\\", "/");
