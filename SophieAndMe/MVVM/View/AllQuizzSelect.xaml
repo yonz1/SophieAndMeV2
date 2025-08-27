@@ -41,7 +41,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0">
                     <Button  HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -83,10 +83,23 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-                <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                        Margin="0 0 0 20"
+                <DockPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 20 0 20">
+                <Button  DockPanel.Dock="Left"
                         Command="{Binding StartQuizz}"
-                        Content="Start" Style="{StaticResource MaterialDesignOutlinedLightButton}"></Button>
+                        Content="Tout" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                <Rectangle Fill="White" Margin="20 0 0 0" Width="2" DockPanel.Dock="Left" HorizontalAlignment="Center"/>
+                <Button  DockPanel.Dock="Left"
+                        Margin="20 0 0 0"
+                        Command="{Binding Reinitialiser}"
+                        Content="Reinitialiser"
+                        Foreground="Red"
+                        BorderBrush="Red"
+                        Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                <Button  DockPanel.Dock="Left"
+                        Margin="10 0 0 0"
+                        Command="{Binding Continuer}"
+                        Content="{Binding ProgValue}" Style="{StaticResource MaterialDesignOutlinedLightButton}"/>
+                </DockPanel>
             </Grid>
         </Border>
         </ScrollViewer>

@@ -10,16 +10,9 @@ public partial class LoginWindow : Window
         InitializeComponent();
         LoginWindoowViewModel vm = new LoginWindoowViewModel();
         this.DataContext = vm;
-        Loaded += LoginWindow_Loaded;
-    }
-    private void LoginWindow_Loaded(object sender, RoutedEventArgs e)
-    {
-        if (DataContext is ICloseWindows vm)
+        if (DataContext is LoginWindoowViewModel vm2)
         {
-            vm.Close += () =>
-            {
-                this.Close();
-            };
+            vm2.RequestClose += (_, __) => this.Close();
         }
     }
 }

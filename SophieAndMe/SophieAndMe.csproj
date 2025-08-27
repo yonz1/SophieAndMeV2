@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Lofi_Girl_logo_2024-removebg-preview.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,7 @@
       <None Remove="images\Lofi_Girl_logo_2024-removebg-preview.png" />
       <Resource Include="images\Lofi_Girl_logo_2024-removebg-preview.png" />
       <None Remove="images\Ryan-Gosling_0.jpg" />
+      <Content Include="Lofi_Girl_logo_2024-removebg-preview.ico" />
       <Resource Include="images\Ryan-Gosling_0.jpg" />
       <None Remove="images\milad-fakurian-_S-zZyQiOr8-unsplash.jpg" />
       <Resource Include="images\milad-fakurian-_S-zZyQiOr8-unsplash.jpg" />

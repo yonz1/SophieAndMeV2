@@ -5,18 +5,19 @@ using SophieAndMe.Core;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Forms.VisualStyles;
 using CommunityToolkit.Mvvm.ComponentModel;
 using SophieAndMe.MVVM.Model;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
-public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged,ICloseWindows
+public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
 {
     private readonly IDataService _dataService;
     private readonly IWindowService _windowService;
     public ICommand Exit_Click { get; }
     public ICommand Connect_Click { get; }
-    public Action Close { get; set; }
+    public event EventHandler? RequestClose;
     private string _username;
     public string Username
     {
@@ -37,20 +38,26 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged,
             OnPropertyChanged(nameof(Password));
         }
     }
+    private void OnClose()
+    {
+        RequestClose?.Invoke(this, EventArgs.Empty);
+    }
 
     public LoginWindoowViewModel()
     {
         Console.WriteLine("charger");
         _dataService =  App.DataService;
-        VerifyKeepAlive();
-        Exit_Click = new RelayCommand(o => Close?.Invoke());
+        MainWindow mainWindow = new MainWindow();
+        VerifyKeepAlive(mainWindow);
+        Exit_Click = new RelayCommand(o => OnClose());
         Connect_Click = new RelayCommand(o =>
         {
-            ConnectLogic();
+            ConnectLogic(mainWindow);
         });
     }
 
-    private void ConnectLogic()
+
+    private void ConnectLogic(MainWindow mainWindow)
     {
         var username = _username;
         var  password = _password;
@@ -59,26 +66,30 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged,
         password = EncryptShA(password);
         if (DbInteraction.VerifyUser(username, password))
         {
-            FinishCompletion(username);
+            FinishCompletion(username,mainWindow);
         }
     }
-    private void VerifyKeepAlive()
+    private void VerifyKeepAlive(MainWindow mainWindow)
     {
         (int keepalive, string username) = DbInteraction.VerifyKeepAlive(); 
         if (keepalive == 1)
         {
-            FinishCompletion(username);
+            FinishCompletion(username, mainWindow);
         }
     }
-    private void FinishCompletion(string username)
+
+    private void FinishCompletion(string username, MainWindow mainWindow)
     {
         App.DataService.CurrentUser = new User();
         _dataService.CurrentUser.Username = username;
         (_dataService.CurrentUser.Email, _dataService.CurrentUser.photo) = DbInteraction.RetrieveUserData(username);
         Console.WriteLine("charger");
-        MainWindow mainWindow = new MainWindow();
+        string val =
+            $"{_dataService.CurrentUser.Username} - {_dataService.CurrentUser.Email} -  {_dataService.CurrentUser.photo}";
+        OnClose();
+        MessageBox.Show("Fermer");
         mainWindow.Show();
-        Close?.Invoke();
+   
     }
     
     private string EncryptShA(string password)
@@ -100,8 +111,3 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged,
     }
 }
 
-
-interface ICloseWindows
-{
-    Action Close { get; set; }
-}

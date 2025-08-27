@@ -16,15 +16,4 @@ public partial class App : Application
     private readonly ServiceProvider _serviceProvider;
     public static IDataService DataService { get; set; } =  new DataService();
     public static IWindowService WindowService { get; set; }
-
-
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e);
-        // WindowService.ShowWindow<LoginWindoowViewModel>();
-        // WindowService = new WindowService();
-        // var vm = new LoginWindoowViewModel();
-        var window = new LoginWindow();
-        window.Show();
-    }
 }

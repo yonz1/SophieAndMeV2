@@ -40,6 +40,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     private List<string> _urlQuestion;
     private List<string> _urlRep;
     private List<string> _difficulty;
+    private readonly IDataService  _dataService;
     public List<Dictionary<string, string>> _all;
     private bool _isview;
     public bool  IsView
@@ -69,17 +70,19 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     
     public VCustomModel(MainViewModel mainVm)
     {
-        
+        _dataService = App.DataService;
+        _dataService.QuizzId.options = "";
         IsActive = true;
         _mainViewModel = mainVm;
 
+        _mainViewModel.CurrentMessage = "Personnaliser";
         Return = new RelayCommand(o =>
         {
             switch (App.Current.Properties["old"])
             {
                 case "FirstLayer":
                     App.Current.Properties["old"] = "CreatedLogic";
-                    FirstLayer(App.Current.Properties["matier"]);
+                    FirstLayer(_dataService.QuizzId.Matier);
                     break;
                 case "CreatedLogic":
                     CreatedLogic();
@@ -123,7 +126,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             }
         });
     }
-
     public void ReplaceLogic(string matier,string name,string question,string rep,string imgQuestion,string imgRep)
     {
         DbInteraction.ReplaceQuizz(matier,name,question,imgQuestion,rep,imgRep);
@@ -132,7 +134,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         Console.WriteLine(jscall);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscall));
     }
-    
     public void EditLogic(string question)
     {
         App.Current.Properties["old_quest"] = question;
@@ -146,13 +147,11 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
         ClearLogic(true,false,false);
     }
-
-
     
     public  void FirstLayer(object matier)
     {
         ClearLogic(false,false,true);
-        App.Current.Properties["matier"] = matier;
+        _dataService.QuizzId.Matier = (string)matier;
         var name = DbInteraction.GetNameCreated(matier.ToString());
         foreach (var value in name) { Matier.Add(value);} 
     }

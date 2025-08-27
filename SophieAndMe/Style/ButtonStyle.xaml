@@ -34,9 +34,9 @@
                         <ControlTemplate TargetType="RadioButton">
                             <Border
                                 Background="#30555555"
-                                BorderBrush="{ StaticResource Textcolor}"
+                                BorderBrush="{StaticResource Textcolor}"
                                 CornerRadius="10">
-                                <ContentPresenter  VerticalAlignment="Center" />
+                                <ContentPresenter VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -1055,7 +1055,18 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="80" />
+    </Style>
 
+    <Style
+        x:Key="ButtonAddHover"
+        BasedOn="{StaticResource MaterialDesignOutlinedLightButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="LimeGreen" />
+                <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 

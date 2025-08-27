@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using SophieAndMe.Core;
+using SophieAndMe.MVVM.View;
 
 namespace SophieAndMe;
 
@@ -33,6 +34,7 @@ public partial class MainWindow : Window
             InitializeComponent();
             this.DataContext = new MVVM.ViewModel.MainViewModel();
             NavigationService.Instance.Register("MainContent", view => MainContentControl.Content = view);
+            this.DataContext = new MVVM.ViewModel.MainViewModel();
         }
     
 
@@ -56,12 +58,7 @@ public partial class MainWindow : Window
             System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
             Application.Current.Shutdown();
         }
-
-
-
-
-
-
+        
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wParam, int wMsg, int lParam);
 
@@ -77,16 +74,16 @@ public partial class MainWindow : Window
         {
             //Userbtncontent.Text = App.Current.Properties["username"] as string;
             //Userbtncontent.Text = "Admin";
-            App.Current.Properties["photo"] = "";
-            if (App.Current.Properties["photo"].ToString() == "")
-            {
-                App.Current.Properties["photo"] = "../../../images/Ryan-Gosling_0.jpg";
-                ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
-            }
-            else
-            {
-                ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
-            }
+            // App.Current.Properties["photo"] = "";
+            // if (App.Current.Properties["photo"].ToString() == "")
+            // {
+            //     App.Current.Properties["photo"] = "../../../images/Ryan-Gosling_0.jpg";
+            //     ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
+            // }
+            // else
+            // {
+            //     ProfilePict.ImageSource = new BitmapImage(new Uri(App.Current.Properties["photo"].ToString(), UriKind.Relative));
+            // }
             var hwnd = new WindowInteropHelper(this).Handle;
             var margins = new Margins()
             {

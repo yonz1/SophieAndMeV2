@@ -20,6 +20,8 @@ public partial class CardDisplayImport : UserControl
         Loaded += async (s, e) =>
         {
             await WebViewAllCard.EnsureCoreWebView2Async();
+            WebViewAllCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
+            WebViewAllCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             WebViewAllCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
             urif = urif.Replace("\\", "/");
@@ -27,23 +29,21 @@ public partial class CardDisplayImport : UserControl
             WebViewAllCard.Source = uri1 as System.Uri;
             WebViewAllCard.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
-                _model = new CardDisplayImportModel(Vm, action);
-                this.DataContext = _model;
+                // _model = new CardDisplayImportModel(Vm, action);
+                // this.DataContext = _model;
                 Console.WriteLine(WebViewAllCard.Source);
                 WeakReferenceMessenger.Default.Register<MediatorDisplayImport.JsCallImportMessage>(this, (r, m) =>
                 {
-                     if (m.Value.Contains("{\"level\":"))
+                    Console.WriteLine("import");
+                    if (m.Value.Contains("{\"level\":"))
                     {
-                        Console.WriteLine("Bon trigger Message");
-                        Console.WriteLine(m.Value);
                         WebViewAllCard.CoreWebView2.PostWebMessageAsJson(m.Value);
                     }
-                     else
-                     {
-                         Console.WriteLine("Bon trigger");
-                         Console.WriteLine(m.Value);
-                         WebViewAllCard.CoreWebView2.ExecuteScriptAsync(m.Value);   
-                     }
+                    else
+                    {
+                        Console.WriteLine("import2");
+                        WebViewAllCard.CoreWebView2.ExecuteScriptAsync(m.Value);   
+                    }
                 });
                 _model = new CardDisplayImportModel(Vm, action);
                 this.DataContext = _model;
@@ -65,7 +65,7 @@ public partial class CardDisplayImport : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erreur JS: " + ex.Message);
+            MessageBox.Show("Erreur JS - Import: " + ex.Message);
         }
     }
     

@@ -8,6 +8,45 @@
 /*}*/
 @import url(
 "https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+.Dark{
+    --ELementbg: #242424;
+    --bg: #161717;
+    --Text: #e2e8f0;
+    --TextInactive : #aaa;
+    --TextOnColor: #e2e8f0;
+    --BorderClear: #515151;
+    --Bad: #7f1d1d;
+    --BadText : #fecdd3;
+    --Mid : #78350f;
+    --MidText: #fde68a;
+    --Good : #064e3b;
+    --GoodText : #a7f3d0;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+    --HoverQuizz: #8b5cf611;
+}
+
+.Light{
+    --ELementbg: #FFFFFF;
+    --bg : #F8FAFC;
+    --Text: #1E293B;
+    --TextInactive : #64748B;
+    --TextOnColor: #e2e8f0;
+    --BorderClear: #161717;
+    --Border: #F1F5F9;
+    --Bad: #fecdd388;
+    --BadText : #F43F5E;
+    --Mid : #fde68a88;
+    --MidText: #F59E0B;
+    --Good : #a7f3d088;
+    --GoodText : #10B981;
+    --HoverQuizz: #8b5cf611;
+    --HoverQuizzShadow: rgb(139, 92, 246);
+}
+
+
+html{
+    background-color: var(--bg);
+}
 
 img{
   max-width: 60%;
@@ -18,19 +57,21 @@ img{
 } 
 
 .card {
-    margin-top: 0.2cm;
-     margin-left: 0.2cm;  
- box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-top: 0.2cm;
+  margin-left: 0.2cm;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-    background-color: #242424;
-    width: 40%;
+  background:  var(--ELementbg);
+  width: 40%;
   border-radius: 5px;
   display:  inline-block;
-    align-items: center;
-    vertical-align: top; /* Évite un mauvais alignement */
-    overflow: hidden;    /* Coupe tout débordement */
-    word-wrap: break-word;
+  align-items: center;
+  vertical-align: top; /* Évite un mauvais alignement */
+  overflow: hidden;    /* Coupe tout débordement */
+  word-wrap: break-word;
 }
+
+
 mjx-container {
     display: inline-block !important;
     white-space: normal !important;
@@ -40,7 +81,7 @@ mjx-container {
 }
 
 p {
-    color: white;
+    color: var(--Text);
     padding: 0.2cm;
     display: block;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -56,15 +97,15 @@ p {
 }
    
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 var(--bg);
 }
 
 
 .container {
   padding: 2px 16px;
 }body {
-    color: #242424;
-    background-color: #161717;
+    color: var(--ELementbg);
+    background-color: var(--bg);
 }
 
 
@@ -145,7 +186,7 @@ p {
 
 .editBtn svg {
     height: 17px;
-    fill: white;
+    fill: var(--Text);
     z-index: 3;
     transition: all 0.2s;
     transform-origin: bottom;
@@ -160,7 +201,7 @@ p {
     position: absolute;
     bottom: 3px;
     left: -10px;
-    background-color: white;
+    background-color: var(--Text);
     border-radius: 10px;
     z-index: 2;
     transform: scaleX(0);
@@ -184,7 +225,7 @@ p {
     padding: 0 15px;
     margin-right: 50px;
     font-size: 1em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--Text);
     border-radius: 5px;
     outline: none;
     margin-bottom: 40px;
@@ -195,7 +236,63 @@ p {
     border-color: #4CAF50;
 }
 
-
 datalist {
     display: none;
 }
+
+.card-button{
+    text-align: center;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease;
+    margin-top: 10px;
+}
+
+.card.active .card-button{
+    opacity: 1;
+    display: block;
+}
+
+button { 
+    height: 45px;
+    width: 100px;
+    border-radius: 5px;
+    border: 2px solid var(--Text);
+    color: var(--Text);
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.5s;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 1em;
+}
+
+button:hover {
+    border: 2px solid red;
+    background-color: Red;
+    color: var(--Text);
+}
+
+.DeleteC {
+    float: left;
+}
+
+.ReplaceC {
+    float: right;
+}
+.ReplaceC:hover {
+    background-color: dodgerblue;
+    border: 2px solid dodgerblue;
+}
+
+.Add:hover{
+    background-color: limegreen;
+    border: 2px solid limegreen;
+}
+
+
+
+
+
+

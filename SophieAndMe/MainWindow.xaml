@@ -6,7 +6,6 @@
     xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:SophieAndMe.MVVM.ViewModel"
     Title="MainWindow"
     Width="1280"
     Height="740"
@@ -23,9 +22,6 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <!-- <Window.DataContext> -->
-    <!--     <vm:MainViewModel /> -->
-    <!-- </Window.DataContext> -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,13 +43,11 @@
 
 
                 <Border
-                    x:Name="Border_top"
                     Grid.Column="2"
                     Background="Transparent"
                     CornerRadius="10"
                     MouseDown="Grid_MouseDown">
                     <Grid
-                        x:Name="Grid_top"
                         Margin="0,0,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -61,7 +55,7 @@
                         Visibility="Visible">
                         <DockPanel>
                             <TextBlock
-                                Margin="15,35,0,0"
+                                Margin="15,15,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 DockPanel.Dock="Left"
@@ -69,17 +63,14 @@
                                 FontSize="30"
                                 FontWeight="Bold"
                                 Foreground="{StaticResource Textcolor}"
-                                Text="{Binding CurrentMessage}" />
+                                Text="{Binding CurrentMessage,FallbackValue=Acceuil}" />
 
-
-
+                            
                             <Button
-                                Grid.Column="2"
                                 Width="50"
                                 Height="50"
                                 Margin="0,15,15,0"
                                 VerticalAlignment="Top"
-                                Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding ShowProfileContent}"
                                 DockPanel.Dock="Right"
@@ -90,7 +81,7 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush x:Name="ProfilePict" />
+                                        <ImageBrush x:Name="ProfilePict"  ImageSource="{Binding ProfilePict}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
 
@@ -129,18 +120,19 @@
                                         Width="22"
                                         Height="22"
                                         Margin="10,0,0,0"
-                                        Foreground="Gainsboro"
+                                        Foreground="{StaticResource Textcolor}"
                                         Icon="Search"
                                         Style="{StaticResource TopButtonIcon}" />
-                                    <materialDesign:AutoSuggestBox
+                                    <ComboBox
                                         Margin="10,0,16,0"
                                         Height="51"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         materialDesign:HintAssist.Hint="Chercher vos quizzs"
-                                        FontSize="16"
-                                        Foreground="{StaticResource Textcolor}"
-                                        Style="{StaticResource MaterialDesignAutoSuggestBoxBase}" />
+                                        ItemsSource="{Binding Chapter}"
+                                        SelectedItem="{Binding SelectedItem}"
+                                        Style="{StaticResource SearchBox}">
+                                    </ComboBox>
                                 </DockPanel>
                             </Border>
                         </DockPanel>
@@ -208,17 +200,19 @@
                         CornerRadius="17">
                         <Grid Grid.Column="0">
                             <DockPanel>
-                                <Rectangle
+                                <Button 
                                     Width="50"
                                     Height="50"
                                     Margin="0,15,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
+                                    BorderThickness="0"
+                                    Command="{Binding AcceuilClick}"
                                     DockPanel.Dock="top">
-                                    <Rectangle.Fill>
-                                        <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
-                                    </Rectangle.Fill>
-                                </Rectangle>
+                                    <Button.Background>
+                                    <ImageBrush ImageSource="images/Lofi_Girl_logo_2024-removebg-preview.png" />
+                                    </Button.Background>
+                                </Button>
                                 
                                 <ItemsControl ItemsSource="{Binding Pages}">
                         <ItemsControl.ItemsPanel>

@@ -18,16 +18,19 @@ namespace SophieAndMe.MVVM.View
         public VMarked(MainViewModel mainVm)
         {
             InitializeComponent();
-            string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
-            urif = urif.Replace("\\", "/");
-            System.Uri uri1 = new System.Uri(urif);
-            webviewall.Source = uri1 as System.Uri;
+
             Loaded += async (s, e) =>
             {
                 await webviewall.EnsureCoreWebView2Async();
-
+                    webviewall.CoreWebView2.Settings.IsStatusBarEnabled = false;
+                    webviewall.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
                 webviewall.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+                string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
+                urif = urif.Replace("\\", "/");
+                System.Uri uri1 = new System.Uri(urif);
+                webviewall.Source = uri1 as System.Uri;
                 DataContext = new VMarkedModel(mainVm);
+                
                 
                 // webviewall.CoreWebView2.OpenDevToolsWindow();
                 
@@ -36,7 +39,10 @@ namespace SophieAndMe.MVVM.View
                     webviewall.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne')");
                     WeakReferenceMessenger.Default.Register<MediatorMarked.JsCallMessage>(this, (r, m) =>
                     {
-                        webviewall.CoreWebView2.ExecuteScriptAsync(m.Value);
+                        if (m.Value.Contains("\"question\":"))
+                            webviewall.CoreWebView2?.PostWebMessageAsJson(m.Value);
+                        else
+                            webviewall.CoreWebView2?.ExecuteScriptAsync(m.Value);
                     });
                 };
             };
@@ -54,7 +60,7 @@ namespace SophieAndMe.MVVM.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur JS: " + ex.Message);
+                MessageBox.Show("Erreur JS - Marked: " + ex.Message);
             }
         }
         

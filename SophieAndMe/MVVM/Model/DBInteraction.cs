@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Text;
-using System.Windows.Forms;
+using System.Text.Json;
+using System.Windows;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.ViewModel;
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 
 namespace SophieAndMe.MVVM.Model
@@ -13,6 +15,11 @@ namespace SophieAndMe.MVVM.Model
     abstract class DbInteraction
     {
 
+        static DbInteraction()
+        {
+            _dataService = App.DataService;
+        }
+        
         // ################################################### Initialisations 
 
         private static readonly List<string> Aquestion = new List<string>();
@@ -20,25 +27,30 @@ namespace SophieAndMe.MVVM.Model
         private static readonly List<string> AurlQuestion = new List<string>();
         private static readonly List<string> AurlRep = new List<string>();
         private static readonly List<string> Name = new List<string>();
+
         private static readonly List<string> ListMat =
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
 
+
+        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
-        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
+        private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
+        private static readonly string EDTSource = "Data Source=..//..//..//Database//EDT.db";
 
 
         private static readonly List<string> Level = new List<string>();
         private static readonly List<string> Course = new List<string>();
-        private static readonly List<string> Question = new List<string>();
-        private static readonly List<string> ImageQuestion = new List<string>();
-        private static readonly List<string> Reponse = new List<string>();
-        private static readonly List<string> ImageRep = new List<string>();
+        private static List<string> Question = new List<string>();
+        private static List<string> ImageQuestion = new List<string>();
+        private static List<string> Reponse = new List<string>();
+        private static List<string> ImageRep = new List<string>();
         private static readonly List<string> Difficulty = new List<string>();
 
         private static readonly List<string> TempList = [];
-        
+
         private static IDataService _dataService;
+        
         // ################################################### Fonctions
 
 
@@ -47,13 +59,13 @@ namespace SophieAndMe.MVVM.Model
             using SQLiteConnection c = new SQLiteConnection(ConSource);
             c.Open();
             var query = "SELECT COUNT(*) FROM Marked WHERE  question = \"" + question + "\" AND Matier =   \"" +
-                        Application.Current.Properties["matier"]?.ToString() + "\"";
+                        _dataService.QuizzId.Matier?.ToString() + "\"";
             using SQLiteCommand cmd = new SQLiteCommand(query, c);
             long count = (long)cmd.ExecuteScalar();
 
             if (count == 0)
             {
-                var mat = "\"" + App.Current.Properties["matier"].ToString() + "\",";
+                var mat = "\"" + _dataService.QuizzId.Matier.ToString() + "\",";
                 var quest = "\"" + question.Replace("\\/", "/") + "\",";
                 var rep = "\"" + repnse + "\",";
                 var questionImg = "\"" + urlQuestion + "\",";
@@ -105,120 +117,123 @@ namespace SophieAndMe.MVVM.Model
             return result;
         }
 
-  public static (List<string>, List<string>, List<string>, List<string>) Retrievequizz(
-    string? nameindex, string id, MainViewModel mainVm)
-{
-    var connection = new SQLiteConnection(ConSource);
-    var resultsQuestions = new List<string>();
-    var resultsReponses = new List<string>();
-    var resultsUrlQuestion = new List<string>();
-    var resultsUrlRep = new List<string>();
-    var resultsName = new List<string>();
-
-    try
-    {
-        connection.Open();
-        SQLiteCommand command;
-
-        if ((string)Application.Current.Properties["matier"]! == "All")
+        public static (List<string>, List<string>, List<string>, List<string>) Retrievequizz(
+            string? nameindex, string id, MainViewModel mainVm)
         {
-            _dataService = App.DataService;
-            var chapter = _dataService.SharedListChapter;
+            var connection = new SQLiteConnection(ConSource);
+            var resultsQuestions = new List<string>();
+            var resultsReponses = new List<string>();
+            var resultsUrlQuestion = new List<string>();
+            var resultsUrlRep = new List<string>();
+            var resultsName = new List<string>();
+            string query = "";
 
-            // Construction dynamique en paramétrant chaque valeur
-            var sb = new StringBuilder();
-            var parameters = new List<SQLiteParameter>();
-
-            for (int i = 0; i < chapter.Count; i++)
+            try
             {
-                if (i > 0) sb.Append(" UNION ");
-                sb.Append($"SELECT question, reponse, image_question_url, image_answer_url,name FROM {nameindex} WHERE REPLACE(name, ' ', '') = REPLACE(@name{i}, ' ', '')");
-                parameters.Add(new SQLiteParameter($"@name{i}", chapter[i]));
+                connection.Open();
+                SQLiteCommand command;
+                if (_dataService.QuizzId.IsAll)
+                {
+                    var chapter = _dataService.SharedListChapter;
+                    var sb = new StringBuilder();
+                    var parameters = new List<SQLiteParameter>();
+                    Console.WriteLine("All");
+                    for (int i = 0; i < chapter.Count; i++)
+                    {
+                        Console.WriteLine(chapter[i]);
+                        if (i > 0) sb.Append(" UNION ");
+                        sb.Append(
+                            $"SELECT question, reponse, image_question_url, image_answer_url,name FROM {nameindex} WHERE REPLACE(name, ' ', '') = REPLACE(@name{i}, ' ', '')");
+                        parameters.Add(new SQLiteParameter($"@name{i}", chapter[i]));
+                    }
+
+                    command = new SQLiteCommand(sb.ToString(), connection);
+                    command.Parameters.AddRange(parameters.ToArray());
+                    _dataService.QuizzId.Matier = nameindex;
+                }
+                else if (nameindex != null && nameindex.Contains("Marked"))
+                {
+                    Console.WriteLine("Marked");
+                    query = "SELECT question,reponse,image_question_url,image_answer_url FROM Marked WHERE Matier = @matier";
+                    command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@matier", _dataService.QuizzId.Matier?.ToString());
+                }
+
+                else
+                {
+                    Console.WriteLine("normale");
+                    query =
+                        $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier} WHERE name = @name";
+                    command = new SQLiteCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", nameindex);
+                }
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        resultsQuestions.Add(reader.GetString(0));
+                        resultsReponses.Add(reader.GetString(1));
+                        resultsUrlQuestion.Add(reader.GetString(2));
+                        resultsUrlRep.Add(reader.GetString(3));
+                    }
+                }
             }
-
-            // sb.Append("ORDER BY name");
-            command = new SQLiteCommand(sb.ToString(), connection);
-            command.Parameters.AddRange(parameters.ToArray());
-            Application.Current.Properties["matier"] = nameindex;
-        }
-        else if (nameindex != null && nameindex.Contains("Marked"))
-        {
-            string query = "SELECT question,reponse,image_question_url,image_answer_url FROM Marked WHERE Matier = @matier";
-            command = new SQLiteCommand(query, connection);
-            command.Parameters.AddWithValue("@matier", Application.Current.Properties["matier"]?.ToString());
-        }
-        else
-        {
-            string query = $"SELECT question,reponse,image_question_url,image_answer_url FROM {Application.Current.Properties["matier"]} WHERE name = @name";
-            command = new SQLiteCommand(query, connection);
-            command.Parameters.AddWithValue("@name", nameindex);
-        }
-
-        using (var reader = command.ExecuteReader())
-        {
-            while (reader.Read())
+            catch (Exception ex)
             {
-                resultsQuestions.Add(reader.GetString(0));
-                resultsReponses.Add(reader.GetString(1));
-                resultsUrlQuestion.Add(reader.GetString(2));
-                resultsUrlRep.Add(reader.GetString(3));
-                resultsName.Add(reader.GetString(4));
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                Console.WriteLine(ex.ToString());
             }
+            
+            if (resultsQuestions.Count == 0)
+            {
+                MessageBox.Show("Ce quizz ne possède aucune question");
+                if (Application.Current.Properties["nameindex"]!.ToString()!.Contains("Marked"))
+                {
+                    NavigationService.Instance.Navigate("MainContent", new VMarked(mainVm));
+                }
+                else
+                {
+                    NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm));
+                }
+            }
+            
+            return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep);
         }
-    }
-    catch (Exception ex)
-    {
-        System.Windows.Forms.MessageBox.Show(ex.ToString());
-        System.Diagnostics.Debug.WriteLine(ex.ToString());
-    }
-
-    if (resultsQuestions.Count == 0)
-    {
-        MessageBox.Show("Ce quizz ne possède aucune question");
-        if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
-        {
-            NavigationService.Instance.Navigate("MainContent", new VMarked(mainVm));
-        }
-        else
-        {
-            NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm));
-        }
-    }
-    return (resultsQuestions, resultsReponses, resultsUrlQuestion, resultsUrlRep);
-}
 
         public static (List<string>, List<string>, List<string>, List<string>) RetrievequizzToCreated(string? nameindex)
         {
             var connection = new SQLiteConnection(ConSource);
             var query = "SELECT question,reponse,image_question_url,image_answer_url  FROM " +
-                        App.Current.Properties["matier"].ToString() + " WHERE name = \"" + nameindex +
+                        _dataService.QuizzId.Matier.ToString() + " WHERE name = \"" + nameindex +
                         "\" AND ID = \"100\"";
-                try
+            try
+            {
+                connection.Open();
+                var command = new SQLiteCommand(query, connection);
+                var reader = command.ExecuteReader();
+                Aquestion.Clear();
+                Arepnse.Clear();
+                AurlQuestion.Clear();
+                AurlRep.Clear();
+                while (reader.Read())
                 {
-                    connection.Open();
-                    var command = new SQLiteCommand(query, connection);
-                    var reader = command.ExecuteReader();
-                    Aquestion.Clear();
-                    Arepnse.Clear();
-                    AurlQuestion.Clear();
-                    AurlRep.Clear();
-                    while (reader.Read())
-                    {
-                        Aquestion.Add(reader.GetString(0));
-                        Arepnse.Add(reader.GetString(1));
-                        AurlQuestion.Add(reader.GetString(2));
-                        AurlRep.Add(reader.GetString(3));
-                    }
+                    Aquestion.Add(reader.GetString(0));
+                    Arepnse.Add(reader.GetString(1));
+                    AurlQuestion.Add(reader.GetString(2));
+                    AurlRep.Add(reader.GetString(3));
                 }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.ToString());
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-                }
-                return (Aquestion, Arepnse, AurlQuestion, AurlRep);
-                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+
+            return (Aquestion, Arepnse, AurlQuestion, AurlRep);
+            connection.Close();
         }
-        
+
         public static (List<string>, List<string>, List<string>, List<string>) GetMarked(string mat)
         {
             List<string> question = new List<string>();
@@ -228,7 +243,7 @@ namespace SophieAndMe.MVVM.Model
             var connection = new SQLiteConnection(ConSource);
             string valtoreq = "question,reponse,image_question_url,image_answer_url";
             string query = "";
-            if (mat == "All")
+            if (_dataService.QuizzId.IsAll)
             {
                 query = "SELECT " + valtoreq + " FROM Marked ";
             }
@@ -262,7 +277,7 @@ namespace SophieAndMe.MVVM.Model
             List<string> question = new List<string>();
             string valtoreq = "question";
             string query = "";
-            if (mat == "All")
+            if (_dataService.QuizzId.IsAll)
             {
                 query = "SELECT " + valtoreq + " FROM Marked where Matier = \"" +
                         App.Current.Properties["nameindex"].ToString() + "\"";
@@ -300,7 +315,7 @@ namespace SophieAndMe.MVVM.Model
 
             using (var db = new SQLiteConnection(ConSource))
             {
-                db.Open();
+                db.Open(); 
                 using (var cmd = new SQLiteCommand(query, db))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -322,6 +337,19 @@ namespace SophieAndMe.MVVM.Model
         {
             Name.Clear();
             var query = "SELECT name FROM " + nom + " WHERE ID = \"100\"";
+            if (nom == "All")
+            {
+                var sb = new StringBuilder();
+                var parameters = new List<SQLiteParameter>();
+                Console.WriteLine("All");
+                for (int i = 0; i < ListMat.Count; i++)
+                {
+                    if (i > 0) sb.Append(" UNION ");
+                    sb.Append(
+                        $"SELECT name FROM {ListMat[i]} WHERE ID = \"100\"");
+                    query = sb.ToString();
+                }
+            }
             using var db = new SQLiteConnection(ConSource);
             db.Open();
             using var cmd = new SQLiteCommand(query, db);
@@ -334,7 +362,6 @@ namespace SophieAndMe.MVVM.Model
                     Name.Add(value);
                 }
             }
-
             return Name;
         }
 
@@ -389,7 +416,7 @@ namespace SophieAndMe.MVVM.Model
             using (SQLiteConnection c = new SQLiteConnection(ConSource))
             {
                 c.Open();
-                string query = "DELETE FROM " + App.Current.Properties["matier"].ToString() +
+                string query = "DELETE FROM " + _dataService.QuizzId.Matier.ToString() +
                                " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + question +
                                "\", ' ', '') AND ID = \"100\"";
                 Console.WriteLine(query);
@@ -411,9 +438,10 @@ namespace SophieAndMe.MVVM.Model
             var connection = new SQLiteConnection(ConSource);
             string query = "";
             query = "SELECT name,reponse,image_question_url,image_answer_url FROM " +
-                    App.Current.Properties["matier"].ToString() +
+                    _dataService.QuizzId.Matier.ToString() +
                     " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question +
                     "\", ' ', '') AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\"";
+            Console.WriteLine(query);
             using (var db = new SQLiteConnection(ConSource))
             {
                 db.Open();
@@ -422,7 +450,7 @@ namespace SophieAndMe.MVVM.Model
                 {
                     while (reader.Read())
                     {
-                        matier = App.Current.Properties["matier"].ToString();
+                        matier = _dataService.QuizzId.Matier.ToString();
                         name = reader.GetString(0);
                         question = question;
                         reponse = reader.GetString(1);
@@ -434,8 +462,9 @@ namespace SophieAndMe.MVVM.Model
 
             return (matier, name, question, reponse, imageQuestion, imageRep);
         }
-        
-    public static void ReplaceQuizz(string matier, string name, string question, string imageQuestion, string reponse,string imageRep)
+
+        public static void ReplaceQuizz(string matier, string name, string question, string imageQuestion,
+            string reponse, string imageRep)
         {
             string query = "";
             name = "\"" + name + "\"";
@@ -448,7 +477,11 @@ namespace SophieAndMe.MVVM.Model
                 using (SQLiteConnection c = new SQLiteConnection(ConSource))
                 {
                     c.Open();
-                    query = "UPDATE " + matier + " SET name = " + name +  ", question = " + question + ",reponse = " + reponse  + ", image_question_url = " + imageQuestion + ", image_answer_url = " + imageRep +" WHERE ID = \"100\" AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" + App.Current.Properties["old_quest"].ToString() + "\", ' ', '')";
+                    query = "UPDATE " + matier + " SET name = " + name + ", question = " + question + ",reponse = " +
+                            reponse + ", image_question_url = " + imageQuestion + ", image_answer_url = " + imageRep +
+                            " WHERE ID = \"100\" AND name = \"" + App.Current.Properties["nameindex"].ToString() +
+                            "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" +
+                            App.Current.Properties["old_quest"].ToString() + "\", ' ', '')";
                     Console.WriteLine(query);
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
@@ -463,6 +496,7 @@ namespace SophieAndMe.MVVM.Model
                 MessageBox.Show("An error occured while saving your quizz");
             }
         }
+
         public static (List<string> level, List<string> course, List<string> question, List<string> imageQuestion,
             List<string> reponse, List<string> imageRep, List<string> difficulty) GetAllPublic()
         {
@@ -473,23 +507,24 @@ namespace SophieAndMe.MVVM.Model
                 c.Open();
                 foreach (var i in nameTable)
                 {
-                    query = "SELECT * FROM " +  i.ToString();
-                    using (var cmd = new SQLiteCommand(query , c))
+                    query = "SELECT * FROM " + i.ToString();
+                    using (var cmd = new SQLiteCommand(query, c))
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Level.Add(reader.GetString(0)) ;
-                            Course.Add(reader.GetString(1)) ;
+                            Level.Add(reader.GetString(0));
+                            Course.Add(reader.GetString(1));
                             Question.Add(reader.GetString(2));
-                            Reponse.Add(reader.GetString(3)) ;
-                            ImageQuestion.Add(reader.GetString(4)) ;
-                            ImageRep.Add(reader.GetString(5)) ;
-                            Difficulty.Add(reader.GetString(6)) ;
+                            Reponse.Add(reader.GetString(3));
+                            ImageQuestion.Add(reader.GetString(4));
+                            ImageRep.Add(reader.GetString(5));
+                            Difficulty.Add(reader.GetString(6));
                         }
                     }
                 }
             }
+
             return (Level, Course, Question, ImageQuestion, Reponse, ImageRep, Difficulty);
         }
 
@@ -515,12 +550,309 @@ namespace SophieAndMe.MVVM.Model
 
                     break;
             }
+
             return TempList;
+        }
+
+
+        // ########################################################## Collection de fonction pour les Quizz progressifs
+
+        public static bool VerifStart()
+        {
+            string query = "";
+            var Mat = _dataService.QuizzId.Matier;
+            using (var db = new SQLiteConnection(ProgressSource))
+            {
+                db.Open();
+                query = "SELECT COUNT(*) from Progressions"+ Mat;
+                using (var cmd = new SQLiteCommand(query, db))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetInt32(0) == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
+        public static void RegisterProgression(MainViewModel mainVm)
+        {
+            DeleteProg();
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            string query = "";
+            _dataService = App.DataService;
+            var chapter = _dataService.SharedListChapter;
+            var Mat = _dataService.QuizzId.Matier;
+            SQLiteCommand command;
+            foreach (var info in chapter)
+            {
+                Console.WriteLine("data -" + info);
+                query = "INSERT INTO Chapitre" + Mat + " (Noms) VALUES (@val)";
+                command = new SQLiteCommand(query, c);
+                SQLiteParameter param = new SQLiteParameter();
+                param.ParameterName = "@val";
+                param.Value = info;
+                command.Parameters.Add(param);
+                command.ExecuteNonQuery();
+            }
+            
+            (Question, Reponse, ImageQuestion, ImageRep) = Retrievequizz(Application.Current.Properties["nameindex"]?.ToString(), "", mainVm);
+            for (int i = 0; i < Question.Count; i++)
+            {
+                query =
+                    "INSERT INTO Progressions" + Mat +" (question,reponse,image_question_url,image_answer_url) VALUES (@question,@reponse,@imageQuestion,@imageRep)";
+                command = new SQLiteCommand(query, c);
+                string val = "Progressions" + Mat;
+                command.Parameters.AddWithValue("@Prog", val);
+                command.Parameters.AddWithValue("@question", Question[i]);
+                command.Parameters.AddWithValue("@reponse", Reponse[i]);
+                command.Parameters.AddWithValue("@imageQuestion", ImageQuestion[i]);
+                command.Parameters.AddWithValue("@imageRep", ImageRep[i]);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static (List<string>, List<string>, List<string>, List<string>) RetrievequizzToProg()
+        {
+            var connection = new SQLiteConnection(ProgressSource);
+            var resultsQuestions = new List<string>();
+            var resultsReponses = new List<string>();
+            var resultsUrlQuestion = new List<string>();
+            var resultsUrlRep = new List<string>();
+            var resultsName = new List<string>();
+            connection.Open();
+            SQLiteCommand command;
+            string query = "SELECT question,reponse,image_question_url,image_answer_url FROM Progressions" + _dataService.QuizzId.Matier;
+            command = new SQLiteCommand(query, connection);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    resultsQuestions.Add(reader.GetString(0));
+                    resultsReponses.Add(reader.GetString(1));
+                    resultsUrlQuestion.Add(reader.GetString(2));
+                    resultsUrlRep.Add(reader.GetString(3));
+                }
+            } 
+            return (resultsQuestions,resultsReponses,resultsUrlQuestion,resultsUrlRep);
+        }
+
+        public static void DeleteProg()
+        {
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier;
+            command = new SQLiteCommand(query, c);
+            command.ExecuteNonQuery();
+            query = "DELETE FROM Chapitre" +  _dataService.QuizzId.Matier;
+            command = new SQLiteCommand(query, c);
+            command.ExecuteNonQuery();
+        }
+
+        public static void DeleteQuestion(List<string> Question)
+        {
+            using SQLiteConnection c = new SQLiteConnection(ProgressSource);
+            c.Open();
+            SQLiteCommand command;
+            foreach (var data in Question)
+            {
+                string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier + " WHERE REPLACE(question,'\"', '''') =  @data"; 
+                Console.WriteLine(data);
+                command = new SQLiteCommand(query, c);
+                command.Parameters.AddWithValue("@data", data);
+                command.ExecuteNonQuery();                
+            }
+        }
+
+
+        public static string GetMat(string Name)
+        {
+            Dictionary<string, string> mainDic= new Dictionary<string, string>();
+            foreach (var info in ListMat)
+            {
+                foreach (var Chapter in GetName(info))
+                {
+                    mainDic[Chapter] = info;
+                }
+            }
+            return mainDic[Name];
         }
 
         
         
-        // ########################################################################################## - Interaction DB-Login
+        // ########################################################## Collection de fonction pour le Landing
+        public static (List<string>, List<string>) GetNotesWeb()
+        {
+            List<string> Anglais =  new List<string>();
+            List<string> Français = new List<string>();
+            List<string> Maths = new List<string>();
+            List<string> Physique =  new List<string>();
+            List<string> SI = new List<string>();
+            Dictionary<string?, string> Main = new Dictionary<string?, string>();
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Anglais,Français,Maths,Physique,SI FROM Plus ";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Anglais.Add(reader.GetString(0));
+                    Français.Add(reader.GetString(1));
+                    Maths.Add(reader.GetString(2));
+                    Physique.Add(reader.GetString(3));
+                    SI.Add(reader.GetString(4));
+                }
+            }
+            var matiere = new List<List<string>> { Anglais, Français, Maths, Physique, SI };
+            var matiereStr = new List<string> { "Anglais", "Français", "Maths", "Physique", "SI" };
+            for (int i = 0; i < matiere.Count ; i++)
+            {
+                if (matiere[i][Anglais.Count-1].ToString() != "Pas de colle")
+                {
+                    string[] val = matiere[i][Anglais.Count-1].ToString().Split(";");
+                    Main[matiereStr[i]] = $"{val[0]};{val[4]}";
+                }
+            }
+            return(Main.Keys.ToList(),Main.Values.ToList());
+        }
+
+
+        public static List<string> GetQuizzWeb()
+        {
+            List<string> Name = [];
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Name FROM DATE ORDER BY Inserted DESC LIMIT 3";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader.GetString(0));
+                    Name.Add(reader.GetString(0));
+                }
+            }
+            return Name;
+        }
+        
+        // ########################################################## Collection de fonction pour l'emploi du temps
+        
+        
+        public static (List<string>,List<string>,List<string>) GetPlanning(string Days, string Semaine)
+        {
+            List<string> Mat =  new List<string>();
+            List<string> Salle = new List<string>();
+            List<string> Ensei = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Salle,Enseignant FROM " + Days + Semaine;
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Mat.Add(reader.GetString(0));
+                    Salle.Add(reader.GetString(1));
+                    Ensei.Add(reader.GetString(2));
+                }
+            }
+            return (Mat,Salle,Ensei);
+        }
+
+        public static bool IsHolliday(DateTime date)
+        {
+            bool Vec = false;
+            List<string> DYear =  new List<string>();
+            List<string> FYear = new List<string>();
+            List<string> DMonth =  new List<string>();
+            List<string> FMonth = new List<string>();
+            List<string> DDays =  new List<string>();
+            List<string> FDays = new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT DYear,FYear,DMonth,FMonth,DDays,FDays FROM Vacance";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DYear.Add(reader.GetString(0));
+                    FYear.Add(reader.GetString(1));
+                    DMonth.Add(reader.GetString(2));
+                    FMonth.Add(reader.GetString(3));
+                    DDays.Add(reader.GetString(4));
+                    FDays.Add(reader.GetString(5));
+                }
+            }
+            Console.WriteLine(date);
+            for (int i = 0; i < DDays.Count; i++)
+            {
+                DateTime ValD = new DateTime(Int32.Parse(DYear[i]), Int32.Parse(DMonth[i]), Int32.Parse(DDays[i]));
+                DateTime ValF = new DateTime(Int32.Parse(FYear[i]),Int32.Parse(FMonth[i]),Int32.Parse(FDays[i]));
+                if (date > ValD && date < ValF)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string GetDS(DateTime date)
+        {
+            List<string> DateSam =  new List<string>();
+            List<string> Mat =  new List<string>();
+            using SQLiteConnection c = new SQLiteConnection(EDTSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Mat,Date  FROM DSPlanning";
+            command = new SQLiteCommand(query, c);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DateSam.Add(reader.GetString(0));
+                    Mat.Add(reader.GetString(1));
+                }
+            }
+            for (int i = 0; i < DateSam.Count; i++)
+            {
+                if (DateSam[i] == date.ToString("dd/MM/yyyy"))
+                {
+                    return Mat[i];
+                }
+            }
+            return "";
+        }
+
+        public static (string, string, string, string) GetQuizzImport(string question)
+        {
+            string reponse = "";
+            string ImgRep = "";
+            string ImgQuest = "";
+            
+            
+            return (question,reponse, ImgRep, ImgQuest);
+        }
+        
+                // ########################################################################################## - Interaction DB-Login
         public static bool VerifyUser(string username, string password)
         {
             using (SQLiteConnection c = new SQLiteConnection(UserSource))
@@ -608,6 +940,6 @@ namespace SophieAndMe.MVVM.Model
 
             }
         }
-        
+
     }
 }

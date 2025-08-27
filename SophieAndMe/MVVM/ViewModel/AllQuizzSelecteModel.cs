@@ -19,7 +19,8 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
     public ICommand Fill { get; }
     public ICommand Clear { get; }
     public ICommand StartQuizz { get; }
-
+    public ICommand Reinitialiser { get; }
+    public ICommand Continuer { get; }
     private bool _ischeckedvalue;
     public bool IsCheckedValue
     {
@@ -33,12 +34,25 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             }
         }
     }
+
+    private string _progvalue;
+
+    public string ProgValue
+    {
+        get => _progvalue;
+        set
+        {
+            _progvalue = value;
+            OnPropertyChanged();
+        }
+    }
     private ObservableCollection<string> Chapitres { get; set; } = [];
     public AllQuizzSelecteModel(MainViewModel mainVm)
     {
         _dataService = App.DataService;
         Items = new ObservableCollection<CheckBoxItem>();
         _mainViewModel = mainVm;
+        _dataService.QuizzId.Matier = Application.Current.Properties["nameindex"].ToString();
         var name = DbInteraction.GetName(Application.Current.Properties["nameindex"]);
         foreach (var value in name)
         {
@@ -48,17 +62,58 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
             Temps.Name = value;
             Items.Add(Temps);
         }
-
+        MessageLogic();
         Fill = new RelayCommand(o => FillLogic());
         Clear = new RelayCommand(o => ClearLogic());
         BackQuizzClick = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent", new VQuizz(mainVm)));
         StartQuizz = new RelayCommand(o =>
         {
+            _dataService.QuizzId.options = "";
             SaveAllChecked();
             NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
         });
+        Reinitialiser = new RelayCommand(o =>
+        {
+            DeleteLogic();
+            MessageLogic();
+        });
+        Continuer = new RelayCommand(o =>
+        {
+            _dataService.QuizzId.options = "Progressif";
+            if (ProgValue == "Démarrer")
+            {
+                SaveAllChecked();
+                SaveDataProgress(mainVm);
+                NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
+            }
+            else
+            {
+                NavigationService.Instance.Navigate("MainContent", new QuizzLogic(mainVm));
+            }
+        });
     }
 
+
+    private void MessageLogic()
+    {
+        if (DbInteraction.VerifStart())
+        {
+             ProgValue =  "Continuer";
+        }
+        else
+        {
+            ProgValue = "Démarrer";
+        }
+    }
+    private void DeleteLogic()
+    {
+        DbInteraction.DeleteProg();
+
+    }
+    private void SaveDataProgress(MainViewModel mainVm)
+    {
+        DbInteraction.RegisterProgression(mainVm);
+    }
     private void ClearLogic()
     {
         foreach (var item in Items)
@@ -78,7 +133,6 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         var listChecked = Items.Where(item => item.IsChecked).ToList();
         _dataService.SharedListChapter =  listChecked.Select(item => item.Name).ToList()!;
     }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

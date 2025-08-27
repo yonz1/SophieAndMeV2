@@ -146,5 +146,12 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\CardDisplay\CardDisplayResp.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\AllQuizzSelect.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\AllQuizzSelect.baml
+<<<<<<< HEAD
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\LoginWindow.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\LoginWindow.baml
+=======
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\Schedule.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\MVVM\View\Schedule.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\Windows\ImportAdd.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\Windows\ImportAdd.baml
+>>>>>>> DevQuizz

@@ -1,59 +1,30 @@
+let SelectedBg = window.color["bg"];
 const divmain = document.getElementById("main");
-i = 0;
-y = 0;
+let i = 0;
+let y = 0;
 let ArrayMain = [];
 let batch = [];
-const observerTrigger = document.createElement("div");
+let selectedCard = null;
+let observerTrigger = document.createElement("div");
 observerTrigger.id = "scroll-trigger";
 console.log("Charger")
-
-
-
-
-
+let UsedQuestion = [];
+let OldId = "";
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    },
+    }, 
     options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
         renderActions: {
-            addMenu: [] // désactive le menu contextuel MathJax
+            addMenu: [] 
         }
     },
 };
 
-window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
-    ArrayMain.push(dico);
-    localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
-    if (i < 10)
-    {
-        CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-        i++;
-    }
-});
 
-const oberserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting)
-    {
-        let y = 0;
-        while (y < 10 && i < ArrayMain.length) {
-            console.log("scrollTriger");
-            CreateCardImport(
-                ArrayMain[i].question,
-                ArrayMain[i].repnse,
-                ArrayMain[i].urlQuestion,
-                ArrayMain[i].urlRep
-            );
-            i++;
-            y++; 
-        }
-    }
-},{threshold:0.1});
 
-oberserver.observe(observerTrigger);
 
 
 function TestArrayMain()
@@ -65,259 +36,127 @@ function TestArrayMain()
         ArrayMain = JSON.parse(saved);
         console.log("Données restaurée");
     }
-    if (ArrayMain.length == 0)
+    if (ArrayMain.length === 0)
     {
         const question = "";
         const action = "Demande";
         const data = { action, question };
         window.chrome.webview.postMessage(data);
     }
+}
+
+
+window.chrome.webview.addEventListener('message', event => {
+    
+    let dico = event.data;
+    console.log(i);
+    if (dico.Id !== OldId)
+    {
+        OldId = dico.Id;
+        clearcard();
+    }
+    if (dico.Action === "Test")
+    {
+            TestArrayMain();
+            console.log("test appelée");
+    }
     else
     {
-        console.log("ArrayMain chargée")
-        if (i < 10)
+        if (dico.Action === "Import")
         {
-            CreateCardImport(dico.question,dico.repnse,dico.urlQuestion,dico.urlRep);
-            i++;
+            localStorage.setItem("Dicos2", JSON.stringify(ArrayMain));
         }
+        ArrayMain.push(dico);
+        if (i < 10){
+            CreateCardMain(
+                dico.level,
+                dico.course,
+                dico.question,
+                dico.repnse,
+                dico.urlQuestion,
+                dico.urlRep,
+                dico.difficulty,
+                dico.len,
+                dico.Action
+            );
+            i++;}
+        
+
     }
+
+});
+
+function Clickdiv()
+{
+    console.log("Card Clicked")
 }
 
-function ClearCard() 
+const oberserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting)
+    {
+        let y = 0;
+        console.log("scrollTriger");
+        console.log(i);
+        console.log(ArrayMain[0].len);
+        while (y < 10 && i < ArrayMain.length) {
+            console.log("scrollTriger2");
+            CreateCardMain(
+                ArrayMain[i].level,
+                ArrayMain[i].course,
+                ArrayMain[i].question,
+                ArrayMain[i].repnse,
+                ArrayMain[i].urlQuestion,
+                ArrayMain[i].urlRep,
+                ArrayMain[i].difficulty,
+                ArrayMain[i].len,
+                ArrayMain[i].Action
+            );
+            i++;
+            y++;
+        }
+
+}},{threshold:0.1});
+
+function clearcard()
 {
-    console.log("Nettoyer")
+    console.log("Clear card")
     divmain.innerHTML = "";
     ArrayMain = [];
-    divmain.appendChild(observerTrigger);
     i = 0;
-    TestArrayMain();
+    divmain.appendChild(observerTrigger);
+    oberserver.observe(observerTrigger);
 }
-function CreateCardMarked(questarr, reparr, Qimg, Rimg) {
-    divmain.innerHTML = "";
+// ################################################################ Fonction des différente cartes
 
-
-    questarr.forEach((question, index) => {
-        if (batch.length >= 10) {
-            console.log("10 Created")
-            renderCardsSmoothly(batch);
-            MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-            batch = [];
-        }
-        else {
-
-            let img1 = "";
-            let img2 = ""
-            let val = "\"" + question + "\"";
-            const quest_img = Qimg[index].replace("\\/", "/");
-            const rep_img = Rimg[index].replace("\\/", "/");
-            question = question.replace(/\n/g, "<br>");
-            answer = reparr[index].replace(/\n/g, "<br>");
-            console.log(val);
-            console.log(question);
-            console.log(answer);
-
-            if (quest_img !== "") {
-                img1 = `<img src= ${quest_img} >`;
-            }
-            if (rep_img !== "") {
-                img2 = `<img src= ${rep_img} >`;
-            }
-
-
-            let card = document.createElement("div");
-            card.className = "card";
-
-            card.innerHTML = `
-    <button class="bin-button" value=${val} onclick="get_val(this)">
-      <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
-        <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white" stroke-width="3"></line>
-      </svg>
-      <svg class="bin-bottom" viewBox="0 0 33 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <mask id="path-1-inside-1_8_19" fill="white">
-          <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
-        </mask>
-        <path d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z" fill="white" mask="url(#path-1-inside-1_8_19)"></path>
-        <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
-        <path d="M21 6V29" stroke="white" stroke-width="4"></path>
-      </svg>
-    </button>
-    <div class="container">
-    <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-      <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-    </div>
-    </div>
-  `;
-            batch.push(card)
-        }
-    });
-    renderCardsSmoothly(batch);
-    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-    batch = [];
-
-}
-
-function CreateCardResp(questarr, reparr, Qimg, Rimg){
-    const divmain = document.getElementById("main")
-    divmain.innerHTML = "";
-
-
-    questarr.forEach((question, index) => {
-        if (batch.length >= 30) {
-            console.log("10 Created")
-            renderCardsSmoothly(batch);
-            MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-            batch = [];
-        }
-        else {
-
-
-            let img1 = "";
-            let img2 = ""
-            const quest_img = Qimg[index].replace("\\/", "/");
-            const rep_img = Rimg[index].replace("\\/", "/");
-            const val = "\"" + question + "\"";
-            question = question.replace(/\n/g, "<br>");
-            answer = reparr[index].replace(/\n/g, "<br>");
-
-            if (quest_img !== "") {
-                img1 = `<img src= ${quest_img} >`;
-            }
-            if (rep_img !== "") {
-                img2 = `<img src= ${rep_img} >`;
-            }
-
-            console.log(img1)
-            console.log(img2)
-
-
-            let card = document.createElement("div");
-            card.className = "card";
-
-            card.innerHTML = `
-    <div class="container">
-        <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-          <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-      </div>
-    </div>
-  `;
-
-            console.log("Carte Ajouter")
-            batch.push(card);
-        }
-    });
-    renderCardsSmoothly(batch);
-    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-    batch = [];
-
-}
-
-
-function CreateCardCreated(questarr, reparr, Qimg, Rimg)
-{
-    const divmain = document.getElementById("main")
-    divmain.innerHTML = "";
-    console.log("CreatedTrigger")
-
-
-    questarr.forEach((question, index) => {
-        if (batch.length >= 10) {
-            console.log("10 Created")
-            renderCardsSmoothly(batch);
-            MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-            batch = [];
-        }
-        else
-        {
-            
-
-
-        let img1 = "";
-        let img2 = ""
-        const quest_img = Qimg[index].replace("\\/", "/");
-        const rep_img = Rimg[index].replace("\\/", "/");
-        const val = "\"" + question + "\"";
-        question = question.replace(/\n/g, "<br>");
-        answer = reparr[index].replace(/\n/g, "<br>");
-
-        if (quest_img !== "") {
-            img1 = `<img src= ${quest_img} >`;
-        }
-        if (rep_img !== "") {
-            img2 = `<img src= ${rep_img} >`;
-        }
-
-        console.log(img1)
-        console.log(img2)
-
-
-        let card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-    <button class="bin-button" value=${val} onclick="get_val(this)">
-      <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
-        <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white" stroke-width="3"></line>
-      </svg>
-      <svg class="bin-bottom" viewBox="0 0 33 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <mask id="path-1-inside-1_8_19" fill="white">
-          <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
-        </mask>
-        <path d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z" fill="white" mask="url(#path-1-inside-1_8_19)"></path>
-        <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
-        <path d="M21 6V29" stroke="white" stroke-width="4"></path>
-      </svg>
-    </button>
-    
- <button class="editBtn" value=${val} onclick="get_data(this)">
-  <svg height="0.1em" viewBox="0 0 512 512">
-    <path
-      d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
-    ></path>
-  </svg>
-</button>
-    
-    <div class="container">
-        <div class="DivInline">
-        ${img1}
-      <p>${question}</p>
-      </div>
-      <hr>
-          <div class="DivInline">
-      ${img2}
-      <p>${answer}</p>
-      </div>
-    </div>
-  `;
-        console.log("Carte Ajouter")
-        batch.push(card);
-        }
-    });
-    renderCardsSmoothly(batch);
-    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-    batch = [];
-
-}
-
-
-function CreateCardImport(quest, rep, Qimg, Rimg){
+function CreateCardMain(level,course,quest, rep,Qimg, Rimg,difficulty, len,Action) {
     let card = document.createElement("div");
+    let val = "\"" + quest + "\"";
     card.className = "card";
-
-    card.innerHTML = `
+    card.id = quest;
+    console.log(i);
+    console.log(len);
+    card.addEventListener("click", () => {
+        if (selectedCard && selectedCard !== card)
+        {
+            selectedCard.style.backgroundColor = SelectedBg;
+            selectedCard.style.boxShadow = "none";
+            selectedCard.classList.remove("active");
+        }
+        card.style.backgroundColor = selectedCard && selectedCard === card ? SelectedBg : "transparent";
+        card.style.boxShadow = selectedCard && selectedCard === card ? "none" : "6px 6px 10px 0px lightblue";
+        if (selectedCard && selectedCard === card)
+        {
+            selectedCard.classList.remove("active");
+        }
+        else {
+            card.classList.add("active");
+        }
+        selectedCard = card;
+    })
+    switch (Action)
+    {
+        case "Resp":
+            card.innerHTML = `
     <div class="container">
         <div class="DivInline">
             ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
@@ -329,13 +168,90 @@ function CreateCardImport(quest, rep, Qimg, Rimg){
             <p>${rep.replace(/\n/g, "<br>")}</p>
         </div>
     </div>`;
-    batch.push(card);
-    if (batch.length >= 10) {
-        console.log("10 Created")
-        renderCardsSmoothly(batch);
-        MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
-        batch = [];
+            break;
+            
+        case "Import":
+            card.innerHTML = `
+    <div class="container">
+        <div class="DivInline">
+            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+                <div class="card-button">
+                <button value=${val} onclick="add_val(this)" class="Add">Ajouter</button>
+        </div>
+    </div>`;
+            break;
+        
+        
+        case "Marked":
+            card.innerHTML = `
+    <div class="container">
+        <div class="DivInline">
+            ${Qimg? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg ? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+        <div class="card-button">
+                <button value=${val} onclick="get_val(this)" class="Delete">Delete</button>
+        </div>
+    </div>`;
+            break;
+        
+        
+        case "Created":
+            card.innerHTML = `
+    <div class="container">
+        <div class="DivInline">
+            ${Qimg ? `<img src="${Qimg}" loading="lazy">` : ""}
+            <p>${quest.replace(/\n/g, "<br>")}</p>
+        </div>
+        <hr>
+        <div class="DivInline">
+            ${Rimg? `<img src="${Rimg}" loading="lazy">` : ""}
+            <p>${rep.replace(/\n/g, "<br>")}</p>
+        </div>
+        <div class="card-button">
+                <button class="ReplaceC" value=${val} onclick="get_data(this)" >Replace</button>
+                <button class="DeleteC" value=${val} onclick="get_val(this)" >Delete</button>
+                </div>
+    </div>`;
+            break;
+            
     }
+    batch.push(card);
+    if (batch.length >= 10 || i === parseInt(len)-1) {
+        CreatCardLogicGlobal();
+    }
+}
+// ################################################################ Fonction de rendu
+
+function ClickedCard(id)
+{
+    console.log("recçus")
+    console.log(id);
+    let Cliked =  document.getElementById(id);
+    Cliked.style.borderColor = "white"
+    Cliked.style.backgroundColor = "transparent";
+    
+}
+
+function CreatCardLogicGlobal()
+{
+    console.log("Created")
+    renderCardsSmoothly(batch);
+    //MathJax.typesetPromise([divmain]);
+    MathJax.typesetPromise([divmain]).catch(err => console.log("MathJax error:", err));
+    batch = [];
 }
 
 function renderCardsSmoothly(cards) {
@@ -348,8 +264,7 @@ function renderCardsSmoothly(cards) {
         } else {
             if (window.MathJax) {
                 requestAnimationFrame(() => {
-                    MathJax.typesetPromise([divmain])
-                        .catch(err => console.error("MathJax error:", err));
+                    MathJax.typesetPromise([divmain]);
                 });
             }
         }
@@ -358,8 +273,11 @@ function renderCardsSmoothly(cards) {
     requestAnimationFrame(step); // démarre le rendu
 }
 
-function get_val(button) {
 
+
+// ######################################################################## Fonction pour action des bouttons
+
+function get_val(button) {
     const card = button.closest(".card");
 
     if (card) {
@@ -375,6 +293,20 @@ function get_val(button) {
     window.chrome.webview.postMessage(data);
 }
 
+function add_val(button){
+    const card = button.closest(".card");
+    if (card) {
+        card.classList.add("fade-out");
+        setTimeout(() => {
+            card.remove();
+        }, 200);
+    }
+    const question = button.value;
+    const action = "Add";
+    const data = { action, question };
+    console.log(data);
+    window.chrome.webview.postMessage(data);
+}
 
 function get_data(button){
     const card = button.closest(".card")
@@ -384,3 +316,4 @@ function get_data(button){
     console.log(question);
     window.chrome.webview.postMessage(data);
 }
+

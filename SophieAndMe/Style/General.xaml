@@ -33,4 +33,6 @@
     <SolidColorBrush x:Key="Maximize" Color="LightGreen" />
     <SolidColorBrush x:Key="Exit" Color="Coral" />
     <SolidColorBrush x:Key="Glass" Color="MediumSlateBlue" />
+    
+
 </ResourceDictionary>

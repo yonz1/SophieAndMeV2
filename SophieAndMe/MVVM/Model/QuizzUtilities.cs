@@ -44,16 +44,8 @@ public class QuizzUtilities
     
     public static string Miseneformetext(string text)
     {
-        text = text.Replace("$", "$$").Replace("$$$", "$").Replace("\\/", "/").Replace("<", "\\lt ").Replace(">", "\\gt ").Replace("\"","'");
-        string valeurDebut = " \\( \\large ";
-        string valeurFin = "\\) ";
-        string pattern = @"\$\$(.*?)\$\$";
-        string Text = Regex.Replace(text, pattern, match =>
-        {
-            string contenu = match.Groups[1].Value;
-            return valeurDebut + contenu + valeurFin;
-        });
-        return Text;
+        text = text.Replace("\\/", "/").Replace("<", "\\lt ").Replace(">", "\\gt ").Replace("\"","'");
+        return text;
     }
     
     public static List<string> Miseneformelist(List<string> list)
@@ -65,6 +57,8 @@ public class QuizzUtilities
         }
         return result;
     }
+    
+    
     
     
 

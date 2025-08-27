@@ -128,27 +128,25 @@ function Suggestion(arr,val)
 function button_fill(val)
 {
     const buttonTag = document.getElementById("button_div");
-
-    buttonTag.innerHTML = ''; 
-
+    buttonTag.innerHTML = '';
     const btnClear = document.createElement("button");
     btnClear.textContent = "Clear";
     btnClear.className = "animated-button";
     btnClear.id = "btnclear";
     btnClear.addEventListener("click", clear);
-
     const btnAction = document.createElement("button");
     btnAction.className = "animated-button";
     if (val === "Add") {
         btnAction.id = "btnSave";
         btnAction.textContent = "Add";
         btnAction.addEventListener("click", save);
-    } else {
+        clear(); 
+    } 
+    else {
         btnAction.id = "btnReplace";
         btnAction.textContent = "Replace";
         btnAction.addEventListener("click", Replace);
     }
-
     buttonTag.appendChild(btnClear);
     buttonTag.appendChild(btnAction);
 
@@ -213,7 +211,8 @@ function clear()
     document.querySelectorAll('input,textarea').forEach(el => el.value = "");
     const textarea = document.getElementById('inputText')
     const output = document.getElementById('OutputText')
-    Output_rep.innerHTML = textarea_rep.value;
+    const output_rep = document.getElementById('Output_rep')
+    output_rep.innerHTML = textarea.value;
     output.innerHTML = textarea.value;
     QuestionBox.checked = true;
     ReponseBox.checked = true;
@@ -222,9 +221,9 @@ function clear()
     bannerResponse.src = "";
     bannerQuestion.src = "";
 }
+
 document.getElementById('fileInpu_rept').addEventListener('change', function (event) {
     const file = event.target.files[0];
-
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
 

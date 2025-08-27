@@ -1,365 +1,474 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
+    background-color: #161717;
+}
+
+.Main{
     display: inline-flex;
-    padding: 0 10px;
-    justify-content: center;
-    min-height: 100vh;
-    width: fit-content;
-    background: #161717;
+    gap: 20px;
+    margin: 10px;
 }
 
-.wrapper {
-    width: 22vw;
-    height: 17vw;
+
+
+.Container{
+    width: 30vw;
+    height: 930px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
     background: #242424;
-    border-radius: 10px;
-    float: left;
-    margin-left: 0;
-    padding-bottom: 19vw;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.2px);
+    -webkit-backdrop-filter: blur(12.2px);
 }
 
-    .wrapper header {
-        display: flex;
-        align-items: center;
-        /* padding: 25px 30px 10px; */
-        justify-content: space-between;
-    }
-
-header .current-date {
-    font-size: 1.45vw;
-    font-weight: 500;
+.Main::-webkit-scrollbar {
+    display: none;
+}
+body {
+    overflow: hidden; /* Hide scrollbars */
 }
 
-.calendar {
-    padding: 0.5vw;
+/* Hide scrollbar for IE, Edge and Firefox */
+.Main {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
-    .calendar ul {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        text-align: center;
-    }
-
-    .calendar .days {
-        margin-bottom: 20px;
-    }
-
-    .calendar li {
-        color: #fff;
-        width: calc(100% / 7);
-        font-size: 0.8vw;
-    }
-
-    .calendar .weeks li {
-        font-weight: 500;
-        cursor: default;
-    }
-
-    .calendar .days li {
-        z-index: 1;
-        cursor: pointer;
-        position: relative;
-        margin-top: 2vw;
-    }
-
-.days li.inactive {
-    color: #aaa;
+.ContainerN{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);*/
+    /*backdrop-filter: blur(12.2px);*/
+    /*-webkit-backdrop-filter: blur(12.2px);*/
 }
 
-.days li.active {
-    color: #fff;
-}
-
-.days li::before {
-    position: absolute;
-    content: "";
-    left: 50%;
-    top: 50%;
-    height: 2.3vw;
-    width: 2.3vw;
-    z-index: -1;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.days li.active[id*="actual"]::before {
-    background: #4A148C;
-}
-
-.days li.active::before {
-    background: #9B59B6;
-}
-
-
-
-.days li:not(.active):hover::before {
-    background: #9B59B6;
-}
-
-
-p {
-    color: #242424;
-    height: 0;
-    width: 0;
-}
-
-.Chart_bar ul {
-    display: inline-flex;
-    flex-wrap: wrap;
-    list-style: none;
-    color: white;
-    text-align: center;
-    margin-bottom: 0;
-}
-
-.Chart_bar {
+.ClearContainer{
     background: #242424;
-    float: left;
-    width: 50vw;
-    justify-content: left;
-    height: 21vw;
+    border-radius: 20px;
+    height: 296px;
+}
+
+.ContainerWelcome{
+    background-image: linear-gradient(90deg,rgba(227, 150, 204, 1) 0%, rgba(0, 98, 254, 1) 50%, rgba(0, 137, 173, 1) 100%);
+    /*background-image: url("../../images/16-new-windows-dev-home-wallpapers-light-dark-versions-4k-v0-io0hcpas4n6b1-2.png");*/
+    box-sizing: border-box;
+    width: 36.5vw;
+    height: 48vh;
+    padding: 0.05rem;
+    border-radius: 20px;
+    display: flex;
     position: relative;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+.ContainerWelcome::before {
+    content: "";
+    position: absolute;
+    top:    -3px;
+    left:   -3px;
+    right:  -3px;
+    bottom: -3px;
+    border-radius: 22px; /* +5px par rapport au container */
+    background: linear-gradient(
+            90deg,
+            rgba(227, 150, 204, 1) 0%,
+            rgba(0, 98, 254, 1) 50%,
+            rgba(0, 137, 173, 1) 100%
+    );
+    filter: blur(5px); /* crée l'effet halo */
+    z-index: -1; /* derrière le container */
 }
 
-.Grad {
-    display: inline-flex;
-    width: 1vw;
-    margin-left: 1vw;
-    margin-top: 1vw;
-    gap: 1vw;
+.Inner{
+    background-color: red;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    background-image: url("../../images/Platform (1).jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-.days {
+.ContainerCalendar{
+    margin-top: 20px;
+    background-color: #242424;
+    width: 36.5vw;
+    height: 47vh;
+    border-radius: 20px;
+}
+
+.Handler{
+    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+    gap:  20px;
+  border-radius: 20px;
+}
+
+
+.Title{
+    color: #e2e8f0;
+    margin-left:20px;
+    margin-top:  15px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+    
+}
+
+.Welcome{
+    color: transparent;
+    background-image: linear-gradient(90deg,rgba(227, 150, 204, 1) 0%, rgba(0, 98, 254, 1) 50%, rgba(0, 137, 173, 1) 100%);
+    background-clip: text;
+    text-align: center;
+    margin-top: 0.5vw;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2.1vw;
+    max-width: 100%;
+}
+
+.MainProgressions{
+  background-color: #242424; 
+  border-radius: 20px;
+  margin-top: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Infos{
+  margin-right: 20px;
+    padding: 10px;
+  margin-left: 20px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  color: #dcdcdc;
+  background: transparent;
+  border-radius: 16px;
+    /*border-color: grey;*/
+  /*border-style: solid;*/
+  /*border-width: 0.1px;*/
+  box-shadow: 0 0.1px 3px rgb(71, 85, 105);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);  
+}
+
+#QuizzI:hover{
+    background: oklch(13% 0.028 261.692);
+    box-shadow: 0 0.1px 3px rgb(56, 189, 248);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+}
+
+.MetaM{
+  margin-left: 20px;
+    font-size: 12px;
+    color: gray;
+}
+
+.DataM{
+margin-left: 20px;
+  font-size: 13px;
+    color: #e2e8f0
+}
+
+.MetaA{
+    margin-left: 15px;
+    font-size: 12px;
+    color: #e2e8f0;
+}
+
+.DataA{
+    margin-left: 15px;
+    font-size: 13px;
+    color: gray;
+}
+
+.chart{
+    background-color: #242424;
+    border-radius: 20px;
+    height: 30vh;
+}
+
+
+.MatProg{
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.BarLabel{
+    color: gainsboro;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+}
+
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+  margin: 10px 0px;
+  width: 100%;
+  height: 1vh;
+  background-color: #ffffff1a;
+  border-radius: 10px;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+  animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+
+.progress-bar span {
+  position: absolute;
+  background: linear-gradient(90deg,rgba(227, 150, 204, 1) 0%, rgba(0, 98, 254, 1) 50%, rgba(0, 137, 173, 1) 100%);
+  width: 100%;
+  height: 8px;
+  border-radius: 10px;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-animation: animate 1s 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+  animation: animate 1s 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+
+@-webkit-keyframes animate {
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes animate {
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+.Maths span{
+    width: 80%;
+}
+
+.Physique span{
+    width: 60%;
+}
+
+.SI span{
+    width: 90%;
+}
+
+.Erreurs span{
+    width: 20%;
+}
+
+.Anglais span{
+    width: 40%;
+}
+
+
+.calendar{
+  padding: 0.5vw;
+}
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days{
+  margin-bottom: 20px;
+}
+.calendar li{
+  color: #e2e8f0;
+  width: calc(100% / 7);
+  font-size: 0.8vw;
+}
+.calendar .weeks li{
+  font-weight: 500;
+  cursor: default;
+}
+.calendar .days li{
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 4.2vh;
+}
+.days li.inactive{
+  color: #aaa;
+}
+.days li.active{
+  color: #e2e8f0;
+}
+.days li::before{
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 2.3vw;
+  width: 2.3vw;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active[id*="actual"]::before{
+  background: #4A148C;
+}
+
+.days li.active::before{
+  background: #9B59B6;
+}
+
+
+
+.days li:not(.active):hover::before{
+  background: #9B59B6;
+}
+
+.days{
     justify-content: center;
     bottom: 1px;
 }
 
-.Rectangle {
-    align-self: center;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    height: 3px;
-    margin-top: 1vw;
-    background: white;
+.wrapper{
+  width: 100%;
+  height: 100%;
+  background: #242424;
+  border-radius: 10px;
+  float: left;
+  margin-left: 0;
+  padding-bottom: 19vw;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+.wrapper header{
+  display: flex;
+  align-items: center;
+  /* padding: 25px 30px 10px; */
+  justify-content: space-between;
+}
+header .current-date{
+  font-size: 1.45vw;
+  font-weight: 500;
+}
+
+.round{
     border-radius: 10px;
+    margin-top: 3px;
+    margin-left: 3px;
+    background: #38BDF8;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    float: left;
+    box-shadow: 0 0px 3px rgb(56, 189, 248);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
 }
 
-label {
-    color: white;
-    font-size: large;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-.chart {
-    max-width: 700px;
-    width: 60vw;
-    margin: 0 auto;
-    margin-top: 10px;
-    background: #242424;
+.NotesG{
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 60px;
+    transform: translateY(-50%);
+    top: 50%;
+    align-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right: 20px;
+    font-size: 13px;
+    background: #064e3b;
+    color: #a7f3d0;
+    border-color: #a7f3d0;
+    border-width: 0.01px;
     border-radius: 20px;
 }
 
-.Ajout_rec {
-    width: 22vw;
-    height: 17vw;
-    background: #242424;
-    float: left;
-    margin-right: 15px;
-    padding-bottom: 19vw;
-    border-radius: 10px;
-}
-
-.Title {
-    font-size: large;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-left: auto;
-    margin-right: auto;
-    align-self: center;
-    align-content: center;
-    margin-top: 10px;
-    text-align: center;
-    display: block;
-    font-weight: 600;
-}
-
-.info_disp {
-    font-weight: 600;
-    font-size: 13px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-top: 1vw;
-    color: #fff;
-}
-
-.Data_container {
-    display: flex;
-    flex-direction: column;
-}
-
-#Notes {
-    margin-top: 20px;
-}
-
-.Complet {
-    background: linear-gradient(0.13turn, #977dff,#0033FF,#0600AF);
-    width: 40vw;
-    height: 17vw;
-    float: left;
-    margin-left: 15px;
-    padding-bottom: 19vw;
-    position: relative;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-
-.Welcome {
-    width: fit-content;
-    align-content: center;
+.NotesM{
     position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    top: 50%;
+    align-content: center;
+    height: 30px;
+    width: 60px;
     text-align: center;
-    top: 42%;
-    margin-left: 1vw;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 800;
-    font-size: 30px;
+    text-transform: uppercase;
+    margin-right: 20px;
+    font-size: 13px;
+    background: #78350f;
+    color: #fde68a;
+    border-color: #fde68a;
+    border-width: 0.01px;
+    border-radius: 20px;
 }
 
-
-
-
-
-/* From Uiverse.io by Juanes200122 */
-#svg-global {
-    zoom: 1.2;
-    overflow: visible;
-    float: right;
-    margin-right: 1vw;
-    margin-top: 1vw;
+.NotesB{
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 60px;
+    transform: translateY(-50%);
+    top: 50%;
+    align-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right: 20px;
+    font-size: 13px;
+    background: #7f1d1d;
+    color: #fecdd3;
+    border-color: #fecdd3;
+    border-width: 0.01px;
+    border-radius: 20px;
 }
 
-@keyframes fade-particles {
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-40px);
-        opacity: 0;
-    }
-}
-
-#particles {
-    animation: fade-particles 5s infinite alternate;
-}
-
-.particle {
-    animation: floatUp linear infinite;
-}
-
-.p1 {
-    animation-duration: 2.2s;
-    animation-delay: 0s;
-}
-
-.p2 {
-    animation-duration: 2.5s;
-    animation-delay: 0.3s;
-}
-
-.p3 {
-    animation-duration: 2s;
-    animation-delay: 0.6s;
-}
-
-.p4 {
-    animation-duration: 2.8s;
-    animation-delay: 0.2s;
-}
-
-.p5 {
-    animation-duration: 2.3s;
-    animation-delay: 0.4s;
-}
-
-.p6 {
-    animation-duration: 3s;
-    animation-delay: 0.1s;
-}
-
-.p7 {
-    animation-duration: 2.1s;
-    animation-delay: 0.5s;
-}
-
-.p8 {
-    animation-duration: 2.6s;
-    animation-delay: 0.2s;
-}
-
-.p9 {
-    animation-duration: 2.4s;
-    animation-delay: 0.3s;
-}
-
-@keyframes bounce-lines {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-3px);
-    }
-}
-
-#line-v1,
-#line-v2,
-#node-server,
-#panel-rigth,
-#reflectores,
-#particles {
-    animation: bounce-lines 3s ease-in-out infinite alternate;
-}
-
-#line-v2 {
-    animation-delay: 0.2s;
-}
-
-#node-server,
-#panel-rigth,
-#reflectores,
-#particles {
-    animation-delay: 0.4s;
+.OpenQuizz{
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    top: 50%;
+    align-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right:  20px;
+    background: #38BDF8;
+    color: #e2e8f0;
+    font-size: 13px;
+    border-radius: 10px;
+    height: 35px;
+    width:  80px;
 }

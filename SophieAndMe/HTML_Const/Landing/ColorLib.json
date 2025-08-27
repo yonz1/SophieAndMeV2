@@ -1,0 +1,39 @@
+{
+    "background": {
+        "primary": "#0f172a",   // slate-950
+        "secondary": "#1e293b", // slate-900
+        "tertiary": "#334155",  // slate-800
+        "border": "#475569"     // slate-700
+    },
+    "text": {
+        "primary": "#e2e8f0",   // slate-200
+        "secondary": "#94a3b8", // slate-400
+        "highlight": "#ffffff"  // white
+    },
+    "accents": {
+        "gradientFrom": "#38bdf8", // sky-400
+        "gradientTo": "#8b5cf6",   // violet-500
+        "bgGradientFrom": "#0c4a6e", // sky-900
+        "bgGradientVia": "#0f172a",  // slate-900
+        "bgGradientTo": "#312e81"    // violet-900
+    },
+    "badges": {
+        "good": {
+            "bg": "#064e3b",   // emerald-900
+            "text": "#a7f3d0"  // emerald-200
+        },
+        "warn": {
+            "bg": "#78350f",   // amber-900
+            "text": "#fde68a"  // amber-200
+        },
+        "bad": {
+            "bg": "#7f1d1d",   // rose-900
+            "text": "#fecdd3"  // rose-200
+        }
+    },
+    "chart": {
+        "barFrom": "#8b5cf6", // violet-500
+        "barTo": "#38bdf8",   // sky-400
+        "dot": "#38bdf8"      // sky-400
+    }
+}
