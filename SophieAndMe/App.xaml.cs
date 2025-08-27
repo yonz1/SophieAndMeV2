@@ -22,17 +22,9 @@ public partial class App : Application
     {
         base.OnStartup(e);
         // WindowService.ShowWindow<LoginWindoowViewModel>();
-        WindowService = new WindowService();
-        var vm = new LoginWindoowViewModel(WindowService);
-        var window = new LoginWindow() {DataContext = vm};
+        // WindowService = new WindowService();
+        // var vm = new LoginWindoowViewModel();
+        var window = new LoginWindow();
         window.Show();
     }
-    
-    public App()
-    {
-        
-    }
-
-    
-    
 }

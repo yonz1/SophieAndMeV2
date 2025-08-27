@@ -31,6 +31,7 @@ public partial class MainWindow : Window
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MVVM.ViewModel.MainViewModel();
             NavigationService.Instance.Register("MainContent", view => MainContentControl.Content = view);
         }
     

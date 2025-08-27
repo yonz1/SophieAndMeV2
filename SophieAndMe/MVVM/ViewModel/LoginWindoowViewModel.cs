@@ -10,12 +10,13 @@ using SophieAndMe.MVVM.Model;
 
 namespace SophieAndMe.MVVM.ViewModel;
 
-public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
+public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged,ICloseWindows
 {
     private readonly IDataService _dataService;
     private readonly IWindowService _windowService;
     public ICommand Exit_Click { get; }
     public ICommand Connect_Click { get; }
+    public Action Close { get; set; }
     private string _username;
     public string Username
     {
@@ -37,13 +38,12 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
         }
     }
 
-    public LoginWindoowViewModel(IWindowService windowService)
+    public LoginWindoowViewModel()
     {
         Console.WriteLine("charger");
-        _windowService = windowService;
         _dataService =  App.DataService;
         VerifyKeepAlive();
-        Exit_Click = new RelayCommand(o => Application.Current.Shutdown());
+        Exit_Click = new RelayCommand(o => Close?.Invoke());
         Connect_Click = new RelayCommand(o =>
         {
             ConnectLogic();
@@ -76,8 +76,9 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
         _dataService.CurrentUser.Username = username;
         (_dataService.CurrentUser.Email, _dataService.CurrentUser.photo) = DbInteraction.RetrieveUserData(username);
         Console.WriteLine("charger");
-        _windowService.CloseWindow<LoginWindoowViewModel>();
-        _windowService.ShowWindow<MainViewModel>();
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close?.Invoke();
     }
     
     private string EncryptShA(string password)
@@ -97,4 +98,10 @@ public class LoginWindoowViewModel : ObservableRecipient,INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+}
+
+
+interface ICloseWindows
+{
+    Action Close { get; set; }
 }
