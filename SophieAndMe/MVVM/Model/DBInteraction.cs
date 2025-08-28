@@ -852,5 +852,66 @@ namespace SophieAndMe.MVVM.Model
             return (question,reponse, ImgRep, ImgQuest);
         }
 
+        public static (List<string>, List<string>, List<string>, List<int>, List<int>) GetColles(DateTime dlundi)
+        {
+            string Dates = "";
+            List<string> Nom =  new List<string>();
+            List<int> heure = new List<int>();
+            List<int> Jours =  new List<int>();
+            List<string> Salle = new List<string>();
+            List<string> Matiére =  new List<string>();
+            int i = 0;
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Date FROM Colles";
+            command = new SQLiteCommand(query, c); 
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    DateTime val = Convert.ToDateTime(reader.GetString(0));
+                    string val2 = $"{val}- {dlundi}";
+                    if (dlundi == val)
+                    {
+                        Dates = val.ToString("yyyy-MM-dd 00:00:00");
+                        break;  
+                    }
+                }
+            }
+            if (Dates != "")
+            {
+                query = $"SELECT Nom,heure,Jours,Salle,Matiére FROM Colles where Date = \"{Dates}\"";
+                command = new SQLiteCommand(query, c);  
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Nom.Add(reader.GetString(0));
+                        heure.Add(int.Parse(reader.GetString(1).Split("h")[0])-8);
+                        Jours.Add(GetColumnNum(reader.GetString(2)));
+                        Salle.Add(reader.GetString(3));
+                        Matiére.Add(reader.GetString(4));
+                        string val = $"{Nom[i]}-{heure[i]}-{Jours[i]}-{Salle[i]}-{Matiére[i]}";
+                        i++;
+                    }
+                }
+            }
+            return (Nom, Salle, Matiére, heure, Jours);
+        }
+
+        public static int GetColumnNum(string Seljour)
+        {
+            string[] Jours = ["lun", "mar", "mer", "jeu", "ven"];
+            for (int i = 0; i < Jours.Length; i++)
+            {
+                if (Seljour == Jours[i])
+                {
+                    return i;
+                }
+            }
+            return 6;
+        }
+        
     }
 }

@@ -71,7 +71,7 @@
                     materialDesign:ThemeAssist.Theme="Dark"
                     DockPanel.Dock="Left"
                     ItemsSource="{Binding Chapter2}"
-                    SelectedItem="{Binding SelectedItem}"
+                    SelectedItem="{Binding SelectedItem2}"
                     Style="{StaticResource SearchBox}" />
                 <Button
                     Width="120"

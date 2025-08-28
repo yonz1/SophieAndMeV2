@@ -30,6 +30,7 @@ namespace SophieAndMe.MVVM.ViewModel
         public ICommand Forward { get; }
         private string OldSem;
         private string ActualSem = "A";
+        private DateTime startDate = new DateTime(2025, 08, 01);
         DayOfWeek[] days = { 
             DayOfWeek.Sunday, 
             DayOfWeek.Monday, 
@@ -65,15 +66,16 @@ namespace SophieAndMe.MVVM.ViewModel
                 var dates = GetDates(z);
                 if (DbInteraction.IsHolliday(dates[0]))
                 {
-                    Console.WriteLine("Vacance");
                     FillPlanning("Vac");
                     FillInfos(dates,Jours);   
                 }
                 else
                 {
-                    FillPlanning(DiffSem());
+                    FillPlanning(DiffSem(dates[0],startDate));
                     FillInfos(dates,Jours);   
                     FillDs(DbInteraction.GetDS(dates[5]));
+                    var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
+                    FIllKholle(Nom, Salle, Matiére, heure, JoursD);
                 }
                 MonthText = GetMonthText(z);
             });
@@ -84,21 +86,22 @@ namespace SophieAndMe.MVVM.ViewModel
                 var dates = GetDates(z);
                 if (DbInteraction.IsHolliday(dates[0]))
                 {
-                    Console.WriteLine("Vacance");
                     FillPlanning("Vac");
                     FillInfos(dates,Jours);   
-                    FillDs(DbInteraction.GetDS(dates[5]));
                 }
                 else
                 {
-                    FillPlanning(DiffSem());
+                    FillPlanning(DiffSem(dates[0],startDate));
                     FillInfos(dates,Jours); 
                     FillDs(DbInteraction.GetDS(dates[5]));
+                    var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
+                    FIllKholle(Nom, Salle, Matiére, heure, JoursD);
                 }
                 MonthText = GetMonthText(z);
                 
             });
             var dates = GetDates(z);
+            DbInteraction.GetColles(dates[0]);
             DateTime dateTime = DateTime.UtcNow.Date;
             Hours = new ObservableCollection<HoursPanel>
             {
@@ -116,17 +119,12 @@ namespace SophieAndMe.MVVM.ViewModel
                 new HoursPanel {RowID = 1+11, TopText= "19h" },
                 new HoursPanel {RowID = 1+11, TopText= "19h" },
             };
-
-            
-            
-            
             DaysItem = new ObservableCollection<DaysItem>();
             _TimeTableItems= new ObservableCollection<TimeTableItem>();
             MonthText = $"{DateTime.Now.ToString("MMMMMMM")}  {DateTime.Now.Year.ToString()}";
             FillInfos(dates,Jours);
             if (DbInteraction.IsHolliday(dates[0]))
             {
-                Console.WriteLine("Vacance");
                 FillPlanning("Vac");
                 FillInfos(dates,Jours);   
             }
@@ -135,6 +133,24 @@ namespace SophieAndMe.MVVM.ViewModel
                 FillPlanning(ActualSem);
                 FillInfos(dates,Jours);  
                 FillDs(DbInteraction.GetDS(dates[5]));
+                var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
+                FIllKholle(Nom, Salle, Matiére, heure, JoursD);
+            }
+        }
+
+        public void FIllKholle(List<string> Nom, List<string> Salle, List<string> Matiére, List<int> heure, List<int> Jours)
+        {
+            for (int i = 0; i < Nom.Count; i++)
+            {
+                TimeTableItem item = new TimeTableItem();
+                item.ColumnId = Jours[i];
+                item.RowId = heure[i];
+                item.Salle = Salle[i];
+                item.Enseignant = Nom[i];
+                item.Matiere = Matiére[i];
+                item.RowNumSpan = 1;
+                item.IsColle = true;
+                _TimeTableItems.Add(item);
             }
         }
 
@@ -262,7 +278,6 @@ namespace SophieAndMe.MVVM.ViewModel
                         {
                             while (Matiere[Ret] == OldMatiere)
                             {
-                                Console.WriteLine(Ret);
                                 item.RowNumSpan++;
                                 i++;
                                 Ret++;
@@ -272,24 +287,17 @@ namespace SophieAndMe.MVVM.ViewModel
                                 }
                             }
                         }
-                        Console.WriteLine(OldMatiere);
+                        
                         _TimeTableItems.Add(item);
                     }
                 }
             }
         }
 
-        public string DiffSem()
+        public string DiffSem(DateTime EndDate, DateTime StartDate)
         {
-            switch (ActualSem)
-            {
-                case "A":
-                    ActualSem = "B";
-                    break;
-                case "B":
-                    ActualSem = "A";
-                    break;
-            }
+            Console.WriteLine((EndDate - StartDate).TotalDays % 14);
+            ActualSem = (EndDate - StartDate).TotalDays % 14 == 3 ? "A" : "B";
             return ActualSem;
         }
         

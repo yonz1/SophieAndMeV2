@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Windows.Forms;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -10,6 +11,7 @@ using SophieAndMe.MVVM.Model;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.View.CardDisplay;
+using SophieAndMe.Windows;
 
 
 namespace SophieAndMe.MVVM.ViewModel;
@@ -74,8 +76,22 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         _dataService.QuizzId.options = "";
         IsActive = true;
         _mainViewModel = mainVm;
-
         _mainViewModel.CurrentMessage = "Personnaliser";
+        WeakReferenceMessenger.Default.Register<MediatorCustom.JstoAppMessage>(this, (r, m) =>
+        {
+            Console.WriteLine("Debut " +  _dataService.WinBin.ToString());
+            var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
+            question = question.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            rep = rep.Replace("\\large", "").Replace("\\(", "$").Replace("\\)", "$");
+            switch (action)
+            {
+                case "save":
+                    string val = $"{question}-{imgQuestion}-{rep}-{imgRep}";
+                    MessageBox.Show(val);
+                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
+                    break;
+            }
+        });
         Return = new RelayCommand(o =>
         {
             switch (App.Current.Properties["old"])

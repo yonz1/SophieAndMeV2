@@ -74,7 +74,8 @@ window.addEventListener('DOMContentLoaded', () => {
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: false
     },
     options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -87,7 +88,7 @@ const textarea = document.getElementById('inputText')
 const output = document.getElementById('OutputText')
 
 textarea.addEventListener('input', () => {
-    output.innerHTML = textarea.value;
+    output.innerHTML = textarea.value.replace(/\\\$/g, '\\\\$');
     MathJax.typesetPromise([output]);
 });
 
@@ -95,7 +96,7 @@ const textarea_rep = document.getElementById('input_rep')
 const Output_rep = document.getElementById('Output_rep')
 
 textarea_rep.addEventListener('input', () => {
-    Output_rep.innerHTML = textarea_rep.value;
+    Output_rep.innerHTML = textarea_rep.value.replace(/\\\$/g, '\\\\$');
     MathJax.typesetPromise([Output_rep]);
 });
 

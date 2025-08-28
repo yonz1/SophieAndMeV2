@@ -16,7 +16,7 @@ public class ImportAddViewModel : INotifyPropertyChanged
     public ICommand ExitCommand { get; set; }
     public Action CloseAction { get; set; }
     public List<string> Chapter2 { get; } = new();
-    private string _selecteditem;
+    private string _selecteditem2;
     public Action Close { get; set; }
     private bool? _dialogResult;
 
@@ -26,14 +26,14 @@ public class ImportAddViewModel : INotifyPropertyChanged
         set { _dialogResult = value;  OnPropertyChanged(); }
     }
 
-    public string SelectedItem
+    public string SelectedItem2
     {
-        get => _selecteditem;
+        get => _selecteditem2;
         set
         {
-            if (_selecteditem != value)
+            if (_selecteditem2 != value)
             {
-                _selecteditem = value;
+                _selecteditem2 = value;
                 OnPropertyChanged();
             }
         }

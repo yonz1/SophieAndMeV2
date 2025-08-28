@@ -1,3 +1,2 @@
-2025/08/24-23:35:35.531 d158 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/08/24-23:35:35.542 d158 Recovering log #8
-2025/08/24-23:35:35.547 d158 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000008.log 
+2025/08/27-22:14:42.307 1b98c Creating DB C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb since it was missing.
+2025/08/27-22:14:42.335 1b98c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001

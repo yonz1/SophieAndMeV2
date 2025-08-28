@@ -30,6 +30,7 @@ public partial class VCustom : UserControl
             
             WebViewCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
             WebViewCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            
             WebViewCustom.CoreWebView2.Settings.IsStatusBarEnabled = false;
             WebViewCustom.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             

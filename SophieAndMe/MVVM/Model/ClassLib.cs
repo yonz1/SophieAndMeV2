@@ -34,19 +34,25 @@ public class TimeTableItem
     {
         _dataService = App.DataService;
     }
+
+    public bool IsColle { get; set; } = false;
     public string Matiere { get; set; }
     public string Salle {get; set;}
     public string Enseignant { get; set; }
     public string Infos => Enseignant == "" ? $"{Salle}" : $"{Salle} - {Enseignant}";
-    public Brush  MatColor => new SolidColorBrush(MatToColor(Matiere));
+    public Brush  MatColor => new SolidColorBrush(MatToColor(Matiere,IsColle));
     public int ColumnId  { get; set; }
     public int RowId  { get; set; }
     public int RowNumSpan { get; set; }
-    public System.Windows.Media.Color MatToColor(string Mat)
+    public System.Windows.Media.Color MatToColor(string Mat,bool IsColle)
     {
         System.Windows.Media.Color val = _dataService.IsDark
             ? System.Windows.Media.Color.FromRgb(22, 23, 23)
             : System.Windows.Media.Color.FromRgb(248, 250, 252);
+        if (IsColle)
+        {
+            return System.Windows.Media.Color.FromRgb(255, 56, 60);
+        }
         switch (Mat)
         {
             case "Maths":
@@ -82,9 +88,9 @@ public class TimeTableItem
             case "Sport":
                 val = System.Windows.Media.Color.FromRgb(219, 166, 121);
                 break;
-            case "Colles":
-                val = System.Windows.Media.Color.FromRgb(255, 56, 60);
-                break;
+            // case "Colles":
+            //     val = System.Windows.Media.Color.FromRgb(255, 56, 60);
+            //     break;
             case "TIPE":
                 val = System.Windows.Media.Color.FromRgb(93, 64, 55);
                 break;
