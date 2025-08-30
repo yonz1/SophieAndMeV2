@@ -12,6 +12,56 @@ using Color = System.Drawing.Color;
 
 namespace SophieAndMe.MVVM.Model;
 
+
+public class ProfileUserInfo : INotifyPropertyChanged
+{
+    public int RowId { get; set; }
+    public string UserInfo { get; set; }
+    public string UserData {get; set; }
+    
+    public ICommand EditValue { get; set; }
+    public ICommand CancelValue { get; set; }
+    public ICommand ConfirmValue { get; set; }
+
+    private bool _isview;
+    public bool  IsView
+    {
+        get => _isview;
+        set { _isview = value;
+            OnPropertyChanged();
+        }
+    }
+    private bool _isviewedit;
+
+    public bool IsViewEdit
+    {
+        get => _isviewedit;
+        set
+        {
+            _isviewedit = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
+}
+
+
 public class HoursPanel
 {
     public int RowID { get; set; }
@@ -107,8 +157,6 @@ public class SubjectItem : INotifyPropertyChanged
     public string Value { get; set; }
     public ICommand SelectCommand { get; set; }
     public object IconVal { get; set; }
-
-
 
     private bool _isSelected;
     public bool IsSelected

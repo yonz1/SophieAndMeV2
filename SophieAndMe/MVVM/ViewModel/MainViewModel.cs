@@ -14,12 +14,6 @@ namespace SophieAndMe.MVVM.ViewModel ;
 
     public class MainViewModel : ObservableRecipient, INotifyPropertyChanged
     { 
-        private object _currentView;
-        public object CurrentView
-        {
-            get => _currentView;
-            set { _currentView = value; OnPropertyChanged(); } 
-        }
         public ICommand ChoisirNomCommand {  get; }
         private readonly IDataService _dataService;
         public ObservableCollection<SubjectItem> Pages { get; set; }
@@ -30,6 +24,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
         public ICommand ExitCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
+        public ICommand ShowProfileContent { get; }
         public ICommand AcceuilClick { get; }
         public List<string> Chapter { get; } = new();
         private string _selecteditem;
@@ -98,6 +93,10 @@ namespace SophieAndMe.MVVM.ViewModel ;
                     s.IsSelected = false;
                 }
                 NavigationService.Instance.Navigate("MainContent", new VLanding(this));
+            });
+            ShowProfileContent = new RelayCommand(o =>
+            {
+                NavigationService.Instance.Navigate("MainContent", new Settings(this));
             });
             foreach (var subject in Pages)
             {

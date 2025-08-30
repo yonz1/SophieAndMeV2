@@ -150,3 +150,9 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-window
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\Schedule.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\Windows\ImportAdd.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\Windows\ImportAdd.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\Settings.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\SettingsViews\SettingsGeneral.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\SettingsViews\SettingsProfile.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\Settings.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\SettingsViews\SettingsGeneral.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\SettingsViews\SettingsProfile.baml

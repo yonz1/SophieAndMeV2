@@ -1,0 +1,183 @@
+﻿<UserControl
+    x:Class="SophieAndMe.MVVM.View.SettingsViews.SettingsProfile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid Margin="30,70,70,70">
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+            <DockPanel>
+                <Label
+                    Content="Basique"
+                    DockPanel.Dock="Top"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource Textcolor}" />
+                <Rectangle
+                    Height="2"
+                    Margin="0,2,0,0"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Fill="{StaticResource Top_iconc_unused}" />
+                <Ellipse
+                    Width="100"
+                    Height="100"
+                    Margin="0,40,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="Profilepicture" ImageSource="../../../images/Ryan-Gosling_0.jpg" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <DockPanel
+                    Margin="20,20,20,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Button
+                        Width="27"
+                        Height="27"
+                        VerticalAlignment="Center"
+                        materialDesign:ThemeAssist.Theme="Light"
+                        Command="{Binding EditPhoto}"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Visibility="{Binding IsViewProfileEdit, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <fs:IconImage
+                            Width="24"
+                            Height="24"
+                            Foreground="{StaticResource Textcolor}"
+                            Icon="Pen" />
+                    </Button>
+                    <DockPanel VerticalAlignment="Center" Visibility="{Binding IsViewProfile, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+                        <Button
+                            Width="27"
+                            Height="27"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            materialDesign:ThemeAssist.Theme="Light"
+                            Command="{Binding Confirm}"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignIconButton}">
+                            <fs:IconImage
+                                Width="24"
+                                Height="24"
+                                Foreground="LightGreen"
+                                Icon="Check" />
+                        </Button>
+                        <Button
+                            Width="27"
+                            Height="27"
+                            Margin="0,0,30,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            materialDesign:ThemeAssist.Theme="Light"
+                            Command="{Binding Cancel}"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource MaterialDesignIconButton}">
+                            <fs:IconImage
+                                Width="24"
+                                Height="24"
+                                Foreground="OrangeRed"
+                                Icon="Xmark" />
+                        </Button>
+                    </DockPanel>
+                </DockPanel>
+                
+                
+
+                <ItemsControl ItemsSource="{Binding UserValueSettings}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid Margin="0,30,0,0" DockPanel.Dock="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="55" />
+                                    <RowDefinition Height="55" />
+                                    <RowDefinition Height="55" />
+                                    <RowDefinition Height="55" />
+                                    <RowDefinition Height="55" />
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Grid.Row" Value="{Binding RowId}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="{StaticResource Top_iconc_unused}" BorderThickness="0 0 0 1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                        Grid.Column="0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Content="{Binding UserInfo}"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="{StaticResource Textcolor}" />
+                                   <Label
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Content="{Binding UserData}"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource Textcolor}" />
+                                   <Button
+                                       Grid.Column="2"
+                                       Width="100"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Command="{Binding EditValue}"
+                                       Content="edit"
+                                       Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}"
+                                       Visibility="{Binding IsViewEdit, Converter={StaticResource BoolToVisibilityConverter},FallbackValue=Visible}" />
+                                   <DockPanel
+                                       Grid.Column="2"
+                                       Width="220"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}">
+                                       <Button
+                                           Grid.Column="2"
+                                           Width="100"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           BorderBrush="OrangeRed"
+                                           Command="{Binding CancelValue}"
+                                           Content="Cancel"
+                                           Foreground="OrangeRed"
+                                           Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
+                                       <Button
+                                           Grid.Column="2"
+                                           Width="100"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           BorderBrush="LightGreen"
+                                           Command="{Binding ConfirmValue}"
+                                           Content="Confirm"
+                                           Foreground="LightGreen"
+                                           Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
+                                   </DockPanel>                
+                            </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

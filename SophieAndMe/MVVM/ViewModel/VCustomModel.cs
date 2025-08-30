@@ -87,7 +87,6 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             {
                 case "save":
                     string val = $"{question}-{imgQuestion}-{rep}-{imgRep}";
-                    MessageBox.Show(val);
                     DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
                     break;
             }

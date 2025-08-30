@@ -102,8 +102,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
     }
-
-    public async void LoadMark(string mat)
+    public void LoadMark(string mat)
     {
         if (mat == "All")
         {
@@ -120,8 +119,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
         ShowCard(q, r, uq, ur);
     }
-    
-    private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
+    private void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
         _dataService.IdCard.Number += 1;
         Dictionary<string, string> dico = new Dictionary<string, string>();
