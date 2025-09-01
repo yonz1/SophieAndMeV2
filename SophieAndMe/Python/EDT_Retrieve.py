@@ -10,6 +10,7 @@ cur_i = con_i.cursor()
 
 
 ListMat = ["Maths","SI","TIPE","Francais","Sport","Info","Physique","Anglais"]
+ListRot = ["Physique","TP SI","TIPE"]
 wb_obj = openpyxl.load_workbook('Livre 3 1.xlsx')
 sheet_obj = wb_obj.active
 Row = sheet_obj.max_row
@@ -25,9 +26,9 @@ def FillSalle(data):
     L = re.split(r'[/\s$]+',data)
     for i in range(len(L)):
         if re.fullmatch(r"[A-Za-z]\d{3}",L[i]) or re.fullmatch(r"\d{2}[A-Za-z]",L[i]) :
-           ret.append(L[i])
+            ret.append(L[i])
         elif i+1 < len(L) and re.fullmatch(r"[A-Za-z]\d{3}",L[i]+L[i+1]):
-                ret.append(L[i]+L[i+1])
+            ret.append(L[i]+L[i+1])
 
     return ret
 
@@ -125,7 +126,7 @@ for i in range(2,Column + 1):
     Temp = sheet_obj.cell(row=3,column=i).value
     Header.append(val)
     Table = Temp+ "A"
-    command = ("CREATE TABLE " + Table+  " (Mat VARCHAR(255), Salle VARCHAR(255), Enseignant VARCHAR(255))")
+    command = ("DELETE FROM " + Table)
     cur_i.execute(command)
     print(Temp)
     for y in range(4, Row + 1):
@@ -189,7 +190,7 @@ for i in range(2,Column + 1):
     Groupe = []
     Temp = sheet_obj.cell(row=3,column=i).value
     Table = Temp+ "B"
-    command = ("CREATE TABLE " + Table+  " (Mat VARCHAR(255), Salle VARCHAR(255), Enseignant VARCHAR(255))")
+    command = ("DELETE FROM " + Table)
     cur_i.execute(command)
     Header.append(val)
     print(Temp)
@@ -221,15 +222,27 @@ for i in range(2,Column + 1):
             cur_i.execute(Command,val)
             con_i.commit()
         elif Presence:
-            mat_val = Mat[z] if Mat[z] else ""
-            salle_val = Salle[z] if Salle[z] else ""
-            # print(sheet_obj.cell(row=y, column=1).value + " - " + str(Mat[z]) + " - " + str(Salle[z]) + " - " +Enseignant)
-            Command = ("INSERT INTO " + Table + " (Mat,Salle,Enseignant) VALUES (?,?,?)")
-            val = (str(Mat[z]),str(Salle[z]),Enseignant)
-            print(Command)
-            print(val)
-            cur_i.execute(Command,val)
-            con_i.commit()
+            if(Mat in ListRot):
+                mat_val = Mat[z] if Mat[z] else ""
+                salle_val = Salle[z] if Salle[z] else ""
+                # print(sheet_obj.cell(row=y, column=1).value + " - " + str(Mat[z]) + " - " + str(Salle[z]) + " - " +Enseignant)
+                Command = ("INSERT INTO " + Table + " (Mat,Salle,Enseignant) VALUES (?,?,?)")
+                val = (str(Mat[z]),str(Salle[z]),Enseignant)
+                print(Command)
+                print(val)
+                cur_i.execute(Command,val)
+                con_i.commit()
+            else:
+                z = GetVal(Groupe, "GA")
+                mat_val = Mat[z] if Mat[z] else ""
+                salle_val = Salle[z] if Salle[z] else ""
+                # print(sheet_obj.cell(row=y, column=1).value + " - " + str(Mat[z]) + " - " + str(Salle[z]) + " - " +Enseignant)
+                Command = ("INSERT INTO " + Table + " (Mat,Salle,Enseignant) VALUES (?,?,?)")
+                val = (str(Mat[z]),str(Salle[z]),Enseignant)
+                print(Command)
+                print(val)
+                cur_i.execute(Command,val)
+                con_i.commit()
         else:
             # print(sheet_obj.cell(row=y, column=1).value +  " - Rien")
             Command = ("INSERT INTO " + Table + " (Mat,Salle,Enseignant) VALUES (?,?,?)")

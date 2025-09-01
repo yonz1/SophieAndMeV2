@@ -13,6 +13,7 @@ public class SettingsProfileViewModel : INotifyPropertyChanged
     public ICommand EditPhoto {get; }
     public ICommand Confirm { get; }
     public ICommand Cancel { get; }
+    private readonly MainViewModel _mainViewModel;
 
 
     
@@ -42,7 +43,8 @@ public class SettingsProfileViewModel : INotifyPropertyChanged
 
     public SettingsProfileViewModel(MainViewModel viewModel)
     {
-        // IsViewEdit = true;
+        _mainViewModel = viewModel;
+        _mainViewModel.CurrentMessage = "Paramètres";
         UserValueSettings = new ObservableCollection<ProfileUserInfo>
         {
             new ProfileUserInfo { RowId = 0, UserInfo = "username", UserData = "Admin" },

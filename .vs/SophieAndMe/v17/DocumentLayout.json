@@ -3,40 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\light_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\light_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\windows\\importadd.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\windows\\importadd.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\dark_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\dark_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\buttonstyle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\buttonstyle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vagenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vagenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\endquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\endquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\custom\\betterarea.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\custom\\betterarea.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settingsviews\\settingsprofile.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\buttonstyle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\buttonstyle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsgeneral.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settingsviews\\settingsgeneral.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\light_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\light_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\endquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\endquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsgeneral.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -47,36 +83,12 @@
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\quizzlogic.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settingsviews\\settingsgeneral.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settingsviews\\settingsgeneral.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\windows\\importadd.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\windows\\importadd.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vagenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vagenda.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\allquizzselect.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\allquizzselect.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\style\\theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\model\\mediator\\mediatorcustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\model\\mediator\\mediatorcustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -167,10 +179,6 @@
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\quizz\\quizz.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\custom\\betterarea.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\custom\\betterarea.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\custom\\value.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\custom\\value.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -218,76 +226,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\App.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml",
+              "RelativeToolTip": "SophieAndMe\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-31T05:43:00.679Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Light_Theme.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Light_Theme.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\Style\\Light_Theme.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Light_Theme.xaml",
-              "RelativeToolTip": "SophieAndMe\\Style\\Light_Theme.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-30T08:06:43.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ButtonStyle.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\Style\\ButtonStyle.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
-              "RelativeToolTip": "SophieAndMe\\Style\\ButtonStyle.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-30T08:02:41.128Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Dark_theme.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Dark_theme.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\Style\\Dark_theme.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Dark_theme.xaml",
-              "RelativeToolTip": "SophieAndMe\\Style\\Dark_theme.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-30T07:50:21.46Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Settings.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T07:34:01.511Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EndQuizz.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T16:36:10.562Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "SettingsProfile.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
@@ -299,31 +259,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SettingsGeneral.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
+              "DocumentIndex": 3,
+              "Title": "Dark_theme.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Dark_theme.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\Style\\Dark_theme.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Dark_theme.xaml",
+              "RelativeToolTip": "SophieAndMe\\Style\\Dark_theme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T16:25:43.844Z",
+              "WhenOpened": "2025-08-30T07:50:21.46Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Settings.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T15:59:38.656Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 2,
               "Title": "ImportAdd.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Windows\\ImportAdd.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Windows\\ImportAdd.xaml",
@@ -334,76 +282,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "QuizzLogic.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
+              "RelativeToolTip": "SophieAndMe\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:47:25.155Z",
+              "WhenOpened": "2025-07-24T17:31:12.408Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Schedule.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Schedule.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Schedule.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Schedule.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Schedule.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-15T22:03:10.652Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "QuizzLogicModel.cs",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
-              "ViewState": "AQIAAJEAAAAAAAAAAAAAAKQAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T18:01:51.212Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "MediatorCustom.cs",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T09:58:32.787Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "VAgenda.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-15T22:45:55.569Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AllQuizzSelect.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
-              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-31T10:54:49.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "Theme.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Theme.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Theme.xaml",
@@ -415,7 +306,155 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Settings.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-28T15:59:38.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SettingsGeneral.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-28T16:25:43.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VAgenda.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-15T22:45:55.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Schedule.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Schedule.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Schedule.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Schedule.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Schedule.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-15T22:03:10.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "betterarea.js",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
+              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
+              "RelativeToolTip": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-07-24T22:08:34.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml.cs",
+              "RelativeDocumentMoniker": "SophieAndMe\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml.cs",
+              "RelativeToolTip": "SophieAndMe\\App.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T05:43:10.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EndQuizz.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-28T16:36:10.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Settings.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T07:34:01.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Light_Theme.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Light_Theme.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\Style\\Light_Theme.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Light_Theme.xaml",
+              "RelativeToolTip": "SophieAndMe\\Style\\Light_Theme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-30T08:06:43.793Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "QuizzLogic.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-24T17:47:25.155Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 23,
+              "Title": "QuizzLogicModel.cs",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAAAKQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T18:01:51.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MediatorCustom.cs",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T09:58:32.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AllQuizzSelect.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
+              "RelativeToolTip": "SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-31T10:54:49.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "VCustom.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
@@ -426,18 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
-              "RelativeToolTip": "SophieAndMe\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:31:12.408Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MainWindow.xaml.cs",
@@ -449,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "VQuizzModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\VQuizzModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\VQuizzModel.cs",
@@ -461,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "VCustomModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\VCustomModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\VCustomModel.cs",
@@ -473,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "Calendar.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Calendar.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Calendar.xaml",
@@ -485,7 +513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "MediatorDisplayImport.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayImport.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayImport.cs",
@@ -497,7 +525,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "MediatorMarked.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorMarked.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorMarked.cs",
@@ -509,7 +537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "QuizzUtilities.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\QuizzUtilities.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\QuizzUtilities.cs",
@@ -521,7 +549,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "MediatorLanding.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorLanding.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorLanding.cs",
@@ -533,7 +561,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "MediatorDisplayResp.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayResp.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayResp.cs",
@@ -545,7 +573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "WebviewInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\WebviewInteraction.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\WebviewInteraction.cs",
@@ -557,7 +585,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "DBInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\DBInteraction.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\DBInteraction.cs",
@@ -569,7 +597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "ContentControlHelper.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\ContentControlHelper.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\ContentControlHelper.cs",
@@ -581,7 +609,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "CheckBoxItem.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\CheckBoxItem.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\CheckBoxItem.cs",
@@ -593,7 +621,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "SophieAndMe",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
               "RelativeDocumentMoniker": "SophieAndMe\\SophieAndMe.csproj",
@@ -604,7 +632,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "CardDisplayResp.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\CardDisplayResp.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\CardDisplayResp.xaml",
@@ -615,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "VQuizz.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VQuizz.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VQuizz.xaml",
@@ -626,19 +654,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "betterarea.js",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
-              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
-              "RelativeToolTip": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
-              "ViewState": "AQIAAIEAAAAAAAAAAAAAAJMAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-07-24T22:08:34.026Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "SophieAndMe.csproj",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
               "RelativeDocumentMoniker": "SophieAndMe\\SophieAndMe.csproj",
@@ -650,7 +666,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "VMarked.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VMarked.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VMarked.xaml",
@@ -661,7 +677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "Converter.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Converter.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Converter.xaml",
@@ -673,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "quizz.html",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.html",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.html",
@@ -685,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\AssemblyInfo.cs",
@@ -697,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "quizz.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.css",
@@ -709,7 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "quizz.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.js",
@@ -721,7 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "Style.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\Style.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\Style.css",
@@ -733,7 +749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "Card.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Card\\Card.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Card\\Card.css",
@@ -745,7 +761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": "Delete.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Delete.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Delete.js",
@@ -757,7 +773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "Value.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Value.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Value.js",
@@ -769,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "Value.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\Value.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\Value.js",
@@ -781,7 +797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 50,
               "Title": "VLanding.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
@@ -793,7 +809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "VLanding.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
@@ -815,55 +831,71 @@
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
         "Id": "fac32599-968c-4de9-9c6b-bc1db3d608d3",
-        "Display": 0,
+        "Display": 2,
         "X": 0,
-        "Y": 88,
+        "Y": 110,
         "Width": 800,
         "Height": 600,
         "WindowState": 2
       },
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 228,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "SettingsGeneral.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T16:27:06.725Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-28T16:27:06.725Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "SettingsProfile.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
-              "ViewState": "AQIAADAAAAAAAAAAAAAAAA4AAAAfAAAA",
+              "ViewState": "AQIAAD8BAAAAAAAAAAAqwGQBAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-08-28T16:26:57.72Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "Settings.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAACoAAAAuAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAABgAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T15:59:42.522Z",
+              "WhenOpened": "2025-08-28T15:59:42.522Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 172,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ButtonStyle.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\Style\\ButtonStyle.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
+              "RelativeToolTip": "SophieAndMe\\Style\\ButtonStyle.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-30T08:02:41.128Z",
               "EditorCaption": ""
             }
           ]

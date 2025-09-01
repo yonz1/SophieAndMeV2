@@ -7,24 +7,12 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="1000"
     mc:Ignorable="d">
 
-    <Grid Margin="30,70,70,70">
+    <!--<Grid Margin="30,70,70,70">
         <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
             <DockPanel>
-                <Label
-                    Content="Basique"
-                    DockPanel.Dock="Top"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource Textcolor}" />
-                <Rectangle
-                    Height="2"
-                    Margin="0,2,0,0"
-                    VerticalAlignment="Top"
-                    DockPanel.Dock="Top"
-                    Fill="{StaticResource Top_iconc_unused}" />
                 <Ellipse
                     Width="100"
                     Height="100"
@@ -89,8 +77,8 @@
                         </Button>
                     </DockPanel>
                 </DockPanel>
-                
-                
+
+
 
                 <ItemsControl ItemsSource="{Binding UserValueSettings}">
                     <ItemsControl.ItemsPanel>
@@ -171,12 +159,410 @@
                                            Content="Confirm"
                                            Foreground="LightGreen"
                                            Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
-                                   </DockPanel>                
+                                   </DockPanel>
                             </Grid>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+            </DockPanel>
+        </ScrollViewer>
+    </Grid>-->
+
+
+    <!--  Version 2 de la page  -->
+
+
+
+    <Grid Margin="30,0,0,0">
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+            <DockPanel>
+                <Grid VerticalAlignment="Top" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Grid.Column="0">
+                        <Label
+                            Content="Profile"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource TitleSettings}" />
+                        <Label
+                            Content="Configurez les détails de votre compte"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SecondaryTextSettings}" />
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="1">
+                        <Grid
+                            Margin="0,10,0,0"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Label
+                                    Margin="30,0,0,0"
+                                    Content="Name"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource SecondaryTextSettings}" />
+                                <TextBox
+                                    Margin="30,0,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Style="{StaticResource SettingsTextBox}"
+                                    Text="Admin" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Label
+                                    Margin="30,0,0,0"
+                                    Content="Surname"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource SecondaryTextSettings}" />
+                                <TextBox
+                                    Margin="30,0,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Style="{StaticResource SettingsTextBox}"
+                                    Text="Admin" />
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                            <Label
+                                Margin="30,15,0,0"
+                                Content="E-mail"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,30"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="admin@gmail.com" />
+                        </StackPanel>
+
+
+                    </DockPanel>
+
+                    <DockPanel Grid.Column="3">
+                        <Ellipse
+                            Width="135"
+                            Height="135"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="Profilepicture" ImageSource="../../../images/Ryan-Gosling_0.jpg" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <DockPanel
+                            Margin="10,10,0,0"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top">
+                            <Button
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Command="{Binding Settings}"
+                                Content="Edit photo"
+                                FontSize="14"
+                                Style="{StaticResource RoundedButtonSettings}" />
+                            <Button
+                                Width="27"
+                                Height="27"
+                                Margin="15,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                materialDesign:ThemeAssist.Theme="Light"
+                                Command="{Binding EditPhoto}"
+                                Style="{StaticResource MaterialDesignIconButton}">
+                                <fs:IconImage
+                                    Width="24"
+                                    Height="24"
+                                    Foreground="{StaticResource Textcolor}"
+                                    Icon="Trash" />
+                            </Button>
+                        </DockPanel>
+                    </DockPanel>
+                </Grid>
+
+
+                <!--  ############################################################### Identificateur  -->
+
+                <Rectangle
+                    Height="1"
+                    Margin="0,10,30,0"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Fill="{StaticResource Top_iconc_unused}" />
+                <Grid
+                    Margin="0,25,0,25"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Groupes"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource TitleSettings}" />
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Configurez les différents groupe auquel vous appartenez"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SecondaryTextSettings}" />
+                    </DockPanel>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="Groupe de kholle"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="7" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="Groupe de classe"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="GA" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!--  ############################################################ Compte Sophieandme  -->
+                <Rectangle
+                    Height="1"
+                    Margin="0,10,30,0"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Fill="{StaticResource Top_iconc_unused}" />
+                <Grid
+                    Margin="0,25,0,25"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Compte Sophieandme"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource TitleSettings}" />
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Configurez les détails de votre compte Sophieandme"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SecondaryTextSettings}" />
+                    </DockPanel>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="UserName / E-mail"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="Lorem ipsum" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="Password"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <PasswordBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Password="Lorem ipsum"
+                                Style="{StaticResource SettingsPasswordBox}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+
+                <!--  ############################################################ Compte Plus+  -->
+
+
+                <Rectangle
+                    Height="1"
+                    Margin="0,10,30,0"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Fill="{StaticResource Top_iconc_unused}" />
+                <Grid
+                    Margin="0,25,0,25"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Compte Plus+"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource TitleSettings}" />
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Configurez les détails de votre compte Plus+"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SecondaryTextSettings}" />
+                    </DockPanel>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="UserName / E-mail"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="Lorem ipsum" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="Password"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <PasswordBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Password="Lorem ipsum"
+                                Style="{StaticResource SettingsPasswordBox}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!--  ############################################################ Compte Pronote  -->
+
+                <Rectangle
+                    Height="1"
+                    Margin="0,10,30,0"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top"
+                    Fill="{StaticResource Top_iconc_unused}" />
+                <Grid
+                    Margin="0,25,0,25"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Compte Pronote"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource TitleSettings}" />
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Configurez les détails de votre compte Pronote"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SecondaryTextSettings}" />
+                    </DockPanel>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Top"
+                        DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="UserName / E-mail"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <TextBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource SettingsTextBox}"
+                                Text="Lorem ipsum" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Label
+                                Margin="30,0,0,0"
+                                Content="Password"
+                                DockPanel.Dock="Top"
+                                Style="{StaticResource SecondaryTextSettings}" />
+                            <PasswordBox
+                                Margin="30,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                Password="Lorem ipsum"
+                                Style="{StaticResource SettingsPasswordBox}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </DockPanel>
         </ScrollViewer>
     </Grid>

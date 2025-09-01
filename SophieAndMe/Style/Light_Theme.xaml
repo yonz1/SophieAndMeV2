@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
+
+    <SolidColorBrush x:Key="Contrast" Color="Black" />
     <SolidColorBrush x:Key="Iconcolor" Color="#1E293B" />
     <SolidColorBrush x:Key="Textcolor" Color="#1E293B" />
     <SolidColorBrush x:Key="TextcolorOncolor" Color="#e2e8f0" />

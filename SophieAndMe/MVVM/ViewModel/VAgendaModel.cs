@@ -29,7 +29,7 @@ namespace SophieAndMe.MVVM.ViewModel
         public ICommand Back { get; }
         public ICommand Forward { get; }
         private string OldSem;
-        private string ActualSem = "A";
+        private string ActualSem = "B";
         private DateTime startDate = new DateTime(2025, 08, 01);
         DayOfWeek[] days = { 
             DayOfWeek.Sunday, 
@@ -297,7 +297,7 @@ namespace SophieAndMe.MVVM.ViewModel
         public string DiffSem(DateTime EndDate, DateTime StartDate)
         {
             Console.WriteLine((EndDate - StartDate).TotalDays % 14);
-            ActualSem = (EndDate - StartDate).TotalDays % 14 == 3 ? "A" : "B";
+            ActualSem = (EndDate - StartDate).TotalDays % 14 == 3 ? "B" : "A";
             return ActualSem;
         }
         

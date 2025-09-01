@@ -23,42 +23,51 @@
                     Margin="30,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
                     Command="{Binding Settings}"
                     Content="General"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MaterialDesignFlatLightButton}" />
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
                 <Button
                     x:Name="Profile"
                     Margin="30,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
                     Command="{Binding Profile}"
                     Content="Profile"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MaterialDesignFlatLightButton}" />
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
                 <Button
                     x:Name="App"
                     Margin="30,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
                     Command="{Binding App}"
                     Content="App"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MaterialDesignFlatLightButton}" />
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
                 <Button
                     x:Name="about"
                     Margin="30,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
                     Command="{Binding about}"
                     Content="Credits"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MaterialDesignFlatLightButton}" />
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
             </DockPanel>
         </Grid>
-        <ContentControl x:Name="SettingsContentControl" Grid.Row="2" />
-        <!--<Grid Grid.Row="2" Margin="30">
+        <ContentControl
+            x:Name="SettingsContentControl"
+            Grid.Row="2"
+            Margin="0,30,0,0" />
 
-        </Grid>-->
     </Grid>
 </UserControl>

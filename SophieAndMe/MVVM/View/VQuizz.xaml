@@ -98,7 +98,7 @@
                                 Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                 CommandParameter="{Binding}"
                                 Content="{Binding}"
-                                FontSize="14"
+                                FontSize="16"
                                 Foreground="{StaticResource Textcolor}"
                                 Style="{StaticResource button_quizz_desi}" />
                         </DataTemplate>

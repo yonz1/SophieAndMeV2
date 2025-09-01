@@ -55,7 +55,7 @@
                         Visibility="Visible">
                         <DockPanel>
                             <TextBlock
-                                Margin="15,15,0,0"
+                                Margin="30,15,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 DockPanel.Dock="Left"

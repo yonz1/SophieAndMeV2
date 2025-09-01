@@ -4,6 +4,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 
+    <SolidColorBrush x:Key="Contrast" Color="White" />
     <SolidColorBrush x:Key="Iconcolor" Color="#e2e8f0" />
     <SolidColorBrush x:Key="Textcolor" Color="#e2e8f0" />
     <SolidColorBrush x:Key="TextcolorOncolor" Color="#e2e8f0" />

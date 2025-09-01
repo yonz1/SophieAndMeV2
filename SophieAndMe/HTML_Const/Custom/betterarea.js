@@ -5,17 +5,18 @@ button_fill("Add");
 const wordReplacements = {
     "somme": "\\sum_{k}^{n}",
     "produit": "\\prod_{k}^{n}",
-    "square": "\\sqrt{a}",
+    "sqa": "\\sqrt{a}",
     "intab": "\\int_{a}^{b}",
     "limite": "\\lim_{x \\to a}",
     "infini": "\\infty",
     "implique": "\\implies",
     "equivalent": "\\iff",
     "binome": "\\binom{n}{k}",
-    "deriv": "\\dv{f}{x}",
+    "deriv": "\\frac{d}{dx}",
     "inclue": "\\subset",
     "mat3": "\\begin{pmatrix}\r\n &  &  \\\\\r\n &  &  \\\\\r\n &  & \r\n\\end{pmatrix}",
-    "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}"
+    "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}",
+    "times": "\\cdot",
 };
 
 const keymap = {
@@ -23,7 +24,6 @@ const keymap = {
     '(': { value: '()', pos: 1 },
     '{': { value: '{}', pos: 1 },
     '[': { value: '[]', pos: 1 },
-    '\'': { value: '\'\'', pos: 1 },
     '"': { value: '""', pos: 1 },
     '“': { value: '“”', pos: 1 },
     '`': { value: '``', pos: 1 },
@@ -35,7 +35,8 @@ const keymap = {
     '>': { value: '> ', pos: 2 },
     '~': { value: '~~', pos: 1 },
     '/': { value: '\\frac{}{}', pos: 6 },
-    '$': { value: '$$', pos: 1 }
+    '$': { value: '$$', pos: 1 },
+    '^^': {value: '^{}',pos:2},
 };
 
 
