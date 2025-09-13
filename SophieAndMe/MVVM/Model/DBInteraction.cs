@@ -3,6 +3,8 @@ using System.Data.SQLite;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Globalization;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.ViewModel;
@@ -372,7 +374,7 @@ namespace SophieAndMe.MVVM.Model
         {
             string query = "";
             matier = "\"" + matier + "\"";
-            name = "\"" + name + "\"";
+            name = "\"" + name.TrimEnd() + "\"";
             question = "\"" + question + "\"";
             imgQuestion = "\"" + imgQuestion + "\"";
             rep = "\"" + rep + "\"";
@@ -402,6 +404,27 @@ namespace SophieAndMe.MVVM.Model
                         }
                     }
                 }
+                using (SQLiteConnection c = new SQLiteConnection(UserSource))
+                {
+                    c.Open();
+                    query = $"SELECT COUNT(*) FROM Date WHERE  name = {name}";
+                    System.Diagnostics.Debug.WriteLine(query);
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                    {
+                        long count = (long)cmd.ExecuteScalar();
+                        System.Diagnostics.Debug.WriteLine(count);
+                
+                        if (count == 0)
+                        {
+                            query = $"INSERT INTO Date (Name,Inserted) VALUES ({name},\"{DateTime.UtcNow.Date.ToString("yyyy-MM-dd HH:mm:ss")}\")";
+                            using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
+                            {
+                                Console.WriteLine(query);
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -419,7 +442,6 @@ namespace SophieAndMe.MVVM.Model
                 string query = "DELETE FROM " + _dataService.QuizzId.Matier.ToString() +
                                " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + question +
                                "\", ' ', '') AND ID = \"100\"";
-                Console.WriteLine(query);
                 using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                 {
                     cmd.ExecuteNonQuery();
@@ -441,7 +463,6 @@ namespace SophieAndMe.MVVM.Model
                     _dataService.QuizzId.Matier.ToString() +
                     " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question +
                     "\", ' ', '') AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\"";
-            Console.WriteLine(query);
             using (var db = new SQLiteConnection(ConSource))
             {
                 db.Open();
@@ -482,7 +503,6 @@ namespace SophieAndMe.MVVM.Model
                             " WHERE ID = \"100\" AND name = \"" + App.Current.Properties["nameindex"].ToString() +
                             "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" +
                             App.Current.Properties["old_quest"].ToString() + "\", ' ', '')";
-                    Console.WriteLine(query);
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
                         cmd.ExecuteNonQuery();
@@ -598,7 +618,6 @@ namespace SophieAndMe.MVVM.Model
             SQLiteCommand command;
             foreach (var info in chapter)
             {
-                Console.WriteLine("data -" + info);
                 query = "INSERT INTO Chapitre" + Mat + " (Noms) VALUES (@val)";
                 command = new SQLiteCommand(query, c);
                 SQLiteParameter param = new SQLiteParameter();
@@ -670,7 +689,6 @@ namespace SophieAndMe.MVVM.Model
             foreach (var data in Question)
             {
                 string query = "DELETE FROM Progressions" +  _dataService.QuizzId.Matier + " WHERE REPLACE(question,'\"', '''') =  @data"; 
-                Console.WriteLine(data);
                 command = new SQLiteCommand(query, c);
                 command.Parameters.AddWithValue("@data", data);
                 command.ExecuteNonQuery();                
@@ -744,7 +762,6 @@ namespace SophieAndMe.MVVM.Model
             {
                 while (reader.Read())
                 {
-                    Console.WriteLine(reader.GetString(0));
                     Name.Add(reader.GetString(0));
                 }
             }
@@ -802,7 +819,6 @@ namespace SophieAndMe.MVVM.Model
                     FDays.Add(reader.GetString(5));
                 }
             }
-            Console.WriteLine(date);
             for (int i = 0; i < DDays.Count; i++)
             {
                 DateTime ValD = new DateTime(Int32.Parse(DYear[i]), Int32.Parse(DMonth[i]), Int32.Parse(DDays[i]));
@@ -852,7 +868,14 @@ namespace SophieAndMe.MVVM.Model
             return (question,reponse, ImgRep, ImgQuest);
         }
 
-        public static (List<string>, List<string>, List<string>, List<int>, List<int>) GetColles(DateTime dlundi)
+        public record CollesResult(
+            List<string> Nom,
+            List<string> Salle,
+            List<string> Matiere,
+            List<int> Heure,
+            List<int> Jours
+        );
+        public static CollesResult GetColles(DateTime dlundi)
         {
             string Dates = "";
             List<string> Nom =  new List<string>();
@@ -897,8 +920,27 @@ namespace SophieAndMe.MVVM.Model
                     }
                 }
             }
-            return (Nom, Salle, Matiére, heure, Jours);
+            return new CollesResult(Nom, Salle, Matiére, heure, Jours);
         }
+
+        public static string GetActualAlt(DateTime dlundi)
+        {
+            string Actual = "";
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = "SELECT Physique FROM Alternance WHERE date = \"" +  dlundi.ToString("yyyy-MM-dd 00:00:00") + "\"";
+            command = new SQLiteCommand(query, c); 
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                     Actual = reader.GetString(0);
+                }
+            }
+            return Actual;
+        }
+        
 
         public static int GetColumnNum(string Seljour)
         {
@@ -912,6 +954,60 @@ namespace SophieAndMe.MVVM.Model
             }
             return 6;
         }
+
+        public static List<string> QuickSelect(string query,string Source )
+        {
+            List<string> Value = [];
+            using SQLiteConnection c = new SQLiteConnection(Source);
+            c.Open();
+            SQLiteCommand command;
+            command = new SQLiteCommand(query, c); 
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Value.Add(reader.GetString(0));
+                }
+            }
+            return Value;
+        }
+        
+        public static (List<string>,List<string>,List<int>,List<string>,List<string>) GetAllColle()
+        {
+            List<string> Nom =  new List<string>();
+            List<DateTime> DatesT = new List<DateTime>();
+            List<string> Dates =  new List<string>();
+            List<int> heure = new List<int>();
+            List<int> Jours =  new List<int>();
+            List<string> Salle = new List<string>();
+            List<string> Matiére =  new List<string>();
+            int y = 0;
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = $"SELECT * FROM Colles";
+            command = new SQLiteCommand(query, c);  
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Nom.Add(reader.GetString(0));
+                    DatesT.Add(Convert.ToDateTime(reader.GetString(1)));
+                    heure.Add(int.Parse(reader.GetString(2).Split("h")[0])-8);
+                    Jours.Add(GetColumnNum(reader.GetString(3)));
+                    Salle.Add(reader.GetString(4));
+                    Matiére.Add(reader.GetString(5));
+                    string val = $"{Nom[y]}-{DatesT[y]}-{heure[y]}-{Jours[y]}-{Salle[y]}-{Matiére[y]}";
+                    y++;
+                }
+            }
+            for (int i = 0; i < DatesT.Count; i++)
+            {
+                Dates.Add((DatesT[i].AddDays(Jours[i])).ToString("yyyy-MM-dd"));
+            }
+            return (Nom,Dates,heure,Salle,Matiére);
+        }
+        
         
     }
 }

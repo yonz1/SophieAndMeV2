@@ -29,7 +29,7 @@ namespace SophieAndMe.MVVM.ViewModel
         public ICommand Back { get; }
         public ICommand Forward { get; }
         private string OldSem;
-        private string ActualSem = "B";
+        private string ActualSem = "";
         private DateTime startDate = new DateTime(2025, 08, 01);
         DayOfWeek[] days = { 
             DayOfWeek.Sunday, 
@@ -42,7 +42,7 @@ namespace SophieAndMe.MVVM.ViewModel
 
         private List<string> Jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
         private int z = 0;
-
+        private string Sem = "";
         private string _monthText;
 
         public string MonthText
@@ -64,14 +64,15 @@ namespace SophieAndMe.MVVM.ViewModel
                 _TimeTableItems.Clear();
                 z = z - 7;
                 var dates = GetDates(z);
-                if (DbInteraction.IsHolliday(dates[0]))
+                Sem = DbInteraction.GetActualAlt(dates[0]);
+                if (DbInteraction.IsHolliday(dates[0]) || Sem == "")
                 {
                     FillPlanning("Vac");
                     FillInfos(dates,Jours);   
                 }
                 else
                 {
-                    FillPlanning(DiffSem(dates[0],startDate));
+                    FillPlanning(Sem);
                     FillInfos(dates,Jours);   
                     FillDs(DbInteraction.GetDS(dates[5]));
                     var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
@@ -84,14 +85,15 @@ namespace SophieAndMe.MVVM.ViewModel
                 _TimeTableItems.Clear();
                 z = z + 7;
                 var dates = GetDates(z);
-                if (DbInteraction.IsHolliday(dates[0]))
+                Sem = DbInteraction.GetActualAlt(dates[0]);
+                if (DbInteraction.IsHolliday(dates[0]) || Sem == "")
                 {
                     FillPlanning("Vac");
                     FillInfos(dates,Jours);   
                 }
                 else
                 {
-                    FillPlanning(DiffSem(dates[0],startDate));
+                    FillPlanning(Sem);
                     FillInfos(dates,Jours); 
                     FillDs(DbInteraction.GetDS(dates[5]));
                     var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
@@ -102,6 +104,7 @@ namespace SophieAndMe.MVVM.ViewModel
             });
             var dates = GetDates(z);
             DbInteraction.GetColles(dates[0]);
+            ActualSem = DbInteraction.GetActualAlt(dates[0]);
             DateTime dateTime = DateTime.UtcNow.Date;
             Hours = new ObservableCollection<HoursPanel>
             {
@@ -123,7 +126,7 @@ namespace SophieAndMe.MVVM.ViewModel
             _TimeTableItems= new ObservableCollection<TimeTableItem>();
             MonthText = $"{DateTime.Now.ToString("MMMMMMM")}  {DateTime.Now.Year.ToString()}";
             FillInfos(dates,Jours);
-            if (DbInteraction.IsHolliday(dates[0]))
+            if (DbInteraction.IsHolliday(dates[0]) || ActualSem == "")
             {
                 FillPlanning("Vac");
                 FillInfos(dates,Jours);   
@@ -150,6 +153,7 @@ namespace SophieAndMe.MVVM.ViewModel
                 item.Matiere = Matiére[i];
                 item.RowNumSpan = 1;
                 item.IsColle = true;
+                Console.WriteLine(item.ToString());
                 _TimeTableItems.Add(item);
             }
         }

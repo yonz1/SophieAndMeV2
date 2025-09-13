@@ -28,28 +28,27 @@
         <DockPanel
             Height="50"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            >
-           
-            <DockPanel  Visibility="{Binding IsViewReturn, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}">
-            <Button
-                Width="30"
-                Height="30"
-                Margin="0,0,30,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                BorderThickness="0"
-                Command="{Binding Return}"
-                DockPanel.Dock="Left"
-                Style="{StaticResource TopButton}"
-                Tag="{StaticResource Textcolor}">
-                <fs:IconImage
-                    Width="24"
-                    Height="24"
-                    Foreground="{StaticResource Textcolor}"
-                    Icon="ChevronLeft"
-                    Style="{StaticResource TopButtonIconrad}" />
-            </Button>
+            VerticalAlignment="Center">
+
+            <DockPanel Visibility="{Binding IsViewReturn, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}">
+                <Button
+                    Width="30"
+                    Height="30"
+                    Margin="0,0,30,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    BorderThickness="0"
+                    Command="{Binding Return}"
+                    DockPanel.Dock="Left"
+                    Style="{StaticResource TopButton}"
+                    Tag="{StaticResource Textcolor}">
+                    <fs:IconImage
+                        Width="24"
+                        Height="24"
+                        Foreground="{StaticResource Textcolor}"
+                        Icon="ChevronLeft"
+                        Style="{StaticResource TopButtonIconrad}" />
+                </Button>
             </DockPanel>
             <Border
                 Height="60"
@@ -105,6 +104,31 @@
             </Border>
         </DockPanel>
 
+        <!--<DockPanel
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <ComboBox
+                Width="200"
+                Height="50"
+                HorizontalAlignment="Left"
+                materialDesign:HintAssist.Hint="Niveau"
+                DockPanel.Dock="Left"
+                ItemsSource="{Binding NiveauImport}"
+                SelectedItem="{Binding SelectedItemLevel}"
+                Style="{StaticResource SearchBox}" />
+            <ComboBox
+                Width="200"
+                Height="50"
+                Margin="40,0,0,0"
+                HorizontalAlignment="Left"
+                materialDesign:HintAssist.Hint="Cours"
+                DockPanel.Dock="Left"
+                ItemsSource="{Binding CoursImport}"
+                SelectedItem="{Binding SelectedItemCourse}"
+                Style="{StaticResource SearchBox}" />
+        </DockPanel>-->
+
 
         <wv2:WebView2
             x:Name="WebViewCustom"
@@ -116,8 +140,8 @@
             x:Name="WebViewCard"
             Grid.Row="1"
             Visibility="{Binding IsViewCard, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}" />
-        
-        <ContentControl Grid.Row="1" x:Name="WebViewDisplayPresenter" />
+
+        <ContentControl x:Name="WebViewDisplayPresenter" Grid.Row="1" />
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
             <ItemsControl ItemsSource="{Binding Matier}">
                 <ItemsControl.ItemsPanel>

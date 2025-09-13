@@ -3,12 +3,11 @@ imgRep = "";
 button_fill("Add");
 
 const wordReplacements = {
-    "somme": "\\sum_{k}^{n}",
-    "produit": "\\prod_{k}^{n}",
+    "sommekn": "\\sum_{k}^{n}",
+    "produitkn": "\\prod_{k}^{n}",
     "sqa": "\\sqrt{a}",
     "intab": "\\int_{a}^{b}",
-    "limite": "\\lim_{x \\to a}",
-    "infini": "\\infty",
+    "limitea": "\\lim_{x \\to a}",
     "implique": "\\implies",
     "equivalent": "\\iff",
     "binome": "\\binom{n}{k}",
@@ -17,6 +16,7 @@ const wordReplacements = {
     "mat3": "\\begin{pmatrix}\r\n &  &  \\\\\r\n &  &  \\\\\r\n &  & \r\n\\end{pmatrix}",
     "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}",
     "times": "\\cdot",
+    "under": "\\underline{}",
 };
 
 const keymap = {
