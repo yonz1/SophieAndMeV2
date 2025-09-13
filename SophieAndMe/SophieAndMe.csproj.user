@@ -5,9 +5,21 @@
     <Compile Update="MVVM\View\AllQuizzSelect.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\SettingsViews\SettingsGeneral.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SettingsViews\SettingsProfile.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MVVM\View\AllQuizzSelect.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SettingsViews\SettingsGeneral.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SettingsViews\SettingsProfile.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

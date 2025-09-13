@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+820a8a2e939379a77aea9c118dd785d9b6a68285")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f748256d82c99ed3898ed5aa6387e838a2793f1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SophieAndMe")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

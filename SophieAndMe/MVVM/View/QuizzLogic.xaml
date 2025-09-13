@@ -57,24 +57,24 @@
                     CornerRadius="20"
                     DockPanel.Dock="Right">
                     <DockPanel>
-                        <ToggleButton
-                            x:Name="Resppaper"
-                            Width="40"
-                            Height="40"
-                            Margin="0,0,10,0"
-                            HorizontalAlignment="Right"
-                            BorderThickness="0"
-                            Command="{Binding Respaper}"
-                            DockPanel.Dock="Right"
-                            Style="{StaticResource TopButtonrad}"
-                            Tag="{StaticResource Textcolor}">
-                            <fs:IconImage
-                                Width="30"
-                                Height="30"
-                                Icon="ArrowAltCircleDown"
-                                IconFont="Regular"
-                                Style="{StaticResource TopButtonIconrad}" />
-                        </ToggleButton>
+                        <!-- <ToggleButton -->
+                        <!--     x:Name="Resppaper" -->
+                        <!--     Width="40" -->
+                        <!--     Height="40" -->
+                        <!--     Margin="0,0,10,0" -->
+                        <!--     HorizontalAlignment="Right" -->
+                        <!--     BorderThickness="0" -->
+                        <!--     Command="{Binding Respaper}" -->
+                        <!--     DockPanel.Dock="Right" -->
+                        <!--     Style="{StaticResource TopButtonrad}" -->
+                        <!--     Tag="{StaticResource Textcolor}"> -->
+                        <!--     <fs:IconImage -->
+                        <!--         Width="30" -->
+                        <!--         Height="30" -->
+                        <!--         Icon="ArrowAltCircleDown" -->
+                        <!--         IconFont="Regular" -->
+                        <!--         Style="{StaticResource TopButtonIconrad}" /> -->
+                        <!-- </ToggleButton> -->
 
                         <ToggleButton
                             Width="40"

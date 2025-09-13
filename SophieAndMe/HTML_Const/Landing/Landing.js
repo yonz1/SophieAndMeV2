@@ -14,7 +14,7 @@ let date = new Date(),
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-const Val = ["2025-08-19", "2025-08-31"]; 
+let Val = ["2025-08-19", "2025-08-31"]; 
 
 const pad = n => n.toString().padStart(2, '0');
 const NvContainer = document.getElementById("Nouveau");
@@ -40,11 +40,7 @@ for (let i  = 0; i < MetaMess.length; i++) {
 //     FillMessages(MetaQuizz[i],DataQuizz[i],"Quizz","");
 // }
 
-window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
-    console.log(dico);
-    FillMessages(dico.Meta,dico.Data,dico.Position)
-});
+
 
 function FillMessages(Meta, Data, Position) {
     let Info = Data.split(';');
@@ -117,7 +113,21 @@ const renderCalendar = () => {
     daysTag.innerHTML = liTag;
 }
 
-renderCalendar();
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;
+    console.log(dico);
+    if (dico.DateColle != "")
+    {
+        Val.push(dico.DateColle)
+    }
+    else
+    {
+        renderCalendar();
+        console.log("Called")
+        FillMessages(dico.Meta,dico.Data,dico.Position)
+    }
+
+});
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () => {

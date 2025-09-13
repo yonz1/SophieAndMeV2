@@ -136,23 +136,24 @@ function CreateCardMain(level,course,quest, rep,Qimg, Rimg,difficulty, len,Actio
     console.log(i);
     console.log(len);
     card.addEventListener("click", () => {
-        if (selectedCard && selectedCard !== card)
-        {
+        if (selectedCard && selectedCard !== card) {
             selectedCard.style.backgroundColor = SelectedBg;
             selectedCard.style.boxShadow = "none";
             selectedCard.classList.remove("active");
         }
-        card.style.backgroundColor = selectedCard && selectedCard === card ? SelectedBg : "transparent";
-        card.style.boxShadow = selectedCard && selectedCard === card ? "none" : "6px 6px 10px 0px lightblue";
-        if (selectedCard && selectedCard === card)
-        {
-            selectedCard.classList.remove("active");
-        }
-        else {
+
+        if (selectedCard === card) {
+            card.style.backgroundColor = SelectedBg;
+            card.style.boxShadow = "none";
+            card.classList.remove("active");
+            selectedCard = null; 
+        } else {
+            card.style.backgroundColor = "transparent";
+            card.style.boxShadow = "5px 5px 5px lightblue";
             card.classList.add("active");
+            selectedCard = card;
         }
-        selectedCard = card;
-    })
+    });
     switch (Action)
     {
         case "Resp":

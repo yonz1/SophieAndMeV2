@@ -20,9 +20,11 @@ public class VLandingModel : INotifyPropertyChanged
     private readonly MainViewModel _mainViewModel;
     private List<string> _meta = [];
     private List<string> _data = [];
+    private List<string> Colles = [];
     private readonly IDataService _dataService;
     private bool _isview;
-    public bool  IsView
+    private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
+    public bool  IsViewVal
     {
         get => _isview;
         set { _isview = value;
@@ -35,7 +37,8 @@ public class VLandingModel : INotifyPropertyChanged
         _mainViewModel = mainVm;
         _mainViewModel.CurrentMessage = "Acceuil";
         _dataService = App.DataService;
-        IsView = true;
+        IsViewVal = true;
+        var (Nom,Dates,heure,Salle,Matiére) = DbInteraction.GetAllColle();
         WeakReferenceMessenger.Default.Register<MediatorLanding.JstoAppMessage>(this, (r, m) =>
         {
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
@@ -48,16 +51,22 @@ public class VLandingModel : INotifyPropertyChanged
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
         
-        
-        
         Dictionary<string, string> dico = new Dictionary<string, string>();
+        for (int i = 0; i < Dates.Count; i++)
+        {
+            dico["DateColle"] = Dates[i];
+            string jscode = JsonSerializer.Serialize(dico);
+            WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
+        } 
         (var metaNotes, var dataNotes) = DbInteraction.GetNotesWeb();
+        dico["DateColle"] =  "";
         for (int i = 0; i < metaNotes.Count; i++)
         { 
+
             dico["Meta"] =  metaNotes[i];
             dico["Data"] =  dataNotes[i];
             dico["Position"] = "Notes";
-            string jscode = JsonSerializer.Serialize(dico);
+            string jscode = JsonSerializer.Serialize(dico);  
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         } 
         var quizzName = DbInteraction.GetQuizzWeb();

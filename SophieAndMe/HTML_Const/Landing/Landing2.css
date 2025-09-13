@@ -563,4 +563,19 @@ header .current-date{
     width:  80px;
 }
 
+.OpenSlack{
+    position: relative;
+    float:  right;
+    margin-right:  20px ;
+    align-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    background: #6255f5;
+    color: var(--TextOnColor);
+    font-size: 13px;
+    border-radius: 10px;
+    height: 35px;
+    width:  80px;
+}
+
 

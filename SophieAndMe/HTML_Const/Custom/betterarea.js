@@ -3,19 +3,20 @@ imgRep = "";
 button_fill("Add");
 
 const wordReplacements = {
-    "somme": "\\sum_{k}^{n}",
-    "produit": "\\prod_{k}^{n}",
-    "square": "\\sqrt{a}",
+    "sommekn": "\\sum_{k}^{n}",
+    "produitkn": "\\prod_{k}^{n}",
+    "sqa": "\\sqrt{a}",
     "intab": "\\int_{a}^{b}",
-    "limite": "\\lim_{x \\to a}",
-    "infini": "\\infty",
+    "limitea": "\\lim_{x \\to a}",
     "implique": "\\implies",
     "equivalent": "\\iff",
     "binome": "\\binom{n}{k}",
-    "deriv": "\\dv{f}{x}",
+    "deriv": "\\frac{d}{dx}",
     "inclue": "\\subset",
     "mat3": "\\begin{pmatrix}\r\n &  &  \\\\\r\n &  &  \\\\\r\n &  & \r\n\\end{pmatrix}",
-    "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}"
+    "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}",
+    "times": "\\cdot",
+    "under": "\\underline{}",
 };
 
 const keymap = {
@@ -23,7 +24,6 @@ const keymap = {
     '(': { value: '()', pos: 1 },
     '{': { value: '{}', pos: 1 },
     '[': { value: '[]', pos: 1 },
-    '\'': { value: '\'\'', pos: 1 },
     '"': { value: '""', pos: 1 },
     '“': { value: '“”', pos: 1 },
     '`': { value: '``', pos: 1 },
@@ -35,7 +35,8 @@ const keymap = {
     '>': { value: '> ', pos: 2 },
     '~': { value: '~~', pos: 1 },
     '/': { value: '\\frac{}{}', pos: 6 },
-    '$': { value: '$$', pos: 1 }
+    '$': { value: '$$', pos: 1 },
+    '^^': {value: '^{}',pos:2},
 };
 
 
@@ -74,7 +75,8 @@ window.addEventListener('DOMContentLoaded', () => {
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: false
     },
     options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -87,7 +89,7 @@ const textarea = document.getElementById('inputText')
 const output = document.getElementById('OutputText')
 
 textarea.addEventListener('input', () => {
-    output.innerHTML = textarea.value;
+    output.innerHTML = textarea.value.replace(/\\\$/g, '\\\\$');
     MathJax.typesetPromise([output]);
 });
 
@@ -95,7 +97,7 @@ const textarea_rep = document.getElementById('input_rep')
 const Output_rep = document.getElementById('Output_rep')
 
 textarea_rep.addEventListener('input', () => {
-    Output_rep.innerHTML = textarea_rep.value;
+    Output_rep.innerHTML = textarea_rep.value.replace(/\\\$/g, '\\\\$');
     MathJax.typesetPromise([Output_rep]);
 });
 

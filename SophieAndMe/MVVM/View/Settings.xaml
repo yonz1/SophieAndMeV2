@@ -1,0 +1,73 @@
+<UserControl
+    x:Class="SophieAndMe.MVVM.View.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+    xmlns:local="clr-namespace:SophieAndMe.MVVM.View"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="740"
+    d:DesignWidth="980"
+    mc:Ignorable="d">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <DockPanel>
+                <Button
+                    x:Name="General"
+                    Margin="30,0,0,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
+                    Command="{Binding Settings}"
+                    Content="General"
+                    DockPanel.Dock="Left"
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
+                <Button
+                    x:Name="Profile"
+                    Margin="30,0,0,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
+                    Command="{Binding Profile}"
+                    Content="Profile"
+                    DockPanel.Dock="Left"
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
+                <Button
+                    x:Name="App"
+                    Margin="30,0,0,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
+                    Command="{Binding App}"
+                    Content="App"
+                    DockPanel.Dock="Left"
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
+                <Button
+                    x:Name="about"
+                    Margin="30,0,0,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Background="{StaticResource Elementbackground}"
+                    Command="{Binding about}"
+                    Content="Credits"
+                    DockPanel.Dock="Left"
+                    Foreground="{StaticResource Textcolor}"
+                    Style="{StaticResource RoundedButtonSettings}" />
+            </DockPanel>
+        </Grid>
+        <ContentControl
+            x:Name="SettingsContentControl"
+            Grid.Row="2"
+            Margin="0,30,0,0" />
+
+    </Grid>
+</UserControl>

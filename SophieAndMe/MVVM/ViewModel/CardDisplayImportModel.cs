@@ -49,9 +49,6 @@ public class CardDisplayImportModel
                 case "Delete":
                     DbInteraction.DeleteCreated(question);
                     break;
-                case "save":
-                    DbInteraction.SaveQuizz(matier,name,question,imgQuestion,rep,imgRep);
-                    break;
                 case "edit":
                     _vCustomModel.EditLogic(question);
                     break;
@@ -93,7 +90,6 @@ public class CardDisplayImportModel
         string jscode = JsonSerializer.Serialize(dico);
         WeakReferenceMessenger.Default.Send(new MediatorCustom.JsCallMessage(jscode));
     }
-    
 
     public void SendDataImport()
     {
@@ -127,7 +123,6 @@ public class CardDisplayImportModel
     private async void ShowCard(List<string> question,List<string> reponse,List<string> urlQuestion,List<string> urlReponse)
     {
         _dataService.IdCard.Number += 1;
-        Dictionary<string, string> dico = new Dictionary<string, string>();
         for (int i = 0; i < question.Count; i++)
         {
             dico["level"] = "";

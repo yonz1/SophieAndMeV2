@@ -1,3 +1,9 @@
-2025/08/27-18:04:09.193 1de9c Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/MANIFEST-000001
-2025/08/27-18:04:09.194 1de9c Recovering log #3
-2025/08/27-18:04:09.196 1de9c Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/000003.log 
+<<<<<<< HEAD
+2025/09/13-14:48:30.632 7c8 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/MANIFEST-000001
+2025/09/13-14:48:30.634 7c8 Recovering log #3
+2025/09/13-14:48:30.636 7c8 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/000003.log 
+=======
+2025/09/13-14:38:42.606 65b8 Reusing MANIFEST C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/MANIFEST-000001
+2025/09/13-14:38:42.607 65b8 Recovering log #3
+2025/09/13-14:38:42.610 65b8 Reusing old log C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\SophieAndMe.exe.WebView2\EBWebView\Default\shared_proto_db\metadata/000003.log 
+>>>>>>> DevQuizz

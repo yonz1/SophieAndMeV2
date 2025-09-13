@@ -5,7 +5,6 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 
-
     <Style x:Key="NewMButtton" TargetType="RadioButton">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="80" />
@@ -781,7 +780,7 @@
         <Setter Property="Background" Value="AliceBlue" />
     </Style>
 
-    <Style x:Key="Quizz_button" TargetType="RadioButton">
+    <!--<Style x:Key="Quizz_button" TargetType="RadioButton">
         <Setter Property="Margin" Value="20,0,0,20" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#242424" />
@@ -818,7 +817,7 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
-    </Style>
+    </Style>-->
 
 
     <Style x:Key="IConbutt_round" TargetType="RadioButton">
@@ -1061,6 +1060,7 @@
         x:Key="ButtonAddHover"
         BasedOn="{StaticResource MaterialDesignOutlinedLightButton}"
         TargetType="Button">
+
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="LimeGreen" />
@@ -1068,6 +1068,67 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="RoundedButtonSettings" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
+        <Setter Property="Background" Value="{StaticResource Elementbackground}" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Padding" Value="15,5,15,5" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="13" />
+            </Style>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Contrast}" />
+                <Setter Property="Foreground" Value="{StaticResource pageBackground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TitleSettings" TargetType="Label">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+    </Style>
+
+    <Style x:Key="SecondaryTextSettings" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{StaticResource Top_iconc_unused}" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+    </Style>
+
+    <Style
+        x:Key="SettingsTextBox"
+        BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+        TargetType="TextBox">
+        <Setter Property="Height" Value="55" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="BorderBrush" Value="{StaticResource Top_iconc_unused}" />
+        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
+        <Setter Property="Background" Value="{StaticResource pageBackground}" />
+    </Style>
+
+    <Style
+        x:Key="SettingsPasswordBox"
+        BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}"
+        TargetType="PasswordBox">
+        <Setter Property="Height" Value="55" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="BorderBrush" Value="{StaticResource Top_iconc_unused}" />
+        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="Foreground" Value="{StaticResource Textcolor}" />
+        <Setter Property="Background" Value="{StaticResource pageBackground}" />
+    </Style>
+
 
 
 </ResourceDictionary>
