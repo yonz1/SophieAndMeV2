@@ -24,7 +24,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None">
     <!-- <Window.DataContext> -->
-    <!--     <vm:LoginWindoowViewModel /> -->
+    <!--     <vm:LoginWindoowViewModel /> -->mit 
     <!-- </Window.DataContext> -->
     <Window.Resources>
            <ResourceDictionary>
