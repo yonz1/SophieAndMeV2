@@ -1,0 +1,168 @@
+﻿<Window
+    x:Class="SophieAndMe.Windows.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+    xmlns:local="clr-namespace:SophieAndMe.Windows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Login"
+    Width="900"
+    Height="500"
+    AllowsTransparency="False"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="CanResize"
+    TextElement.FontSize="10"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource main_back_wind}">
+        <Border Background="{StaticResource pageBackground}" CornerRadius="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <DockPanel>
+                    <Button
+                        Width="15"
+                        Height="15"
+                        Margin="10,10,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Background="#fc6065"
+                        BorderThickness="0"
+                        Command="{Binding ExitCommand}"
+                        DockPanel.Dock="Left"
+                        Style="{StaticResource TopButton}"
+                        Tag="{StaticResource Exit}">
+                        <fs:IconImage Icon="Xmark" Style="{StaticResource TopButtonIcon}" />
+                    </Button>
+                    <Button
+                        Width="15"
+                        Height="15"
+                        Margin="10,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="#fedf43"
+                        BorderThickness="0"
+                        Command="{Binding MinimizeCommand}"
+                        DockPanel.Dock="Left"
+                        Style="{StaticResource TopButton}"
+                        Tag="{StaticResource Minimize}">
+                        <fs:IconImage Icon="Minus" Style="{StaticResource TopButtonIcon}" />
+                    </Button>
+                    <Button
+                        Width="15"
+                        Height="15"
+                        Margin="10,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="#4ad969"
+                        BorderThickness="0"
+                        Command="{Binding MaximizeCommand}"
+                        DockPanel.Dock="Left"
+                        Style="{StaticResource TopButton}"
+                        Tag="{StaticResource Maximize}">
+                        <fs:IconImage
+                            Width="12"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Icon="Expand"
+                            Style="{StaticResource TopButtonIcon}" />
+                    </Button>
+                </DockPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel
+                        Grid.Column="1"
+                        Margin="30,30,30,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top">
+                        <Label
+                            Margin="0,0,0,50"
+                            HorizontalAlignment="Center"
+                            Content="Create an account"
+                            DockPanel.Dock="Top"
+                            FontSize="30"
+                            Foreground="{StaticResource Textcolor}"
+                            Style="{StaticResource TitleSettings}" />
+                        <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                materialDesign:HintAssist.Hint="Name"
+                                materialDesign:ThemeAssist.Theme="Dark"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource SettingsTextBox}" />
+                            <TextBox
+                                Grid.Column="2"
+                                HorizontalAlignment="Stretch"
+                                materialDesign:HintAssist.Hint="Last name"
+                                materialDesign:ThemeAssist.Theme="Dark"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource SettingsTextBox}" />
+                        </Grid>
+                        <PasswordBox
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            materialDesign:HintAssist.Hint="Password"
+                            materialDesign:ThemeAssist.Theme="Dark"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SettingsPasswordBox}" />
+                        <TextBox
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            materialDesign:HintAssist.Hint="Email"
+                            materialDesign:ThemeAssist.Theme="Dark"
+                            DockPanel.Dock="Top"
+                            Style="{StaticResource SettingsTextBox}" />
+                        <Button
+                            Margin="0,30,0,0"
+                            HorizontalAlignment="Stretch"
+                            Content="Create account"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+
+
+                        <!--<Button
+                            Height="40"
+                            Margin="0,30,0,0"
+                            materialDesign:ThemeAssist.Theme="Dark"
+                            Command="{Binding Connect_Click}"
+                            Content="Register"
+                            DockPanel.Dock="Top"
+                            Foreground="White">
+                            <Button.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Offset="1" Color="#F8A4D8" />
+                                    <GradientStop Offset="0.25" Color="#6C63ff" />
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>-->
+                    </DockPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
