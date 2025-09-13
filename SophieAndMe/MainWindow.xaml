@@ -32,7 +32,6 @@
 
     <Grid Background="{StaticResource main_back_wind}">
 
-
         <Border Background="{StaticResource pageBackground}" CornerRadius="10">
             <Grid>
                 <Grid.ColumnDefinitions>

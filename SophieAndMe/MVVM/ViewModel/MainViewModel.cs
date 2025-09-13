@@ -126,7 +126,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
         {
             string val  = "../../../images/Ryan-Gosling_0.jpg";
             Console.WriteLine(_dataService.CurrentUser.photo);
-            ProfilePict = _dataService.CurrentUser.photo !=  "" ? new BitmapImage(new Uri(_dataService.CurrentUser.photo.ToString(), UriKind.Relative)) :  new BitmapImage(new Uri(val, UriKind.Relative));
+            ProfilePict = _dataService.CurrentUser.photo !=  "" ? new BitmapImage(new Uri(val, UriKind.Relative)) :  new BitmapImage(new Uri(_dataService.CurrentUser.photo, UriKind.Relative));
             Console.WriteLine(ProfilePict.ToString());
         }
 
