@@ -31,7 +31,7 @@ public class EndQuizzModel : INotifyPropertyChanged
         RestartQuizz = new RelayCommand(o => NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm)));
         ReturnSelection = new RelayCommand(o =>
         {
-            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            if (_dataService.QuizzId.Nameindex.ToString().Contains("Marked"))
             {
                 NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }

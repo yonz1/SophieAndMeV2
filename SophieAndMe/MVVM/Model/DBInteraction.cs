@@ -190,7 +190,7 @@ namespace SophieAndMe.MVVM.Model
             if (resultsQuestions.Count == 0)
             {
                 MessageBox.Show("Ce quizz ne possède aucune question");
-                if (Application.Current.Properties["nameindex"]!.ToString()!.Contains("Marked"))
+                if (_dataService.QuizzId.Nameindex!.ToString()!.Contains("Marked"))
                 {
                     NavigationService.Instance.Navigate("MainContent", new VMarked(mainVm));
                 }
@@ -282,7 +282,7 @@ namespace SophieAndMe.MVVM.Model
             if (_dataService.QuizzId.IsAll)
             {
                 query = "SELECT " + valtoreq + " FROM Marked where Matier = \"" +
-                        App.Current.Properties["nameindex"].ToString() + "\"";
+                        _dataService.QuizzId.Nameindex.ToString() + "\"";
             }
             else
             {
@@ -462,7 +462,7 @@ namespace SophieAndMe.MVVM.Model
             query = "SELECT name,reponse,image_question_url,image_answer_url FROM " +
                     _dataService.QuizzId.Matier.ToString() +
                     " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question +
-                    "\", ' ', '') AND name = \"" + App.Current.Properties["nameindex"].ToString() + "\"";
+                    "\", ' ', '') AND name = \"" + _dataService.QuizzId.Nameindex.ToString() + "\"";
             using (var db = new SQLiteConnection(ConSource))
             {
                 db.Open();
@@ -500,9 +500,9 @@ namespace SophieAndMe.MVVM.Model
                     c.Open();
                     query = "UPDATE " + matier + " SET name = " + name + ", question = " + question + ",reponse = " +
                             reponse + ", image_question_url = " + imageQuestion + ", image_answer_url = " + imageRep +
-                            " WHERE ID = \"100\" AND name = \"" + App.Current.Properties["nameindex"].ToString() +
+                            " WHERE ID = \"100\" AND name = \"" + _dataService.QuizzId.Nameindex.ToString() +
                             "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" +
-                            App.Current.Properties["old_quest"].ToString() + "\", ' ', '')";
+                            _dataService.QuizzId.old_quest.ToString() + "\", ' ', '')";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
                         cmd.ExecuteNonQuery();
@@ -627,7 +627,7 @@ namespace SophieAndMe.MVVM.Model
                 command.ExecuteNonQuery();
             }
             
-            (Question, Reponse, ImageQuestion, ImageRep) = Retrievequizz(Application.Current.Properties["nameindex"]?.ToString(), "", mainVm);
+            (Question, Reponse, ImageQuestion, ImageRep) = Retrievequizz(_dataService.QuizzId.Nameindex?.ToString(), "", mainVm);
             for (int i = 0; i < Question.Count; i++)
             {
                 query =

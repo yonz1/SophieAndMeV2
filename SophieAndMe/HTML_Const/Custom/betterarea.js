@@ -17,6 +17,7 @@ const wordReplacements = {
     "mat2": "\\begin{pmatrix}\r\n &  \\\\\r\n & \r\n\\end{pmatrix}",
     "times": "\\cdot",
     "under": "\\underline{}",
+    "MecaTor" : "\\begin{Bmatrix}\r\n &  \\\\\r\n &  \\\\\r\n & \r\n\\end{Bmatrix}",
 };
 
 const keymap = {

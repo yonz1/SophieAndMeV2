@@ -7,6 +7,9 @@ public class IdCard
 
 public class IQuizzId
 {
+    public string old { get; set; } = "";
+    public string old_quest { get; set; } = "";
+    public string Nameindex { get; set; } = "";
     public string Name { get; set; } = "";
     public string Matier { get; set; } = "";
     public string options { get; set; } = "";

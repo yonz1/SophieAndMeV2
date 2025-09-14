@@ -93,10 +93,10 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         });
         Return = new RelayCommand(o =>
         {
-            switch (App.Current.Properties["old"])
+            switch (_dataService.QuizzId.old)
             {
                 case "FirstLayer":
-                    App.Current.Properties["old"] = "CreatedLogic";
+                    _dataService.QuizzId.old = "CreatedLogic";
                     FirstLayer(_dataService.QuizzId.Matier);
                     break;
                 case "CreatedLogic":
@@ -128,14 +128,15 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             Console.WriteLine(matier);
             if (_mat.Contains(matier))
             {
-                App.Current.Properties["old"] = "CreatedLogic";
+                _dataService.QuizzId.old = "CreatedLogic";
                 FirstLayer(matier);
             }
 
             else
             {
-                App.Current.Properties["old"] = "FirstLayer";
-                App.Current.Properties["nameindex"] = matier;
+                
+                _dataService.QuizzId.old = "FirstLayer";
+                _dataService.QuizzId.Nameindex = matier.ToString();
                 _currenviewCard = new CardDisplayImportModel(this,"Created");
                 ClearLogic(false,true,true);
             }
@@ -151,7 +152,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     }
     public void EditLogic(string question)
     {
-        App.Current.Properties["old_quest"] = question;
+        _dataService.QuizzId.old_quest = question;
         string? matier;
         string? name;
         string? rep;

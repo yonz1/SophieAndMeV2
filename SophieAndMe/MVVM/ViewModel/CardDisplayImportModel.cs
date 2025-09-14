@@ -113,7 +113,7 @@ public class CardDisplayImportModel
 
     public void CreatedLogic()
     {
-        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.RetrievequizzToCreated(Application.Current.Properties["nameindex"]?.ToString());
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.RetrievequizzToCreated(_dataService.QuizzId.Nameindex?.ToString());
         var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
         var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();

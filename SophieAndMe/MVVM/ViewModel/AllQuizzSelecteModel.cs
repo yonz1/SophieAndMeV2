@@ -55,8 +55,8 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         _dataService = App.DataService;
         Items = new ObservableCollection<CheckBoxItem>();
         _mainViewModel = mainVm;
-        _dataService.QuizzId.Matier = Application.Current.Properties["nameindex"].ToString();
-        var name = DbInteraction.GetName(Application.Current.Properties["nameindex"]);
+        _dataService.QuizzId.Matier = _dataService.QuizzId.Nameindex.ToString();
+        var name = DbInteraction.GetName(_dataService.QuizzId.Nameindex);
         foreach (var value in name)
         {
             Console.WriteLine(value);

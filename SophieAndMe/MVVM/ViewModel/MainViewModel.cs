@@ -119,7 +119,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
 
         public void CallQuizz(string value)
         {
-            Application.Current.Properties["nameindex"] = value;
+            _dataService.QuizzId.Nameindex = value;
             _dataService.QuizzId.IsAll = false;
             _dataService.QuizzId.options = "";
             CurrentMessage = value;
