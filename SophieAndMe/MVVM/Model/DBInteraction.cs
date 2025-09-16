@@ -762,6 +762,7 @@ namespace SophieAndMe.MVVM.Model
             {
                 while (reader.Read())
                 {
+                    Console.WriteLine(reader.GetString(0));
                     Name.Add(reader.GetString(0));
                 }
             }
@@ -1007,7 +1008,24 @@ namespace SophieAndMe.MVVM.Model
             }
             return (Nom,Dates,heure,Salle,Matiére);
         }
-        
-        
+
+        public static void AddCompletion(string name,string mat)
+        {
+            try
+            {
+                using SQLiteConnection c = new SQLiteConnection(ConSource);
+                c.Open();
+                SQLiteCommand command;
+                string query = $"UPDATE {mat} SET ENDED = '1' WHERE name = '{name}';";
+                command = new SQLiteCommand(query, c);  
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show("An error occured while saving your completion : " + e); 
+                throw;
+            }
+        }
     }
 }

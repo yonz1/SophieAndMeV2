@@ -151,7 +151,6 @@
                             VerticalAlignment="Top"
                             Background="#fc6065"
                             BorderThickness="0"
-                            Click="Exit_Click"
                             Command="{Binding ExitCommand}"
                             DockPanel.Dock="Left"
                             Style="{StaticResource TopButton}"

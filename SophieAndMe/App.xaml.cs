@@ -15,7 +15,6 @@ public partial class App : Application
 {
     private readonly ServiceProvider _serviceProvider;
     public static IDataService DataService { get; set; } =  new DataService();
-
     public App()
     {
         

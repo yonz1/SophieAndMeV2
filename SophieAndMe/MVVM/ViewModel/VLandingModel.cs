@@ -24,7 +24,7 @@ public class VLandingModel : INotifyPropertyChanged
     private readonly IDataService _dataService;
     private bool _isview;
     private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
-    public bool  IsViewVal
+    public bool  IsView
     {
         get => _isview;
         set { _isview = value;
@@ -37,7 +37,7 @@ public class VLandingModel : INotifyPropertyChanged
         _mainViewModel = mainVm;
         _mainViewModel.CurrentMessage = "Acceuil";
         _dataService = App.DataService;
-        IsViewVal = true;
+        IsView = true;
         var (Nom,Dates,heure,Salle,Matiére) = DbInteraction.GetAllColle();
         WeakReferenceMessenger.Default.Register<MediatorLanding.JstoAppMessage>(this, (r, m) =>
         {
@@ -55,6 +55,9 @@ public class VLandingModel : INotifyPropertyChanged
         for (int i = 0; i < Dates.Count; i++)
         {
             dico["DateColle"] = Dates[i];
+            dico["Meta"] =  "";
+            dico["Data"] =  "";
+            dico["Position"] = "";
             string jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         } 
@@ -74,6 +77,7 @@ public class VLandingModel : INotifyPropertyChanged
         foreach (var name in quizzName)
         {
             Mat.Add(DbInteraction.GetMat(name));
+            Console.WriteLine("Recu"  + name);
         }
         for (int i = 0; i < Mat.Count; i++)
         {

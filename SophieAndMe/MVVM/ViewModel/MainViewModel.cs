@@ -16,6 +16,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
     { 
         public ICommand ChoisirNomCommand {  get; }
         private readonly IDataService _dataService;
+        public event EventHandler? RequestClose;
         public ObservableCollection<SubjectItem> Pages { get; set; }
         public ICommand ShowQuizzCommand { get; }
         public ICommand ShowMarkedCommand { get; }
@@ -98,6 +99,11 @@ namespace SophieAndMe.MVVM.ViewModel ;
             {
                 NavigationService.Instance.Navigate("MainContent", new Settings(this));
             });
+            ExitCommand = new RelayCommand(o =>
+            {
+                OnClose();
+                Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd" + " : ") +  (DateTime.Now - _dataService.Start).TotalMinutes);
+            });
             foreach (var subject in Pages)
             {
                 var localSubject = subject;
@@ -125,6 +131,11 @@ namespace SophieAndMe.MVVM.ViewModel ;
             CurrentMessage = value;
             _dataService.QuizzId.Matier = DbInteraction.GetMat(value);
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(this));
+        }
+        
+        private void OnClose()
+        {
+            RequestClose?.Invoke(this, EventArgs.Empty);
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

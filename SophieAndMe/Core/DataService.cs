@@ -20,6 +20,8 @@ public interface IDataService
     IQuizzId QuizzId { get; set; }
     bool WinBin { get; set; }
     bool IsDark {get; set;}
+    public DateTime Start { get; set; }
+    public DateTime End { get; set; }
 }
 
 public class DataService : IDataService
@@ -28,6 +30,8 @@ public class DataService : IDataService
     public IdCard IdCard { get; set; }  = new IdCard();
     public IQuizzId QuizzId { get; set; }  = new IQuizzId();
     public bool WinBin { get; set; } = false;
-
     public bool IsDark { get; set; } = true;
+    public DateTime Start { get; set; } = DateTime.Now;
+    public DateTime End { get; set; }
+    
 }

@@ -10,6 +10,8 @@
     mc:Ignorable="d">
 
     <Grid>
-        <wv2:WebView2 x:Name="WebViewAll" Visibility="{Binding IsViewVal, Converter={StaticResource BoolToVisibilityConverter},FallbackValue=Hidden}" />
+        <wv2:WebView2 x:Name="WebViewAll" Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter},FallbackValue=Hidden}" />
+    <!-- <wv2:WebView2 x:Name="WebViewAll"/> -->
+
     </Grid>
 </UserControl>

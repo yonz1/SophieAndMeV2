@@ -270,6 +270,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     {
         _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i-1]));
         if (_dataService.QuizzId.IsAll) { DeleteData(); }
+        DbInteraction.AddCompletion(App.Current.Properties["nameindex"].ToString(),_dataService.QuizzId.Matier.ToString());
         NavigationService.Instance.Navigate("MainContent",new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     

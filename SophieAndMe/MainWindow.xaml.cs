@@ -33,7 +33,12 @@ public partial class MainWindow : Window
         {
             InitializeComponent();
             NavigationService.Instance.Register("MainContent", view => MainContentControl.Content = view);
-            this.DataContext = new MVVM.ViewModel.MainViewModel();
+            MVVM.ViewModel.MainViewModel vm = new MVVM.ViewModel.MainViewModel();
+            this.DataContext = vm;
+            if (DataContext is MVVM.ViewModel.MainViewModel vm2)
+            {
+                vm2.RequestClose += (_, __) => Application.Current.Shutdown();
+            }
         }
     
 
@@ -50,13 +55,13 @@ public partial class MainWindow : Window
                 WindowState = WindowState.Normal;
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            string query = "";
-            string Sourceuser = "Data Source=..\\..\\..\\Database\\user_value.db";
-            System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
-            Application.Current.Shutdown();
-        }
+        // private void Exit_Click(object sender, RoutedEventArgs e)
+        // {
+        //     string query = "";
+        //     string Sourceuser = "Data Source=..\\..\\..\\Database\\user_value.db";
+        //     System.Diagnostics.Debug.WriteLine(App.Current.Properties["Timer"]);
+        //     Application.Current.Shutdown();
+        // }
         
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wParam, int wMsg, int lParam);
