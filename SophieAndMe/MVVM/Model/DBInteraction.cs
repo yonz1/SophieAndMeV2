@@ -769,6 +769,9 @@ namespace SophieAndMe.MVVM.Model
             return Name;
         }
         
+        
+        
+        
         // ########################################################## Collection de fonction pour l'emploi du temps
         
         
@@ -1008,6 +1011,8 @@ namespace SophieAndMe.MVVM.Model
             }
             return (Nom,Dates,heure,Salle,Matiére);
         }
+        
+        // ############################### Fonction pour le stockage des quizz compléter
 
         public static void AddCompletion(string name,string mat)
         {

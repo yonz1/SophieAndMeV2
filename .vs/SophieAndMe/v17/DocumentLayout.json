@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vcustom.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vcustom.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vlanding.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vlanding.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vcustom.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vcustom.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\carddisplay\\carddisplayimport.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -226,7 +226,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -242,21 +242,12 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ThemeMain.js",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "RelativeToolTip": "SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-09-14T18:31:20.536Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Landing2.html",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Landing\\Landing2.html",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Landing\\Landing2.html",
@@ -264,28 +255,22 @@
               "RelativeToolTip": "SophieAndMe\\HTML_Const\\Landing\\Landing2.html",
               "ViewState": "AQIAABUAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-09-14T18:31:18.235Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
+              "WhenOpened": "2025-09-14T18:31:18.235Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "VLanding.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:33:05.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T17:33:05.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "VCustom.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
@@ -294,6 +279,18 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-07-24T21:11:13.041Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ThemeMain.js",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "RelativeToolTip": "SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-14T18:31:20.536Z"
             },
             {
               "$type": "Document",
@@ -327,8 +324,7 @@
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
               "RelativeToolTip": "SophieAndMe\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:31:12.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T17:31:12.408Z"
             },
             {
               "$type": "Document",
@@ -871,7 +867,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "VLanding.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
@@ -879,12 +875,11 @@
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-14T18:31:38.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T18:31:38.956Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "VLanding.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
