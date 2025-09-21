@@ -79,6 +79,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             _dataService.IdCard = new IdCard();
             _dataService.IdCard.Number = 0;
             Chapter = DbInteraction.GetAllName();
+            WebInteraction.GetProgKholle();
             Pages = new ObservableCollection<SubjectItem>
             {
                 new SubjectItem {Name = "Quizz", IconVal = IconChar.UserGraduate, Navigation = new VQuizz(this), Value = "A"},        
@@ -125,7 +126,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
 
         public void CallQuizz(string value)
         {
-            Application.Current.Properties["nameindex"] = value;
+            _dataService.QuizzId.Nameindex = value;
             _dataService.QuizzId.IsAll = false;
             _dataService.QuizzId.options = "";
             CurrentMessage = value;

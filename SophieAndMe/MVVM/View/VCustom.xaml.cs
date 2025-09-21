@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Web.WebView2.Core;
+using SophieAndMe.Core;
 using SophieAndMe.MVVM.Model;
 using SophieAndMe.MVVM.ViewModel;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -15,6 +16,7 @@ public partial class VCustom : UserControl
     public VCustom(MainViewModel mainVm)
     {
         InitializeComponent();
+        NavigationService.Instance.Register("CustomFFC", FFC => ViewFFC.Content = FFC);
         Loaded += async (s, e) =>
         {
             await WebViewCustom.EnsureCoreWebView2Async();

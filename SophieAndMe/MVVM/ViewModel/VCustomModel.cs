@@ -11,6 +11,7 @@ using SophieAndMe.MVVM.Model;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.View.CardDisplay;
+using SophieAndMe.MVVM.View.Custom;
 using SophieAndMe.Windows;
 
 
@@ -24,6 +25,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     public RelayCommand ChoisirMatierCommand { get; }
     public RelayCommand Return { get; }
     public RelayCommand Advance { get; }
+    public RelayCommand FFCComm { get; }
     private object _currenviewCard;
     public object CurrentViewCard
     {
@@ -67,7 +69,12 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         get => _isviewreturn;
         set { _isviewreturn = value; OnPropertyChanged(); }
     }
-    
+    private bool _isviewffc;
+    public bool IsViewFFC
+    {
+        get => _isviewffc;
+        set { _isviewffc = value; OnPropertyChanged(); }
+    }
     
     
     public VCustomModel(MainViewModel mainVm)
@@ -93,10 +100,10 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         });
         Return = new RelayCommand(o =>
         {
-            switch (App.Current.Properties["old"])
+            switch (_dataService.QuizzId.old)
             {
                 case "FirstLayer":
-                    App.Current.Properties["old"] = "CreatedLogic";
+                    _dataService.QuizzId.old = "CreatedLogic";
                     FirstLayer(_dataService.QuizzId.Matier);
                     break;
                 case "CreatedLogic":
@@ -121,6 +128,13 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             _currenviewCard = new CardDisplayImportModel(this,"Import");
             ClearLogic(false,true,false);
         });
+
+        FFCComm = new RelayCommand(o =>
+        {
+            IsViewFFC = true;
+            NavigationService.Instance.Navigate("CustomFFC", new FCCView(mainVm));
+            ClearLogic(false,false,false);
+        });
         
         ChoisirMatierCommand = new RelayCommand(matier =>
         {
@@ -128,14 +142,15 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
             Console.WriteLine(matier);
             if (_mat.Contains(matier))
             {
-                App.Current.Properties["old"] = "CreatedLogic";
+                _dataService.QuizzId.old = "CreatedLogic";
                 FirstLayer(matier);
             }
 
             else
             {
-                App.Current.Properties["old"] = "FirstLayer";
-                App.Current.Properties["nameindex"] = matier;
+                
+                _dataService.QuizzId.old = "FirstLayer";
+                _dataService.QuizzId.Nameindex = matier.ToString();
                 _currenviewCard = new CardDisplayImportModel(this,"Created");
                 ClearLogic(false,true,true);
             }
@@ -151,7 +166,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
     }
     public void EditLogic(string question)
     {
-        App.Current.Properties["old_quest"] = question;
+        _dataService.QuizzId.old_quest = question;
         string? matier;
         string? name;
         string? rep;
@@ -174,6 +189,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
 
     public void CreatedLogic()
     {
+        IsViewFFC = false;
         ClearLogic(false,false,false);
         var name = DbInteraction.GetName("All");
         foreach (var value in name) { Matier.Add(value);}

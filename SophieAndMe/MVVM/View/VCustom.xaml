@@ -70,8 +70,20 @@
                         Content="Create"
                         DockPanel.Dock="Left"
                         Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"
-                        Tag="Mathématiques" />
+                        Style="{StaticResource topquizzmat}"/>
+                    <Button
+                        Width="120"
+                        Height="40"
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        Background="Transparent"
+                        Command="{Binding FFCComm}"
+                        Content="FFC"
+                        DockPanel.Dock="Left"
+                        Foreground="{StaticResource Textcolor}"
+                        Style="{StaticResource topquizzmat}"/>
                     <Button
                         Width="120"
                         Height="40"
@@ -84,8 +96,7 @@
                         Content="Created"
                         DockPanel.Dock="Left"
                         Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"
-                        Tag="Physique" />
+                        Style="{StaticResource topquizzmat}"/>
                     <Button
                         Width="120"
                         Height="40"
@@ -98,38 +109,12 @@
                         Content="Importer"
                         DockPanel.Dock="Left"
                         Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"
-                        Tag="Physique" />
+                        Style="{StaticResource topquizzmat}"/>
+                    
                 </DockPanel>
             </Border>
         </DockPanel>
-
-        <!--<DockPanel
-            Grid.Row="1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ComboBox
-                Width="200"
-                Height="50"
-                HorizontalAlignment="Left"
-                materialDesign:HintAssist.Hint="Niveau"
-                DockPanel.Dock="Left"
-                ItemsSource="{Binding NiveauImport}"
-                SelectedItem="{Binding SelectedItemLevel}"
-                Style="{StaticResource SearchBox}" />
-            <ComboBox
-                Width="200"
-                Height="50"
-                Margin="40,0,0,0"
-                HorizontalAlignment="Left"
-                materialDesign:HintAssist.Hint="Cours"
-                DockPanel.Dock="Left"
-                ItemsSource="{Binding CoursImport}"
-                SelectedItem="{Binding SelectedItemCourse}"
-                Style="{StaticResource SearchBox}" />
-        </DockPanel>-->
-
-
+        
         <wv2:WebView2
             x:Name="WebViewCustom"
             Grid.Row="1"
@@ -140,6 +125,11 @@
             x:Name="WebViewCard"
             Grid.Row="1"
             Visibility="{Binding IsViewCard, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}" />
+        <ContentControl
+            Visibility="{Binding IsViewFFC, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}"
+            x:Name="ViewFFC"
+            Panel.ZIndex="2"
+            Grid.Row="1"/>
 
         <ContentControl x:Name="WebViewDisplayPresenter" Grid.Row="1" />
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">

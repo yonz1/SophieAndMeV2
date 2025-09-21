@@ -97,7 +97,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         
         ChoisirNomCommand = new RelayCommand(nom =>
         {
-            App.Current.Properties["nameindex"] = "Marked-" + nom;
+            _dataService.QuizzId.Nameindex = "Marked-" + nom;
             _dataService.QuizzId.Matier = (string)nom;
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });

@@ -34,7 +34,7 @@ public class CardDisplayRespModel
     {
         _mainViewModel = mainVm;
         _dataService =  App.DataService;
-        Message = App.Current.Properties["nameindex"].ToString();
+        Message = _dataService.QuizzId.Nameindex.ToString();
         var q = QuizzUtilities.Miseneformelist(question) ?? new List<string>();
         var r = QuizzUtilities.Miseneformelist(reponse) ?? new List<string>();
         var uq = QuizzUtilities.Miseneformelist(urlQuestion) ?? new List<string>();
@@ -43,7 +43,7 @@ public class CardDisplayRespModel
         ShowCard(q, r, uq, ur);
         Back_quizz_Click = new RelayCommand(o =>
         {
-            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            if (_dataService.QuizzId.Nameindex.ToString().Contains("Marked"))
             {
                 NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }

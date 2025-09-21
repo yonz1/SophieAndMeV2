@@ -56,7 +56,7 @@ namespace SophieAndMe.MVVM.ViewModel;
             
             ChoisirNomCommand = new RelayCommand(nom =>
             {
-                Application.Current.Properties["nameindex"] = nom;
+                _dataService.QuizzId.Nameindex = nom.ToString();
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
                 if (ListMat.Contains(nom))
                 {

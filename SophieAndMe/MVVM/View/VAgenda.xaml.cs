@@ -9,6 +9,12 @@ public partial class VAgenda : UserControl
     {
         
         InitializeComponent();
-        this.DataContext = new VAgendaModel(mainVm);
+        Loaded += async (s, e) =>
+        {
+            await webviewall.EnsureCoreWebView2Async();
+            webviewall.CoreWebView2.Settings.IsStatusBarEnabled = false;
+            webviewall.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            this.DataContext = new VAgendaModel(mainVm);
+        };
     }
 }

@@ -148,7 +148,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         {
             case "":
                 Console.WriteLine("Normale");
-                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(App.Current.Properties["nameindex"].ToString(),"",mainVm);
+                (_question,_repnse,_urlQuestion,_urlRep) = DbInteraction.Retrievequizz(_dataService.QuizzId.Nameindex.ToString(),"",mainVm);
                 break;
             case "Progressif":
                 Console.WriteLine("Prog");
@@ -166,7 +166,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
         Back_quizz_Click = new RelayCommand(o =>
         {
             if (_dataService.QuizzId.IsAll) { DeleteData(); }
-            if (App.Current.Properties["nameindex"].ToString().Contains("Marked"))
+            if (_dataService.QuizzId.Nameindex.ToString().Contains("Marked"))
             {
                 NavigationService.Instance.Navigate("MainContent",new VMarked(mainVm));    
             }

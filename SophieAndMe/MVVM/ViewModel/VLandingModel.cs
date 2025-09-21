@@ -43,7 +43,7 @@ public class VLandingModel : INotifyPropertyChanged
         {
             var (action, matier, name, question, imgQuestion, rep, imgRep) = m.Value;
             string[] value = question.Split("-");
-            Application.Current.Properties["nameindex"] = value[1];
+            _dataService.QuizzId.Nameindex = value[1];
             _dataService.QuizzId.IsAll = false;
             _dataService.QuizzId.options = "";
             _mainViewModel.CurrentMessage = value[1];
@@ -65,7 +65,6 @@ public class VLandingModel : INotifyPropertyChanged
         dico["DateColle"] =  "";
         for (int i = 0; i < metaNotes.Count; i++)
         { 
-
             dico["Meta"] =  metaNotes[i];
             dico["Data"] =  dataNotes[i];
             dico["Position"] = "Notes";

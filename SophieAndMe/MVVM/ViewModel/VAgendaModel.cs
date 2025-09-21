@@ -28,6 +28,7 @@ namespace SophieAndMe.MVVM.ViewModel
         private List<string> Days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi","samedi","dimanche"];
         public ICommand Back { get; }
         public ICommand Forward { get; }
+        public ICommand Back_quizz_Click { get;  }
         private string OldSem;
         private string ActualSem = "";
         private DateTime startDate = new DateTime(2025, 08, 01);
@@ -43,6 +44,31 @@ namespace SophieAndMe.MVVM.ViewModel
         private List<string> Jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
         private int z = 0;
         private string Sem = "";
+        
+        private bool _isview;
+        public bool  IsView
+        {
+            get => _isview;
+            set { _isview = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private bool _isviewprogkholle;
+        public bool  IsViewProgkholle
+        {
+            get => _isviewprogkholle;
+            set { _isviewprogkholle = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private Uri _webUrl;
+        public Uri WebUrl
+        {
+            get => _webUrl;
+            set { _webUrl = value; OnPropertyChanged(); }
+        }
         private string _monthText;
 
         public string MonthText
@@ -56,9 +82,14 @@ namespace SophieAndMe.MVVM.ViewModel
             }
         }
         
+        
+        
         public VAgendaModel(MainViewModel mainVm)
         {
             _mainViewModel = mainVm;
+            (IsView, IsViewProgkholle) = (true, false);
+            Back_quizz_Click = new RelayCommand( o => (IsView, IsViewProgkholle) = (true,false));
+            WebUrl = new Uri("https://solnon.fr/maths/kholles/pk03.pdf");
             Back = new RelayCommand(o =>
             {
                 _TimeTableItems.Clear();
@@ -80,6 +111,7 @@ namespace SophieAndMe.MVVM.ViewModel
                 }
                 MonthText = GetMonthText(z);
             });
+            
             Forward = new RelayCommand(o =>
             {
                 _TimeTableItems.Clear();
@@ -297,13 +329,14 @@ namespace SophieAndMe.MVVM.ViewModel
                 }
             }
         }
+        
 
-        public string DiffSem(DateTime EndDate, DateTime StartDate)
+        public void Webkholle()
         {
-            Console.WriteLine((EndDate - StartDate).TotalDays % 14);
-            ActualSem = (EndDate - StartDate).TotalDays % 14 == 3 ? "B" : "A";
-            return ActualSem;
+            WebUrl = new Uri("https://solnon.fr/maths/kholles/pk03.pdf");
+            (IsView, IsViewProgkholle) = (false, true);
         }
+        
         
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)
