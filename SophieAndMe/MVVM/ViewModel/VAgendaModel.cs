@@ -81,6 +81,14 @@ namespace SophieAndMe.MVVM.ViewModel
                 
             }
         }
+
+        private bool _isButtonActive;
+
+        public bool IsButtonActive
+        {
+            get => _isButtonActive;
+            set {_isButtonActive = value; OnPropertyChanged();}
+        }
         
         
         
@@ -185,6 +193,7 @@ namespace SophieAndMe.MVVM.ViewModel
                 item.Matiere = Matiére[i];
                 item.RowNumSpan = 1;
                 item.IsColle = true;
+                item.IsButtonActive = true;
                 Console.WriteLine(item.ToString());
                 _TimeTableItems.Add(item);
             }

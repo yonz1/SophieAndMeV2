@@ -12,6 +12,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     
+    <UserControl.Resources>
+    <core:BoolToHitTestVisibleConverter x:Key="BoolToHitTestVisibleConverter"/>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid Visibility="{Binding IsView, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}">
         <Grid.ColumnDefinitions>
@@ -233,8 +237,9 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="#8e8e93" BorderThickness="0,0.8,0.8,0">
-                            <!-- <Button  Background="Transparent" BorderBrush="Transparent"  > -->
+                            
                             <Border Background="{Binding MatColor}" CornerRadius="5">
+                                <Button IsHitTestVisible="{Binding IsButtonActive, Converter={StaticResource BoolToHitTestVisibleConverter}}" Height="40" Background="Transparent" BorderBrush="Transparent"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                 <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock
                                         HorizontalAlignment="Center"
@@ -253,8 +258,8 @@
                                         Foreground="{StaticResource TextcolorOncolor}"
                                         Text="{Binding Infos}" />
                                 </DockPanel>
+                                </Button>
                             </Border>
-                            <!-- </Button> -->
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

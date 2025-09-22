@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SQLite;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -103,7 +104,8 @@ namespace SophieAndMe.MVVM.ViewModel ;
             ExitCommand = new RelayCommand(o =>
             {
                 OnClose();
-                Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd" + " : ") +  (DateTime.Now - _dataService.Start).TotalMinutes);
+                double DeltaT =   (DateTime.Now - _dataService.Start).TotalMinutes;
+                SaveTimeDb(DeltaT);
             });
             foreach (var subject in Pages)
             {
@@ -124,6 +126,33 @@ namespace SophieAndMe.MVVM.ViewModel ;
 
         }
 
+        public void SaveTimeDb(double DeltaT)
+        {
+            double val = 0;
+            string UserSource = "Data Source=..//..//..//Database//user_value.db";
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            string query = $"SELECT TimePassed FROM Time WHERE Date = {DateTime.Now.ToString("yyyy-MM-dd")}";
+            command = new SQLiteCommand(query, c);  
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string Valtemp = reader.GetString(0);
+                    Console.WriteLine(Valtemp);
+                     val = double.Parse(Valtemp);
+                }
+            }
+            query = val == 0 ? $"INSERT INTO Time (Date,TimePassed) VALUES ({DateTime.Now.ToString("yyyy-MM-dd")},\"{DeltaT}\")" : $"UPDATE Time SET TimePassed = \"{val + DeltaT}\" WHERE DATE = {DateTime.Now.ToString("yyyy-MM-dd")}";
+            using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
+            {
+                Console.WriteLine(query);
+                insertCmd.ExecuteNonQuery();
+            }
+            // query = $"SELECT Time FROM Time WHERE Date = {DateTime.Now.ToString("yyyy-MM-dd")}";
+
+        }
         public void CallQuizz(string value)
         {
             _dataService.QuizzId.Nameindex = value;

@@ -85,6 +85,9 @@ public class TimeTableItem
         _dataService = App.DataService;
     }
 
+    public string UrlProg { get; set; }
+    public bool IsButtonActive { get; set; } = false;
+
     public bool IsColle { get; set; } = false;
     public string Matiere { get; set; }
     public string Salle {get; set;}
