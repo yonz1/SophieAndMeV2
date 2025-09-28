@@ -712,6 +712,30 @@ namespace SophieAndMe.MVVM.Model
         
         
         // ########################################################## Collection de fonction pour le Landing
+        public static Dictionary<string, string> RetrieveTimePassed(List<DateTime> date)
+        {
+            List<string> Days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+            Dictionary<string, string> dico = new Dictionary<string, string>();
+            using SQLiteConnection c = new SQLiteConnection(UserSource);
+            c.Open();
+            SQLiteCommand command;
+            for (int i = 0; i < 7; i++)
+            {
+                string query = $"SELECT TimePassed FROM Time WHERE DATE = \"{date[i].ToString("yyyy-MM-dd")}\"";
+                Console.WriteLine(query);
+                command = new SQLiteCommand(query, c);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string val = reader.IsDBNull(0) ? "0" : reader.GetString(0);
+                        Console.WriteLine(val);
+                        dico[Days[i]] = val;
+                    }
+                }
+            }
+            return dico;
+        }
         public static (List<string>, List<string>) GetNotesWeb()
         {
             List<string> Anglais =  new List<string>();
@@ -1013,7 +1037,6 @@ namespace SophieAndMe.MVVM.Model
         }
         
         // ############################### Fonction pour le stockage des quizz compléter
-
         public static void AddCompletion(string name,string mat)
         {
             try

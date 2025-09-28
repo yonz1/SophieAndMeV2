@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Media3D;
@@ -29,6 +30,7 @@ namespace SophieAndMe.MVVM.ViewModel
         public ICommand Back { get; }
         public ICommand Forward { get; }
         public ICommand Back_quizz_Click { get;  }
+        public ICommand ShowProgKholle { get;  }
         private string OldSem;
         private string ActualSem = "";
         private DateTime startDate = new DateTime(2025, 08, 01);
@@ -97,12 +99,17 @@ namespace SophieAndMe.MVVM.ViewModel
             _mainViewModel = mainVm;
             (IsView, IsViewProgkholle) = (true, false);
             Back_quizz_Click = new RelayCommand( o => (IsView, IsViewProgkholle) = (true,false));
-            WebUrl = new Uri("https://solnon.fr/maths/kholles/pk03.pdf");
+
+            ShowProgKholle = new RelayCommand(o =>
+            {
+                (IsView, IsViewProgkholle) = (false, true);
+            });
             Back = new RelayCommand(o =>
             {
                 _TimeTableItems.Clear();
                 z = z - 7;
                 var dates = GetDates(z);
+                LoadPage(dates[0]);
                 Sem = DbInteraction.GetActualAlt(dates[0]);
                 if (DbInteraction.IsHolliday(dates[0]) || Sem == "")
                 {
@@ -115,7 +122,7 @@ namespace SophieAndMe.MVVM.ViewModel
                     FillInfos(dates,Jours);   
                     FillDs(DbInteraction.GetDS(dates[5]));
                     var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
-                    FIllKholle(Nom, Salle, Matiére, heure, JoursD);
+                    FIllKholle(Nom, Salle, Matiére, heure, JoursD,dates[0]);
                 }
                 MonthText = GetMonthText(z);
             });
@@ -125,6 +132,7 @@ namespace SophieAndMe.MVVM.ViewModel
                 _TimeTableItems.Clear();
                 z = z + 7;
                 var dates = GetDates(z);
+                LoadPage(dates[0]);
                 Sem = DbInteraction.GetActualAlt(dates[0]);
                 if (DbInteraction.IsHolliday(dates[0]) || Sem == "")
                 {
@@ -137,12 +145,13 @@ namespace SophieAndMe.MVVM.ViewModel
                     FillInfos(dates,Jours); 
                     FillDs(DbInteraction.GetDS(dates[5]));
                     var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
-                    FIllKholle(Nom, Salle, Matiére, heure, JoursD);
+                    FIllKholle(Nom, Salle, Matiére, heure, JoursD,dates[0]);
                 }
                 MonthText = GetMonthText(z);
                 
             });
             var dates = GetDates(z);
+            LoadPage(dates[0]);
             DbInteraction.GetColles(dates[0]);
             ActualSem = DbInteraction.GetActualAlt(dates[0]);
             DateTime dateTime = DateTime.UtcNow.Date;
@@ -177,11 +186,17 @@ namespace SophieAndMe.MVVM.ViewModel
                 FillInfos(dates,Jours);  
                 FillDs(DbInteraction.GetDS(dates[5]));
                 var (Nom, Salle, Matiére, heure, JoursD) = DbInteraction.GetColles(dates[0]); 
-                FIllKholle(Nom, Salle, Matiére, heure, JoursD);
+                FIllKholle(Nom, Salle, Matiére, heure, JoursD,dates[0]);
             }
         }
 
-        public void FIllKholle(List<string> Nom, List<string> Salle, List<string> Matiére, List<int> heure, List<int> Jours)
+        public async Task LoadPage(DateTime date)
+        {
+            Console.WriteLine("URI : " + WebInteraction.GetProgKholle(date.ToString("dd MMMM")));
+            WebUrl = new Uri(WebInteraction.GetProgKholle(date.ToString("dd MMMM")));
+        }
+        
+        public void FIllKholle(List<string> Nom, List<string> Salle, List<string> Matiére, List<int> heure, List<int> Jours,DateTime date)
         {
             for (int i = 0; i < Nom.Count; i++)
             {
@@ -192,6 +207,7 @@ namespace SophieAndMe.MVVM.ViewModel
                 item.Enseignant = Nom[i];
                 item.Matiere = Matiére[i];
                 item.RowNumSpan = 1;
+                item.SemActuel = date.ToString("DD-MM-YYYY");
                 item.IsColle = true;
                 item.IsButtonActive = true;
                 Console.WriteLine(item.ToString());

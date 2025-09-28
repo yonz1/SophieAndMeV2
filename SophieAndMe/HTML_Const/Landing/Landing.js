@@ -114,21 +114,7 @@ const renderCalendar = () => {
     daysTag.innerHTML = liTag;
 }
 
-window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
-    console.log(dico);
-    if (dico.DateColle != "")
-    {
-        Val.push(dico.DateColle)
-    }
-    else
-    {
-        renderCalendar();
-        console.log("Called")
-        FillMessages(dico.Meta,dico.Data,dico.Position)
-    }
 
-});
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () => {
@@ -223,10 +209,30 @@ grid: {
       }],
       colors: ['#38bdf8'],
     };
-
     var chart = new ApexCharts(document.querySelector(".chart"), options);
     chart.render();
 
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;
+    console.log(dico);
+    if(dico.lundi  !== "")
+    {
+        chart.updateSeries([{
+            name: "Temps passé",
+            data: [parseInt(dico.lundi), parseInt(dico.mardi), parseInt(dico.mercredi), parseInt(dico.jeudi), parseInt(dico.vendredi), parseInt(dico.samedi), parseInt(dico.dimanche)]
+        }]);
+    }
+    else if (dico.DateColle !== "")
+    {
+        Val.push(dico.DateColle)
+    }
+    else
+    {
+        renderCalendar();
+        console.log("Called")
+        FillMessages(dico.Meta,dico.Data,dico.Position)
+    }
+});
 
 function  get_data(button)
 {

@@ -86,6 +86,7 @@ public class TimeTableItem
     }
 
     public string UrlProg { get; set; }
+    public string SemActuel { get; set; } = "";
     public bool IsButtonActive { get; set; } = false;
 
     public bool IsColle { get; set; } = false;

@@ -248,10 +248,10 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     {
         try
         {
+            Console.WriteLine("val 2 " + _i);
             string jscall = WebviewInteraction.send_data("reponse", QuizzUtilities.Miseneformetext(_question[_i]), QuizzUtilities.Miseneformetext(_repnse[_i]),_urlQuestion[_i],_urlRep[_i]);
             _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i]));
             await _invokejs(jscall);
-
         }
         catch (Exception e)
         {
@@ -270,7 +270,7 @@ public class QuizzLogicModel  : INotifyPropertyChanged
     {
         _viewedQuestion.Add(QuizzUtilities.Miseneformetext(_question[_i-1]));
         if (_dataService.QuizzId.IsAll) { DeleteData(); }
-        DbInteraction.AddCompletion(App.Current.Properties["nameindex"].ToString(),_dataService.QuizzId.Matier.ToString());
+        DbInteraction.AddCompletion(_dataService.QuizzId.Nameindex.ToString(),_dataService.QuizzId.Matier.ToString());
         NavigationService.Instance.Navigate("MainContent",new EndQuizz(new EndQuizzModel(_question,_repnse,_urlQuestion,_urlRep,_mainViewModel)));
     }
     

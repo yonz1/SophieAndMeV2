@@ -55,7 +55,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
         private string _currentmessage = null!;
         public string CurrentMessage
         {
-            get => _currentmessage;set{        _currentmessage = value;        OnPropertyChanged();    }
+            get => _currentmessage;set{        _currentmessage = value;        OnPropertyChanged(); }
         }
         private string _selectedValue;
         public string SelectedValue
@@ -80,7 +80,7 @@ namespace SophieAndMe.MVVM.ViewModel ;
             _dataService.IdCard = new IdCard();
             _dataService.IdCard.Number = 0;
             Chapter = DbInteraction.GetAllName();
-            WebInteraction.GetProgKholle();
+            Console.WriteLine("Seconde" + WebInteraction.GetProgKholle("8 septembre"));
             Pages = new ObservableCollection<SubjectItem>
             {
                 new SubjectItem {Name = "Quizz", IconVal = IconChar.UserGraduate, Navigation = new VQuizz(this), Value = "A"},        
@@ -133,8 +133,9 @@ namespace SophieAndMe.MVVM.ViewModel ;
             using SQLiteConnection c = new SQLiteConnection(UserSource);
             c.Open();
             SQLiteCommand command;
-            string query = $"SELECT TimePassed FROM Time WHERE Date = {DateTime.Now.ToString("yyyy-MM-dd")}";
+            string query = $"SELECT TimePassed FROM Time WHERE Date = \"{DateTime.Now.ToString("yyyy-MM-dd")}\"";
             command = new SQLiteCommand(query, c);  
+            Console.WriteLine(query);
             using (var reader = command.ExecuteReader())
             {
                 while (reader.Read())
@@ -144,7 +145,8 @@ namespace SophieAndMe.MVVM.ViewModel ;
                      val = double.Parse(Valtemp);
                 }
             }
-            query = val == 0 ? $"INSERT INTO Time (Date,TimePassed) VALUES ({DateTime.Now.ToString("yyyy-MM-dd")},\"{DeltaT}\")" : $"UPDATE Time SET TimePassed = \"{val + DeltaT}\" WHERE DATE = {DateTime.Now.ToString("yyyy-MM-dd")}";
+            query = val == 0 ? $"INSERT INTO Time (Date,TimePassed) VALUES (\"{DateTime.Now.ToString("yyyy-MM-dd")}\",\"{DeltaT}\")" : $"UPDATE Time SET TimePassed = \"{val + DeltaT}\" WHERE DATE = \"{DateTime.Now.ToString("yyyy-MM-dd")}\"";
+            Console.WriteLine(query);
             using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
             {
                 Console.WriteLine(query);

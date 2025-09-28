@@ -1,14 +1,19 @@
 using System.Net.Http;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack; 
+using System.Globalization; 
 
 
 namespace SophieAndMe.MVVM.Model;
 public class WebInteraction
 {
 
-    private static void RetrieveSemKholle(string text,string date)
+    public static string GetProgKholle(string date)
     {
+        string url = "https://solnon.fr/maths_kholles.html";
+        var web = new HtmlWeb();
+        string text =  web.Load(url).DocumentNode.InnerHtml;
         List<string> Temp = new List<string>();
         List<string> Final = new List<string>();
         string start = "<li>";
@@ -23,11 +28,14 @@ public class WebInteraction
                 end = "\"";
                 pattern = $"{Regex.Escape(start)}(.*?){Regex.Escape(end)}";
                 matches = Regex.Matches(match.Groups[1].Value, pattern);
-                Console.WriteLine(matches[0].Groups[1].Value);    
+                Console.WriteLine(matches[0].Groups[1].Value);
+                return ("https://solnon.fr/" +matches[0].Groups[1].Value);    
             }
         }
+        return "";
     }
-    public static async Task GetProgKholle()
+
+    public static async Task<string> GetWebPage()
     {
         using (var client = new HttpClient())
         {
@@ -35,8 +43,7 @@ public class WebInteraction
             {
                 string url = "https://solnon.fr/maths_kholles.html";
                 string content = await client.GetStringAsync(url);
-                RetrieveSemKholle(content,"8 septembre");
-                // Console.WriteLine(content);
+                return content;
             }
             catch (Exception e)
             {

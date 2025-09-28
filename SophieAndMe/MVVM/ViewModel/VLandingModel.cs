@@ -50,15 +50,19 @@ public class VLandingModel : INotifyPropertyChanged
             _dataService.QuizzId.Matier = value[0];
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
-        
         Dictionary<string, string> dico = new Dictionary<string, string>();
+        dico = DbInteraction.RetrieveTimePassed(GetDates(0));
+        string jscode = JsonSerializer.Serialize(dico);
+        Console.WriteLine(jscode);
+        WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));
+        dico["lundi"] = "";
         for (int i = 0; i < Dates.Count; i++)
         {
             dico["DateColle"] = Dates[i];
             dico["Meta"] =  "";
             dico["Data"] =  "";
             dico["Position"] = "";
-            string jscode = JsonSerializer.Serialize(dico);
+            jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         } 
         (var metaNotes, var dataNotes) = DbInteraction.GetNotesWeb();
@@ -68,7 +72,7 @@ public class VLandingModel : INotifyPropertyChanged
             dico["Meta"] =  metaNotes[i];
             dico["Data"] =  dataNotes[i];
             dico["Position"] = "Notes";
-            string jscode = JsonSerializer.Serialize(dico);  
+            jscode = JsonSerializer.Serialize(dico);  
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         } 
         var quizzName = DbInteraction.GetQuizzWeb();
@@ -83,10 +87,29 @@ public class VLandingModel : INotifyPropertyChanged
             dico["Meta"] =  Mat[i];
             dico["Data"] =  quizzName[i];
             dico["Position"] = "Quizz";
-            string jscode = JsonSerializer.Serialize(dico);
+            jscode = JsonSerializer.Serialize(dico);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    
         }
-        
+    }
+    public List<DateTime> GetDates(int z)
+    {
+        DateTime today = DateTime.Today;
+        int currentDayOfWeek = (int) today.DayOfWeek;
+        DateTime sunday = today.AddDays(-currentDayOfWeek);
+        DateTime monday = sunday.AddDays(1);
+        if (currentDayOfWeek == 0)
+        {
+            monday = monday.AddDays(-7);
+        }
+        if (z != 0)
+        {
+            DateTime nextMonday = monday.AddDays(z);
+            return Enumerable.Range(0, 7).Select(days => nextMonday.AddDays(days)).ToList();
+        }
+        else
+        {
+            return Enumerable.Range(0, 7).Select(days => monday.AddDays(days)).ToList();
+        }
     }
     
     public event PropertyChangedEventHandler PropertyChanged = null!;

@@ -8,12 +8,50 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     xmlns:core="clr-namespace:SophieAndMe.Core"
+    xmlns:model="clr-namespace:SophieAndMe.MVVM.Model"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     
     <UserControl.Resources>
-    <core:BoolToHitTestVisibleConverter x:Key="BoolToHitTestVisibleConverter"/>
+        <core:BoolToHitTestVisibleConverter x:Key="BoolToHitTestVisibleConverter"/>
+        <DataTemplate x:Key="ButtonTemplate">
+            <Border BorderBrush="#8e8e93" BorderThickness="0,0.8,0.8,0" Background="{Binding MatColor}" CornerRadius="5">
+                <Button Height="40" Background="Transparent" BorderBrush="Transparent" Command="{Binding DataContext.ShowProgKholle, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="{Binding SemActuel}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="17" FontWeight="Bold"
+                                   Foreground="{StaticResource TextcolorOncolor}"
+                                   Text="{Binding Matiere}" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="12" FontWeight="Bold"
+                                   Foreground="{StaticResource TextcolorOncolor}"
+                                   Text="{Binding Infos}" />
+                    </StackPanel>
+                </Button>
+            </Border>
+        </DataTemplate>
+
+        <!-- Template sans bouton -->
+        <DataTemplate x:Key="TextTemplate">
+            <Border BorderBrush="#8e8e93" BorderThickness="0,0.8,0.8,0" Background="{Binding MatColor}" CornerRadius="5">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="17" FontWeight="Bold"
+                               Foreground="{StaticResource TextcolorOncolor}"
+                               Text="{Binding Matiere}" />
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="12" FontWeight="Bold"
+                               Foreground="{StaticResource TextcolorOncolor}"
+                               Text="{Binding Infos}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <model:TimeTableTemplateSelector
+            x:Key="TimeTableSelector"
+            ButtonTemplate="{StaticResource ButtonTemplate}"
+            TextTemplate="{StaticResource TextTemplate}" />
     </UserControl.Resources>
     
     <Grid>
@@ -233,36 +271,10 @@
                         <Setter Property="Grid.RowSpan" Value="{Binding RowNumSpan}" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="#8e8e93" BorderThickness="0,0.8,0.8,0">
-                            
-                            <Border Background="{Binding MatColor}" CornerRadius="5">
-                                <Button IsHitTestVisible="{Binding IsButtonActive, Converter={StaticResource BoolToHitTestVisibleConverter}}" Height="40" Background="Transparent" BorderBrush="Transparent"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        DockPanel.Dock="Top"
-                                        FontSize="17"
-                                        FontWeight="Bold"
-                                        Foreground="{StaticResource TextcolorOncolor}"
-                                        Text="{Binding Matiere}" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        DockPanel.Dock="Top"
-                                        FontSize="12"
-                                        FontWeight="Bold"
-                                        Foreground="{StaticResource TextcolorOncolor}"
-                                        Text="{Binding Infos}" />
-                                </DockPanel>
-                                </Button>
-                            </Border>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                
+                <ItemsControl.ItemTemplateSelector>
+                    <StaticResource ResourceKey="TimeTableSelector"/>
+                </ItemsControl.ItemTemplateSelector>
             </ItemsControl>
         </Grid>
         </Grid>

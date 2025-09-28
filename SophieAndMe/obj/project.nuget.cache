@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J4amuLz8Z/0=",
+  "dgSpecHash": "iPW6KqqFKnw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\fontawesome.wpf\\4.7.0.9\\fontawesome.wpf.4.7.0.9.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\htmlagilitypack\\1.12.3\\htmlagilitypack.1.12.3.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\materialdesigncolors\\5.2.2-ci998\\materialdesigncolors.5.2.2-ci998.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\materialdesignthemes\\5.2.2-ci998\\materialdesignthemes.5.2.2-ci998.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.11.0\\microsoft.codeanalysis.analyzers.3.11.0.nupkg.sha512",
