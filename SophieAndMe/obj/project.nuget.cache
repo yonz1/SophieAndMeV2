@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J4amuLz8Z/0=",
+  "dgSpecHash": "xLugAgKWb5sa+Ih/wMg4vYGxZgNl2lq2a2gGBRaAcUW6SrVU6baZ+luMhZAWkH8eL+UVNh78yv+OkeZ41x0KJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
   "expectedPackageFiles": [
@@ -52,10 +52,8 @@
     {
       "code": "NU1701",
       "level": "Warning",
-      "message": "Package 'FontAwesome.WPF 4.7.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "message": "Le package 'FontAwesome.WPF 4.7.0.9' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net8.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
       "libraryId": "FontAwesome.WPF",
       "targetGraphs": [
         "net8.0-windows7.0"
