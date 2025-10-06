@@ -101,14 +101,14 @@ namespace SophieAndMe.MVVM.Model
             {
                 using var db = new SQLiteConnection(ConSource);
                 db.Open();
-                string query = $"SELECT name FROM [{mat}] ORDER BY name";
+                string query = $"SELECT DISTINCT r.name FROM [{mat}] AS D JOIN Reference AS r ON d.name = r.id ORDER BY r.name";
                 using var cmd = new SQLiteCommand(query, db);
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     string nom = reader.GetString(0);
-                    if (!result.Contains(nom))
-                        result.Add(nom);
+                    // Console.WriteLine(nom);
+                    result.Add(nom);
                 }
             }
             else
@@ -164,8 +164,8 @@ namespace SophieAndMe.MVVM.Model
                 else
                 {
                     Console.WriteLine("normale");
-                    query =
-                        $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier} WHERE name = @name";
+                    // query =
+                    //     $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier} WHERE name = @name";
                     command = new SQLiteCommand(query, connection);
                     command.Parameters.AddWithValue("@name", nameindex);
                 }
