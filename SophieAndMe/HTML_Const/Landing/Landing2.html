@@ -15,31 +15,15 @@
 <body>
 <div class="Main">
     <div class="FirstCol">
-    <div class="ContainerCalendar">
-        <div class="wrapper">
-            <header>
-                <p class="current-date"></p>
-            </header>
-            <div class="calendar">
-                <ul class="weeks">
-                    <li>Di</li>
-                    <li>Lu</li>
-                    <li>Ma</li>
-                    <li>Me</li>
-                    <li>Je</li>
-                    <li>Ve</li>
-                    <li>Sa</li>
-                </ul>
-                <ul class="days"></ul>
-            </div>
-        </div>
-    </div>
     <div>
         <div class="ContainerWelcome">
             <div class="Inner">
-                <label class="Welcome">
-                    Welcome back, admin
-                </label>
+                <div class="Inner1">
+                    <p class="Welcome">
+                        Heureux de vous revoir, Admin 
+                    </p>
+                        <p class="UnderTitle"> Voici un aperçu rapide de votre semaine: progression, événements, et dernières notes.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -75,23 +59,23 @@
             <label class="Title">Matiére</label>
             <div class="MatProg">
                 <label class="BarLabel1">Mathématiques</label>
-                <div class="progress-bar Maths"><span></span></div>
+                <div class="progress-bar Maths"><span id="Maths"></span></div>
             </div>
             <div class="MatProg">
                 <label class="BarLabel">Physique</label>
-                <div class="progress-bar Physique"><span></span></div>
+                <div class="progress-bar Physique"><span id="Physique"></span></div>
             </div>
             <div class="MatProg">
                 <label class="BarLabel">SI</label>
-                <div class="progress-bar SI"><span></span></div>
+                <div class="progress-bar SI"><span id="SI"></span></div>
             </div>
             <div class="MatProg">
                 <label class="BarLabel">Français</label>
-                <div class="progress-bar Français"><span></span></div>
+                <div class="progress-bar Français"><span id="Français"></span></div>
             </div>
             <div class="MatProg">
                 <label class="BarLabel">Anglais</label>
-                <div class="progress-bar Anglais"><span></span></div>
+                <div class="progress-bar Anglais"><span id="Anglais"></span></div>
             </div>
             <div class="MatProg">
                 <label class="BarLabel">Erreurs</label>
@@ -99,6 +83,26 @@
             </div>
         </div>
 </div>
+    <div class="ContainerCalendar">
+        <div class="wrapper">
+            <header>
+                <p class="current-date"></p>
+            </header>
+            <div class="calendar">
+                <ul class="weeks">
+                    <li>Di</li>
+                    <li>Lu</li>
+                    <li>Ma</li>
+                    <li>Me</li>
+                    <li>Je</li>
+                    <li>Ve</li>
+                    <li>Sa</li>
+                </ul>
+                <ul class="days"></ul>
+            </div>
+        </div>
+</div>
+
 </div>
 <script src="../ThemeMain.js" ></script>
 <script src="Landing.js" ></script>

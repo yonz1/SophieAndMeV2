@@ -28,7 +28,6 @@ public class WebInteraction
                 end = "\"";
                 pattern = $"{Regex.Escape(start)}(.*?){Regex.Escape(end)}";
                 matches = Regex.Matches(match.Groups[1].Value, pattern);
-                Console.WriteLine(matches[0].Groups[1].Value);
                 return ("https://solnon.fr/" +matches[0].Groups[1].Value);    
             }
         }

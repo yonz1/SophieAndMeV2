@@ -51,10 +51,13 @@ public class VLandingModel : INotifyPropertyChanged
             NavigationService.Instance.Navigate("MainContent",new QuizzLogic(mainVm));
         });
         Dictionary<string, string> dico = new Dictionary<string, string>();
+        string jscode;
         dico = DbInteraction.RetrieveTimePassed(GetDates(0));
-        string jscode = JsonSerializer.Serialize(dico);
+        jscode = JsonSerializer.Serialize(dico);
         Console.WriteLine(jscode);
-        WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));
+        WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    
+        
+ 
         dico["lundi"] = "";
         for (int i = 0; i < Dates.Count; i++)
         {

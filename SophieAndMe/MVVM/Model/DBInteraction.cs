@@ -712,6 +712,40 @@ namespace SophieAndMe.MVVM.Model
         
         
         // ########################################################## Collection de fonction pour le Landing
+        
+        public static Dictionary<string, string> RetrieveAchieved()
+        {
+            List<string> matier = ["Mathématiques", "Physique", "SI", "Français", "Anglais","Erreurs"];
+            Dictionary<string, string> dico = new Dictionary<string, string>();
+            using SQLiteConnection c = new SQLiteConnection(ConSource);
+            c.Open();
+            SQLiteCommand command;
+            for (int i = 0; i < 6; i++)
+            {
+                string query = $"SELECT  sum(Ended),count(*) FROM {matier[i]} ";
+                Console.WriteLine(query);
+                command = new SQLiteCommand(query, c);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int ended = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        int total = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                        Console.WriteLine(ended);
+                        Console.WriteLine(total);
+
+                        
+                        float ratio = total > 0 ? (float)ended / total : 0f;
+                        ratio = ended == 0 ? 0 : ratio;
+                        Console.WriteLine(matier[i] + " : " + ratio);
+                        dico[matier[i]] = (ratio * 100).ToString(); // en pourcentage formaté
+                    }
+                }
+            }
+            return dico;
+        }
+        
         public static Dictionary<string, string> RetrieveTimePassed(List<DateTime> date)
         {
             List<string> Days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];

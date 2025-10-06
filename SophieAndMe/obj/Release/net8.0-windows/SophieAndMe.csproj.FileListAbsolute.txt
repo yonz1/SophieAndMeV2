@@ -158,3 +158,14 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-window
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\SettingsViews\SettingsProfile.baml
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\Windows\Login.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\Windows\Login.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\HtmlAgilityPack.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\Custom\FCCView.g.cs
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Release\net8.0-windows\MVVM\View\Custom\FCCView.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\EAGetMail.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\Google.Apis.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\Google.Apis.Auth.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\Google.Apis.Core.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\Google.Apis.Gmail.v1.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\System.Management.dll
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Release\net8.0-windows\runtimes\win\lib\net7.0\System.Management.dll

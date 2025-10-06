@@ -14,11 +14,11 @@ let date = new Date(),
 const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-let Val = ["2025-08-19", "2025-08-31"]; 
+let Val = ["2025-08-19", "2025-08-31"];
 
 const pad = n => n.toString().padStart(2, '0');
 const NvContainer = document.getElementById("Nouveau");
-const Messages = document.getElementById("Messages"); 
+const Messages = document.getElementById("Messages");
 const Notes = document.getElementById("Notes");
 const Quizz =  document.getElementById("Quizz");
 
@@ -100,7 +100,7 @@ const renderCalendar = () => {
         const isActual = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "actual": "";
         if (isActual == "actual")
         {
-          isActive = "active"
+            isActive = "active"
         }
 
         liTag += `<li id="${isActual}" Style="color:${color};" class="${isActive}">${i}</li>`;
@@ -131,68 +131,68 @@ prevNextIcon.forEach(icon => {
 });
 
 
-    var options = {
-      chart: {
+var options = {
+    chart: {
         type: 'bar',
-        height: 260,
-          width: window.innerWidth * 0.45,
+        height: window.innerWidth * 0.23,
+        width: window.innerWidth * 0.45,
         toolbar: { show: false }
-      },
-      tooltip: {
-  enabled: false
-},
-grid: {
-  yaxis: {
-    lines: {
-       show: false,// supprime les lignes de niveau
-      height: 0.2,
-      colors: '#636363',
-    }
-  }
-},
-      plotOptions: {
-        bar: {
-          borderRadius: 14,
-          columnWidth: '80%',
-          distributed: false
+    },
+    tooltip: {
+        enabled: false
+    },
+    grid: {
+        yaxis: {
+            lines: {
+                show: false,// supprime les lignes de niveau
+                height: 0.2,
+                colors: '#636363',
+            }
         }
-      },
-      dataLabels: {
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 14,
+            columnWidth: '80%',
+            distributed: false
+        }
+    },
+    dataLabels: {
         enabled: false,
-      },
-      xaxis: {
-         axisBorder: {
-    show: false // enlève la ligne horizontale en bas
-  },
-  axisTicks: {
-    show: false // enlève les petites "barrettes" sous chaque label
-  },
+    },
+    xaxis: {
+        axisBorder: {
+            show: false // enlève la ligne horizontale en bas
+        },
+        axisTicks: {
+            show: false // enlève les petites "barrettes" sous chaque label
+        },
         categories: [
-          "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"
+            "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"
         ],
         labels: {
-          style: {
-            colors: SelectedText,
-              fontSize: '12px',
-              fontFamily: 'Inherit',
-              fontWeight: '400',
-          }
+            style: {
+                colors: SelectedText,
+                fontSize: '12px',
+                fontFamily: 'Inherit',
+                fontWeight: '400',
+            }
         }
-      },
+    },
 
-      fill: {
+    fill: {
         type:'gradient',
-          gradient: {
-            shade: 'light', 
-              type:'vertical',
-              stops: [0,100],
-              opacity:1,
-              opacityFrom: 1,
-              inverseColors: false,
-              gradientToColors: ["#8b5cf6"]
-          }
-},
-      yaxis:{
+        gradient: {
+            shade: 'light',
+            type:'vertical',
+            stops: [0,100],
+            opacity:1,
+            opacityFrom: 1,
+            inverseColors: false,
+            gradientToColors: ["#8b5cf6"]
+        }
+    },
+    yaxis:{
         labels: {
             style:{
                 fontSize: '12px',
@@ -201,38 +201,49 @@ grid: {
                 colors: SelectedText
             }
         }
-      },
+    },
 
-      series: [{
+    series: [{
         name: "Temps passé",
         data: [30, 40, 20, 50, 60, 10, 0]
-      }],
-      colors: ['#38bdf8'],
-    };
-    var chart = new ApexCharts(document.querySelector(".chart"), options);
-    chart.render();
+    }],
+    colors: ['#38bdf8'],
+};
+var chart = new ApexCharts(document.querySelector(".chart"), options);
+chart.render();
+renderCalendar();
 
-window.chrome.webview.addEventListener('message', event => {
-    dico = event.data;
-    console.log(dico);
-    if(dico.lundi  !== "")
-    {
-        chart.updateSeries([{
-            name: "Temps passé",
-            data: [parseInt(dico.lundi), parseInt(dico.mardi), parseInt(dico.mercredi), parseInt(dico.jeudi), parseInt(dico.vendredi), parseInt(dico.samedi), parseInt(dico.dimanche)]
-        }]);
-    }
-    else if (dico.DateColle !== "")
-    {
-        Val.push(dico.DateColle)
-    }
-    else
-    {
-        renderCalendar();
-        console.log("Called")
-        FillMessages(dico.Meta,dico.Data,dico.Position)
-    }
-});
+// document.getElementById("Maths").style.width = "20%";
+// window.chrome.webview.addEventListener('message', event => {
+//     dico = event.data;
+//     console.log(dico);
+//     //if (dico.Maths)
+//     //{
+//        //document.getElementById("Maths").style.width = dico.Mathématiques + "%";
+//        //document.getElementById("Physique").style.width = dico.Physique + "%";
+//         //document.getElementById("SI").style.width = dico.SI + "%";
+//         //document.getElementById("Anglais").style.width = dico.Anglais + "%";
+//         //document.getElementById("Français").style.width = dico.Français + "%";
+//         //document.getElementById("Erreurs").style.width = dico.Erreurs + "%";
+//     //}
+//     if(dico.lundi  !== "")
+//     {
+//         chart.updateSeries([{
+//             name: "Temps passé",
+//             data: [parseInt(dico.lundi), parseInt(dico.mardi), parseInt(dico.mercredi), parseInt(dico.jeudi), parseInt(dico.vendredi), parseInt(dico.samedi), parseInt(dico.dimanche)]
+//         }]);
+//     }
+//     else if (dico.DateColle !== "")
+//     {
+//         Val.push(dico.DateColle)
+//     }
+//     else
+//     {
+//         renderCalendar();
+//         console.log("Called")
+//         FillMessages(dico.Meta,dico.Data,dico.Position)
+//     }
+// });
 
 function  get_data(button)
 {
@@ -244,8 +255,8 @@ function  get_data(button)
     window.chrome.webview.postMessage(data);
 }
 
-    window.addEventListener('resize', () => {
-  chart.updateOptions({
-    chart: { width: window.innerWidth * 0.45 }
-  });
+window.addEventListener('resize', () => {
+    chart.updateOptions({
+        chart: { width: window.innerWidth * 0.45 , height : window.innerWidth * 0.23 },
+    });
 });
