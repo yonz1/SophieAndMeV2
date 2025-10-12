@@ -211,39 +211,39 @@ var options = {
 };
 var chart = new ApexCharts(document.querySelector(".chart"), options);
 chart.render();
-renderCalendar();
+// renderCalendar();
 
-// document.getElementById("Maths").style.width = "20%";
-// window.chrome.webview.addEventListener('message', event => {
-//     dico = event.data;
-//     console.log(dico);
-//     //if (dico.Maths)
-//     //{
-//        //document.getElementById("Maths").style.width = dico.Mathématiques + "%";
-//        //document.getElementById("Physique").style.width = dico.Physique + "%";
-//         //document.getElementById("SI").style.width = dico.SI + "%";
-//         //document.getElementById("Anglais").style.width = dico.Anglais + "%";
-//         //document.getElementById("Français").style.width = dico.Français + "%";
-//         //document.getElementById("Erreurs").style.width = dico.Erreurs + "%";
-//     //}
-//     if(dico.lundi  !== "")
-//     {
-//         chart.updateSeries([{
-//             name: "Temps passé",
-//             data: [parseInt(dico.lundi), parseInt(dico.mardi), parseInt(dico.mercredi), parseInt(dico.jeudi), parseInt(dico.vendredi), parseInt(dico.samedi), parseInt(dico.dimanche)]
-//         }]);
-//     }
-//     else if (dico.DateColle !== "")
-//     {
-//         Val.push(dico.DateColle)
-//     }
-//     else
-//     {
-//         renderCalendar();
-//         console.log("Called")
-//         FillMessages(dico.Meta,dico.Data,dico.Position)
-//     }
-// });
+document.getElementById("Maths").style.width = "20%";
+window.chrome.webview.addEventListener('message', event => {
+    dico = event.data;
+    console.log(dico);
+    //if (dico.Maths)
+    //{
+       //document.getElementById("Maths").style.width = dico.Mathématiques + "%";
+       //document.getElementById("Physique").style.width = dico.Physique + "%";
+        //document.getElementById("SI").style.width = dico.SI + "%";
+        //document.getElementById("Anglais").style.width = dico.Anglais + "%";
+        //document.getElementById("Français").style.width = dico.Français + "%";
+        //document.getElementById("Erreurs").style.width = dico.Erreurs + "%";
+    //}
+    if(dico.lundi  !== "")
+    {
+        chart.updateSeries([{
+            name: "Temps passé",
+            data: [parseInt(dico.lundi), parseInt(dico.mardi), parseInt(dico.mercredi), parseInt(dico.jeudi), parseInt(dico.vendredi), parseInt(dico.samedi), parseInt(dico.dimanche)]
+        }]);
+    }
+    else if (dico.DateColle !== "")
+    {
+        Val.push(dico.DateColle)
+    }
+    else
+    {
+        renderCalendar();
+        console.log("Called")
+        FillMessages(dico.Meta,dico.Data,dico.Position)
+    }
+});
 
 function  get_data(button)
 {

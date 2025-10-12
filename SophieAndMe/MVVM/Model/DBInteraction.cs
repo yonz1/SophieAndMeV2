@@ -706,6 +706,7 @@ namespace SophieAndMe.MVVM.Model
                     mainDic[Chapter] = info;
                 }
             }
+            Console.WriteLine(mainDic[Name]);
             return mainDic[Name];
         }
 
@@ -820,10 +821,14 @@ namespace SophieAndMe.MVVM.Model
             {
                 while (reader.Read())
                 {
-                    Console.WriteLine(reader.GetString(0));
                     Name.Add(reader.GetString(0));
                 }
             }
+
+            // foreach (var name in Name)
+            // {
+            //     Console.WriteLine(name);
+            // } 
             return Name;
         }
         
