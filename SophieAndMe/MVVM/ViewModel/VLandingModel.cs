@@ -56,8 +56,6 @@ public class VLandingModel : INotifyPropertyChanged
         jscode = JsonSerializer.Serialize(dico);
         Console.WriteLine(jscode);
         WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    
-        
- 
         dico["lundi"] = "";
         for (int i = 0; i < Dates.Count; i++)
         {
@@ -76,7 +74,6 @@ public class VLandingModel : INotifyPropertyChanged
             dico["Data"] =  dataNotes[i];
             dico["Position"] = "Notes";
             jscode = JsonSerializer.Serialize(dico);  
-            Console.WriteLine("JSCODE : " + jscode);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode)); 
         }
         
@@ -84,17 +81,15 @@ public class VLandingModel : INotifyPropertyChanged
         List<string> Mat = new List<string>();
         foreach (var name in quizzName)
         {
-            Mat.Add(DbInteraction.GetMat(name));
-            Console.WriteLine("Recu"  + name);
-            Console.WriteLine("Matier : " + DbInteraction.GetMat(name));
+            Mat.Add(DbInteraction.GetMat(name).ToString());
         }
-        for (int i = 0; i < Mat.Count; i++)
+        dico["DateColle"] =  "";
+        for (int i = 0; i < quizzName.Count; i++)
         {
             dico["Meta"] =  Mat[i];
             dico["Data"] =  quizzName[i];
             dico["Position"] = "Quizz";
             jscode = JsonSerializer.Serialize(dico);
-            Console.WriteLine("JSCODE : " + jscode);
             WeakReferenceMessenger.Default.Send(new MediatorLanding.JsCallMessage(jscode));    
         }
     }

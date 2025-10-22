@@ -13,6 +13,7 @@ namespace SophieAndMe.MVVM.View
         {
             InitializeComponent();
             this.DataContext = new VQuizzModel(mainVm);
+            
         }
     }
 }

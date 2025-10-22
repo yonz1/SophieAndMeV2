@@ -706,7 +706,7 @@ namespace SophieAndMe.MVVM.Model
                     mainDic[Chapter] = info;
                 }
             }
-            Console.WriteLine(mainDic[Name]);
+            Console.WriteLine("Sortie de récupération" + mainDic[Name]);
             return mainDic[Name];
         }
 
@@ -805,6 +805,7 @@ namespace SophieAndMe.MVVM.Model
                     Main[matiereStr[i]] = $"{val[0]};{val[4]}";
                 }
             }
+            Console.WriteLine(Main.Count);
             return(Main.Keys.ToList(),Main.Values.ToList());
         }
 

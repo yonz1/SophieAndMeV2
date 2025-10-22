@@ -81,7 +81,7 @@ body {
     grid-row: 2;
     background: var(--ELementbg);
     border-radius: 20px;
-    height: fit-content;
+    height: 100%;
     width: 20vw;
     padding-top: 10px;
     padding-bottom: 10px;

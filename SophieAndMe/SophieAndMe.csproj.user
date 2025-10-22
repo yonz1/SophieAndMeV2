@@ -11,6 +11,9 @@
     <Compile Update="MVVM\View\SettingsViews\SettingsProfile.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Test\Boutton_test.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +26,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsViews\SettingsProfile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Test\Boutton_test.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Login.xaml">

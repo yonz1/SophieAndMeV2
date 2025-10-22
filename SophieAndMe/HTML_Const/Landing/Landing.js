@@ -211,7 +211,7 @@ var options = {
 };
 var chart = new ApexCharts(document.querySelector(".chart"), options);
 chart.render();
-// renderCalendar();
+renderCalendar();
 
 document.getElementById("Maths").style.width = "20%";
 window.chrome.webview.addEventListener('message', event => {
