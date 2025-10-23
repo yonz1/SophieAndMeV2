@@ -4,7 +4,7 @@
     xmlns:fs="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-
+    
     <Style x:Key="NewMButtton" TargetType="RadioButton">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="80" />
@@ -1129,6 +1129,14 @@
         <Setter Property="Background" Value="{StaticResource pageBackground}" />
     </Style>
 
+    <Style x:Key="QuizzButtonCard" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource ElementbackgroundBlur}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ButtonQuizzCardGradient}"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 
 </ResourceDictionary>

@@ -40,13 +40,16 @@ namespace SophieAndMe.MVVM.ViewModel;
             
             foreach (var subject in Subjects)
             {
-                var localSubject = subject;
+                var localSubject = subject; 
                 subject.SelectCommand = new RelayCommand(param =>
                 {
                     foreach (var s in Subjects)
+                    {
                         s.IsSelected = false;
-
+                        s.IconVal = IconChar.Landmark;  
+                    }
                     localSubject.IsSelected = true;
+                    
                     Noms.Clear();
                     var name = DbInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}

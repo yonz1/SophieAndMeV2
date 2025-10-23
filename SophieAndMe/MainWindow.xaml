@@ -58,6 +58,7 @@
                                 Margin="30,15,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
+                                TextWrapping="Wrap"
                                 DockPanel.Dock="Left"
                                 FontFamily="Segoe UI Variable Text"
                                 FontSize="30"
@@ -114,7 +115,7 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Background="{StaticResource Elementbackground}"
-                                CornerRadius="25">
+                                CornerRadius="10">
                                 <DockPanel>
                                     <fs:IconImage
                                         Width="22"

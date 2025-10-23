@@ -22,6 +22,11 @@
         <GradientStop Offset="1" Color="#F8A4D8" />
         <GradientStop Offset="0.25" Color="#6C63ff" />
     </GradientStopCollection>
+    
+    <LinearGradientBrush  x:Key="ButtonQuizzCardGradient">
+        <GradientStop Offset="1" Color="#3B82F6" />
+        <GradientStop Offset="0.25" Color="#0F172A" />
+    </LinearGradientBrush>
 
     <GradientStopCollection x:Key="Sombre_purple">
         <GradientStop Offset="1" Color="#977dff" />

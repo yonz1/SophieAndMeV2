@@ -27,7 +27,7 @@
             HorizontalAlignment="Center"
             Background="{StaticResource main_background}"
             BorderThickness="2"
-            CornerRadius="20">
+            CornerRadius="10">
             <DockPanel
                 Height="50"
                 HorizontalAlignment="Center"
@@ -47,9 +47,10 @@
                                     Width="55"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    materialDesign:ButtonAssist.CornerRadius="20"
+                                    materialDesign:ButtonAssist.CornerRadius="10"
                                     Command="{Binding SelectCommand}"
                                     DockPanel.Dock="Left"
+                                    Tag="Blue"
                                     Foreground="{StaticResource Textcolor}"
                                     Style="{StaticResource topquizzmat}">
                                     <StackPanel
@@ -93,7 +94,7 @@
                             CornerRadius="20"
                             Margin="10,10,10,10"
                             Width="250"
-                            Height="120"
+                            Height="auto"
                             Background="{StaticResource ElementbackgroundBlur}">
                             <DockPanel Margin="10">
                                 <fs:IconImage

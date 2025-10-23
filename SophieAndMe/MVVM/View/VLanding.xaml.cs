@@ -27,7 +27,7 @@ namespace SophieAndMe.MVVM.View
                 WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
                 WebViewAll.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
                 // CoreWebView2.SetVirtualHostNameToFolderMapping();
-                WebViewAll.CoreWebView2.OpenDevToolsWindow();
+                // WebViewAll.CoreWebView2.OpenDevToolsWindow();
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing2.html");
                 var uri = new Uri(Path.GetFullPath(path));
                 WebViewAll.Source = uri;
