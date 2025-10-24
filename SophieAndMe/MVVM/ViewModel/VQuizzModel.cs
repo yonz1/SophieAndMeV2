@@ -7,6 +7,7 @@ using FontAwesome.Sharp;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.Model;
+using Icon = System.Drawing.Icon;
 
 
 namespace SophieAndMe.MVVM.ViewModel;
@@ -29,6 +30,7 @@ namespace SophieAndMe.MVVM.ViewModel;
             _mainViewModel.CurrentMessage = "Quizzs";
             Subjects = new ObservableCollection<SubjectItem>
             {   
+                new SubjectItem {Name = "Tous", IconVal = IconChar.Suitcase},
                 new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
                 new SubjectItem {Name = "Physique", IconVal = IconChar.Atom},
                 new SubjectItem {Name = "SI", IconVal = IconChar.Gears},
@@ -38,18 +40,16 @@ namespace SophieAndMe.MVVM.ViewModel;
                 new SubjectItem {Name = "All", IconVal = IconChar.Landmark},
             };
             
+            var name = DbInteraction.GetName("Tous");
+            foreach (var value in name) { Noms.Add(value);}
+
+            _dataService.QuizzId.Matier = "Tous";
+            
             foreach (var subject in Subjects)
             {
                 var localSubject = subject; 
                 subject.SelectCommand = new RelayCommand(param =>
                 {
-                    foreach (var s in Subjects)
-                    {
-                        s.IsSelected = false;
-                        s.IconVal = IconChar.Landmark;  
-                    }
-                    localSubject.IsSelected = true;
-                    
                     Noms.Clear();
                     var name = DbInteraction.GetName(localSubject.Name.ToString());
                     foreach (var value in name) { Noms.Add(value);}
@@ -59,6 +59,10 @@ namespace SophieAndMe.MVVM.ViewModel;
             
             ChoisirNomCommand = new RelayCommand(nom =>
             {
+                if (_dataService.QuizzId.Matier == "Tous")
+                {
+                    _dataService.QuizzId.Matier = DbInteraction.GetMat(nom.ToString());
+                }
                 _dataService.QuizzId.Nameindex = nom.ToString();
                 _mainViewModel.CurrentMessage = nom.ToString() ?? throw new InvalidOperationException();
                 if (ListMat.Contains(nom))

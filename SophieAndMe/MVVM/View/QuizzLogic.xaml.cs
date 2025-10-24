@@ -24,6 +24,7 @@ namespace SophieAndMe.MVVM.View
             webviewquizz.Source = uri1 as System.Uri;
             webviewquizz.CoreWebView2.Settings.IsStatusBarEnabled = false;
             webviewquizz.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            webviewquizz.DefaultBackgroundColor = System.Drawing.Color.Transparent;
             webviewquizz.CoreWebView2.NavigationCompleted += (sender, args) =>
             {
                 webviewquizz.CoreWebView2.ExecuteScriptAsync("console.log('fonctionne');");

@@ -192,8 +192,10 @@ namespace SophieAndMe.MVVM.ViewModel
 
         public async Task LoadPage(DateTime date)
         {
-            Console.WriteLine("URI : " + WebInteraction.GetProgKholle(date.ToString("d MMMM")));
-            WebUrl = new Uri(WebInteraction.GetProgKholle(date.ToString("d MMMM")));
+            string URI = WebInteraction.GetProgKholle(date.ToString("d MMMM"));
+            URI = URI == "" ? "https://solnon.fr" : URI; 
+            Console.WriteLine("URI : " + URI);
+            WebUrl = new Uri(URI);
         }
         
         public void FIllKholle(List<string> Nom, List<string> Salle, List<string> Matiére, List<int> heure, List<int> Jours,DateTime date)

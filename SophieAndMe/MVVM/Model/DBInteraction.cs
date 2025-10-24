@@ -97,7 +97,25 @@ namespace SophieAndMe.MVVM.Model
         public static List<string> GetName(object? mat)
         {
             var result = new List<string>();
-            if ((string)mat! != "All")
+            if ((string)mat! == "Tous")
+            {
+                using var db = new SQLiteConnection(ConSource);
+                db.Open();
+                foreach (var Matier in  ListMat)
+                {
+                    string query = $"SELECT name FROM [{Matier}] ORDER BY name";
+                    using var cmd = new SQLiteCommand(query, db);
+                    using var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string nom = reader.GetString(0);
+                        if (!result.Contains(nom))
+                            result.Add(nom);
+                    }                    
+                }
+
+            }
+            else if ((string)mat! != "All")
             {
                 using var db = new SQLiteConnection(ConSource);
                 db.Open();
@@ -115,6 +133,7 @@ namespace SophieAndMe.MVVM.Model
             {
                 result = ListMat;
             }
+            result.Sort();
 
             return result;
         }

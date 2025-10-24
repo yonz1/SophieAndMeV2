@@ -23,6 +23,7 @@ public partial class CardDisplayImport : UserControl
             WebViewAllCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
             WebViewAllCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             WebViewAllCard.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+            WebViewAllCard.DefaultBackgroundColor = System.Drawing.Color.Transparent;
             string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
             urif = urif.Replace("\\", "/");
             System.Uri uri1 = new System.Uri(urif);

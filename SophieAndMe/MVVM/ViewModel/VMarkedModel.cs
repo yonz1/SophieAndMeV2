@@ -54,15 +54,23 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
         
         Subjects = new ObservableCollection<SubjectItem>
         {   
+            new SubjectItem {Name = "Tous", IconVal = IconChar.Landmark},
             new SubjectItem {Name = "Mathématiques", IconVal = IconChar.Superscript},        
             new SubjectItem {Name = "Physique", IconVal = IconChar.Atom},
             new SubjectItem {Name = "SI", IconVal = IconChar.Gears},
             new SubjectItem {Name = "Français", IconVal = IconChar.Book},
             new SubjectItem {Name = "Anglais", IconVal = IconChar.EarthAmerica},
             new SubjectItem {Name = "Erreurs", IconVal = IconChar.Superpowers},
-            new SubjectItem {Name = "All", IconVal = IconChar.Landmark},
             new SubjectItem {Name = "Quizz", IconVal = IconChar.FilePen},
         };
+        
+        _dataService.QuizzId.IsAll = true;
+        (_question, _repnse, _urlQuestion, _urlRep) = DbInteraction.GetMarked("Tous");
+        var q = QuizzUtilities.Miseneformelist(_question) ?? new List<string>();
+        var r = QuizzUtilities.Miseneformelist(_repnse) ?? new List<string>();
+        var uq = QuizzUtilities.Miseneformelist(_urlQuestion) ?? new List<string>();
+        var ur = QuizzUtilities.Miseneformelist(_urlRep) ?? new List<string>();
+        ShowCard(q, r, uq, ur);
         
         foreach (var subject in Subjects)
         {
@@ -104,7 +112,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
     }
     public void LoadMark(string mat)
     {
-        if (mat == "All")
+        if (mat == "Tous")
         {
             _dataService.QuizzId.IsAll = true;
         }

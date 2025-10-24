@@ -171,3 +171,4 @@ C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\bin\Debug\net8.0-windows\runtimes\win\lib\net7.0\System.Management.dll
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\Test\Boutton_test.g.cs
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\Test\Boutton_test.baml
+C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\obj\Debug\net8.0-windows\Style\Blue_Theme.baml

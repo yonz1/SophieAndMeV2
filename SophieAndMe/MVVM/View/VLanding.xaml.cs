@@ -26,6 +26,7 @@ namespace SophieAndMe.MVVM.View
                 await WebViewAll.EnsureCoreWebView2Async();
                 WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
                 WebViewAll.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
+                WebViewAll.DefaultBackgroundColor = System.Drawing.Color.Transparent;
                 // CoreWebView2.SetVirtualHostNameToFolderMapping();
                 // WebViewAll.CoreWebView2.OpenDevToolsWindow();
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\HTML_Const\Landing\Landing2.html");

@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\core\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\core\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\test\\boutton_test.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\test\\boutton_test.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\vquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\vquizz.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -25,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\test\\boutton_test.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\test\\boutton_test.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\style\\dark_theme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -71,10 +83,6 @@
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\landing\\landing2.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\html_const\\thememain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\carddisplay\\carddisplayimport.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\carddisplay\\carddisplayimport.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -101,10 +109,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\mvvm\\view\\schedule.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|solutionrelative:sophieandme\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43528E16-B61F-4990-B922-C2BBDD9381FD}|SophieAndMe\\SophieAndMe.csproj|c:\\users\\bastien\\riderprojects\\sophieandme\\sophieandme\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -250,11 +254,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 2,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\App.xaml",
@@ -266,12 +270,25 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataService.cs",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Core\\DataService.cs",
+              "RelativeDocumentMoniker": "SophieAndMe\\Core\\DataService.cs",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Core\\DataService.cs",
+              "RelativeToolTip": "SophieAndMe\\Core\\DataService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAUwCMAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T17:58:43.224Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Boutton_test.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Test\\Boutton_test.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Test\\Boutton_test.xaml",
@@ -283,31 +300,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ButtonStyle.xaml",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
-              "RelativeDocumentMoniker": "SophieAndMe\\Style\\ButtonStyle.xaml",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
-              "RelativeToolTip": "SophieAndMe\\Style\\ButtonStyle.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-17T11:10:45.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "VCustom.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VCustom.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T21:11:13.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T21:11:13.041Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "betterarea.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
@@ -315,12 +319,11 @@
               "RelativeToolTip": "SophieAndMe\\HTML_Const\\Custom\\betterarea.js",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-07-24T22:08:34.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T22:08:34.026Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "VQuizz.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VQuizz.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VQuizz.xaml",
@@ -332,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Calendar.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Calendar.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Calendar.xaml",
@@ -344,19 +347,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Settings.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\Settings.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-28T15:59:38.656Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-28T15:59:38.656Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "VNotes.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VNotes.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VNotes.xaml",
@@ -367,7 +369,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
+              "Title": "ThemeMain.js",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "RelativeToolTip": "SophieAndMe\\HTML_Const\\ThemeMain.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-14T18:31:20.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ButtonStyle.xaml",
+              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
+              "RelativeDocumentMoniker": "SophieAndMe\\Style\\ButtonStyle.xaml",
+              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
+              "RelativeToolTip": "SophieAndMe\\Style\\ButtonStyle.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-17T11:10:45.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "VMarked.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VMarked.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VMarked.xaml",
@@ -378,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "Schedule.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Schedule.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Schedule.xaml",
@@ -390,18 +417,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "ThemeMain.js",
-              "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "RelativeToolTip": "SophieAndMe\\HTML_Const\\ThemeMain.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-09-14T18:31:20.536Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "VLanding.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
@@ -412,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Landing2.html",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Landing\\Landing2.html",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Landing\\Landing2.html",
@@ -424,7 +439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MainWindow.xaml",
@@ -435,7 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "VAgenda.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VAgenda.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VAgenda.xaml",
@@ -446,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "SettingsGeneral.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsGeneral.xaml",
@@ -457,7 +472,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "ImportAdd.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Windows\\ImportAdd.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Windows\\ImportAdd.xaml",
@@ -468,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "CardDisplayImport.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\CardDisplay\\CardDisplayImport.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\CardDisplay\\CardDisplayImport.xaml",
@@ -479,7 +494,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Theme.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Theme.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Theme.xaml",
@@ -491,7 +506,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "SettingsProfile.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\SettingsViews\\SettingsProfile.xaml",
@@ -502,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "MediatorCustom.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorCustom.cs",
@@ -514,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "AllQuizzSelect.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\AllQuizzSelect.xaml",
@@ -525,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\App.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\App.xaml.cs",
@@ -537,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "EndQuizz.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\EndQuizz.xaml",
@@ -548,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "Settings.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\Settings.xaml.cs",
@@ -560,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Light_Theme.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Light_Theme.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Light_Theme.xaml",
@@ -571,7 +586,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "QuizzLogic.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\QuizzLogic.xaml",
@@ -582,7 +597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "QuizzLogicModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\QuizzLogicModel.cs",
@@ -594,7 +609,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MainWindow.xaml.cs",
@@ -606,7 +621,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "VQuizzModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\VQuizzModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\VQuizzModel.cs",
@@ -618,7 +633,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "VCustomModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\VCustomModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\VCustomModel.cs",
@@ -630,7 +645,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "MediatorDisplayImport.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayImport.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayImport.cs",
@@ -642,7 +657,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "MediatorMarked.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorMarked.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorMarked.cs",
@@ -654,7 +669,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "QuizzUtilities.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\QuizzUtilities.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\QuizzUtilities.cs",
@@ -666,7 +681,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "MediatorLanding.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorLanding.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorLanding.cs",
@@ -678,7 +693,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "MediatorDisplayResp.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayResp.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\Mediator\\MediatorDisplayResp.cs",
@@ -690,7 +705,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "WebviewInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\WebviewInteraction.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\WebviewInteraction.cs",
@@ -702,7 +717,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "DBInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\DBInteraction.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\DBInteraction.cs",
@@ -714,7 +729,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "ContentControlHelper.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\ContentControlHelper.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\ContentControlHelper.cs",
@@ -726,7 +741,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "CheckBoxItem.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\Model\\CheckBoxItem.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\Model\\CheckBoxItem.cs",
@@ -738,7 +753,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "SophieAndMe",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
               "RelativeDocumentMoniker": "SophieAndMe\\SophieAndMe.csproj",
@@ -749,7 +764,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "CardDisplayResp.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\CardDisplayResp.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\CardDisplayResp.xaml",
@@ -760,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "SophieAndMe.csproj",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
               "RelativeDocumentMoniker": "SophieAndMe\\SophieAndMe.csproj",
@@ -772,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "Converter.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Converter.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Converter.xaml",
@@ -784,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "quizz.html",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.html",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.html",
@@ -796,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\AssemblyInfo.cs",
@@ -808,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "quizz.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.css",
@@ -820,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "quizz.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Quizz\\quizz.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Quizz\\quizz.js",
@@ -832,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "Style.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\Style.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\Style.css",
@@ -844,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "Card.css",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Card\\Card.css",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Card\\Card.css",
@@ -856,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "Delete.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Delete.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Delete.js",
@@ -868,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "Value.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Value.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Value.js",
@@ -880,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "Value.js",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\HTML_Const\\Custom\\Value.js",
               "RelativeDocumentMoniker": "SophieAndMe\\HTML_Const\\Custom\\Value.js",
@@ -917,7 +932,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "VLanding.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml",
@@ -929,7 +944,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "VLanding.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\View\\VLanding.xaml.cs",
@@ -963,7 +978,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "VLandingModel.cs",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\ViewModel\\VLandingModel.cs",
               "RelativeDocumentMoniker": "SophieAndMe\\MVVM\\ViewModel\\VLandingModel.cs",
@@ -997,7 +1012,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ButtonStyle.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\ButtonStyle.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\ButtonStyle.xaml",
@@ -1005,12 +1020,11 @@
               "RelativeToolTip": "SophieAndMe\\Style\\ButtonStyle.xaml",
               "ViewState": "AQIAANcDAAAAAAAAAAAAAPoDAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-17T11:11:01.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-17T11:11:01.61Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "Dark_theme.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Style\\Dark_theme.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Style\\Dark_theme.xaml",
@@ -1028,7 +1042,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Boutton_test.xaml",
               "DocumentMoniker": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Test\\Boutton_test.xaml",
               "RelativeDocumentMoniker": "SophieAndMe\\Test\\Boutton_test.xaml",

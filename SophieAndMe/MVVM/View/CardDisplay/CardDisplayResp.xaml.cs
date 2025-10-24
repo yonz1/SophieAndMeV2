@@ -31,6 +31,7 @@ public partial class CardDisplayResp : UserControl
             await WebViewAll.EnsureCoreWebView2Async();
             WebViewAll.CoreWebView2.Settings.IsStatusBarEnabled = false;
             WebViewAll.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            WebViewAll.DefaultBackgroundColor = System.Drawing.Color.Transparent;
             string urif = "file:///" + Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
             urif = urif.Replace("\\", "/");
             WebViewAll.Source = new Uri(urif);

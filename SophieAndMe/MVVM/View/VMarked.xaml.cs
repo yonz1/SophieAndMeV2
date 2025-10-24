@@ -24,6 +24,7 @@ namespace SophieAndMe.MVVM.View
                 await webviewall.EnsureCoreWebView2Async();
                     webviewall.CoreWebView2.Settings.IsStatusBarEnabled = false;
                     webviewall.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+                    webviewall.DefaultBackgroundColor = System.Drawing.Color.Transparent;
                 webviewall.CoreWebView2.WebMessageReceived += OnWebMessageReceived;
                 string urif = "file:///" + System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + "\\..\\..\\..\\HTML_Const\\Card\\Card.html";
                 urif = urif.Replace("\\", "/");

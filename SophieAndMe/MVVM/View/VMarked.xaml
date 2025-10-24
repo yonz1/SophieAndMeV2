@@ -22,13 +22,10 @@
                     <Border
                 Height="50"
                 Grid.Row="0"
-                HorizontalAlignment="Center"
-                Background="{StaticResource main_background}"
-                BorderThickness="2"
+                HorizontalAlignment="Left"
                 CornerRadius="20">
                 <DockPanel
                     Height="50"
-                    HorizontalAlignment="Center"
                     VerticalAlignment="Center">
                     <ItemsControl ItemsSource="{Binding Subjects}">
                         <ItemsControl.ItemsPanel>
@@ -39,36 +36,30 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="1.5">
-                                    <Button
-                                        Width="55"
+                                    <RadioButton
+                                        GroupName="Matier"
+                                        Width="auto"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        materialDesign:ButtonAssist.CornerRadius="20"
+                                        Margin="5 0 0 0"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
                                         Command="{Binding SelectCommand}"
                                         DockPanel.Dock="Left"
-                                        Foreground="{StaticResource Textcolor}"
                                         Style="{StaticResource topquizzmat}">
                                         <StackPanel
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             Orientation="Horizontal">
-                                            <fs:IconImage
+                                            <Label
+                                                Margin="0,0,1.5,0"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
-                                                Foreground="{StaticResource Iconcolor}"
-                                                Icon="{Binding IconVal}"
-                                                Style="{StaticResource NewMButtonIconSelected}" />
+                                                Content="{Binding Name}"
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Foreground="{StaticResource Textcolor}"/>
                                         </StackPanel>
-                                    </Button>
-                                    <Label
-                                        Margin="0,0,1.5,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}" 
-                                        Content="{Binding Name}"
-                                        FontSize="16"
-                                        FontWeight="Bold"
-                                        Foreground="{StaticResource Textcolor}" />
+                                    </RadioButton>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

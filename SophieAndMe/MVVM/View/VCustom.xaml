@@ -27,9 +27,8 @@
         </Grid.RowDefinitions>
         <DockPanel
             Height="50"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center">
-
             <DockPanel Visibility="{Binding IsViewReturn, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Hidden}">
                 <Button
                     Width="30"
@@ -52,64 +51,99 @@
             </DockPanel>
             <Border
                 Height="60"
-                Margin="20,0,0,0"
-                HorizontalAlignment="Center"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Background="{StaticResource main_background}"
-                BorderThickness="2"
                 CornerRadius="30">
                 <DockPanel>
-                    <Button
-                        Width="120"
-                        Height="40"
+                    <RadioButton
+                        GroupName="Matier"
                         Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding Create}"
-                        Content="Create"
                         DockPanel.Dock="Left"
-                        Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"/>
-                    <Button
-                        Width="120"
-                        Height="40"
+                        Style="{StaticResource topquizzmat}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="0,0,1.5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Create"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource Textcolor}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton
                         Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
+                        GroupName="Matier"
                         VerticalAlignment="Center"
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Background="Transparent"
                         Command="{Binding FFCComm}"
-                        Content="FFC"
                         DockPanel.Dock="Left"
-                        Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"/>
-                    <Button
-                        Width="120"
-                        Height="40"
+                        Style="{StaticResource topquizzmat}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="0,0,1.5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="FFC"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource Textcolor}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton
                         Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        GroupName="Matier"
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Background="Transparent"
                         Command="{Binding Created}"
-                        Content="Created"
                         DockPanel.Dock="Left"
-                        Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"/>
-                    <Button
-                        Width="120"
-                        Height="40"
+                        Style="{StaticResource topquizzmat}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="0,0,1.5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Created"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource Textcolor}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton
                         Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
+                        GroupName="Matier"
                         VerticalAlignment="Center"
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Background="Transparent"
                         Command="{Binding Import}"
-                        Content="Importer"
                         DockPanel.Dock="Left"
-                        Foreground="{StaticResource Textcolor}"
-                        Style="{StaticResource topquizzmat}"/>
+                        Style="{StaticResource topquizzmat}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="0,0,1.5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="Importer"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource Textcolor}"/>
+                        </StackPanel>
+                    </RadioButton>
                     
                 </DockPanel>
             </Border>
@@ -141,18 +175,48 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button
+                        <!-- <Button -->
+                        <!--     Width="250" -->
+                        <!--     Height="50" -->
+                        <!--     Margin="50,10,10,10" -->
+                        <!--     Background="{StaticResource Elementbackground}" -->
+                        <!--     BorderBrush="{StaticResource Elementbackground}" -->
+                        <!--     Command="{Binding DataContext.ChoisirMatierCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" -->
+                        <!--     CommandParameter="{Binding}" -->
+                        <!--     Content="{Binding}" -->
+                        <!--     FontSize="14" -->
+                        <!--     Foreground="{StaticResource Textcolor}" -->
+                        <!--     Style="{StaticResource button_quizz_desi}" /> -->
+                        <Border
+                            CornerRadius="20"
+                            Margin="10,10,10,10"
                             Width="250"
-                            Height="50"
-                            Margin="50,10,10,10"
-                            Background="{StaticResource Elementbackground}"
-                            BorderBrush="{StaticResource Elementbackground}"
-                            Command="{Binding DataContext.ChoisirMatierCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                            CommandParameter="{Binding}"
-                            Content="{Binding}"
-                            FontSize="14"
-                            Foreground="{StaticResource Textcolor}"
-                            Style="{StaticResource button_quizz_desi}" />
+                            Height="auto"
+                            Background="{StaticResource ElementbackgroundBlur}">
+                            <DockPanel Margin="10">
+                                <fs:IconImage
+                                    HorizontalAlignment="left"
+                                    VerticalAlignment="top"
+                                    DockPanel.Dock="Top"
+                                    Foreground="{StaticResource Iconcolor}"
+                                    Icon="subscript"
+                                    Style="{StaticResource NewMButtonIconSelected}" />
+                                <TextBlock
+                                    Margin="0,6,0,0"
+                                    Text="{Binding}"
+                                    TextWrapping="Wrap"
+                                    DockPanel.Dock="Top"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource Textcolor}" />
+                                <Button
+                                    Margin="0,6,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding DataContext.ChoisirMatierCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource button_quizz_desi}" />
+                            </DockPanel>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

@@ -13,6 +13,7 @@
     <SolidColorBrush x:Key="main_background" Color="#FFFFFF" />
     <SolidColorBrush x:Key="Button_panel_color" Color="#F8FAFC" />
     <SolidColorBrush x:Key="Elementbackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ElementbackgroundBlur" Color="#FFFFFF" />
     <materialDesign:BaseTheme x:Key="Theme" materialDesign:ThemeAssist.Theme="Light" />
     <SolidColorBrush
         x:Key="Topgrid"

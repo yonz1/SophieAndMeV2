@@ -24,13 +24,12 @@
         <Border
             Grid.Row="0"
             Height="50"
-            HorizontalAlignment="Center"
-            Background="{StaticResource main_background}"
+            HorizontalAlignment="Left"
             BorderThickness="2"
             CornerRadius="10">
             <DockPanel
                 Height="50"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 LastChildFill="True">
 
@@ -43,37 +42,30 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="1.5" Orientation="Horizontal">
-                                <Button
-                                    Width="55"
+                                <RadioButton
+                                    GroupName="Matier"
+                                    Width="auto"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
+                                    Margin="5 0 0 0"
                                     materialDesign:ButtonAssist.CornerRadius="10"
                                     Command="{Binding SelectCommand}"
                                     DockPanel.Dock="Left"
-                                    Tag="Blue"
-                                    Foreground="{StaticResource Textcolor}"
                                     Style="{StaticResource topquizzmat}">
                                     <StackPanel
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Orientation="Horizontal">
-                                        <fs:IconImage
+                                        <Label
+                                            Margin="0,0,1.5,0"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
-                                            Foreground="{StaticResource Iconcolor}"
-                                            Icon="{Binding IconVal}"
-                                            Style="{StaticResource NewMButtonIconSelected}" />
+                                            Content="{Binding Name}"
+                                            FontSize="16"
+                                            FontWeight="Bold"
+                                            Foreground="{StaticResource Textcolor}"/>
                                     </StackPanel>
-                                </Button>
-                                <Label
-                                    Margin="0,0,1.5,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Content="{Binding Name}"
-                                    FontSize="16"
-                                    FontWeight="Bold"
-                                    Foreground="{StaticResource Textcolor}"
-                                    Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                </RadioButton>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -113,17 +105,10 @@
                                     FontWeight="Bold"
                                     Foreground="{StaticResource Textcolor}" />
                                 <Button
-                                    Width="230"
-                                    Height="30"
                                     Margin="0,6,0,0"
                                     HorizontalAlignment="Stretch"
-                                    Background="{StaticResource Elementbackground}"
-                                    BorderBrush="{StaticResource Elementbackground}"
                                     Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                     CommandParameter="{Binding}"
-                                    Content="Démarrer"
-                                    FontSize="16"
-                                    Foreground="{StaticResource Textcolor}"
                                     Style="{StaticResource button_quizz_desi}" />
                             </DockPanel>
                         </Border>

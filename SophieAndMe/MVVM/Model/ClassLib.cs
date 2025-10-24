@@ -100,9 +100,22 @@ public class TimeTableItem
     public int RowNumSpan { get; set; }
     public System.Windows.Media.Color MatToColor(string Mat,bool IsColle)
     {
-        System.Windows.Media.Color val = _dataService.IsDark
-            ? System.Windows.Media.Color.FromRgb(22, 23, 23)
-            : System.Windows.Media.Color.FromRgb(248, 250, 252);
+        System.Windows.Media.Color val;
+        switch (_dataService.MainThemeColor)
+        {
+            case "Blue":
+                val = System.Windows.Media.Color.FromArgb(70, 51, 65, 85);
+                break;
+            case "Dark":
+                val = System.Windows.Media.Color.FromRgb(22, 23, 23);
+                break;
+            case "Light":
+                val = System.Windows.Media.Color.FromRgb(248, 250, 252);
+                break;
+        }
+        // System.Windows.Media.Color val = _dataService.IsDark
+        //     ? System.Windows.Media.Color.FromRgb(22, 23, 23)
+        //     : System.Windows.Media.Color.FromRgb(248, 250, 252);
         if (IsColle)
         {
             return System.Windows.Media.Color.FromRgb(255, 56, 60);
