@@ -22,7 +22,7 @@ public interface IDataService
     IdCard IdCard { get; set; }
     IQuizzId QuizzId { get; set; }
     bool WinBin { get; set; }
-    bool IsDark {get; set;}
+    string MainThemeColor {get; set;}
     public DateTime Start { get; set; }
     public DateTime End { get; set; }
 }
@@ -33,7 +33,7 @@ public class DataService : IDataService
     public IdCard IdCard { get; set; }  = new IdCard();
     public IQuizzId QuizzId { get; set; }  = new IQuizzId();
     public bool WinBin { get; set; } = false;
-    public bool IsDark { get; set; } = true;
+    public string MainThemeColor { get; set; } = "Dark";
     public DateTime Start { get; set; } = DateTime.Now;
     public DateTime End { get; set; }
     
