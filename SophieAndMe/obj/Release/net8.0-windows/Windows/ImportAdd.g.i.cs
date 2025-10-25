@@ -68,7 +68,7 @@ namespace SophieAndMe.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SophieAndMe;component/windows/importadd.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SophieAndMe;V1.0.0.0;component/windows/importadd.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\ImportAdd.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

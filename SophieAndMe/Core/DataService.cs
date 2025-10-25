@@ -33,7 +33,7 @@ public class DataService : IDataService
     public IdCard IdCard { get; set; }  = new IdCard();
     public IQuizzId QuizzId { get; set; }  = new IQuizzId();
     public bool WinBin { get; set; } = false;
-    public string MainThemeColor { get; set; } = "Blue";
+    public string MainThemeColor { get; set; } = "Dark";
     public DateTime Start { get; set; } = DateTime.Now;
     public DateTime End { get; set; }
     

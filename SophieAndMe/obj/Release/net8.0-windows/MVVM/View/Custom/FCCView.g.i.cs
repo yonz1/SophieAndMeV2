@@ -57,7 +57,7 @@ namespace SophieAndMe.MVVM.View.Custom {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SophieAndMe;component/mvvm/view/custom/fccview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SophieAndMe;V1.0.0.0;component/mvvm/view/custom/fccview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\MVVM\View\Custom\FCCView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -254,7 +254,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -270,6 +270,10 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DataService.cs",
@@ -277,14 +281,10 @@
               "RelativeDocumentMoniker": "SophieAndMe\\Core\\DataService.cs",
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Core\\DataService.cs",
               "RelativeToolTip": "SophieAndMe\\Core\\DataService.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAUwCMAAAA4AAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAUwCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T17:58:43.224Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
             },
             {
               "$type": "Document",
@@ -330,8 +330,7 @@
               "ToolTip": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\MVVM\\View\\VQuizz.xaml",
               "RelativeToolTip": "SophieAndMe\\MVVM\\View\\VQuizz.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-24T17:34:52.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T17:34:52.455Z"
             },
             {
               "$type": "Document",
@@ -377,8 +376,7 @@
               "RelativeToolTip": "SophieAndMe\\HTML_Const\\ThemeMain.js",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-09-14T18:31:20.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T18:31:20.536Z"
             },
             {
               "$type": "Document",

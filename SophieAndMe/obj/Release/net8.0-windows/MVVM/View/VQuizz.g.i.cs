@@ -65,7 +65,7 @@ namespace SophieAndMe.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SophieAndMe;component/mvvm/view/vquizz.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SophieAndMe;V1.0.0.0;component/mvvm/view/vquizz.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\VQuizz.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
