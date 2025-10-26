@@ -36,8 +36,9 @@ namespace SophieAndMe.MVVM.Model
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
 
 
-        private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
+        // private static readonly string UserSource = "Data Source=..//..//..//Database//user_value.db";
         private static readonly string ConSource = "Data Source=..//..//..//Database//data_restored.db";
+        private static readonly string UserSource = ConSource;
         private static readonly string Tempsource = "Data Source=..//..//..//Database//PublicDB.db";
         private static readonly string ProgressSource = "Data Source=..//..//..//Database//data_progressif.db";
         private static readonly string EDTSource = "Data Source=..//..//..//Database//EDT.db";
@@ -397,7 +398,7 @@ namespace SophieAndMe.MVVM.Model
         {
             Name.Clear();
             Name.Clear();
-            var query = "SELECT Name FROM Reference AS r JOIN Reference_mat AS m ON r.IdMatier = m.id WHERE m.Matier = \"" + nom +  "\" AND r.Created = \"1\"";
+            var query = $"SELECT DISTINCT r.Name FROM Reference AS r JOIN Reference_mat AS rm JOIN {nom} AS m  ON r.IdMatier = rm.id AND m.name = r.id WHERE r.Created = 1";
             if (nom == "All")
             {
                 query = "SELECT Name From Reference WHERE Created = \"1\"";
@@ -472,27 +473,27 @@ namespace SophieAndMe.MVVM.Model
                         }
                     }
                 }
-                using (SQLiteConnection c = new SQLiteConnection(UserSource))
-                {
-                    c.Open();
-                    query = $"SELECT COUNT(*) FROM Date WHERE  name = \"{name}\"";
-                    System.Diagnostics.Debug.WriteLine(query);
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
-                    {
-                        long count = (long)cmd.ExecuteScalar();
-                        System.Diagnostics.Debug.WriteLine(count);
-                
-                        if (count == 0)
-                        {
-                            query = $"INSERT INTO Date (Name,Inserted) VALUES (\"{name}\",\"{DateTime.UtcNow.Date.ToString("yyyy-MM-dd HH:mm:ss")}\")";
-                            using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
-                            {
-                                Console.WriteLine(query);
-                                insertCmd.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
+                // using (SQLiteConnection c = new SQLiteConnection(UserSource))
+                // {
+                //     c.Open();
+                //     query = $"SELECT COUNT(*) FROM Date WHERE  name = \"{name}\"";
+                //     System.Diagnostics.Debug.WriteLine(query);
+                //     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                //     {
+                //         long count = (long)cmd.ExecuteScalar();
+                //         System.Diagnostics.Debug.WriteLine(count);
+                //
+                //         if (count == 0)
+                //         {
+                //             query = $"INSERT INTO Date (Name,Inserted) VALUES (\"{name}\",\"{DateTime.UtcNow.Date.ToString("yyyy-MM-dd HH:mm:ss")}\")";
+                //             using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
+                //             {
+                //                 Console.WriteLine(query);
+                //                 insertCmd.ExecuteNonQuery();
+                //             }
+                //         }
+                //     }
+                // }
             }
             catch (Exception ex)
             {
@@ -523,7 +524,6 @@ namespace SophieAndMe.MVVM.Model
                     Console.WriteLine(reader.GetString(0));
                     DeleteList.Add(reader.GetString(0));
                 }
-
                 foreach (var Name in  DeleteList)
                 {
                     query = $"DELETE FROM Reference WHERE Name = \"{Name}\"";
@@ -905,7 +905,7 @@ namespace SophieAndMe.MVVM.Model
             using SQLiteConnection c = new SQLiteConnection(UserSource);
             c.Open();
             SQLiteCommand command;
-            string query = "SELECT Name FROM DATE ORDER BY Inserted DESC LIMIT 3";
+            string query = "SELECT Name FROM Reference ORDER BY id DESC LIMIT 3";
             command = new SQLiteCommand(query, c);
             using (var reader = command.ExecuteReader())
             {
@@ -1142,7 +1142,7 @@ namespace SophieAndMe.MVVM.Model
             using SQLiteConnection c = new SQLiteConnection(UserSource);
             c.Open();
             SQLiteCommand command;
-            string query = $"SELECT * FROM Colles";
+            string query = $"SELECT Nom,Date,heure,Jours,Salle,Matiére FROM Colles";
             command = new SQLiteCommand(query, c);  
             using (var reader = command.ExecuteReader())
             {

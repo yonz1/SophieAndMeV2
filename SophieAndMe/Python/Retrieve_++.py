@@ -2,10 +2,9 @@ import sqlite3
 import requests
 import re
 from bs4 import BeautifulSoup
+# from PLus.test import username
 
-from PLus.test import username
-
-con_f = sqlite3.connect("C:\\Users\\Bastien\\source\\repos\\Sophieandme\\Sophieandme\\user_value.db")
+con_f = sqlite3.connect("C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\Database\\user_value.db")
 curf_f = con_f.cursor()
 
 L = []
@@ -35,7 +34,6 @@ def replace_none(obj):
     else:
         return obj
 
-
 def find_between2(s, first, last):
     try:
         start = s.index( first ) + len( first )
@@ -63,8 +61,8 @@ def getCookie(val):
     end = " "
     return find_between2(str(val),start,end)
 
-username = ""
-password = ""
+username = "BPELLE"
+password = "EuWEV37ELt4fs3A"
 
 url = "https://eiffel-dijon.prepas-plus.fr/connexion?next=/"
 session = requests.Session()
@@ -79,6 +77,7 @@ url = "https://eiffel-dijon.prepas-plus.fr/colles/mes_notes"
 cookies = {'sessionid': sessionid}
 req = requests.get(url, cookies = cookies)
 s = req.text
+# print(s)
 
 if (s == ""):
     print("Aucun compte n'est enregistrées avec ces identifiants,veuillez réesayer")
@@ -90,12 +89,13 @@ data = find_between(s, start,end)
 # data = re.sub(r'^[ \t]+', '', data, flags=re.MULTILINE).replace(" ","")
 val = []
 for i in data:
-  print(i)
-  value = miseneforme(i)
-  print(value)
-  val.append(value)
+    value = miseneforme(i)
+    # print(value)
+    val.append(value)
 
-print("Matiére : ", val[0])
+Del = 'DELETE FROM Plus'
+exist = curf_f.execute(Del)
+# print("Matiére : ", val)
 for j in val[1:]:
     verifpresence = 'SELECT COUNT(*) from PLUS WHERE Semaine = "' + j[0] + '"'
     print(verifpresence)
@@ -103,6 +103,7 @@ for j in val[1:]:
     count = str(exist.fetchall()).replace("(", "").replace(")", "").replace("[", "").replace("]", "").replace(",", "")
     if int(count) == 0:
         Command = "INSERT INTO Plus (Semaine,Anglais,Français,Maths,Physique,SI) VALUES (?,?,?,?,?,?)"
+        val = []
         val = (j[0],j[1],j[2],j[3],j[4],j[5])
         print(Command)
         print(val)

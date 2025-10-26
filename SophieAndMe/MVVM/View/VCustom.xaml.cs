@@ -1,3 +1,4 @@
+using System.Data.SQLite;
 using System.Reflection;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
@@ -82,7 +83,7 @@ public partial class VCustom : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erreur JS - Custom: " + ex.Message);
+            Console.WriteLine("Erreur JS - Custom: " + ex.Message);
         }
     }
 }

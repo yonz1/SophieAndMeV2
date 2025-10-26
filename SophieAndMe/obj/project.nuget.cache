@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pJVJDE3ttO8HWrep04LHOzhCZct/O8UmocZ1vR0A4O5jB7dPbn6V/SnfoPY3gooEoe8nc+kD3E5jz/xcJQHKhg==",
+  "dgSpecHash": "d2RMusHX/Cg=",
   "success": true,
   "projectFilePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
   "expectedPackageFiles": [
@@ -57,14 +57,68 @@
     "C:\\Users\\Bastien\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\Bastien\\.nuget\\packages\\system.text.encoding.codepages\\8.0.0\\system.text.encoding.codepages.8.0.0.nupkg.sha512",
-    "C:\\Users\\Bastien\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\Bastien\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.11\\microsoft.netcore.app.host.win-x64.8.0.11.nupkg.sha512"
   ],
   "logs": [
     {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'System.Data.SqlClient' 4.8.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "libraryId": "System.Data.SqlClient",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Data.SqlClient' 4.8.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "libraryId": "System.Data.SqlClient",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "message": "Package 'System.Drawing.Common' 4.7.0 has a known critical severity vulnerability, https://github.com/advisories/GHSA-rxg9-xrhp-64gj",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "libraryId": "System.Drawing.Common",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Formats.Asn1' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-447r-wph3-92pm",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
+      "libraryId": "System.Formats.Asn1",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    },
+    {
       "code": "NU1701",
       "level": "Warning",
+      "message": "Package 'FontAwesome.WPF 4.7.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
       "warningLevel": 1,
-      "message": "Le package 'FontAwesome.WPF 4.7.0.9' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net8.0-windows7.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\SophieAndMe\\SophieAndMe.csproj",
       "libraryId": "FontAwesome.WPF",
       "targetGraphs": [
         "net8.0-windows7.0"

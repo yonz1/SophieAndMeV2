@@ -73,6 +73,16 @@ namespace SophieAndMe.MVVM.ViewModel ;
         
         public MainViewModel()
         {
+            try
+            {
+                object command = "python3 ..\\..\\..\\Python\\Retrieve_++.py";
+                CMDCommunication.run_cmd(command);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreurs en récupérant les notes Plusplus : " + e);
+                throw;
+            }
             LoadThemeWeb.LoadThemeWebval();
             NavigationService.Instance.Navigate("MainContent",new VLanding(this));
             MailRepository.Main();
@@ -81,7 +91,6 @@ namespace SophieAndMe.MVVM.ViewModel ;
             _dataService.IdCard = new IdCard();
             _dataService.IdCard.Number = 0;
             Chapter = DbInteraction.GetAllName();
-            Console.WriteLine("Seconde" + WebInteraction.GetProgKholle("8 septembre"));
             Pages = new ObservableCollection<SubjectItem>
             {
                 new SubjectItem {Name = "Quizz", IconVal = IconChar.UserGraduate, Navigation = new VQuizz(this), Value = "A"},        
