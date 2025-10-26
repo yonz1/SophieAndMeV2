@@ -47,7 +47,7 @@ public class CardDisplayImportModel
             switch (action)
             {
                 case "Delete":
-                    DbInteraction.DeleteCreated(question);
+                    DbInteraction.DeleteCreated(question,name);
                     break;
                 case "edit":
                     _vCustomModel.EditLogic(question);

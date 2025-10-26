@@ -280,7 +280,6 @@ function renderCardsSmoothly(cards) {
 
 function get_val(button) {
     const card = button.closest(".card");
-
     if (card) {
         card.classList.add("fade-out");
         setTimeout(() => {
@@ -290,7 +289,7 @@ function get_val(button) {
     const question = button.value;
     const action = "Delete";
     const data = { action, question };
-    console.log(data);
+    console.log("Delete : " +  question);
     window.chrome.webview.postMessage(data);
 }
 
@@ -305,7 +304,7 @@ function add_val(button){
     const question = button.value;
     const action = "Add";
     const data = { action, question };
-    console.log(data);
+    console.log("Add : "  + data);
     window.chrome.webview.postMessage(data);
 }
 
@@ -314,7 +313,7 @@ function get_data(button){
     const question = button.value;
     const action = "edit";
     const data = {action,question };
-    console.log(question);
+    console.log("edit : " + question);
     window.chrome.webview.postMessage(data);
 }
 

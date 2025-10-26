@@ -58,7 +58,7 @@ namespace SophieAndMe.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SophieAndMe;V1.0.0.0;component/windows/login.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SophieAndMe;component/windows/login.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\Login.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

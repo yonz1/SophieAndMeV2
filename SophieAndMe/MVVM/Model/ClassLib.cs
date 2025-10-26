@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using SophieAndMe.Core;
@@ -76,6 +77,12 @@ public class DaysItem
     public string Date { get; set; }
 }
 
+public class NameItemQUizzCardButton
+{
+    public string noms { get; set; }
+    public SolidColorBrush Color { get; set; }
+}
+
 
 public class TimeTableItem
 {
@@ -113,9 +120,6 @@ public class TimeTableItem
                 val = System.Windows.Media.Color.FromRgb(248, 250, 252);
                 break;
         }
-        // System.Windows.Media.Color val = _dataService.IsDark
-        //     ? System.Windows.Media.Color.FromRgb(22, 23, 23)
-        //     : System.Windows.Media.Color.FromRgb(248, 250, 252);
         if (IsColle)
         {
             return System.Windows.Media.Color.FromRgb(255, 56, 60);
@@ -164,8 +168,9 @@ public class TimeTableItem
         }
         return val;
     }
-    
 }
+
+
 
 public class SubjectItem : INotifyPropertyChanged
 {

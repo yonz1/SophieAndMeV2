@@ -5,11 +5,13 @@ using System.Text.Json;
 using System.Windows;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Globalization;
+using System.Windows.Media;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.ViewModel;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
+using SophieAndMe.MVVM.Model;
 
 
 namespace SophieAndMe.MVVM.Model
@@ -93,52 +95,91 @@ namespace SophieAndMe.MVVM.Model
                 }
             }
         }
+        
+        public static System.Windows.Media.Color MatToColorQuizz(string Mat)
+        {
+            System.Windows.Media.Color val;
+            switch (Mat)
+            {
+                case "Mathématiques":
+                    val = System.Windows.Media.Color.FromRgb(30, 110, 244);
+                    break;
+                case "Physique":
+                    val = System.Windows.Media.Color.FromRgb(52, 199, 89);
+                    break;
+                case"SI":
+                    val = System.Windows.Media.Color.FromRgb(255, 141, 40);
+                    break;
+                case "Anglais":
+                    val = System.Windows.Media.Color.FromRgb(179, 136, 255);
+                    break;
+                case "Français":
+                    val = System.Windows.Media.Color.FromRgb(59, 221, 236);
+                    break;
+                case "Erreurs":
+                    val = System.Windows.Media.Color.FromArgb(255, 255, 255, 255);
+                    break;
+            }
+            return val;
+        }
 
-        public static List<string> GetName(object? mat)
+        public static SortedDictionary<string,SolidColorBrush> GetName(object? mat)
         {
             var result = new List<string>();
+            SortedDictionary<string,SolidColorBrush> valueret = new SortedDictionary<string, SolidColorBrush>();
             if ((string)mat! == "Tous")
             {
                 using var db = new SQLiteConnection(ConSource);
                 db.Open();
                 foreach (var Matier in  ListMat)
                 {
-                    string query = $"SELECT name FROM [{Matier}] ORDER BY name";
+                    SolidColorBrush color = new SolidColorBrush(MatToColorQuizz(Matier));
+                    string query = $"SELECT DISTINCT r.name FROM {Matier} AS D JOIN Reference AS r ON d.name = r.id ORDER BY r.name";
                     using var cmd = new SQLiteCommand(query, db);
                     using var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         string nom = reader.GetString(0);
                         if (!result.Contains(nom))
+                        {
                             result.Add(nom);
-                    }                    
+                            valueret[nom] = color;
+                        }
+                    }
+                    
                 }
-
             }
             else if ((string)mat! != "All")
             {
+                SolidColorBrush color =  new SolidColorBrush(MatToColorQuizz((string)mat!));
                 using var db = new SQLiteConnection(ConSource);
                 db.Open();
-                string query = $"SELECT name FROM [{mat}] ORDER BY name";
+                string query = $"SELECT DISTINCT r.name FROM {mat} AS D JOIN Reference AS r ON d.name = r.id ORDER BY r.name";
+                Console.WriteLine(query);
                 using var cmd = new SQLiteCommand(query, db);
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     string nom = reader.GetString(0);
-                    if (!result.Contains(nom))
-                        result.Add(nom);
+                    result.Add(nom);
+                    valueret[nom] = color;
                 }
             }
             else
             {
                 result = ListMat;
+                foreach (var matVal in result)
+                {
+                    Color color = MatToColorQuizz(matVal);
+                    valueret[matVal] = new SolidColorBrush(color);
+                }
             }
-            result.Sort();
+            // valueret.Sort();
 
-            return result;
+            return valueret;
         }
 
-        public static (List<string>, List<string>, List<string>, List<string>) Retrievequizz(
+     public static (List<string>, List<string>, List<string>, List<string>) Retrievequizz(
             string? nameindex, string id, MainViewModel mainVm)
         {
             var connection = new SQLiteConnection(ConSource);
@@ -183,8 +224,10 @@ namespace SophieAndMe.MVVM.Model
                 else
                 {
                     Console.WriteLine("normale");
+                    // query =
+                    //     $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier} WHERE name = @name";
                     query =
-                        $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier} WHERE name = @name";
+                        $"SELECT m.question,m.reponse,m.image_question_url,m.image_answer_url FROM {_dataService.QuizzId.Matier} AS m JOIN Reference AS r ON r.id = m.name WHERE r.name = @name";
                     command = new SQLiteCommand(query, connection);
                     command.Parameters.AddWithValue("@name", nameindex);
                 }
@@ -225,9 +268,8 @@ namespace SophieAndMe.MVVM.Model
         public static (List<string>, List<string>, List<string>, List<string>) RetrievequizzToCreated(string? nameindex)
         {
             var connection = new SQLiteConnection(ConSource);
-            var query = "SELECT question,reponse,image_question_url,image_answer_url  FROM " +
-                        _dataService.QuizzId.Matier.ToString() + " WHERE name = \"" + nameindex +
-                        "\" AND ID = \"100\"";
+            var query = $"SELECT question,reponse,image_question_url,image_answer_url FROM {_dataService.QuizzId.Matier.ToString()} AS m JOIN Reference AS r ON m.name = r.id WHERE r.Name = \"{nameindex}\"";
+            Console.WriteLine(query);
             try
             {
                 connection.Open();
@@ -251,6 +293,7 @@ namespace SophieAndMe.MVVM.Model
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
 
+            Console.WriteLine("A");
             return (Aquestion, Arepnse, AurlQuestion, AurlRep);
             connection.Close();
         }
@@ -328,11 +371,7 @@ namespace SophieAndMe.MVVM.Model
         public static List<string> GetAllName()
         {
             Name.Clear();
-            var query = "Select name FROM " + ListMat[0];
-            for (int i = 1; i < ListMat.Count; i++)
-            {
-                query += " UNION Select name FROM " + ListMat[i];
-            }
+            var query = "SELECT Name FROM Reference";
 
             using (var db = new SQLiteConnection(ConSource))
             {
@@ -357,19 +396,11 @@ namespace SophieAndMe.MVVM.Model
         public static List<string> GetNameCreated(string? nom)
         {
             Name.Clear();
-            var query = "SELECT name FROM " + nom + " WHERE ID = \"100\"";
+            Name.Clear();
+            var query = "SELECT Name FROM Reference AS r JOIN Reference_mat AS m ON r.IdMatier = m.id WHERE m.Matier = \"" + nom +  "\" AND r.Created = \"1\"";
             if (nom == "All")
             {
-                var sb = new StringBuilder();
-                var parameters = new List<SQLiteParameter>();
-                Console.WriteLine("All");
-                for (int i = 0; i < ListMat.Count; i++)
-                {
-                    if (i > 0) sb.Append(" UNION ");
-                    sb.Append(
-                        $"SELECT name FROM {ListMat[i]} WHERE ID = \"100\"");
-                    query = sb.ToString();
-                }
+                query = "SELECT Name From Reference WHERE Created = \"1\"";
             }
             using var db = new SQLiteConnection(ConSource);
             db.Open();
@@ -387,23 +418,43 @@ namespace SophieAndMe.MVVM.Model
         }
 
 
+        public static void VerifReference(string name,string matier)
+        {
+            using (SQLiteConnection c = new SQLiteConnection(ConSource))
+            {
+                    
+                c.Open();
+                string query = $"SELECT Count(name) FROM Reference WHERE name = \"{name}\"";
+                System.Diagnostics.Debug.WriteLine(query);
+                using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                {
+                    long count = (long)cmd.ExecuteScalar();
+                    System.Diagnostics.Debug.WriteLine(count);
+
+                    if (count == 0)
+                    {
+                        query = $"INSERT INTO Reference (name,Created,IdMatier) VALUES (\"{name}\",1,(SELECT id FROM Reference_mat WHERE Matier = \"{matier}\"))";
+                        using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
+                        {
+                            Console.WriteLine(query);
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
 
         public static void SaveQuizz(string matier, string name, string question, string imgQuestion, string rep,
             string imgRep)
         {
             string query = "";
-            matier = "\"" + matier + "\"";
-            name = "\"" + name.TrimEnd() + "\"";
-            question = "\"" + question + "\"";
-            imgQuestion = "\"" + imgQuestion + "\"";
-            rep = "\"" + rep + "\"";
-            imgRep = "\"" + imgRep + "\"";
             try
             {
                 using (SQLiteConnection c = new SQLiteConnection(ConSource))
                 {
+                    VerifReference(name,matier );
                     c.Open();
-                    query = "SELECT COUNT(*) FROM " + matier + " WHERE  name = " + name + " AND question = " + question;
+                    query = $"SELECT COUNT(*) FROM {matier} AS m JOIN Reference AS r ON r.id = m.name WHERE r.Name = \"{name}\" AND replace(m.question,' ','') = replace(\"{question}\",' ','')  ";
                     System.Diagnostics.Debug.WriteLine(query);
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
@@ -412,9 +463,7 @@ namespace SophieAndMe.MVVM.Model
 
                         if (count == 0)
                         {
-                            query = "INSERT INTO " + matier +
-                                    " (id,difficulty ,name,question,reponse,image_question_url,image_answer_url,Marked) VALUES (100,1," +
-                                    name + "," + question + "," + rep + "," + imgQuestion + "," + imgRep + ",0)";
+                            query = $"INSERT INTO {matier} (id,difficulty ,name,question,reponse,image_question_url,image_answer_url,Marked) VALUES (100,1,(SELECT id FROM Reference WHERE Name = \"{name}\"),\"{question}\",\"{rep}\",\"{imgQuestion}\",\"{imgRep}\",0)";
                             using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
                             {
                                 Console.WriteLine(query);
@@ -426,7 +475,7 @@ namespace SophieAndMe.MVVM.Model
                 using (SQLiteConnection c = new SQLiteConnection(UserSource))
                 {
                     c.Open();
-                    query = $"SELECT COUNT(*) FROM Date WHERE  name = {name}";
+                    query = $"SELECT COUNT(*) FROM Date WHERE  name = \"{name}\"";
                     System.Diagnostics.Debug.WriteLine(query);
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
@@ -435,7 +484,7 @@ namespace SophieAndMe.MVVM.Model
                 
                         if (count == 0)
                         {
-                            query = $"INSERT INTO Date (Name,Inserted) VALUES ({name},\"{DateTime.UtcNow.Date.ToString("yyyy-MM-dd HH:mm:ss")}\")";
+                            query = $"INSERT INTO Date (Name,Inserted) VALUES (\"{name}\",\"{DateTime.UtcNow.Date.ToString("yyyy-MM-dd HH:mm:ss")}\")";
                             using (SQLiteCommand insertCmd = new SQLiteCommand(query, c))
                             {
                                 Console.WriteLine(query);
@@ -453,17 +502,36 @@ namespace SophieAndMe.MVVM.Model
             }
         }
 
-        public static void DeleteCreated(string question)
+        public static void DeleteCreated(string question,string name)
         {
+            List<string> DeleteList = new List<string>();
             using (SQLiteConnection c = new SQLiteConnection(ConSource))
             {
                 c.Open();
-                string query = "DELETE FROM " + _dataService.QuizzId.Matier.ToString() +
-                               " WHERE REPLACE(question, ' ', '') =  REPLACE(\"" + question +
-                               "\", ' ', '') AND ID = \"100\"";
+                string query = $"DELETE FROM {_dataService.QuizzId.Matier.ToString()} AS m WHERE replace(m.question, ' ','') = replace(\"{question}\",' ','')";
+                Console.WriteLine(query);
                 using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                 {
                     cmd.ExecuteNonQuery();
+                }
+
+                query = $"SELECT r.Name FROM Reference AS r JOIN Reference_mat AS rm ON rm.id = r.IdMatier WHERE Matier = \"{_dataService.QuizzId.Matier.ToString()}\" EXCEPT SELECT r.Name FROM {_dataService.QuizzId.Matier.ToString()} AS m JOIN Reference AS r ON r.id = m.name GROUP BY r.id";
+                Console.WriteLine(query);
+                using (var cmd = new SQLiteCommand(query,c))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine(reader.GetString(0));
+                    DeleteList.Add(reader.GetString(0));
+                }
+
+                foreach (var Name in  DeleteList)
+                {
+                    query = $"DELETE FROM Reference WHERE Name = \"{Name}\"";
+                    Console.WriteLine(query);
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, c))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -478,10 +546,8 @@ namespace SophieAndMe.MVVM.Model
             string? imageRep = null;
             var connection = new SQLiteConnection(ConSource);
             string query = "";
-            query = "SELECT name,reponse,image_question_url,image_answer_url FROM " +
-                    _dataService.QuizzId.Matier.ToString() +
-                    " WHERE ID = \"100\" AND REPLACE(question, ' ', '') =  REPLACE(\"" + question +
-                    "\", ' ', '') AND name = \"" + _dataService.QuizzId.Nameindex.ToString() + "\"";
+            query = $"SELECT r.name,m.reponse,m.image_question_url,m.image_answer_url FROM {GetMat(_dataService.QuizzId.Nameindex.ToString())} AS m JOIN Reference AS r ON r.id = m.name WHERE REPLACE(question, ' ', '') = REPLACE(\"" + question + "\", ' ','') AND REPLACE(r.Name, ' ','') = REPLACE(\"" + _dataService.QuizzId.Nameindex.ToString() +"\",' ','')";
+            Console.WriteLine(query);
             using (var db = new SQLiteConnection(ConSource))
             {
                 db.Open();
@@ -499,7 +565,14 @@ namespace SophieAndMe.MVVM.Model
                     }
                 }
             }
-
+            Console.WriteLine("######################################################");
+            Console.WriteLine("Modification pour éditions ");
+            Console.WriteLine("Matier : " + matier);
+            Console.WriteLine("Name : " + name);
+            Console.WriteLine("Question : " + question);
+            Console.WriteLine("Rep : " + reponse);
+            Console.WriteLine("Image Question : " + imageQuestion);
+            Console.WriteLine("Image Rep : " + imageRep);
             return (matier, name, question, reponse, imageQuestion, imageRep);
         }
 
@@ -507,21 +580,13 @@ namespace SophieAndMe.MVVM.Model
             string reponse, string imageRep)
         {
             string query = "";
-            name = "\"" + name + "\"";
-            question = "\"" + question + "\"";
-            imageQuestion = "\"" + imageQuestion + "\"";
-            reponse = "\"" + reponse + "\"";
-            imageRep = "\"" + imageRep + "\"";
+
             try
             {
                 using (SQLiteConnection c = new SQLiteConnection(ConSource))
                 {
                     c.Open();
-                    query = "UPDATE " + matier + " SET name = " + name + ", question = " + question + ",reponse = " +
-                            reponse + ", image_question_url = " + imageQuestion + ", image_answer_url = " + imageRep +
-                            " WHERE ID = \"100\" AND name = \"" + _dataService.QuizzId.Nameindex.ToString() +
-                            "\" AND  REPLACE(question, ' ', '') =  REPLACE(\"" +
-                            _dataService.QuizzId.old_quest.ToString() + "\", ' ', '')";
+                    query = $"UPDATE {matier} SET name = (SELECT id FROM Reference WHERE Name = \"{name}\"), question = \"{question}\", reponse = \"{reponse}\", image_question_url = \"{imageQuestion}\",image_answer_url = \"{imageRep}\" WHERE name = (SELECT id FROM Reference WHERE Name = \"{_dataService.QuizzId.Nameindex.ToString()}\") AND replace(question,' ','') = replace(\"{_dataService.QuizzId.old_quest.ToString()}\",' ','')";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, c))
                     {
                         cmd.ExecuteNonQuery();
@@ -717,16 +782,21 @@ namespace SophieAndMe.MVVM.Model
 
         public static string GetMat(string Name)
         {
-            Dictionary<string, string> mainDic= new Dictionary<string, string>();
-            foreach (var info in ListMat)
+            using SQLiteConnection c = new SQLiteConnection(ConSource);
+            c.Open();
+            string Matier = "";
+            SQLiteCommand command;
+            string query = $"SELECT rm.Matier FROM Reference as r JOIN Reference_mat AS rm ON rm.id = r.IdMatier WHERE r.Name = \"{Name}\"";
+            command = new SQLiteCommand(query,c);
+            using (var reader = command.ExecuteReader())
             {
-                foreach (var Chapter in GetName(info))
+                while (reader.Read())
                 {
-                    mainDic[Chapter] = info;
+                    Matier = (reader.GetString(0));
                 }
-            }
-            Console.WriteLine("Sortie de récupération" + mainDic[Name]);
-            return mainDic[Name];
+            } 
+            Console.WriteLine("Matier: " + Matier);
+            return Matier;
         }
 
         
@@ -1103,7 +1173,7 @@ namespace SophieAndMe.MVVM.Model
                 using SQLiteConnection c = new SQLiteConnection(ConSource);
                 c.Open();
                 SQLiteCommand command;
-                string query = $"UPDATE {mat} SET ENDED = '1' WHERE name = '{name}';";
+                string query = $"UPDATE REFERENCE SET Ended = '1' WHERE Name = '{name}';";
                 command = new SQLiteCommand(query, c);  
                 command.ExecuteNonQuery();
             }

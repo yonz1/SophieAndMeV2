@@ -43,14 +43,14 @@
                         <DataTemplate>
                             <StackPanel Margin="1.5" Orientation="Horizontal">
                                 <RadioButton
-                                    GroupName="Matier"
                                     Width="auto"
+                                    Margin="5,0,0,0"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    Margin="5 0 0 0"
                                     materialDesign:ButtonAssist.CornerRadius="10"
                                     Command="{Binding SelectCommand}"
                                     DockPanel.Dock="Left"
+                                    GroupName="Matier"
                                     Style="{StaticResource topquizzmat}">
                                     <StackPanel
                                         HorizontalAlignment="Center"
@@ -63,7 +63,7 @@
                                             Content="{Binding Name}"
                                             FontSize="16"
                                             FontWeight="Bold"
-                                            Foreground="{StaticResource Textcolor}"/>
+                                            Foreground="{StaticResource Textcolor}" />
                                     </StackPanel>
                                 </RadioButton>
                             </StackPanel>
@@ -83,11 +83,13 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border
-                            CornerRadius="20"
-                            Margin="10,10,10,10"
                             Width="250"
                             Height="auto"
-                            Background="{StaticResource ElementbackgroundBlur}">
+                            Margin="10,10,10,10"
+                            Background="{StaticResource ElementbackgroundBlur}"
+                            BorderBrush="{Binding Color}"
+                            BorderThickness="4,0,0,0"
+                            CornerRadius="20">
                             <DockPanel Margin="10">
                                 <fs:IconImage
                                     HorizontalAlignment="left"
@@ -98,17 +100,17 @@
                                     Style="{StaticResource NewMButtonIconSelected}" />
                                 <TextBlock
                                     Margin="0,6,0,0"
-                                    Text="{Binding}"
-                                    TextWrapping="Wrap"
                                     DockPanel.Dock="Top"
                                     FontSize="15"
                                     FontWeight="Bold"
-                                    Foreground="{StaticResource Textcolor}" />
+                                    Foreground="{StaticResource Textcolor}"
+                                    Text="{Binding noms}"
+                                    TextWrapping="Wrap" />
                                 <Button
                                     Margin="0,6,0,0"
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                    CommandParameter="{Binding}"
+                                    CommandParameter="{Binding noms}"
                                     Style="{StaticResource button_quizz_desi}" />
                             </DockPanel>
                         </Border>

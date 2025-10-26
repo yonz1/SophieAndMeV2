@@ -13,7 +13,7 @@
     <SolidColorBrush x:Key="main_background" Color="#242424" />
     <SolidColorBrush x:Key="Button_panel_color" Color="#161717" />
     <SolidColorBrush x:Key="Elementbackground" Color="#242424" />
-    <SolidColorBrush x:Key="ElementbackgroundBlur" Color="#70242424" />
+    <SolidColorBrush x:Key="ElementbackgroundBlur" Color="#70363638" />
     <SolidColorBrush
         x:Key="Topgrid"
         Opacity="100"

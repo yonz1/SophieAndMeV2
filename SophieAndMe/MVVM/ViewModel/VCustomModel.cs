@@ -192,7 +192,7 @@ public class VCustomModel : ObservableRecipient, INotifyPropertyChanged
         IsViewFFC = false;
         ClearLogic(false,false,false);
         var name = DbInteraction.GetName("All");
-        foreach (var value in name) { Matier.Add(value);}
+        foreach (var value in name.Keys) { Matier.Add(value);}
     }
     private void ClearLogic(bool b1, bool b2, bool b3)
     {

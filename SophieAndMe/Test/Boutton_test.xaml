@@ -12,56 +12,134 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid>
-        <DockPanel
+    <Grid
+        Width="254"
+        Height="120"
+        Background="{StaticResource pageBackground}">
+        <Rectangle
+            Width="50"
+            Height="120"
+            Margin="0,0,10,0"
+            HorizontalAlignment="Left"
+            Fill="LimeGreen"
+            RadiusX="20"
+            RadiusY="20">
+            <Rectangle.Effect>
+                <DropShadowEffect
+                    BlurRadius="20"
+                    Opacity="0.8"
+                    ShadowDepth="0"
+                    Color="Lime" />
+            </Rectangle.Effect>
+        </Rectangle>
+        <Rectangle
             Width="250"
             Height="120"
-            Background="{StaticResource ElementbackgroundBlur}">
-            <DockPanel Margin="10">
-                <fs:IconImage
-                    HorizontalAlignment="left"
-                    VerticalAlignment="top"
-                    DockPanel.Dock="Top"
-                    Foreground="{StaticResource Iconcolor}"
-                    Icon="subscript"
-                    Style="{StaticResource NewMButtonIconSelected}" />
-                <Label
-                    Margin="0,6,0,0"
-                    Content="{Binding}"
-                    DockPanel.Dock="Top"
-                    FontSize="15"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource Textcolor}" />
-                <Button
-                    Width="230"
-                    Height="30"
-                    Margin="0,6,0,0"
-                    HorizontalAlignment="Stretch"
-                    Background="{StaticResource Elementbackground}"
-                    BorderBrush="{StaticResource Elementbackground}"
-                    Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                    CommandParameter="{Binding}"
-                    Content="Démarrer"
-                    FontSize="16"
-                    Foreground="{StaticResource Textcolor}"
-                    Style="{StaticResource button_quizz_desi}" />
+            Margin="4,0,10,0"
+            Fill="Black"
+            RadiusX="20"
+            RadiusY="20" />
+        <Border
+            Width="250"
+            Height="120"
+            Margin="4,0,10,0"
+            Background="{StaticResource ElementbackgroundBlur}"
+            CornerRadius="20">
+            <DockPanel>
+                <DockPanel Margin="10">
+                    <fs:IconImage
+                        HorizontalAlignment="left"
+                        VerticalAlignment="top"
+                        DockPanel.Dock="Top"
+                        Foreground="{StaticResource Iconcolor}"
+                        Icon="subscript"
+                        Style="{StaticResource NewMButtonIconSelected}" />
+                    <Label
+                        Margin="0,6,0,0"
+                        Content="{Binding}"
+                        DockPanel.Dock="Top"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource Textcolor}" />
+                    <Button
+                        Width="auto"
+                        Height="30"
+                        Margin="0,6,0,0"
+                        Background="{StaticResource Elementbackground}"
+                        BorderBrush="{StaticResource Elementbackground}"
+                        Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        CommandParameter="{Binding}"
+                        Content="Démarrer"
+                        FontSize="16"
+                        Foreground="{StaticResource Textcolor}"
+                        Style="{StaticResource button_quizz_desi}" />
+                </DockPanel>
             </DockPanel>
-        </DockPanel>
-    </Grid>
+        </Border>
 
+
+    </Grid>
 </Page>
 
 
 
-<!--<Button
-                                Width="250"
-                                Height="50"
-                                Margin="50,10,10,10"
-                                Background="{StaticResource Elementbackground}"
-                                BorderBrush="{StaticResource Elementbackground}"
-                                Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                CommandParameter="{Binding}"
-                                Content="{Binding}"
-                                FontSize="16"
-                                Foreground="{StaticResource Textcolor}"
-                                Style="{StaticResource button_quizz_desi}" />-->
+
+
+<!--<Grid
+     Width="254"
+     Height="auto"
+     Margin="10,10,10,10">
+    <Rectangle
+         Width="50"
+         Height="auto"
+         Margin="0,0,10,0"
+         HorizontalAlignment="Left"
+         Fill="{Binding Color}"
+         RadiusX="20"
+         RadiusY="20">
+        <Rectangle.Effect>
+            <DropShadowEffect
+                 BlurRadius="30"
+                 Opacity="0.8"
+                 ShadowDepth="0"
+                 Color="{Binding Color}" />
+        </Rectangle.Effect>
+    </Rectangle>
+    <Rectangle
+         Width="250"
+         Height="auto"
+         Margin="4,0,10,0"
+         Fill="{StaticResource pageBackground}"
+         RadiusX="20"
+         RadiusY="20" />
+    <Border
+         Width="250"
+         Height="auto"
+         Background="{StaticResource ElementbackgroundBlur}"
+         CornerRadius="20">
+        <DockPanel Margin="10">
+            <fs:IconImage
+                 HorizontalAlignment="left"
+                 VerticalAlignment="top"
+                 DockPanel.Dock="Top"
+                 Foreground="{StaticResource Iconcolor}"
+                 Icon="subscript"
+                 Style="{StaticResource NewMButtonIconSelected}" />
+            <TextBlock
+                 Margin="0,6,0,0"
+                 DockPanel.Dock="Top"
+                 FontSize="15"
+                 FontWeight="Bold"
+                 Foreground="{StaticResource Textcolor}"
+                 Text="{Binding noms}"
+                 TextWrapping="Wrap" />
+            <Button
+                 Margin="0,6,0,0"
+                 HorizontalAlignment="Stretch"
+                 Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 CommandParameter="{Binding noms}"
+                 Style="{StaticResource button_quizz_desi}" />
+        </DockPanel>
+    </Border>
+</Grid>-->
+

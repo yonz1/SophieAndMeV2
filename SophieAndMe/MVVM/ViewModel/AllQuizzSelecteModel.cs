@@ -57,7 +57,7 @@ public class AllQuizzSelecteModel  : INotifyPropertyChanged
         _mainViewModel = mainVm;
         _dataService.QuizzId.Matier = _dataService.QuizzId.Nameindex.ToString();
         var name = DbInteraction.GetName(_dataService.QuizzId.Nameindex);
-        foreach (var value in name)
+        foreach (var value in name.Keys)
         {
             Console.WriteLine(value);
             var Temps = new CheckBoxItem();

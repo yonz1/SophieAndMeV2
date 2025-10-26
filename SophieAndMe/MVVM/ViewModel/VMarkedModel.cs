@@ -96,7 +96,7 @@ public class VMarkedModel : ObservableRecipient, INotifyPropertyChanged
                     Noms.Clear();
                     LoadMark("");    
                     var name = DbInteraction.GetName("All");
-                    foreach (var value in name) { Noms.Add(value);}
+                    foreach (var value in name.Keys ) { Noms.Add(value);}
                     _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 }
                 

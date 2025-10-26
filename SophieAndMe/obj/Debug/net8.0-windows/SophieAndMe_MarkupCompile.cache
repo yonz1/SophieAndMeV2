@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Bastien\RiderProjects\SophieAndMe\SophieAndMe\App.xaml
 28-1920405169
 41733109764
-67-87768398
+66696066992
 235-520234417
 MainWindow.xaml;MVVM\View\AllQuizzSelect.xaml;MVVM\View\CardDisplay\CardDisplayImport.xaml;MVVM\View\CardDisplay\CardDisplayResp.xaml;MVVM\View\Custom\FCCView.xaml;MVVM\View\EndQuizz.xaml;MVVM\View\QuizzLogic.xaml;MVVM\View\Schedule.xaml;MVVM\View\Settings.xaml;MVVM\View\SettingsViews\SettingsGeneral.xaml;MVVM\View\SettingsViews\SettingsProfile.xaml;MVVM\View\VAgenda.xaml;MVVM\View\VCustom.xaml;MVVM\View\VLanding.xaml;MVVM\View\VMarked.xaml;MVVM\View\VNotes.xaml;MVVM\View\VQuizz.xaml;Style\Blue_Theme.xaml;Style\ButtonStyle.xaml;Style\Calendar.xaml;Style\Converter.xaml;Style\Dark_theme.xaml;Style\General.xaml;Style\Light_Theme.xaml;Style\Theme.xaml;Test\Boutton_test.xaml;Windows\ImportAdd.xaml;Windows\Login.xaml;
 
-False
+True
 

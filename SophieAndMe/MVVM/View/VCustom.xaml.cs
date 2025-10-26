@@ -31,11 +31,12 @@ public partial class VCustom : UserControl
             WebViewCard.Source = uri1 as System.Uri;
             
             WebViewCard.CoreWebView2.Settings.IsStatusBarEnabled = false;
-            WebViewCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            // WebViewCard.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             WebViewCard.DefaultBackgroundColor = System.Drawing.Color.Transparent;
             
+            
             WebViewCustom.CoreWebView2.Settings.IsStatusBarEnabled = false;
-            WebViewCustom.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            // WebViewCustom.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
             WebViewCustom.DefaultBackgroundColor = System.Drawing.Color.Transparent;
             
             

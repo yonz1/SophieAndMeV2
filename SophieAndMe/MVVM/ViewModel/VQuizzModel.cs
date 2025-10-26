@@ -1,13 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using FontAwesome.Sharp;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
 using SophieAndMe.MVVM.Model;
-using Icon = System.Drawing.Icon;
 
 
 namespace SophieAndMe.MVVM.ViewModel;
@@ -17,9 +16,10 @@ namespace SophieAndMe.MVVM.ViewModel;
     {
         public IDataService _dataService;
         private readonly MainViewModel _mainViewModel;
-        public ObservableCollection<string> Noms { get; set; } = new();
+        // public ObservableCollection<string> Noms { get; set; } = new();
         public ICommand ChoisirNomCommand {  get; }
         public ObservableCollection<SubjectItem> Subjects { get; set; }
+        public ObservableCollection<NameItemQUizzCardButton> Noms { get; set; } = new();
         private static readonly List<string> ListMat =
             ["Mathématiques", "Physique", "SI", "Français", "Anglais", "Erreurs"];
         
@@ -41,8 +41,7 @@ namespace SophieAndMe.MVVM.ViewModel;
             };
             
             var name = DbInteraction.GetName("Tous");
-            foreach (var value in name) { Noms.Add(value);}
-
+            foreach (var value in name.Keys) { Noms.Add(new NameItemQUizzCardButton{noms = value,Color = name[value]}); }
             _dataService.QuizzId.Matier = "Tous";
             
             foreach (var subject in Subjects)
@@ -52,7 +51,7 @@ namespace SophieAndMe.MVVM.ViewModel;
                 {
                     Noms.Clear();
                     var name = DbInteraction.GetName(localSubject.Name.ToString());
-                    foreach (var value in name) { Noms.Add(value);}
+                    foreach (var value in name.Keys) { Noms.Add(new NameItemQUizzCardButton{noms = value,Color = name[value]});}
                     _dataService.QuizzId.Matier  = localSubject.Name.ToString();
                 });
             }
