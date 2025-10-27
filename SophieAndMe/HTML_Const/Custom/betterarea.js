@@ -1,6 +1,5 @@
 imgQuestion = "";
 imgRep = "";
-button_fill("Add");
 
 const wordReplacements = {
     "sommekn": "\\sum_{k}^{n}",

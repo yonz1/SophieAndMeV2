@@ -6,6 +6,45 @@ const QuestionBox = document.getElementById('QuestionCheck');
 const ReponseBox =  document.getElementById('ReponseCheck');
 const bannerQuestion = document.getElementById('ques_img');
 const bannerResponse = document.getElementById('rep_img');
+const form = document.getElementById('flashForm');
+const btnClear = document.getElementById('btnClear');
+
+document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') btnClear.click();
+    if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey)) {
+        document.getElementById('btnAdd').click();
+    }
+});
+
+btnClear.addEventListener('click', () => {
+    clear();
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    action = document.getElementById('btnAdd').textContent == "ADD" ? "save" : "replace"; 
+    const data = {
+        action :  action,
+        matiere: form.matiere.value.trim(),
+        name: form.name.value.trim(),
+        question: form.inputText.value.trim(),
+        answer: form.input_rep.value.trim()
+    };
+    // Simple validation
+    if(!data.question || !data.answer || !data.matiere || !data.name) {
+        alert('Merci de remplir tout les champs');
+        return;
+    }
+    console.log('Nouvelle flashcard', data);
+    btnAddFlashcardFeedback();
+    form.reset();
+    var ul = document.getElementById('ulRecent');
+    var li = document.createElement('li');
+    console.log("Element afficher", data.matiere , " - " ,  data.name)
+    li.appendChild(document.createTextNode(data.matiere + " - "+  data.name));
+    ul.append(li)
+    window.chrome.webview.postMessage(data);
+});
 
 
 function autocomplete(inp, arr) {
@@ -93,8 +132,6 @@ function autocomplete(inp, arr) {
         }
     }
     function closeAllLists(elmnt) {
-        /*close all autocomplete lists in the document,
-        except the one passed as an argument:*/
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
@@ -108,10 +145,6 @@ function autocomplete(inp, arr) {
     });
 }
 
-// function ReceiveDataCsharp(data){
-//   nom = data
-
-// }
 var matiére = ["Physique", "Mathématiques", "Français", "Anglais", "Erreurs", "SI"]
 nom = ["Géometrie dans l\'espace", "Application Linéaire", "Calcul", "fonction","Equation différentielle"]
 
@@ -127,29 +160,8 @@ function Suggestion(arr,val)
 
 function button_fill(val)
 {
-    const buttonTag = document.getElementById("button_div");
-    buttonTag.innerHTML = '';
-    const btnClear = document.createElement("button");
-    btnClear.textContent = "Clear";
-    btnClear.className = "animated-button";
-    btnClear.id = "btnclear";
-    btnClear.addEventListener("click", clear);
-    const btnAction = document.createElement("button");
-    btnAction.className = "animated-button";
-    if (val === "Add") {
-        btnAction.id = "btnSave";
-        btnAction.textContent = "Add";
-        btnAction.addEventListener("click", save);
-        clear(); 
-    } 
-    else {
-        btnAction.id = "btnReplace";
-        btnAction.textContent = "Replace";
-        btnAction.addEventListener("click", Replace);
-    }
-    buttonTag.appendChild(btnClear);
-    buttonTag.appendChild(btnAction);
-
+    const btn = document.getElementById('btnAdd');
+    btn.textContent = val;
 }
 
 
@@ -183,9 +195,6 @@ function save(){
     const name = document.getElementById("Name").value;
     const question = document.getElementById("inputText").value;
     const rep = document.getElementById("input_rep").value;
-
-
-
     const data = { action, matier, name, question, imgQuestion, rep, imgRep };
     console.log(data);
     clear();
@@ -197,8 +206,6 @@ function Replace(){
     const name = document.getElementById("Name").value;
     const question = document.getElementById("inputText").value;
     const rep = document.getElementById("input_rep").value;
-
-
     const data = { action, matier, name, question, imgQuestion, rep, imgRep };
     console.log(data);
     clear();
@@ -208,14 +215,7 @@ function Replace(){
 
 function clear()
 {
-    document.querySelectorAll('input,textarea').forEach(el => el.value = "");
-    const textarea = document.getElementById('inputText')
-    const output = document.getElementById('OutputText')
-    const output_rep = document.getElementById('Output_rep')
-    output_rep.innerHTML = textarea.value;
-    output.innerHTML = textarea.value;
-    QuestionBox.checked = true;
-    ReponseBox.checked = true;
+    form.reset();
     imgRep = "";
     imgQuestion = "";
     bannerResponse.src = "";
@@ -317,3 +317,10 @@ function NullImg (box)
     box.style.width = "0px";
     box.style.height = "0px";
 }
+function btnAddFlashcardFeedback(){
+    const btn = document.getElementById('btnAdd');
+    btn.textContent = 'ADDED ✓';
+    setTimeout(()=> btn.textContent = 'ADD', 900);
+}
+
+    // keyboard shortcuts

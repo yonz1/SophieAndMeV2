@@ -107,7 +107,7 @@
                                     Text="{Binding noms}"
                                     TextWrapping="Wrap" />
                                 <Button
-                                    Margin="0,6,0,0"
+                                    Margin="0,6,5,0"
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding DataContext.ChoisirNomCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                     CommandParameter="{Binding noms}"

@@ -17,8 +17,8 @@
         Height="120"
         Background="{StaticResource pageBackground}">
         <Rectangle
-            Width="50"
-            Height="120"
+            Width="250"
+            Height="auto"
             Margin="0,0,10,0"
             HorizontalAlignment="Left"
             Fill="LimeGreen"
@@ -34,14 +34,14 @@
         </Rectangle>
         <Rectangle
             Width="250"
-            Height="120"
+            Height="auto"
             Margin="4,0,10,0"
             Fill="Black"
             RadiusX="20"
             RadiusY="20" />
         <Border
             Width="250"
-            Height="120"
+            Height="auto"
             Margin="4,0,10,0"
             Background="{StaticResource ElementbackgroundBlur}"
             CornerRadius="20">
