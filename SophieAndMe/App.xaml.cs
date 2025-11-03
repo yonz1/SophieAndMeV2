@@ -4,7 +4,6 @@ using System.Data.Entity.Core.Mapping;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using SophieAndMe.Core;
-using SophieAndMe.MVVM.ViewModel;
 
 namespace SophieAndMe;
 

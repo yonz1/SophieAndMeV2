@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Windows;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Globalization;
+using System.IO;
 using System.Windows.Media;
 using SophieAndMe.Core;
 using SophieAndMe.MVVM.View;
@@ -130,6 +131,7 @@ namespace SophieAndMe.MVVM.Model
             SortedDictionary<string,SolidColorBrush> valueret = new SortedDictionary<string, SolidColorBrush>();
             if ((string)mat! == "Tous")
             {
+                Console.WriteLine("Dossier actule"  + Directory.GetCurrentDirectory());
                 using var db = new SQLiteConnection(ConSource);
                 db.Open();
                 foreach (var Matier in  ListMat)

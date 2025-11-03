@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "ushx3Y9xIT0=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\Nerv\\Nerv.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\Bastien\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.11\\microsoft.netcore.app.host.win-x64.8.0.11.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1012",
+      "level": "Error",
+      "message": "Platform version is not present for one or more target frameworks, even though they have specified a platform: net8.0-android, net8.0-ios, net8.0-maccatalyst",
+      "projectPath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\Nerv\\Nerv.csproj",
+      "filePath": "C:\\Users\\Bastien\\RiderProjects\\SophieAndMe\\Nerv\\Nerv.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

@@ -78,28 +78,28 @@
                                 Foreground="{StaticResource Textcolor}"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton
-                        Margin="5,0,5,0"
-                        GroupName="Matier"
-                        VerticalAlignment="Center"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Command="{Binding FFCComm}"
-                        DockPanel.Dock="Left"
-                        Style="{StaticResource topquizzmat}">
-                        <StackPanel
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Label
-                                Margin="0,0,1.5,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Content="FFC"
-                                FontSize="16"
-                                FontWeight="Bold"
-                                Foreground="{StaticResource Textcolor}"/>
-                        </StackPanel>
-                    </RadioButton>
+                    <!-- <RadioButton -->
+                    <!--     Margin="5,0,5,0" -->
+                    <!--     GroupName="Matier" -->
+                    <!--     VerticalAlignment="Center" -->
+                    <!--     materialDesign:ButtonAssist.CornerRadius="20" -->
+                    <!--     Command="{Binding FFCComm}" -->
+                    <!--     DockPanel.Dock="Left" -->
+                    <!--     Style="{StaticResource topquizzmat}"> -->
+                    <!--     <StackPanel -->
+                    <!--         HorizontalAlignment="Center" -->
+                    <!--         VerticalAlignment="Center" -->
+                    <!--         Orientation="Horizontal"> -->
+                    <!--         <Label -->
+                    <!--             Margin="0,0,1.5,0" -->
+                    <!--             HorizontalAlignment="Center" -->
+                    <!--             VerticalAlignment="Center" -->
+                    <!--             Content="FFC" -->
+                    <!--             FontSize="16" -->
+                    <!--             FontWeight="Bold" -->
+                    <!--             Foreground="{StaticResource Textcolor}"/> -->
+                    <!--     </StackPanel> -->
+                    <!-- </RadioButton> -->
                     <RadioButton
                         Margin="5,0,5,0"
                         VerticalAlignment="Center"

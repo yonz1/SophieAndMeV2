@@ -174,7 +174,6 @@ public class QuizzLogicModel  : INotifyPropertyChanged
             {
                 NavigationService.Instance.Navigate("MainContent",new VQuizz(mainVm));
             }
-            
         });
         DirectResp = new RelayCommand(o =>
         {

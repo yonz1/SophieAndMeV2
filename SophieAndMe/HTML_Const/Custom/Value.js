@@ -3,48 +3,9 @@ imgQuestion = "";
 imgRep = "";
 
 const QuestionBox = document.getElementById('QuestionCheck');
-const ReponseBox =  document.getElementById('ReponseCheck');
+const ReponseBox = document.getElementById('ReponseCheck');
 const bannerQuestion = document.getElementById('ques_img');
 const bannerResponse = document.getElementById('rep_img');
-const form = document.getElementById('flashForm');
-const btnClear = document.getElementById('btnClear');
-
-document.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Escape') btnClear.click();
-    if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey)) {
-        document.getElementById('btnAdd').click();
-    }
-});
-
-btnClear.addEventListener('click', () => {
-    clear();
-});
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    action = document.getElementById('btnAdd').textContent == "ADD" ? "save" : "replace"; 
-    const data = {
-        action :  action,
-        matiere: form.matiere.value.trim(),
-        name: form.name.value.trim(),
-        question: form.inputText.value.trim(),
-        answer: form.input_rep.value.trim()
-    };
-    // Simple validation
-    if(!data.question || !data.answer || !data.matiere || !data.name) {
-        alert('Merci de remplir tout les champs');
-        return;
-    }
-    console.log('Nouvelle flashcard', data);
-    btnAddFlashcardFeedback();
-    form.reset();
-    var ul = document.getElementById('ulRecent');
-    var li = document.createElement('li');
-    console.log("Element afficher", data.matiere , " - " ,  data.name)
-    li.appendChild(document.createTextNode(data.matiere + " - "+  data.name));
-    ul.append(li)
-    window.chrome.webview.postMessage(data);
-});
 
 
 function autocomplete(inp, arr) {
@@ -52,11 +13,11 @@ function autocomplete(inp, arr) {
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
-        if (!val) { return false;}
+        if (!val) { return false; }
         currentFocus = -1;
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
@@ -77,7 +38,7 @@ function autocomplete(inp, arr) {
                 b.innerHTML += "<input type='hidden' value=" + JSON.stringify(arr[i]) + ">";
                 console.log(JSON.parse(JSON.stringify(arr[i])));
                 /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function(e) {
+                b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
                     // item = JSON.parse(JSON.stringify(this.getElementsByTagName("input")[0].value));
                     // console.log(item)
@@ -91,7 +52,7 @@ function autocomplete(inp, arr) {
         }
     });
     /*execute a function presses a key on the keyboard:*/
-    inp.addEventListener("keydown", function(e) {
+    inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
@@ -132,6 +93,8 @@ function autocomplete(inp, arr) {
         }
     }
     function closeAllLists(elmnt) {
+        /*close all autocomplete lists in the document,
+        except the one passed as an argument:*/
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
@@ -145,12 +108,15 @@ function autocomplete(inp, arr) {
     });
 }
 
+// function ReceiveDataCsharp(data){
+//   nom = data
+
+// }
 var matiére = ["Physique", "Mathématiques", "Français", "Anglais", "Erreurs", "SI"]
-nom = ["Géometrie dans l\'espace", "Application Linéaire", "Calcul", "fonction","Equation différentielle"]
+nom = ["Géometrie dans l\'espace", "Application Linéaire", "Calcul", "fonction", "Equation différentielle"]
 
 
-function Suggestion(arr,val)
-{
+function Suggestion(arr, val) {
     console.log("Suggestions faite");
     autocomplete(document.getElementById("Matier"), matiére);
     autocomplete(document.getElementById("Name"), arr);
@@ -158,14 +124,37 @@ function Suggestion(arr,val)
 }
 
 
-function button_fill(val)
-{
-    const btn = document.getElementById('btnAdd');
-    btn.textContent = val;
+function button_fill(val) {
+    const buttonTag = document.getElementById("button_div");
+
+    buttonTag.innerHTML = '';
+
+    const btnClear = document.createElement("button");
+    btnClear.textContent = "Clear";
+    btnClear.className = "animated-button";
+    btnClear.id = "btnclear";
+    btnClear.addEventListener("click", clear);
+
+    const btnAction = document.createElement("button");
+    btnAction.className = "animated-button";
+    if (val === "Add") {
+        btnAction.id = "btnSave";
+        btnAction.textContent = "Add";
+        btnAction.addEventListener("click", save);
+        clear();
+    } else {
+        btnAction.id = "btnReplace";
+        btnAction.textContent = "Replace";
+        btnAction.addEventListener("click", Replace);
+    }
+
+    buttonTag.appendChild(btnClear);
+    buttonTag.appendChild(btnAction);
+
 }
 
 
-function fill_edit(matier,name,question,ImgQuestion,rep,ImgRep) {
+function fill_edit(matier, name, question, ImgQuestion, rep, ImgRep) {
     Matier.value = matier;
     Name.value = name;
     inputText.value = question;
@@ -177,7 +166,7 @@ function fill_edit(matier,name,question,ImgQuestion,rep,ImgRep) {
     NullImg(bannerQuestion);
     NullImg(bannerResponse);
     button_fill("");
-    
+
     const textarea = document.getElementById('inputText')
     const output = document.getElementById('OutputText')
     output.innerHTML = textarea.value;
@@ -189,23 +178,28 @@ function fill_edit(matier,name,question,ImgQuestion,rep,ImgRep) {
     MathJax.typesetPromise([Output_rep]);
 }
 
-function save(){
+function save() {
     const action = "save";
     const matier = document.getElementById("Matier").value;
     const name = document.getElementById("Name").value;
     const question = document.getElementById("inputText").value;
     const rep = document.getElementById("input_rep").value;
+
+
+
     const data = { action, matier, name, question, imgQuestion, rep, imgRep };
     console.log(data);
     clear();
     window.chrome.webview.postMessage(data);
 }
-function Replace(){
+function Replace() {
     const action = "Replace";
     const matier = document.getElementById("Matier").value;
     const name = document.getElementById("Name").value;
     const question = document.getElementById("inputText").value;
     const rep = document.getElementById("input_rep").value;
+
+
     const data = { action, matier, name, question, imgQuestion, rep, imgRep };
     console.log(data);
     clear();
@@ -213,9 +207,15 @@ function Replace(){
     button_fill("Add");
 }
 
-function clear()
-{
-    form.reset();
+function clear() {
+    document.querySelectorAll('input,textarea').forEach(el => el.value = "");
+    const textarea = document.getElementById('inputText')
+    const output = document.getElementById('OutputText')
+    const output_rep = document.getElementById('Output_rep')
+    output_rep.innerHTML = textarea.value;
+    output.innerHTML = textarea.value;
+    QuestionBox.checked = true;
+    ReponseBox.checked = true;
     imgRep = "";
     imgQuestion = "";
     bannerResponse.src = "";
@@ -245,7 +245,7 @@ document.getElementById('fileInpu_rept').addEventListener('change', function (ev
 
 document.getElementById('fileInput').addEventListener('change', function (event) {
     const file = event.target.files[0];
-    
+
 
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
@@ -272,37 +272,34 @@ QuestionBox.addEventListener("change", () =>
 ReponseBox.addEventListener("change", () =>
     ReponseBox.checked ? UnShowImages(ReponseBox) : ShowImage(ReponseBox)
 );
-function ShowImage(Box)
-{
-   switch (Box){
-       case ReponseBox:
+function ShowImage(Box) {
+    switch (Box) {
+        case ReponseBox:
             Show(bannerResponse);
-           break;
-       case QuestionBox:
-           Show(bannerQuestion);
-           // bannerQuestion.style.width = "200px";
-           // bannerQuestion.style.height = "200px";
-           break;
-   }
+            break;
+        case QuestionBox:
+            Show(bannerQuestion);
+            // bannerQuestion.style.width = "200px";
+            // bannerQuestion.style.height = "200px";
+            break;
+    }
 }
 
 
-function Show(Banner)
-{
-    Banner.style.width =  "100%";             /* S'adapte au conteneur */
-    Banner.style.maxWidth =  "500px";        /* Taille maximale (tu choisis selon ton design) */
-    Banner.style.height =  "auto";            /* Garde les proportions */
-    Banner.style.imageRendering =  "auto";   /* ou 'crisp-edges' si image pixel art */
-    Banner.style.display =  "block";
-    Banner.style.margin =  "0 auto";          /* Centre l'image */
-    Banner.style.objectFit =  "contain";     /* Assure que l’image ne soit jamais déformée */
+function Show(Banner) {
+    Banner.style.width = "100%";             /* S'adapte au conteneur */
+    Banner.style.maxWidth = "500px";        /* Taille maximale (tu choisis selon ton design) */
+    Banner.style.height = "auto";            /* Garde les proportions */
+    Banner.style.imageRendering = "auto";   /* ou 'crisp-edges' si image pixel art */
+    Banner.style.display = "block";
+    Banner.style.margin = "0 auto";          /* Centre l'image */
+    Banner.style.objectFit = "contain";     /* Assure que l’image ne soit jamais déformée */
     Banner.marginTop = "300px"
     Banner.marginBottom = "30px"
 }
 
-function UnShowImages(Box)
-{
-    switch (Box){
+function UnShowImages(Box) {
+    switch (Box) {
         case ReponseBox:
             NullImg(bannerResponse)
             break;
@@ -312,15 +309,7 @@ function UnShowImages(Box)
     }
 }
 
-function NullImg (box)
-{
+function NullImg(box) {
     box.style.width = "0px";
     box.style.height = "0px";
 }
-function btnAddFlashcardFeedback(){
-    const btn = document.getElementById('btnAdd');
-    btn.textContent = 'ADDED ✓';
-    setTimeout(()=> btn.textContent = 'ADD', 900);
-}
-
-    // keyboard shortcuts

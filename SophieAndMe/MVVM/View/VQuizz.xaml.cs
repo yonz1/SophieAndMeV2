@@ -12,8 +12,7 @@ namespace SophieAndMe.MVVM.View
         public VQuizz(MainViewModel mainVm)
         {
             InitializeComponent();
-            this.DataContext = new VQuizzModel(mainVm);
-            
+            this.DataContext = new VQuizzModel(mainVm);   
         }
     }
 }
